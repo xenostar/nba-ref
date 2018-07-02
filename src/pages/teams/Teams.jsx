@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './_styles.css'
+import './_teams.css'
 
 export default class Teams extends Component {
 

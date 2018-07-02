@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './_styles.css'
+import './_players.css'
 
 export default class Players extends Component {
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import './_styles.css'
-import logo from './nba-logo_orange.svg'
+import './_header.css'
+import logo from './img/nba-logo--orange.svg'
 
 export default class Header extends Component {
 

@@ -1,0 +1,16 @@
+/*
+ *
+ * Footer Styles
+ *
+ */
+
+.app-footer {
+	border-top: 1px solid #ccc;
+	padding-top: 1.25rem;
+}
+
+.app-footer p {
+	color: #bbb;
+	cursor: default;
+	font-size: 0.875em;
+}

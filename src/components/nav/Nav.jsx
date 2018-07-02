@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
-import './_styles.css';
+import { NavLink } from "react-router-dom";
+import './_nav.css';
 
 export default class Nav extends Component {
 
 	render() {
 		return (
 			<nav className="app-nav">
-				<Link to="/">Home</Link>
-				<Link to="/players">Players</Link>
-				<Link to="/teams">Teams</Link>
-				<Link to="/profile">Profile</Link>
+				<NavLink exact to="/" activeClassName="active">Home</NavLink>
+				<NavLink exact to="/players" activeClassName="active">Players</NavLink>
+				<NavLink exact to="/teams" activeClassName="active">Teams</NavLink>
+				<NavLink exact to="/profile" activeClassName="active">Profile</NavLink>
 			</nav>
 		);
 	}

@@ -1,0 +1,53 @@
+/*
+ *
+ * App Styles
+ *
+ */
+
+
+html {
+	color: #444;
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 1em;
+	font-style: normal;
+	font-weight: 400;
+}
+
+body {
+	background-image: url('./img/funky-lines.png');
+	/* background-image: url('./img/white_wall_hash.png'); */
+}
+
+a {
+	text-decoration: none;
+}
+
+p, ul, ol {
+	font-size: 1.25em;
+}
+
+ol, ul {
+	list-style-position: inside;
+	list-style-type: disc;
+}
+
+.app-container {
+	background: rgba(255,255,255,0.85);
+	margin: 0 2.5rem;
+	min-height: 100vh;
+	padding: 2.5rem;
+}
+
+.page {
+	margin-bottom: 5rem;
+}
+
+.page p,
+.page ul,
+.page ol {
+	margin-bottom: 1.25rem;
+}
+
+.page *:last-child {
+	margin-bottom: 0;
+}
