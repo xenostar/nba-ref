@@ -1,0 +1,25 @@
+/*
+ *
+ * Header Styles
+ *
+ */
+
+.app-header {
+	overflow: hidden;
+}
+
+.app-header img {
+	height: 120px;
+	float: left;
+	margin-right: 20px;
+}
+
+.app-header h1 {
+	cursor: default;
+	float: left;
+	font-size: 4em;
+	line-height: 120px;
+}
+.app-header h1 span {
+	color: #ED5429;
+}

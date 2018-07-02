@@ -1,0 +1,16 @@
+/*
+ *
+ * Nav Styles
+ *
+ */
+
+.app-nav {
+	overflow: hidden;
+}
+
+.app-nav a {
+	display: block;
+	float: left;
+	line-height: 80px;
+	padding: 0 20px;
+}

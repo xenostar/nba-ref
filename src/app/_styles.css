@@ -5,17 +5,18 @@
  */
 
 
-
-/* Reset */
-* {
-	padding: 0;
-	margin: 0;
-	outline: 0;
-}
-body {
-	font-family: sans-serif;
+html {
+	color: #444;
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 1em;
+	font-style: normal;
+	font-weight: 400;
 }
 
+html {
+	font-family: 'Ubuntu', sans-serif;
+}
 
-
-/* Styles */
+.app-container {
+	padding: 2.5rem;
+}
