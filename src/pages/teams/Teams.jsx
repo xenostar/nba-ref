@@ -27,9 +27,12 @@ export default class Teams extends Component {
 		.then(data => {
 			let roster = data.rosterplayers.playerentry.map((player, index) => {
 				return (
-					<div key={index}>
-						<p>{player.player.FirstName} {player.player.LastName}</p>
-					</div>
+					<tr key={index}>
+						<td>{player.player.JerseyNumber}</td>
+						<td>{player.player.FirstName} {player.player.LastName}</td>
+						<td>{player.player.Position}</td>
+						<td>{player.player.Height}</td>
+					</tr>
 				)
 			})
 			this.setState({
@@ -41,8 +44,17 @@ export default class Teams extends Component {
 	render() {
 		return (
 			<div className="page page-teams">
-				<p>Teams page content:</p>
-				{this.state.roster}
+				<table className="tb-roster">
+					<thead>
+						<th class="row-1 row-number">#</th>
+						<th class="row-2 row-name">Name</th>
+						<th class="row-3 row-position">Position</th>
+						<th class="row-4 row-height">Height</th>
+					</thead>
+					<tbody>
+						{this.state.roster}
+					</tbody>
+				</table>
 			</div>
 		)
 	}

@@ -3,3 +3,45 @@
  * Teams Styles
  *
  */
+
+.page-teams .tb-roster {
+	border-collapse: collapse;
+	table-layout: fixed;
+	width: 100%;
+	white-space: nowrap;
+}
+
+.page-teams .tb-roster th {
+	overflow: hidden;
+	padding: 10px;
+	text-align: left;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.page-teams .tb-roster td {
+	overflow: hidden;
+	padding: 10px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.page-teams .tb-roster tr:nth-child(even) {
+	background-color: rgba(0,0,0,0.05);
+}
+
+.page-teams .row-number {
+	width: 5%;
+}
+
+.page-teams .row-name {
+	/* width: 20%; */
+}
+
+.page-teams .row-position {
+	width: 10%;
+}
+
+.page-teams .row-height {
+	width: 10%;
+}
