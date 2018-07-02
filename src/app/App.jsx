@@ -16,27 +16,8 @@ import Players from '../pages/players/Players.jsx'
 import Profile from '../pages/profile/Profile.jsx'
 import Teams from '../pages/teams/Teams.jsx'
 
-// App Container
+// App
 export default class App extends Component {
-
-	constructor() {
-		super()
-		this.state = {}
-	}
-
-	componentDidMount() {
-		// fetch(pull_url, {
-		// 	headers: {
-		// 		'Authorization': 'Basic ' + btoa(username + ':' + password)
-		// 	},
-		// })
-		// .then(response => {
-		// 	return response.json()
-		// })
-		// .then(data => {
-		// 	console.log(data)
-		// })
-	}
 
 	render() {
 		return (

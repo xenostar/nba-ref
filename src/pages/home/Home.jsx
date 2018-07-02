@@ -3,10 +3,10 @@ import './_home.css'
 
 export default class Footer extends Component {
 
-	// constructor() {
-	// 	super()
-	// 	this.state = {}
-	// }
+	constructor(props) {
+		super(props)
+		this.state = {}
+	}
 
 	componentDidMount() {
 	}

@@ -3,8 +3,8 @@ import './_profile.css'
 
 export default class Profile extends Component {
 
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
 			pictures : [],
 		}
@@ -12,8 +12,8 @@ export default class Profile extends Component {
 
 	componentDidMount() {
 		fetch('https://randomuser.me/api/?results=500')
-		.then(results => {
-			return results.json()
+		.then(response => {
+			return response.json()
 		})
 		.then(data => {
 			let pictures = data.results.map((pic, index) => {
