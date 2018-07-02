@@ -4,11 +4,24 @@
  *
  */
 
+ .page-teams .tb-name {
+	 background-color: rgba(237, 84, 41, 1);
+	 border-radius: 3px 3px 0 0;
+	 color:#fff;
+	 font-size: 1.25em;
+	 font-weight: 700;
+	 padding: 10px;
+ }
+
 .page-teams .tb-roster {
 	border-collapse: collapse;
 	table-layout: fixed;
 	width: 100%;
 	white-space: nowrap;
+}
+
+.page-teams .tb-roster thead {
+	background-color: rgba(237, 84, 41, 0.075);
 }
 
 .page-teams .tb-roster th {
@@ -26,22 +39,30 @@
 	white-space: nowrap;
 }
 
-.page-teams .tb-roster tr:nth-child(even) {
-	background-color: rgba(0,0,0,0.05);
+.page-teams .tb-roster tbody tr:nth-child(even) {
+	background-color: rgba(0,0,0,0.025);
 }
 
-.page-teams .row-number {
+.page-teams .tb-roster .row-number {
 	width: 5%;
 }
 
-.page-teams .row-name {
-	/* width: 20%; */
+.page-teams .tb-roster .row-name {
+	width: auto;
 }
 
-.page-teams .row-position {
+.page-teams .tb-roster .row-position {
 	width: 10%;
 }
 
-.page-teams .row-height {
+.page-teams .tb-roster .row-age {
+	width: 10%;
+}
+
+.page-teams .tb-roster .row-height {
+	width: 10%;
+}
+
+.page-teams .tb-roster .row-weight {
 	width: 10%;
 }
