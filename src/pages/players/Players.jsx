@@ -31,7 +31,7 @@ export default class Players extends Component {
 			return response.json()
 		})
 		.then(data => {
-			console.log(data)
+			console.log('Points Data: ' + data)
 			let points = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
 				return (
 					<tr key={index}>
@@ -46,7 +46,7 @@ export default class Players extends Component {
 			})
 		})
 		.catch(error => {
-			console.log('Request failed: ', error)
+			console.log('Points request failed: ', error)
 		})
 
 		// Total Assists for Season
@@ -59,7 +59,7 @@ export default class Players extends Component {
 			return response.json()
 		})
 		.then(data => {
-			console.log(data)
+			console.log('Assists Data: ' + data)
 			let assists = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
 				return (
 					<tr key={index}>
@@ -74,7 +74,7 @@ export default class Players extends Component {
 			})
 		})
 		.catch(error => {
-			console.log('Request failed: ', error)
+			console.log('Assists request failed: ', error)
 		})
 
 		// Total Rebounds for Season
@@ -87,7 +87,7 @@ export default class Players extends Component {
 			return response.json()
 		})
 		.then(data => {
-			console.log(data)
+			console.log('Rebounds Data: ' + data)
 			let rebounds = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
 				return (
 					<tr key={index}>
@@ -102,16 +102,30 @@ export default class Players extends Component {
 			})
 		})
 		.catch(error => {
-			console.log('Request failed: ', error)
+			console.log('Rebounds request failed: ', error)
 		})
 
 	}
 
 	render() {
-		// Configuring table
-		let tableData = {
+		// Configuring tables
+		let tableDataPts = {
 			cols: [
 				[ 'Pts', '20%' ],
+				[ 'Position', '20%' ],
+				[ 'Name', 'auto' ]
+			]
+		}
+		let tableDataAst = {
+			cols: [
+				[ 'Ast', '20%' ],
+				[ 'Position', '20%' ],
+				[ 'Name', 'auto' ]
+			]
+		}
+		let tableDataReb = {
+			cols: [
+				[ 'Reb', '20%' ],
 				[ 'Position', '20%' ],
 				[ 'Name', 'auto' ]
 			]
@@ -120,13 +134,13 @@ export default class Players extends Component {
 		return (
 			<div className="page page-players">
 				<div>
-					<Table tableTitle="Points Scored" tableData={tableData}>{this.state.points}</Table>
+					<Table tableTitle="Points Scored" tableData={tableDataPts}>{this.state.points}</Table>
 				</div>
 				<div>
-					<Table tableTitle="Assists" tableData={tableData}>{this.state.assists}</Table>
+					<Table tableTitle="Assists" tableData={tableDataAst}>{this.state.assists}</Table>
 				</div>
 				<div>
-					<Table tableTitle="Rebounds" tableData={tableData}>{this.state.rebounds}</Table>
+					<Table tableTitle="Rebounds" tableData={tableDataReb}>{this.state.rebounds}</Table>
 				</div>
 			</div>
 		)
