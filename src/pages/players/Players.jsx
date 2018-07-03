@@ -112,12 +112,20 @@ export default class Players extends Component {
 		})
 	}
 
+	getPtsStatsTimer = ''
+	getAstStatsTimer = ''
+	getRebStatsTimer = ''
+
 	componentDidMount() {
+		this.getPtsStatsTimer = setTimeout(this.getPtsStats, 1000)
+		this.getAstStatsTimer = setTimeout(this.getAstStats, 3000)
+		this.getRebStatsTimer = setTimeout(this.getRebStats, 5000)
+	}
 
-		setTimeout(this.getPtsStats, 1000);
-		setTimeout(this.getAstStats, 3000);
-		setTimeout(this.getRebStats, 5000);
-
+	componentWillUnmount() {
+		clearTimeout(this.getPtsStatsTimer)
+		clearTimeout(this.getAstStatsTimer)
+		clearTimeout(this.getRebStatsTimer)
 	}
 
 	render() {
