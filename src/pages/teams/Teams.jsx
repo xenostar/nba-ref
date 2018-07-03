@@ -43,6 +43,9 @@ export default class Teams extends Component {
 				roster : roster
 			})
 		})
+		.catch(error => {
+			console.log('Request failed: ', error)
+		})
 	}
 
 	render() {

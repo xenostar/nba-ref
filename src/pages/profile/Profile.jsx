@@ -27,6 +27,9 @@ export default class Profile extends Component {
 				pictures : pictures
 			})
 		})
+		.catch(error => {
+			console.log('Request failed: ', error)
+		})
 	}
 
 	render() {

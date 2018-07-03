@@ -31,6 +31,7 @@ export default class Players extends Component {
 			return response.json()
 		})
 		.then(data => {
+			console.log(data)
 			let points = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
 				return (
 					<tr key={index}>
@@ -44,6 +45,9 @@ export default class Players extends Component {
 				points : points
 			})
 		})
+		.catch(error => {
+			console.log('Request failed: ', error)
+		})
 
 		// Total Assists for Season
 		fetch('https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?limit=10&sort=stats.Ast.D&playerstats=Ast', {
@@ -55,6 +59,7 @@ export default class Players extends Component {
 			return response.json()
 		})
 		.then(data => {
+			console.log(data)
 			let assists = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
 				return (
 					<tr key={index}>
@@ -68,6 +73,9 @@ export default class Players extends Component {
 				assists : assists
 			})
 		})
+		.catch(error => {
+			console.log('Request failed: ', error)
+		})
 
 		// Total Rebounds for Season
 		fetch('https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?limit=10&sort=stats.Reb.D&playerstats=Reb', {
@@ -79,6 +87,7 @@ export default class Players extends Component {
 			return response.json()
 		})
 		.then(data => {
+			console.log(data)
 			let rebounds = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
 				return (
 					<tr key={index}>
@@ -91,6 +100,9 @@ export default class Players extends Component {
 			this.setState({
 				rebounds : rebounds
 			})
+		})
+		.catch(error => {
+			console.log('Request failed: ', error)
 		})
 
 	}
@@ -115,15 +127,6 @@ export default class Players extends Component {
 				</div>
 				<div>
 					<Table tableTitle="Rebounds" tableData={tableData}>{this.state.rebounds}</Table>
-				</div>
-				<div>
-					<Table tableTitle="Points Scored" tableData={tableData}>{this.state.points}</Table>
-				</div>
-				<div>
-					<Table tableTitle="Points Scored" tableData={tableData}>{this.state.points}</Table>
-				</div>
-				<div>
-					<Table tableTitle="Points Scored" tableData={tableData}>{this.state.points}</Table>
 				</div>
 			</div>
 		)
