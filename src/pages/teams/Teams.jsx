@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import './_teams.css'
+import './Teams.css'
+
+// Components
+import Table from '../../components/table/Table'
 
 // Vars
-var pull_url = 'https://api.mysportsfeeds.com/v1.2/pull/nba/latest/roster_players.json?team=ind&rosterstatus=assigned-to-roster'
-var username = 'xenostar'
-var password = 'testpass123'
+let username = 'xenostar'
+let password = 'testpass123'
 
 export default class Teams extends Component {
 
@@ -16,7 +18,7 @@ export default class Teams extends Component {
 	}
 
 	componentDidMount() {
-		fetch(pull_url, {
+		fetch('https://api.mysportsfeeds.com/v1.2/pull/nba/latest/roster_players.json?team=ind&rosterstatus=assigned-to-roster', {
 			headers: {
 				'Authorization': 'Basic ' + btoa(username + ':' + password)
 			},
@@ -44,24 +46,20 @@ export default class Teams extends Component {
 	}
 
 	render() {
+		// Configuring table
+		let tableData = {
+			cols: [
+				[ '#', '5%' ],
+				[ 'Name', 'auto' ],
+				[ 'Position', '10%' ],
+				[ 'Age', '10%' ],
+				[ 'Height', '10%' ],
+				[ 'Weight', '10%' ]]
+		}
+
 		return (
 			<div className="page page-teams">
-				<div className="tb-name">Team Roster</div>
-				<table className="tb-roster">
-					<thead>
-						<tr>
-							<th className="row-number">#</th>
-							<th className="row-name">Name</th>
-							<th className="row-position">Position</th>
-							<th className="row-age">Age</th>
-							<th className="row-height">Height</th>
-							<th className="row-weight">Weight</th>
-						</tr>
-					</thead>
-					<tbody>
-						{this.state.roster}
-					</tbody>
-				</table>
+				<Table tableTitle="Team Roster" tableData={tableData}>{this.state.roster}</Table>
 			</div>
 		)
 	}

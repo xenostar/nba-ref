@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './_header.css'
+import './Header.css'
 import logo from './img/nba-logo--orange.svg'
 
 export default class Header extends Component {
@@ -10,7 +10,7 @@ export default class Header extends Component {
 				<img src={logo} className="img app-logo" alt="" />
 				<h1>nba<span>ref</span></h1>
 			</header>
-		);
+		)
 	}
 
 }

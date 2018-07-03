@@ -2,19 +2,20 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from "react-router-dom"
 
 // CSS
-import './_reset.css'
-import './_app.css'
+import './Reset.css'
+import './App.css'
 
 // Components
-import Header from '../components/header/Header.jsx'
-import Nav from '../components/nav/Nav.jsx'
-import Footer from '../components/footer/Footer.jsx'
+import Header from '../components/header/Header'
+import Nav from '../components/nav/Nav'
+import Footer from '../components/footer/Footer'
 
 // Pages
-import Home from '../pages/home/Home.jsx'
-import Players from '../pages/players/Players.jsx'
-import Profile from '../pages/profile/Profile.jsx'
-import Teams from '../pages/teams/Teams.jsx'
+import Home from '../pages/home/Home'
+import Players from '../pages/players/Players'
+import Standings from '../pages/standings/Standings'
+import Teams from '../pages/teams/Teams'
+import Profile from '../pages/profile/Profile'
 
 // App
 export default class App extends Component {
@@ -27,6 +28,7 @@ export default class App extends Component {
 					<Nav />
 					<Route exact path="/" component={Home} />
 					<Route path="/players" component={Players} />
+					<Route path="/standings" component={Standings} />
 					<Route path="/teams" component={Teams} />
 					<Route path="/profile" component={Profile} />
 					<Footer />

@@ -33,7 +33,9 @@ ol, ul {
 
 .app-container {
 	background: rgba(255,255,255,0.85);
-	margin: 0 2.5rem;
+	/* margin: 0 2.5rem; */
+	margin: 0 auto;
+	max-width: 90vw;
 	min-height: 100vh;
 	padding: 2.5rem;
 }
