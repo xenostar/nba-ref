@@ -54,7 +54,8 @@ export default class Teams extends Component {
 				[ 'Position', '10%' ],
 				[ 'Age', '10%' ],
 				[ 'Height', '10%' ],
-				[ 'Weight', '10%' ]]
+				[ 'Weight', '10%' ]
+			]
 		}
 
 		return (
