@@ -19,10 +19,9 @@ export default class Players extends Component {
 		}
 	}
 
-	componentDidMount() {
-
+	getPtsStats = () => {
 		// Total Points for Season
-		fetch('https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?limit=10&sort=stats.Pts.D&playerstats=Pts', {
+		fetch('https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', {
 			headers: {
 				'Authorization' : 'Basic ' + btoa(username + ':' + password)
 			},
@@ -47,10 +46,13 @@ export default class Players extends Component {
 		})
 		.catch(error => {
 			console.log('Points request failed: ', error)
+			// setTimeout(this.getPtsStats, 5000);
 		})
+	}
 
+	getAstStats = () => {
 		// Total Assists for Season
-		fetch('https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?limit=10&sort=stats.Ast.D&playerstats=Ast', {
+		fetch('https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', {
 			headers: {
 				'Authorization' : 'Basic ' + btoa(username + ':' + password)
 			},
@@ -75,10 +77,13 @@ export default class Players extends Component {
 		})
 		.catch(error => {
 			console.log('Assists request failed: ', error)
+			// setTimeout(this.getAstStats, 5000);
 		})
+	}
 
+	getRebStats = () => {
 		// Total Rebounds for Season
-		fetch('https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?limit=10&sort=stats.Reb.D&playerstats=Reb', {
+		fetch('https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', {
 			headers: {
 				'Authorization' : 'Basic ' + btoa(username + ':' + password)
 			},
@@ -103,7 +108,15 @@ export default class Players extends Component {
 		})
 		.catch(error => {
 			console.log('Rebounds request failed: ', error)
+			// setTimeout(this.getRebStats, 5000);
 		})
+	}
+
+	componentDidMount() {
+
+		setTimeout(this.getPtsStats, 1000);
+		setTimeout(this.getAstStats, 3000);
+		setTimeout(this.getRebStats, 5000);
 
 	}
 
