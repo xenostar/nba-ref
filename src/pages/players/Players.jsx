@@ -31,7 +31,7 @@ export default class Players extends Component {
 			return response.json()
 		})
 		.then(data => {
-			console.log('Points Data: ' + data)
+			console.log('Points Data: ', data)
 			let points = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
 				return (
 					<tr key={index}>
@@ -59,7 +59,7 @@ export default class Players extends Component {
 			return response.json()
 		})
 		.then(data => {
-			console.log('Assists Data: ' + data)
+			console.log('Assists Data: ', data)
 			let assists = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
 				return (
 					<tr key={index}>
@@ -87,7 +87,7 @@ export default class Players extends Component {
 			return response.json()
 		})
 		.then(data => {
-			console.log('Rebounds Data: ' + data)
+			console.log('Rebounds Data: ', data)
 			let rebounds = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
 				return (
 					<tr key={index}>
