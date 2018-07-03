@@ -22,7 +22,7 @@ export default class Players extends Component {
 		// Total Points for Season
 		fetch('https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?limit=10&sort=stats.Pts.D&playerstats=Pts', {
 			headers: {
-				'Authorization': 'Basic ' + btoa(username + ':' + password)
+				'Authorization' : 'Basic ' + btoa(username + ':' + password)
 			},
 		})
 		.then(response => {
@@ -49,14 +49,31 @@ export default class Players extends Component {
 		// Configuring table
 		let tableData = {
 			cols: [
-				[ 'Pts', '10%' ],
-				[ 'Position', '10%' ],
+				[ 'Pts', '20%' ],
+				[ 'Position', '20%' ],
 				[ 'Name', 'auto' ],]
 		}
 
 		return (
 			<div className="page page-players">
-				<Table tableTitle="Points Scored" tableData={tableData}>{this.state.roster}</Table>
+				<div>
+					<Table tableTitle="Points Scored" tableData={tableData}>{this.state.roster}</Table>
+				</div>
+				<div>
+					<Table tableTitle="Points Scored" tableData={tableData}>{this.state.roster}</Table>
+				</div>
+				<div>
+					<Table tableTitle="Points Scored" tableData={tableData}>{this.state.roster}</Table>
+				</div>
+				<div>
+					<Table tableTitle="Points Scored" tableData={tableData}>{this.state.roster}</Table>
+				</div>
+				<div>
+					<Table tableTitle="Points Scored" tableData={tableData}>{this.state.roster}</Table>
+				</div>
+				<div>
+					<Table tableTitle="Points Scored" tableData={tableData}>{this.state.roster}</Table>
+				</div>
 			</div>
 		)
 	}

@@ -41,6 +41,7 @@ ol, ul {
 }
 
 .page {
+	display: grid;
 	margin-bottom: 5rem;
 }
 

@@ -20,7 +20,7 @@ export default class Teams extends Component {
 	componentDidMount() {
 		fetch('https://api.mysportsfeeds.com/v1.2/pull/nba/latest/roster_players.json?team=ind&rosterstatus=assigned-to-roster', {
 			headers: {
-				'Authorization': 'Basic ' + btoa(username + ':' + password)
+				'Authorization' : 'Basic ' + btoa(username + ':' + password)
 			},
 		})
 		.then(response => {
