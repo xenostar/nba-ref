@@ -14,11 +14,20 @@ export default class Teams extends Component {
 		super(props)
 		this.state = {
 			roster : [],
+			team : 'ind',
 		}
 	}
 
 	componentDidMount() {
-		fetch('https://api.mysportsfeeds.com/v1.2/pull/nba/latest/roster_players.json?team=ind&rosterstatus=assigned-to-roster', {
+		this.handleFetch()
+	}
+
+	componentDidUpdate() {
+		console.log(this.state)
+	}
+
+	handleFetch() {
+		fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/latest/roster_players.json?team=${this.state.team}&rosterstatus=assigned-to-roster`, {
 			headers: {
 				'Authorization' : 'Basic ' + btoa(username + ':' + password)
 			},
@@ -48,6 +57,14 @@ export default class Teams extends Component {
 		})
 	}
 
+	handleChange = (event) => {
+		this.setState({
+			team : event.target.value
+		}, () => {
+			this.handleFetch()
+		})
+  }
+
 	render() {
 		// Configuring table
 		let tableData = {
@@ -63,6 +80,15 @@ export default class Teams extends Component {
 
 		return (
 			<div className="page page-teams">
+				<form>
+					<label>Select Team</label>
+					<select value={this.state.team} onChange={this.handleChange}>
+						<option value="ind">Indiana Pacers</option>
+						<option value="bos">Boston Celtics</option>
+						<option value="gsw">Golden State Warriors</option>
+						<option value="cle">Cleveland Cavaliers</option>
+					</select>
+				</form>
 				<Table tableTitle="Team Roster" tableData={tableData}>{this.state.roster}</Table>
 			</div>
 		)

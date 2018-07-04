@@ -3,3 +3,36 @@
  * Teams Styles
  *
  */
+
+.page-teams form {
+	margin-bottom: 2.5rem;
+	overflow: hidden;
+}
+
+.page-teams select {
+	border: 1px solid #ddd;
+	border-radius: 0 3px 3px 0;
+	font-size: 1.25em;
+	height: 2.5rem;
+	line-height: 2.5rem;
+	padding: 0 10px;
+	-webkit-appearance: none;
+}
+
+.page-teams label {
+	background: rgba(0,0,0,0.05);
+	border: 1px solid #ddd;
+	border-right: 0;
+	border-radius: 3px 0 0 3px;
+	color: #aaa;
+	float: left;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 38px;
+	padding: 0 10px;
+	text-transform: uppercase;
+}
+
+.page-teams form select {
+	float: left;
+}

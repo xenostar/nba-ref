@@ -23,14 +23,15 @@ export default class Players extends Component {
 		// Total Points for Season
 		fetch('https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', {
 			headers: {
-				'Authorization' : 'Basic ' + btoa(username + ':' + password)
+				'Authorization' : 'Basic ' + btoa(username + ':' + password),
+				'Cache-Control' : 'no-cache, no-store, must-revalidate'
 			},
 		})
 		.then(response => {
 			return response.json()
 		})
 		.then(data => {
-			console.log('Points Data: ', data)
+			// console.log('Points Data: ', data)
 			let points = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
 				return (
 					<tr key={index}>
@@ -45,8 +46,13 @@ export default class Players extends Component {
 			})
 		})
 		.catch(error => {
-			console.log('Points request failed: ', error)
-			// setTimeout(this.getPtsStats, 5000);
+			// console.log('Points request failed: ', error)
+			console.log('Points request is cached result. Retrying...')
+
+			// The API commonly returns cached results, so we rerun the handleFetch
+			// function until it returns the proper data... Super hacky and not a good
+			// long term solution. Probably need a more reliable API.
+			setTimeout(this.getPtsStats, 4000)
 		})
 	}
 
@@ -54,14 +60,15 @@ export default class Players extends Component {
 		// Total Assists for Season
 		fetch('https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', {
 			headers: {
-				'Authorization' : 'Basic ' + btoa(username + ':' + password)
+				'Authorization' : 'Basic ' + btoa(username + ':' + password),
+				'Cache-Control' : 'no-cache, no-store, must-revalidate'
 			},
 		})
 		.then(response => {
 			return response.json()
 		})
 		.then(data => {
-			console.log('Assists Data: ', data)
+			// console.log('Assists Data: ', data)
 			let assists = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
 				return (
 					<tr key={index}>
@@ -76,8 +83,9 @@ export default class Players extends Component {
 			})
 		})
 		.catch(error => {
-			console.log('Assists request failed: ', error)
-			// setTimeout(this.getAstStats, 5000);
+			// console.log('Assists request failed: ', error)
+			console.log('Assists request is cached result. Retrying...')
+			setTimeout(this.getAstStats, 4000)
 		})
 	}
 
@@ -85,14 +93,15 @@ export default class Players extends Component {
 		// Total Rebounds for Season
 		fetch('https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', {
 			headers: {
-				'Authorization' : 'Basic ' + btoa(username + ':' + password)
+				'Authorization' : 'Basic ' + btoa(username + ':' + password),
+				'Cache-Control' : 'no-cache, no-store, must-revalidate'
 			},
 		})
 		.then(response => {
 			return response.json()
 		})
 		.then(data => {
-			console.log('Rebounds Data: ', data)
+			// console.log('Rebounds Data: ', data)
 			let rebounds = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
 				return (
 					<tr key={index}>
@@ -107,8 +116,9 @@ export default class Players extends Component {
 			})
 		})
 		.catch(error => {
-			console.log('Rebounds request failed: ', error)
-			// setTimeout(this.getRebStats, 5000);
+			// console.log('Rebounds request failed: ', error)
+			console.log('Rebounds request is cached result. Retrying...')
+			setTimeout(this.getRebStats, 4000)
 		})
 	}
 
@@ -117,9 +127,11 @@ export default class Players extends Component {
 	getRebStatsTimer = ''
 
 	componentDidMount() {
-		this.getPtsStatsTimer = setTimeout(this.getPtsStats, 1000)
-		this.getAstStatsTimer = setTimeout(this.getAstStats, 3000)
-		this.getRebStatsTimer = setTimeout(this.getRebStats, 5000)
+		// Attempting to return more reliable results by spacing out requests.
+		// Extremely hacky and not a permanent solution.
+		this.getPtsStatsTimer = setTimeout(this.getPtsStats, 100)
+		this.getAstStatsTimer = setTimeout(this.getAstStats, 2000)
+		this.getRebStatsTimer = setTimeout(this.getRebStats, 4000)
 	}
 
 	componentWillUnmount() {
