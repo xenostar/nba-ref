@@ -15,7 +15,53 @@ export default class Teams extends Component {
 		this.state = {
 			roster : [],
 			team : 'ind',
+			isLoaded : false,
 		}
+	}
+
+	handleChange = (event) => {
+		this.setState({
+			team : event.target.value
+		}, _ => {
+			this.handleFetch()
+		})
+  }
+
+	handleFetch() {
+		this.setState({
+			isLoaded : false,
+		}, _ => {
+			fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/roster_players.json?team=${this.state.team}&rosterstatus=assigned-to-roster`, {
+				headers: {
+					'Authorization' : 'Basic ' + btoa(username + ':' + password),
+					'Cache-Control' : 'no-cache, no-store, must-revalidate'
+				},
+			})
+			.then(response => {
+				return response.json()
+			})
+			.then(data => {
+				let roster = data.rosterplayers.playerentry.map((player, index) => {
+					return (
+						<tr key={index}>
+							<td>{player.player.JerseyNumber}</td>
+							<td>{player.player.FirstName} {player.player.LastName}</td>
+							<td>{player.player.Position}</td>
+							<td>{player.player.Age}</td>
+							<td>{player.player.Height}</td>
+							<td>{player.player.Weight} lbs</td>
+						</tr>
+					)
+				})
+				this.setState({
+					roster : roster,
+					isLoaded : true,
+				})
+			})
+			.catch(error => {
+				console.log('Request failed: ', error)
+			})
+		})
 	}
 
 	componentDidMount() {
@@ -23,59 +69,19 @@ export default class Teams extends Component {
 	}
 
 	componentDidUpdate() {
-		console.log(this.state)
+		// console.log(this.state)
 	}
-
-	handleFetch() {
-		fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/roster_players.json?team=${this.state.team}&rosterstatus=assigned-to-roster`, {
-			headers: {
-				'Authorization' : 'Basic ' + btoa(username + ':' + password),
-				'Cache-Control' : 'no-cache, no-store, must-revalidate'
-			},
-		})
-		.then(response => {
-			return response.json()
-		})
-		.then(data => {
-			let roster = data.rosterplayers.playerentry.map((player, index) => {
-				return (
-					<tr key={index}>
-						<td>{player.player.JerseyNumber}</td>
-						<td>{player.player.FirstName} {player.player.LastName}</td>
-						<td>{player.player.Position}</td>
-						<td>{player.player.Age}</td>
-						<td>{player.player.Height}</td>
-						<td>{player.player.Weight} lbs</td>
-					</tr>
-				)
-			})
-			this.setState({
-				roster : roster
-			})
-		})
-		.catch(error => {
-			console.log('Request failed: ', error)
-		})
-	}
-
-	handleChange = (event) => {
-		this.setState({
-			team : event.target.value
-		}, () => {
-			this.handleFetch()
-		})
-  }
 
 	render() {
 		// Configuring table
 		let tableData = {
 			cols: [
-				[ '#', '5%' ],
+				[ '#', '5vw' ],
 				[ 'Name', 'auto' ],
-				[ 'Position', '10%' ],
-				[ 'Age', '10%' ],
-				[ 'Height', '10%' ],
-				[ 'Weight', '10%' ]
+				[ 'Position', '10vw' ],
+				[ 'Age', '10vw' ],
+				[ 'Height', '10vw' ],
+				[ 'Weight', '10vw' ]
 			]
 		}
 
@@ -84,7 +90,6 @@ export default class Teams extends Component {
 				<form>
 					<label>Select Team</label>
 					<select value={this.state.team} onChange={this.handleChange}>
-						<option value="ind">Indiana Pacers</option>
 						<option value="atl">Atlanta Hawks</option>
 						<option value="bos">Boston Celtics</option>
 						<option value="bro">Brooklyn Nets</option>
@@ -96,6 +101,7 @@ export default class Teams extends Component {
 						<option value="den">Denver Nuggets</option>
 						<option value="gsw">Golden State Warriors</option>
 						<option value="hou">Houston Rockets</option>
+						<option value="ind">Indiana Pacers</option>
 						<option value="lac">LA Clippers</option>
 						<option value="lal">Los Angeles Lakers</option>
 						<option value="mem">Memphis Grizzlies</option>
@@ -116,7 +122,7 @@ export default class Teams extends Component {
 						<option value="was">Washington Wizards</option>
 					</select>
 				</form>
-				<Table tableTitle="Team Roster" tableData={tableData}>{this.state.roster}</Table>
+				<Table tableTitle="Team Roster" tableData={tableData} isLoaded={this.state.isLoaded}>{this.state.roster}</Table>
 			</div>
 		)
 	}

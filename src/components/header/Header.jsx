@@ -7,7 +7,7 @@ export default class Header extends Component {
 	render() {
 		return (
 			<header className="app-header">
-				<img src={logo} className="img app-logo" alt="" />
+				<img src={logo} alt="NBA REF" />
 				<h1>nba<span>ref</span></h1>
 			</header>
 		)

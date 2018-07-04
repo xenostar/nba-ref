@@ -19,6 +19,7 @@ body {
 }
 
 a {
+	color: #ED5429;
 	text-decoration: none;
 }
 
@@ -30,6 +31,14 @@ p, ul, ol {
 ol, ul {
 	list-style-position: inside;
 	list-style-type: disc;
+}
+
+h1 {
+	line-height: 1.5;
+}
+
+h2 {
+	line-height: 1.5;
 }
 
 .app-container {
@@ -44,6 +53,31 @@ ol, ul {
 	margin-bottom: 5rem;
 }
 
+.page a {
+	border-bottom: 1px solid transparent;
+}
+
+.page a:hover {
+	border-bottom: 1px solid #ED5429;
+}
+
+.page p {
+	font-weight: 300;
+}
+
+.page ol,
+.page ul {
+	font-weight: 300;
+}
+
+.page h2 {
+	color: #bbb;
+	font-size: 22px;
+	font-weight: 500;
+}
+
+.page h1,
+.page h2,
 .page p,
 .page ul,
 .page ol {
@@ -52,4 +86,11 @@ ol, ul {
 
 .page *:last-child {
 	margin-bottom: 0;
+}
+
+@media only screen and (max-width: 1000px) {
+	.app-container {
+		min-width: 100%;
+		padding: 2.5rem 1.25rem;
+	}
 }

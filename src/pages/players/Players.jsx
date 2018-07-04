@@ -16,165 +16,102 @@ export default class Players extends Component {
 			points : [],
 			assists : [],
 			rebounds : [],
+			isLoaded : false,
+			isLoadedPts : false,
+			isLoadedAst : false,
+			isLoadedReb : false,
 		}
 	}
 
-	getPtsStats = () => {
-		// Total Points for Season
-		fetch('https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', {
-			headers: {
-				'Authorization' : 'Basic ' + btoa(username + ':' + password),
-				'Cache-Control' : 'no-cache, no-store, must-revalidate'
-			},
-		})
-		.then(response => {
-			return response.json()
-		})
-		.then(data => {
-			// console.log('Points Data: ', data)
-			let points = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
-				return (
-					<tr key={index}>
-						<td>{player.stats.Pts['#text']}</td>
-						<td>{player.player.Position}</td>
-						<td>{player.player.FirstName} {player.player.LastName}</td>
-					</tr>
-				)
-			})
-			this.setState({
-				points : points
-			})
-		})
-		.catch(error => {
-			// console.log('Points request failed: ', error)
-			console.log('Points request is cached result. Retrying...')
+	timeouts = []
 
-			// The API commonly returns cached results, so we rerun the handleFetch
-			// function until it returns the proper data... Super hacky and not a good
-			// long term solution. Probably need a more reliable API.
-			setTimeout(this.getPtsStats, 4000)
-		})
+	stopTracked = () => {
+		for(var i=0; i<this.timeouts.length; i++) {
+			clearTimeout(this.timeouts[i])
+		}
+		this.timeouts = []
 	}
 
-	getAstStats = () => {
-		// Total Assists for Season
-		fetch('https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', {
-			headers: {
-				'Authorization' : 'Basic ' + btoa(username + ':' + password),
-				'Cache-Control' : 'no-cache, no-store, must-revalidate'
-			},
-		})
-		.then(response => {
-			return response.json()
-		})
-		.then(data => {
-			// console.log('Assists Data: ', data)
-			let assists = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
-				return (
-					<tr key={index}>
-						<td>{player.stats.Ast['#text']}</td>
-						<td>{player.player.Position}</td>
-						<td>{player.player.FirstName} {player.player.LastName}</td>
-					</tr>
-				)
+	handleFetch = (url, stat_type, state_value, load_value) => {
+		this.setState({
+			[load_value] : false,
+		}, _ => {
+			fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?${ url }`, {
+				headers: {
+					'Authorization' : 'Basic ' + btoa(username + ':' + password),
+					'Cache-Control' : 'no-cache, no-store, must-revalidate'
+				},
 			})
-			this.setState({
-				assists : assists
+			.then(response => {
+				return response.json()
 			})
-		})
-		.catch(error => {
-			// console.log('Assists request failed: ', error)
-			console.log('Assists request is cached result. Retrying...')
-			setTimeout(this.getAstStats, 4000)
+			.then(data => {
+				let values = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
+					return (
+						<tr key={index}>
+							<td>{player.stats[stat_type]['#text']}</td>
+							<td>{player.player.Position}</td>
+							<td>{player.player.FirstName} {player.player.LastName}</td>
+						</tr>
+					)
+				})
+				this.setState({
+					[state_value] : values,
+					[load_value] : true,
+				})
+			})
+			.catch(error => {
+				console.log(`${ state_value } result is cached. Retrying...`)
+				// setTimeout(_ => this.handleFetch(url, stat_type, state_value), 4000)
+				this.timeouts.push(setTimeout(_ => this.handleFetch(url, stat_type, state_value, load_value), 4000))
+			})
 		})
 	}
-
-	getRebStats = () => {
-		// Total Rebounds for Season
-		fetch('https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', {
-			headers: {
-				'Authorization' : 'Basic ' + btoa(username + ':' + password),
-				'Cache-Control' : 'no-cache, no-store, must-revalidate'
-			},
-		})
-		.then(response => {
-			return response.json()
-		})
-		.then(data => {
-			// console.log('Rebounds Data: ', data)
-			let rebounds = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
-				return (
-					<tr key={index}>
-						<td>{player.stats.Reb['#text']}</td>
-						<td>{player.player.Position}</td>
-						<td>{player.player.FirstName} {player.player.LastName}</td>
-					</tr>
-				)
-			})
-			this.setState({
-				rebounds : rebounds
-			})
-		})
-		.catch(error => {
-			// console.log('Rebounds request failed: ', error)
-			console.log('Rebounds request is cached result. Retrying...')
-			setTimeout(this.getRebStats, 4000)
-		})
-	}
-
-	getPtsStatsTimer = ''
-	getAstStatsTimer = ''
-	getRebStatsTimer = ''
 
 	componentDidMount() {
-		// Attempting to return more reliable results by spacing out requests.
-		// Extremely hacky and not a permanent solution.
-		this.getPtsStatsTimer = setTimeout(this.getPtsStats, 100)
-		this.getAstStatsTimer = setTimeout(this.getAstStats, 2000)
-		this.getRebStatsTimer = setTimeout(this.getRebStats, 4000)
+		// Attempting to return more reliable results by spacing out requests. Extremely hacky and not a permanent solution.
+		this.timeouts.push(setTimeout(_ => this.handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'Pts', 'points', 'isLoadedPts'), 100))
+		this.timeouts.push(setTimeout(_ => this.handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'Ast', 'assists', 'isLoadedAst'), 2000))
+		this.timeouts.push(setTimeout(_ => this.handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'Reb', 'rebounds', 'isLoadedReb'), 4000))
+	}
+
+	componentDidUpdate() {
+		// console.log(this.state)
 	}
 
 	componentWillUnmount() {
-		clearTimeout(this.getPtsStatsTimer)
-		clearTimeout(this.getAstStatsTimer)
-		clearTimeout(this.getRebStatsTimer)
+		this.stopTracked()
 	}
 
 	render() {
 		// Configuring tables
 		let tableDataPts = {
 			cols: [
-				[ 'Pts', '20%' ],
-				[ 'Position', '20%' ],
+				[ 'Pts', '5vw' ],
+				[ 'Position', '5vw' ],
 				[ 'Name', 'auto' ]
 			]
 		}
 		let tableDataAst = {
 			cols: [
-				[ 'Ast', '20%' ],
-				[ 'Position', '20%' ],
+				[ 'Ast', '5vw' ],
+				[ 'Position', '5vw' ],
 				[ 'Name', 'auto' ]
 			]
 		}
 		let tableDataReb = {
 			cols: [
-				[ 'Reb', '20%' ],
-				[ 'Position', '20%' ],
+				[ 'Reb', '5vw' ],
+				[ 'Position', '5vw' ],
 				[ 'Name', 'auto' ]
 			]
 		}
 
 		return (
 			<div className="page page-players">
-				<div>
-					<Table tableTitle="Points Scored" tableData={tableDataPts}>{this.state.points}</Table>
-				</div>
-				<div>
-					<Table tableTitle="Assists" tableData={tableDataAst}>{this.state.assists}</Table>
-				</div>
-				<div>
-					<Table tableTitle="Rebounds" tableData={tableDataReb}>{this.state.rebounds}</Table>
-				</div>
+				<Table tableTitle="Points Scored" tableData={tableDataPts} isLoaded={this.state.isLoadedPts}>{this.state.points}</Table>
+				<Table tableTitle="Assists" tableData={tableDataAst} isLoaded={this.state.isLoadedAst}>{this.state.assists}</Table>
+				<Table tableTitle="Rebounds" tableData={tableDataReb} isLoaded={this.state.isLoadedReb}>{this.state.rebounds}</Table>
 			</div>
 		)
 	}

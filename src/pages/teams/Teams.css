@@ -9,16 +9,6 @@
 	overflow: hidden;
 }
 
-.page-teams select {
-	border: 1px solid #ddd;
-	border-radius: 0 3px 3px 0;
-	font-size: 1.25em;
-	height: 2.5rem;
-	line-height: 2.5rem;
-	padding: 0 10px;
-	-webkit-appearance: none;
-}
-
 .page-teams label {
 	background: rgba(0,0,0,0.05);
 	border: 1px solid #ddd;
@@ -31,6 +21,18 @@
 	line-height: 38px;
 	padding: 0 10px;
 	text-transform: uppercase;
+}
+
+.page-teams select {
+	border: 1px solid #ddd;
+	border-radius: 0 3px 3px 0;
+	color: #444;
+	font-size: 1.125em;
+	font-weight: 500;
+	height: 2.5rem;
+	line-height: 2.5rem;
+	padding: 0 10px;
+	-webkit-appearance: none;
 }
 
 .page-teams form select {

@@ -11,7 +11,6 @@ export default class Nav extends Component {
 				<NavLink exact to="/players" activeClassName="active">Players</NavLink>
 				<NavLink exact to="/standings" activeClassName="active">Standings</NavLink>
 				<NavLink exact to="/teams" activeClassName="active">Teams</NavLink>
-				<NavLink exact to="/profile" activeClassName="active">Profile</NavLink>
 			</nav>
 		)
 	}

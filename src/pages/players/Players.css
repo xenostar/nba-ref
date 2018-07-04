@@ -8,5 +8,11 @@
 	display: grid;
 	grid-gap: 40px;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: auto auto;
+	grid-template-rows: auto;
+}
+
+@media only screen and (max-width: 1000px) {
+	.page-players {
+		grid-template-columns: 1fr;
+	}
 }

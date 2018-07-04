@@ -1,0 +1,36 @@
+/*
+ *
+ * Loader Styles
+ *
+ */
+
+.app-loader {
+	display: flex;
+	min-height: 22.5rem;
+	justify-content: center;;
+}
+
+.app-loader .holder {
+	align-self: center;
+}
+
+.app-loader img {
+	margin: 0 auto;
+}
+
+.app-loader p {
+	animation: fadeInOut infinite 1s ease-in-out;
+	animation-fill-mode: both;
+	color: #bbb;
+	font-size: 0.875em;
+	font-weight: 500;
+	letter-spacing: 2px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+@keyframes fadeInOut {
+	0% { opacity: 0.75; }
+	50% { opacity: 1; }
+	100% { opacity: 0.75; }
+}
