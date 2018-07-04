@@ -41,7 +41,8 @@ export default class Footer extends Component {
 						<li>Advanced Javascript usage using React and ES6 language features.</li>
 						<li>A variety of CSS layout features including basic floats, css grid, flexbox, transitions, css animations, animated SVGs, and full responsiveness.</li>
 					</ul>
-					<p>The main priority going forward would be to move to a more stable and reliable API. I also want to add many more filters to each page so you can choose season, post-season, individual team stats, and individual player stats (including shot charts).</p>
+					<p>The main priority going forward would be to move to a more stable and reliable API. It doesn't even support API keys, so currently I have the credentials stored right in the code (no financial data is on the account). This is obviously a massive security risk, but for the interest of time I made due.</p>
+					<p>I also want to add many more filters to each page so you can choose season, post-season, individual team stats, and individual player stats (including shot charts).</p>
 				</div>
 			</div>
 		)
