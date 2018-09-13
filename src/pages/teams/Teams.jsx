@@ -5,8 +5,10 @@ import './Teams.css'
 import Table from '../../components/table/Table'
 
 // Vars
-let username = 'xenostar'
+// let username = 'xenostar'
 let password = 'testpass123'
+let username = '127928a7-1ef4-46a1-a9f2-9b0dbd'
+// let password = 'MYSPORTSFEEDS'
 
 export default class Teams extends Component {
 
@@ -25,7 +27,7 @@ export default class Teams extends Component {
 		}, _ => {
 			this.handleFetch()
 		})
-  }
+	}
 
 	handleFetch() {
 		this.setState({
