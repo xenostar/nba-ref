@@ -71,8 +71,11 @@ export default class Players extends Component {
 	componentDidMount() {
 		// Attempting to return more reliable results by spacing out requests. Extremely hacky and not a permanent solution.
 		this.timeouts.push(setTimeout(_ => this.handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'Pts', 'points', 'isLoadedPts'), 0))
-		this.timeouts.push(setTimeout(_ => this.handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'Ast', 'assists', 'isLoadedAst'), 2000))
-		this.timeouts.push(setTimeout(_ => this.handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'Reb', 'rebounds', 'isLoadedReb'), 4000))
+		this.timeouts.push(setTimeout(_ => this.handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'Ast', 'assists', 'isLoadedAst'), 0))
+		this.timeouts.push(setTimeout(_ => this.handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'Reb', 'rebounds', 'isLoadedReb'), 0))
+		// this.timeouts.push(setTimeout(_ => this.handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'Pts', 'points', 'isLoadedPts'), 0))
+		// this.timeouts.push(setTimeout(_ => this.handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'Ast', 'assists', 'isLoadedAst'), 2000))
+		// this.timeouts.push(setTimeout(_ => this.handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'Reb', 'rebounds', 'isLoadedReb'), 4000))
 	}
 
 	componentDidUpdate() {
