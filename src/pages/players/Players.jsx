@@ -36,7 +36,7 @@ export default class Players extends Component {
 		this.setState({
 			[load_value] : false,
 		}, _ => {
-			fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/cumulative_player_stats.json?${ url }`, {
+			fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/2018-2019-regular/cumulative_player_stats.json?${ url }`, {
 				headers: {
 					'Authorization' : 'Basic ' + btoa(username + ':' + password),
 					'Cache-Control' : 'no-cache, no-store, must-revalidate'

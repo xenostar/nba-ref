@@ -33,7 +33,7 @@ export default class Teams extends Component {
 		this.setState({
 			isLoaded : false,
 		}, _ => {
-			fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/roster_players.json?team=${this.state.team}&rosterstatus=assigned-to-roster`, {
+			fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/2018-2019-regular/roster_players.json?team=${this.state.team}&rosterstatus=assigned-to-roster`, {
 				headers: {
 					'Authorization' : 'Basic ' + btoa(username + ':' + password),
 					'Cache-Control' : 'no-cache, no-store, must-revalidate'

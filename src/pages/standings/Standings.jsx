@@ -23,7 +23,7 @@ export default class Standings extends Component {
 		this.setState({
 			isLoaded : false,
 		}, _ => {
-			fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/2017-2018-regular/conference_team_standings.json?teamstats=w`, {
+			fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/2018-2019-regular/conference_team_standings.json?teamstats=w`, {
 				headers: {
 					'Authorization' : 'Basic ' + btoa(username + ':' + password),
 					'Cache-Control' : 'no-cache, no-store, must-revalidate'
