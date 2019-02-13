@@ -9,7 +9,7 @@
 	overflow: hidden;
 }
 
-.page-teams label {
+.page-teams form label {
 	background: rgba(0,0,0,0.05);
 	border: 1px solid #ddd;
 	border-right: 0;
@@ -23,7 +23,7 @@
 	text-transform: uppercase;
 }
 
-.page-teams select {
+.page-teams form select {
 	border: 1px solid #ddd;
 	border-radius: 0 3px 3px 0;
 	color: #444;
