@@ -35,6 +35,11 @@
 	-webkit-appearance: none;
 }
 
-.page-teams form select {
+.page-teams form div {
 	float: left;
+	margin-left: 20px;
+}
+
+.page-teams form div:first-child {
+	margin-left: 0;
 }
