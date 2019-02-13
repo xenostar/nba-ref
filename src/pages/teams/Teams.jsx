@@ -61,9 +61,9 @@ export default class Teams extends Component {
 					isLoaded : true,
 				})
 			})
-			// .catch(error => {
-			// 	console.log('Request failed: ', error)
-			// })
+			.catch(error => {
+				console.log('Request failed: ', error)
+			})
 		})
 	}
 
@@ -92,7 +92,7 @@ export default class Teams extends Component {
 			<div className="page page-teams">
 				<form>
 					<div>
-						<label>Select Team</label>
+						<label>Team</label>
 						<select name="team" value={this.state.team} onChange={this.handleChange}>
 							<option value="atl">Atlanta Hawks</option>
 							<option value="bos">Boston Celtics</option>
@@ -127,7 +127,7 @@ export default class Teams extends Component {
 						</select>
 					</div>
 					<div>
-						<label>Select Seasons</label>
+						<label>Season</label>
 						<select name="season" value={this.state.season} onChange={this.handleChange}>
 						<option value="2018-2019">2018-2019</option>
 						<option value="2017-2018">2017-2018</option>
