@@ -4,8 +4,11 @@
  *
  */
 
+@import-normalize;
+
 html {
 	box-sizing: border-box;
+	line-height: normal;
 }
 
 *,
