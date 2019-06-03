@@ -1,79 +1,79 @@
 /*
- *
- * App Styles
- *
- */
+*
+* App Styles
+*
+*/
 
 
 html {
-	color: #444;
-	font-family: 'Ubuntu', sans-serif;
-	font-size: 1em;
-	font-style: normal;
-	font-weight: 400;
+  color: #444;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1em;
+  font-style: normal;
+  font-weight: 400;
 }
 
 body {
-	background-image: url('./img/funky-lines.png');
-	/* background-image: url('./img/white_wall_hash.png'); */
+  background-image: url('./img/funky-lines.png');
+  /* background-image: url('./img/white_wall_hash.png'); */
 }
 
 a {
-	color: #ED5429;
-	text-decoration: none;
+  color: #ED5429;
+  text-decoration: none;
 }
 
 p, ul, ol {
-	font-size: 1.25em;
-	line-height: 1.5;
+  font-size: 1.25em;
+  line-height: 1.5;
 }
 
 ol, ul {
-	list-style-position: inside;
-	list-style-type: disc;
+  list-style-position: inside;
+  list-style-type: disc;
 }
 
 h1 {
-	line-height: 1.5;
+  line-height: 1.5;
 }
 
 h2 {
-	line-height: 1.5;
+  line-height: 1.5;
 }
 
 .app-container {
-	background: rgba(255,255,255,0.85);
-	margin: 0 auto;
-	max-width: 90vw;
-	min-height: 100vh;
-	padding: 2.5rem;
+  background: rgba(255,255,255,0.85);
+  margin: 0 auto;
+  max-width: 90vw;
+  min-height: 100vh;
+  padding: 2.5rem;
 }
 
 .page {
-	margin-bottom: 5rem;
+  margin-bottom: 5rem;
 }
 
 .page a {
-	border-bottom: 1px solid transparent;
+  border-bottom: 1px solid transparent;
 }
 
 .page a:hover {
-	border-bottom: 1px solid #ED5429;
+  border-bottom: 1px solid #ED5429;
 }
 
 .page p {
-	font-weight: 300;
+  font-weight: 300;
 }
 
 .page ol,
 .page ul {
-	font-weight: 300;
+  font-weight: 300;
 }
 
 .page h2 {
-	color: #bbb;
-	font-size: 22px;
-	font-weight: 500;
+  color: #bbb;
+  font-size: 22px;
+  font-weight: 500;
 }
 
 .page h1,
@@ -81,16 +81,16 @@ h2 {
 .page p,
 .page ul,
 .page ol {
-	margin-bottom: 1.25rem;
+  margin-bottom: 1.25rem;
 }
 
 .page *:last-child {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 @media only screen and (max-width: 1000px) {
-	.app-container {
-		min-width: 100%;
-		padding: 2.5rem 1.25rem;
-	}
+  .app-container {
+    min-width: 100%;
+    padding: 2.5rem 1.25rem;
+  }
 }

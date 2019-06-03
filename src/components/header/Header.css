@@ -1,26 +1,26 @@
 /*
- *
- * Header Styles
- *
- */
+*
+* Header Styles
+*
+*/
 
 .app-header {
-	overflow: hidden;
-	margin-bottom: 2.5rem;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
 }
 
 .app-header img {
-	height: 7.5rem;
-	float: left;
-	margin-right: 1.25rem;
+  height: 7.5rem;
+  float: left;
+  margin-right: 1.25rem;
 }
 
 .app-header h1 {
-	cursor: default;
-	float: left;
-	font-size: 4em;
-	line-height: 7.5rem;
+  cursor: default;
+  float: left;
+  font-size: 4em;
+  line-height: 7.5rem;
 }
 .app-header h1 span {
-	color: #ED5429;
+  color: #ED5429;
 }

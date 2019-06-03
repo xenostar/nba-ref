@@ -1,46 +1,46 @@
 /*
- *
- * Nav Styles
- *
- */
+*
+* Nav Styles
+*
+*/
 
 .app-nav {
-	background: rgba(0,0,0,0.05);
-	border-radius: 3px;
-	margin-bottom: 2.5rem;
-	overflow: hidden;
+  background: rgba(0,0,0,0.05);
+  border-radius: 3px;
+  margin-bottom: 2.5rem;
+  overflow: hidden;
 }
 
 .app-nav a {
-	border-bottom: 5px solid transparent;
-	color: #aaa;
-	display: block;
-	float: left;
-	font-weight: 700;
-	height: 3.4375rem;
-	line-height: 3.4375rem;
-	text-transform: uppercase;
-	transition: all 0.4s ease-in-out;
-	padding: 0 1.25rem;
+  border-bottom: 5px solid transparent;
+  color: #aaa;
+  display: block;
+  float: left;
+  font-weight: 700;
+  height: 3.4375rem;
+  line-height: 3.4375rem;
+  text-transform: uppercase;
+  transition: all 0.4s ease-in-out;
+  padding: 0 1.25rem;
 }
 
 .app-nav a:hover {
-	color: #888;
+  color: #888;
 }
 
 .app-nav a.active {
-	border-bottom: 5px solid #ED5429;
-	color: #ED5429;
+  border-bottom: 5px solid #ED5429;
+  color: #ED5429;
 }
 
 @media only screen and (max-width: 1000px) {
-	.app-nav a {
-		border-bottom: none;
-		border-left: 5px solid transparent;
-		float: none;
-	}
-	.app-nav a.active {
-		border-bottom: none;
-		border-left: 5px solid #ED5429;
-	}
+  .app-nav a {
+    border-bottom: none;
+    border-left: 5px solid transparent;
+    float: none;
+  }
+  .app-nav a.active {
+    border-bottom: none;
+    border-left: 5px solid #ED5429;
+  }
 }

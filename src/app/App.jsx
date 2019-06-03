@@ -20,21 +20,21 @@ import Profile from '../pages/profile/Profile'
 // App
 export default class App extends Component {
 
-	render() {
-		return (
-			<Router>
-				<div className="app-container">
-					<Header />
-					<Nav />
-					<Route exact path="/" component={Home} />
-					<Route path="/players" component={Players} />
-					<Route path="/standings" component={Standings} />
-					<Route path="/teams" component={Teams} />
-					<Route path="/profile" component={Profile} />
-					<Footer />
-				</div>
-			</Router>
-		)
-	}
+  render() {
+    return (
+      <Router>
+        <div className="app-container">
+          <Header />
+          <Nav />
+          <Route exact path="/" component={Home} />
+          <Route path="/players" component={Players} />
+          <Route path="/standings" component={Standings} />
+          <Route path="/teams" component={Teams} />
+          <Route path="/profile" component={Profile} />
+          <Footer />
+        </div>
+      </Router>
+    )
+  }
 
 }

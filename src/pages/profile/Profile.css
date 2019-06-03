@@ -1,14 +1,14 @@
 /*
- *
- * Profile Styles
- *
- */
+*
+* Profile Styles
+*
+*/
 
 .page-profile .img-holder {
-	display: block;
-	overflow: hidden;
+  display: block;
+  overflow: hidden;
 }
 
 .page-profile img {
-	float: left;
+  float: left;
 }
