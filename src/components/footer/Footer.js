@@ -1,10 +1,21 @@
 import React from 'react'
-import './Footer.css'
+import styled from 'styled-components'
+
+const StyledFooter = styled.footer`
+  border-top: 1px solid #ccc;
+  padding-top: 1.25rem;
+
+  p {
+    color: #bbb;
+    cursor: default;
+    font-size: 0.875em;
+  }
+`
 
 export default function Footer() {
   return (
-    <footer className="app-footer">
+    <StyledFooter>
       <p>Footer copyright stuff. Built with love, etc.</p>
-    </footer>
+    </StyledFooter>
   )
 }
