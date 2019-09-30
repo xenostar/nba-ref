@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Loader from '../loader/Loader'
 
@@ -55,56 +55,52 @@ const StyledTable = styled.div`
   }
 `
 
-export default class Table extends Component {
+export default function Table(props) {
+  let isLoaded = props.isLoaded
+  let dataCols = props.tableData.cols
+  let tableHeaders = (
+    <thead>
+      <tr>
+        {
+          dataCols.map(function(column, index) {
+            let width = column[1]
+            return (
+              <th key={index} style={{ width: width }}>{column[0]}</th>
+            )
+          })
+        }
+      </tr>
+    </thead>
+  )
 
-  render() {
-    let isLoaded = this.props.isLoaded
-    let dataCols = this.props.tableData.cols
-    let tableHeaders = (
-      <thead>
-        <tr>
-          {
-            dataCols.map(function(column, index) {
-              let width = column[1]
-              return (
-                <th key={index} style={{ width: width }}>{column[0]}</th>
-              )
-            })
-          }
-        </tr>
-      </thead>
+  // Is it loaded?
+  if (isLoaded === false) {
+    return(
+      <StyledTable>
+        <div className="tb-name">{props.tableTitle}</div>
+        <table className="tb-roster">
+          {tableHeaders}
+          <tbody>
+            <tr>
+              <td colSpan={props.tableData.cols.length}>
+                <Loader />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </StyledTable>
     )
-
-    // Is it loaded?
-    if (isLoaded === false) {
-      return(
-        <StyledTable>
-          <div className="tb-name">{this.props.tableTitle}</div>
-          <table className="tb-roster">
-            {tableHeaders}
-            <tbody>
-              <tr>
-                <td colSpan={this.props.tableData.cols.length}>
-                  <Loader />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </StyledTable>
-      )
-    } else {
-      return (
-        <StyledTable>
-          <div className="tb-name">{this.props.tableTitle}</div>
-          <table className="tb-roster">
-            {tableHeaders}
-            <tbody>
-              {this.props.children}
-            </tbody>
-          </table>
-        </StyledTable>
-      )
-    }
+  } else {
+    return (
+      <StyledTable>
+        <div className="tb-name">{props.tableTitle}</div>
+        <table className="tb-roster">
+          {tableHeaders}
+          <tbody>
+            {props.children}
+          </tbody>
+        </table>
+      </StyledTable>
+    )
   }
-
 }
