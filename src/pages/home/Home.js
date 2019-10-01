@@ -1,14 +1,33 @@
 import React, { useEffect } from 'react'
-import './Home.css'
+import styled from 'styled-components'
+
+const StyledHome = styled.div`
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  @media only screen and (max-width: 1000px) {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+  }
+  h1 {
+    color: #ED5429;
+    font-size: 4.25em;
+    line-height: 0.975;
+  }
+`
 
 export default function Footer() {
-
   // componentDidMount
   useEffect(() => {
   }, [])
 
   return (
-    <div className="page page-home">
+    <StyledHome className="page">
       <div className="hero">
         <h1>Welcome</h1>
         <h2>To quite possibly the greatest reference for NBA statistics in the universe.</h2>
@@ -39,6 +58,6 @@ export default function Footer() {
         <p>The main priority going forward would be to move to a more stable and reliable API. It doesn't even support API keys, so currently I have the credentials stored right in the code (no financial data is on the account). This is obviously a massive security risk, but for the interest of time I made due.</p>
         <p>I also want to add many more filters to each page so you can choose season, post-season, individual team stats, and individual player stats (including shot charts).</p>
       </div>
-    </div>
+    </StyledHome>
   )
 }

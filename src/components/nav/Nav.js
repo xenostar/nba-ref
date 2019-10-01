@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from "react-router-dom"
-// import './Nav.css'
 
 const StyledNav = styled.nav`
   background: rgba(0,0,0,0.05);

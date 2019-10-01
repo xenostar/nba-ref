@@ -11,7 +11,6 @@ const StyledTable = styled.div`
     font-weight: 700;
     padding: 10px;
   }
-
   .tb-roster {
     border-collapse: collapse;
     table-layout: fixed;
@@ -61,46 +60,32 @@ export default function Table(props) {
   let tableHeaders = (
     <thead>
       <tr>
-        {
-          dataCols.map(function(column, index) {
-            let width = column[1]
-            return (
-              <th key={index} style={{ width: width }}>{column[0]}</th>
-            )
-          })
-        }
+        {dataCols.map(function(column, index) {
+          let width = column[1]
+          return <th key={index} style={{ width: width }}>{column[0]}</th>
+        })}
       </tr>
     </thead>
   )
 
-  // Is it loaded?
-  if (isLoaded === false) {
-    return(
-      <StyledTable>
-        <div className="tb-name">{props.tableTitle}</div>
-        <table className="tb-roster">
-          {tableHeaders}
-          <tbody>
+  return(
+    <StyledTable>
+      <div className="tb-name">{props.tableTitle}</div>
+      <table className="tb-roster">
+        {tableHeaders}
+        <tbody>
+          {/* {props.children} */}
+          {isLoaded ? (
+            props.children
+          ) : (
             <tr>
               <td colSpan={props.tableData.cols.length}>
                 <Loader />
               </td>
             </tr>
-          </tbody>
-        </table>
-      </StyledTable>
-    )
-  } else {
-    return (
-      <StyledTable>
-        <div className="tb-name">{props.tableTitle}</div>
-        <table className="tb-roster">
-          {tableHeaders}
-          <tbody>
-            {props.children}
-          </tbody>
-        </table>
-      </StyledTable>
-    )
-  }
+          )}
+        </tbody>
+      </table>
+    </StyledTable>
+  )
 }
