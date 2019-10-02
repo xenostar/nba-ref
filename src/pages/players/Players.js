@@ -60,10 +60,10 @@ let username = 'xenostar'
 let password = 'testpass123'
 
 export default function Players() {
-  const [stats, setStats] = useState({ points: [], assists: [], rebounds: [] })
   const [season, setSeason] = useState('2018-2019')
+  const [stats, setStats] = useState({ points: [], assists: [], rebounds: [] })
   const [isLoaded, setIsLoaded] = useState({ isLoadedPts: false, isLoadedAst: false, isLoadedReb: false })
-  // Make this a stateful thing.
+  // Make this a stateful thing? Do we even continue to use this?
   // let timeouts = []
 
   // Configuring tables
@@ -102,7 +102,7 @@ export default function Players() {
 
   const handleFetch = useCallback((url, stat_type, state_value, load_value) => {
     setIsLoaded(prevState => {
-      return {...prevState, [load_value]: false }
+      return { ...prevState, [load_value]: false }
     })
 
     fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/${ season }-regular/cumulative_player_stats.json?${ url }`, {
@@ -130,7 +130,7 @@ export default function Players() {
         return { ...prevState, [state_value]: values }
       })
       setIsLoaded(prevState => {
-        return {...prevState, [load_value]: true }
+        return { ...prevState, [load_value]: true }
       })
     })
     .catch(error => {
@@ -144,7 +144,7 @@ export default function Players() {
     handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'Pts', 'points', 'isLoadedPts')
     handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'Ast', 'assists', 'isLoadedAst')
     handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'Reb', 'rebounds', 'isLoadedReb')
-    return () => console.log('unmounting...');
+    return () => console.log('Unmounting...');
   }, [handleFetch])
 
   return (
