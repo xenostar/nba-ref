@@ -10,7 +10,7 @@ const fadeInOut = keyframes`
 
 const StyledLoader = styled.div`
   display: flex;
-  min-height: 22.5rem;
+  min-height: 24.3125rem;
   justify-content: center;
 
   .holder {

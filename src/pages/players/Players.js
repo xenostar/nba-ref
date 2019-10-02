@@ -98,10 +98,6 @@ export default function Players() {
 
   const handleChange = event => {
     setSeason(event.target.value)
-
-    // handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'Pts', 'points', 'isLoadedPts')
-    // handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'Ast', 'assists', 'isLoadedAst')
-    // handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'Reb', 'rebounds', 'isLoadedReb')
   }
 
   const handleFetch = useCallback((url, stat_type, state_value, load_value) => {
@@ -144,6 +140,7 @@ export default function Players() {
   }, [season])
 
   useEffect(() => { // componentDidMount
+    console.log("Running...")
     handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'Pts', 'points', 'isLoadedPts')
     handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'Ast', 'assists', 'isLoadedAst')
     handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'Reb', 'rebounds', 'isLoadedReb')

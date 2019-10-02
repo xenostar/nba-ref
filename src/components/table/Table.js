@@ -31,6 +31,9 @@ const StyledTable = styled.div`
     padding: 10px 0 10px 10px;
     white-space: nowrap;
   }
+  .tb-roster td.tb-loader {
+    padding: 0;
+  }
   .tb-roster tbody tr:nth-child(even) {
     background-color: rgba(0,0,0,0.025);
   }
@@ -79,7 +82,7 @@ export default function Table(props) {
             props.children
           ) : (
             <tr>
-              <td colSpan={props.tableData.cols.length}>
+              <td colSpan={props.tableData.cols.length} className="tb-loader">
                 <Loader />
               </td>
             </tr>
