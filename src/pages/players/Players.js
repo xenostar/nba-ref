@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 
 // Components
@@ -64,7 +64,7 @@ export default function Players() {
   const [season, setSeason] = useState('2018-2019')
   const [isLoaded, setIsLoaded] = useState({ isLoadedPts: false, isLoadedAst: false, isLoadedReb: false })
   // Make this a stateful thing.
-  let timeouts = []
+  // let timeouts = []
 
   // Configuring tables
   let tableDataPts = {
@@ -99,12 +99,12 @@ export default function Players() {
   const handleChange = event => {
     setSeason(event.target.value)
 
-    handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'Pts', 'points', 'isLoadedPts')
-    handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'Ast', 'assists', 'isLoadedAst')
-    handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'Reb', 'rebounds', 'isLoadedReb')
+    // handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'Pts', 'points', 'isLoadedPts')
+    // handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'Ast', 'assists', 'isLoadedAst')
+    // handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'Reb', 'rebounds', 'isLoadedReb')
   }
 
-  const handleFetch = (url, stat_type, state_value, load_value) => {
+  const handleFetch = useCallback((url, stat_type, state_value, load_value) => {
     setIsLoaded(prevState => {
       return {...prevState, [load_value]: false }
     })
@@ -139,22 +139,16 @@ export default function Players() {
     })
     .catch(error => {
       console.log(error)
-      timeouts.push(setTimeout(_ => handleFetch(url, stat_type, state_value, load_value), 4000))
+      // timeouts.push(setTimeout(_ => handleFetch(url, stat_type, state_value, load_value), 4000))
     })
-  }
+  }, [season])
 
   useEffect(() => { // componentDidMount
-    console.log(timeouts)
     handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'Pts', 'points', 'isLoadedPts')
     handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'Ast', 'assists', 'isLoadedAst')
     handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'Reb', 'rebounds', 'isLoadedReb')
-    return () => {
-      for(var i=0; i<timeouts.length; i++) {
-        clearTimeout(timeouts[i])
-      }
-      timeouts = []
-    }
-  }, [])
+    return () => console.log('unmounting...');
+  }, [handleFetch])
 
   return (
     <StyledPlayers className="page">
