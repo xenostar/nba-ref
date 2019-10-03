@@ -84,7 +84,7 @@ export default function Teams() {
       const values = data.rosterplayers.playerentry.map((player, index) => {
         return (
           <tr key={index}>
-            <td>{player.player.JerseyNumber ? player.player.JerseyNumber : '--'}</td>
+            <td>{player.player.JerseyNumber}</td>
             <td>{player.player.FirstName} {player.player.LastName}</td>
             <td>{player.player.Position ? player.player.Position : '--'}</td>
             <td>{player.player.Age ? player.player.Age : '--'}</td>
