@@ -46,6 +46,9 @@ const StyledPlayers = styled.div`
     padding: 0 10px;
     -webkit-appearance: none;
   }
+  form select:-moz-focusring {
+    outline: 0;
+  }
   form div {
     float: left;
     margin-left: 20px;
@@ -55,46 +58,33 @@ const StyledPlayers = styled.div`
   }
 `
 
-// Vars
-let username = 'xenostar'
-let password = 'testpass123'
-
 export default function Players() {
   const [season, setSeason] = useState('2018-2019')
   const [stats, setStats] = useState({ points: [], assists: [], rebounds: [] })
   const [isLoaded, setIsLoaded] = useState({ isLoadedPts: false, isLoadedAst: false, isLoadedReb: false })
-  // Make this a stateful thing? Do we even continue to use this?
-  // let timeouts = []
 
   // Configuring tables
-  let tableDataPts = {
+  const tableDataPts = {
     cols: [
       [ 'Pts', '5vw' ],
       [ 'Position', '5vw' ],
       [ 'Name', 'auto' ]
     ]
   }
-  let tableDataAst = {
+  const tableDataAst = {
     cols: [
       [ 'Ast', '5vw' ],
       [ 'Position', '5vw' ],
       [ 'Name', 'auto' ]
     ]
   }
-  let tableDataReb = {
+  const tableDataReb = {
     cols: [
       [ 'Reb', '5vw' ],
       [ 'Position', '5vw' ],
       [ 'Name', 'auto' ]
     ]
   }
-
-  // const stopTracked = () => {
-  //   for(var i=0; i<timeouts.length; i++) {
-  //     clearTimeout(timeouts[i])
-  //   }
-  //   timeouts = []
-  // }
 
   const handleChange = event => {
     setSeason(event.target.value)
@@ -105,9 +95,9 @@ export default function Players() {
       return { ...prevState, [load_value]: false }
     })
 
-    fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/${ season }-regular/cumulative_player_stats.json?${ url }`, {
+    fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/${ season }-regular/cumulative_player_stats.json?${ url }`,{
       headers: {
-        'Authorization' : 'Basic ' + btoa(username + ':' + password),
+        'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
         'Cache-Control' : 'no-cache, no-store, must-revalidate'
       },
     })
@@ -115,7 +105,7 @@ export default function Players() {
       return response.json()
     })
     .then(data => {
-      let values = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
+      const values = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
         return (
           <tr key={index}>
             <td>{player.stats[stat_type]['#text']}</td>
@@ -124,8 +114,6 @@ export default function Players() {
           </tr>
         )
       })
-
-      // console.log(values)
       setStats(prevState => {
         return { ...prevState, [state_value]: values }
       })
@@ -135,7 +123,6 @@ export default function Players() {
     })
     .catch(error => {
       console.log(error)
-      // timeouts.push(setTimeout(_ => handleFetch(url, stat_type, state_value, load_value), 4000))
     })
   }, [season])
 
@@ -144,7 +131,7 @@ export default function Players() {
     handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'Pts', 'points', 'isLoadedPts')
     handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'Ast', 'assists', 'isLoadedAst')
     handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'Reb', 'rebounds', 'isLoadedReb')
-    return () => console.log('Unmounting...');
+    return () => console.log('Unmounting...')
   }, [handleFetch])
 
   return (
