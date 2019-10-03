@@ -62,8 +62,6 @@ export default function Players() {
   const [season, setSeason] = useState('2018-2019')
   const [stats, setStats] = useState({ points: [], assists: [], rebounds: [] })
   const [isLoaded, setIsLoaded] = useState({ isLoadedPts: false, isLoadedAst: false, isLoadedReb: false })
-
-  // Configuring tables
   const tableDataPts = {
     cols: [
       [ 'Pts', '5vw' ],
