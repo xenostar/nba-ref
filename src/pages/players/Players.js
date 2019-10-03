@@ -94,7 +94,8 @@ export default function Players() {
     fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/${ season }-regular/cumulative_player_stats.json?${ url }`,{
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
-        'Cache-Control' : 'no-cache, no-store, must-revalidate'
+        'Cache-Control' : 'no-cache, no-store, must-revalidate',
+        'Accept-Encoding' : 'gzip'
       },
     })
     .then(response => {

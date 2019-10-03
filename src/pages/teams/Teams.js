@@ -73,7 +73,8 @@ export default function Teams() {
     fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/${ values.season }-regular/roster_players.json?team=${ values.team }&rosterstatus=assigned-to-roster`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
-        'Cache-Control' : 'no-cache, no-store, must-revalidate'
+        'Cache-Control' : 'no-cache, no-store, must-revalidate',
+        'Accept-Encoding' : 'gzip'
       },
     })
     .then(response => {
