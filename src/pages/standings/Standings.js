@@ -70,9 +70,7 @@ export default function Standings() {
     ]
   }
 
-  const handleChange = event => {
-    setSeason(event.target.value)
-  }
+  const handleChange = ({ target: { value } }) => setSeason(value)
 
   const handleFetch = useCallback(() => {
     setIsLoaded(false)

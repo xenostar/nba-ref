@@ -61,8 +61,7 @@ export default function Teams() {
     ]
   }
 
-  const handleChange = event => {
-    const {name, value} = event.target
+  const handleChange = ({ target: { name, value } }) => {
     setValues(prevState => {
       return { ...prevState, [name]: value }
     })

@@ -84,9 +84,7 @@ export default function Players() {
     ]
   }
 
-  const handleChange = event => {
-    setSeason(event.target.value)
-  }
+  const handleChange = ({ target: { value } }) => setSeason(value)
 
   const handleFetch = useCallback((url, stat_type, state_value, load_value) => {
     setIsLoaded(prevState => {
