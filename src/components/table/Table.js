@@ -59,7 +59,7 @@ const StyledTable = styled.div`
 
 export default function Table(props) {
   let isLoaded = props.isLoaded
-  let dataCols = props.tableData.cols
+  let dataCols = props.tableData
   let tableHeaders = (
     <thead>
       <tr>
@@ -77,12 +77,11 @@ export default function Table(props) {
       <table className="tb-roster">
         {tableHeaders}
         <tbody>
-          {/* {props.children} */}
           {isLoaded ? (
             props.children
           ) : (
             <tr>
-              <td colSpan={props.tableData.cols.length} className="tb-loader">
+              <td colSpan={props.tableData.length} className="tb-loader">
                 <Loader />
               </td>
             </tr>

@@ -50,16 +50,52 @@ export default function Teams() {
   const [values, setValues] = useState({ season: '2018-2019', team: 'ind' })
   const [roster, setRoster] = useState({ roster: [] })
   const [isLoaded, setIsLoaded] = useState(false)
-  const tableData = {
-    cols: [
-      [ '#', '5vw' ],
-      [ 'Name', 'auto' ],
-      [ 'Position', '10vw' ],
-      [ 'Age', '10vw' ],
-      [ 'Height', '10vw' ],
-      [ 'Weight', '10vw' ]
-    ]
+  const teams = {
+    atl: 'Atlanta Hawks',
+    bos: 'Boston Celtics',
+    bro: 'Brooklyn Nets',
+    chi: 'Chicago Bulls',
+    cle: 'Cleveland Cavaliers',
+    cha: 'Charlotte Hornets',
+    dal: 'Dallas Mavericks',
+    det: 'Detroit Pistons',
+    den: 'Denver Nuggets',
+    gsw: 'Golden State',
+    hou: 'Houston Rockets',
+    ind: 'Indiana Pacers',
+    lac: 'LA Clippers',
+    lal: 'Los Angeles',
+    mem: 'Memphis Grizzlies',
+    mia: 'Miami Heat',
+    mil: 'Milwaukee Bucks',
+    min: 'Minnesota Timberwolves',
+    nop: 'New Orleans',
+    nyk: 'New York',
+    okl: 'Oklhahoma City',
+    orl: 'Orlando Magic',
+    phx: 'Pheonix Suns',
+    phi: 'Philadelphia 76ers',
+    por: 'Portland Trailblazers',
+    sac: 'Sacremento Kings',
+    sas: 'San Antonio',
+    tor: 'Toronto Raptors',
+    uta: 'Utah Jazz',
+    was: 'Washington Wizards'
   }
+  const seasons = [
+    '2018-2019',
+    '2017-2018',
+    '2016-2017',
+    '2015-2016'
+  ]
+  const tableData = [
+    [ '#', '5vw' ],
+    [ 'Name', 'auto' ],
+    [ 'Position', '10vw' ],
+    [ 'Age', '10vw' ],
+    [ 'Height', '10vw' ],
+    [ 'Weight', '10vw' ]
+  ]
 
   const handleChange = ({ target: { name, value } }) => {
     setValues(prevState => {
@@ -115,45 +151,17 @@ export default function Teams() {
         <div>
           <label>Team</label>
           <select name="team" value={values.team} onChange={handleChange}>
-            <option value="atl">Atlanta Hawks</option>
-            <option value="bos">Boston Celtics</option>
-            <option value="bro">Brooklyn Nets</option>
-            <option value="chi">Chicago Bulls</option>
-            <option value="cle">Cleveland Cavaliers</option>
-            <option value="cha">Charlotte Hornets</option>
-            <option value="dal">Dallas Mavericks</option>
-            <option value="det">Detroit Pistons</option>
-            <option value="den">Denver Nuggets</option>
-            <option value="gsw">Golden State Warriors</option>
-            <option value="hou">Houston Rockets</option>
-            <option value="ind">Indiana Pacers</option>
-            <option value="lac">LA Clippers</option>
-            <option value="lal">Los Angeles Lakers</option>
-            <option value="mem">Memphis Grizzlies</option>
-            <option value="mia">Miami Heat</option>
-            <option value="mil">Milwaukee Bucks</option>
-            <option value="min">Minnesota Timberwolves</option>
-            <option value="nop">New Orleans Pelicans</option>
-            <option value="nyk">New York Knicks</option>
-            <option value="okl">Oklhahoma City</option>
-            <option value="orl">Orlando Magic</option>
-            <option value="phx">Pheonix Suns</option>
-            <option value="phi">Philadelphia 76ers</option>
-            <option value="por">Portland Trailblazers</option>
-            <option value="sac">Sacremento Kings</option>
-            <option value="sas">San Antonio Spurs</option>
-            <option value="tor">Toronto Raptors</option>
-            <option value="uta">Utah Jazz</option>
-            <option value="was">Washington Wizards</option>
+            {Object.entries(teams).map(([val, teamName]) => (
+              <option key={val} value={val}>{teamName}</option>
+            ))}
           </select>
         </div>
         <div>
           <label>Season</label>
           <select name="season" value={values.season} onChange={handleChange}>
-          <option value="2018-2019">2018-2019</option>
-          <option value="2017-2018">2017-2018</option>
-          <option value="2016-2017">2016-2017</option>
-          <option value="2015-2016">2015-2016</option>
+            {seasons.map((val) => (
+              <option value={val}>{val}</option>
+            ))}
           </select>
         </div>
       </form>

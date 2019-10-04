@@ -62,13 +62,17 @@ export default function Standings() {
   const [season, setSeason] = useState('2018-2019')
   const [standings, setStandings] = useState({ eastern: [], western: [] })
   const [isLoaded, setIsLoaded] = useState(false)
-  const tableData = {
-    cols: [
-      [ '#', '10%' ],
-      [ 'Wins', '10%' ],
-      [ 'Name', 'auto' ]
-    ]
-  }
+  const seasons = [
+    '2018-2019',
+    '2017-2018',
+    '2016-2017',
+    '2015-2016'
+  ]
+  const tableData = [
+    [ '#', '10%' ],
+    [ 'Wins', '10%' ],
+    [ 'Name', 'auto' ]
+  ]
 
   const handleChange = ({ target: { value } }) => setSeason(value)
 
@@ -126,10 +130,9 @@ export default function Standings() {
         <div>
           <label>Season</label>
           <select name="season" value={season} onChange={handleChange}>
-          <option value="2018-2019">2018-2019</option>
-          <option value="2017-2018">2017-2018</option>
-          <option value="2016-2017">2016-2017</option>
-          <option value="2015-2016">2015-2016</option>
+            {seasons.map((val) => (
+              <option value={val}>{val}</option>
+            ))}
           </select>
         </div>
       </form>
