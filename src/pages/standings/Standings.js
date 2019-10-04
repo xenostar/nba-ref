@@ -90,24 +90,20 @@ export default function Standings() {
       return response.json()
     })
     .then(data => {
-      const eastern_standings = data.conferenceteamstandings.conference[0].teamentry.map((team, index) => {
-        return (
-          <tr key={index}>
-            <td>{team.rank}</td>
-            <td>{team.stats.Wins['#text']}</td>
-            <td>{team.team.City} {team.team.Name}</td>
-          </tr>
-        )
-      })
-      const western_standings = data.conferenceteamstandings.conference[1].teamentry.map((team, index) => {
-        return (
-          <tr key={index}>
-            <td>{team.rank}</td>
-            <td>{team.stats.Wins['#text']}</td>
-            <td>{team.team.City} {team.team.Name}</td>
-          </tr>
-        )
-      })
+      const eastern_standings = data.conferenceteamstandings.conference[0].teamentry.map((team, index) => (
+        <tr key={index}>
+          <td>{team.rank}</td>
+          <td>{team.stats.Wins['#text']}</td>
+          <td>{team.team.City} {team.team.Name}</td>
+        </tr>
+      ))
+      const western_standings = data.conferenceteamstandings.conference[1].teamentry.map((team, index) => (
+        <tr key={index}>
+          <td>{team.rank}</td>
+          <td>{team.stats.Wins['#text']}</td>
+          <td>{team.team.City} {team.team.Name}</td>
+        </tr>
+      ))
       setStandings(prevState => {
         return { ...prevState, eastern: eastern_standings, western: western_standings }
       })

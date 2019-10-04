@@ -117,18 +117,16 @@ export default function Teams() {
       return response.json()
     })
     .then(data => {
-      const values = data.rosterplayers.playerentry.map((player, index) => {
-        return (
-          <tr key={index}>
-            <td>{player.player.JerseyNumber}</td>
-            <td>{player.player.FirstName} {player.player.LastName}</td>
-            <td>{player.player.Position ? player.player.Position : '--'}</td>
-            <td>{player.player.Age ? player.player.Age : '--'}</td>
-            <td>{player.player.Height ? player.player.Height : '--'}</td>
-            <td>{player.player.Weight ? player.player.Weight + ' lbs' : '--'}</td>
-          </tr>
-        )
-      })
+      const values = data.rosterplayers.playerentry.map(({ player }, index) => (
+        <tr key={index}>
+          <td>{player.JerseyNumber}</td>
+          <td>{player.FirstName} {player.LastName}</td>
+          <td>{player.Position || '--'}</td>
+          <td>{player.Age || '--'}</td>
+          <td>{player.Height || '--'}</td>
+          <td>{player.Weight ? player.Weight + ' lbs' : '--'}</td>
+        </tr>
+      ))
       setRoster(prevState => {
         return { ...prevState, roster: values }
       })

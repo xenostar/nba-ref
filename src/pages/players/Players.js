@@ -102,15 +102,13 @@ export default function Players() {
       return response.json()
     })
     .then(data => {
-      const values = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
-        return (
-          <tr key={index}>
-            <td>{player.stats[stat_type]['#text']}</td>
-            <td>{player.player.Position}</td>
-            <td>{player.player.FirstName} {player.player.LastName}</td>
-          </tr>
-        )
-      })
+      const values = data.cumulativeplayerstats.playerstatsentry.map((player, index) => (
+        <tr key={index}>
+          <td>{player.stats[stat_type]['#text']}</td>
+          <td>{player.player.Position}</td>
+          <td>{player.player.FirstName} {player.player.LastName}</td>
+        </tr>
+      ))
       setStats(prevState => {
         return { ...prevState, [state_value]: values }
       })
