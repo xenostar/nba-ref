@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 
 // Components
-import Table from 'components/table/Table'
+import { Table } from 'components'
 
 const StyledPlayers = styled.div`
   .grid {
@@ -58,7 +58,7 @@ const StyledPlayers = styled.div`
   }
 `
 
-export default function Players() {
+export const Players = () => {
   const [season, setSeason] = useState('2018-2019')
   const [stats, setStats] = useState({ points: [], assists: [], rebounds: [] })
   const [isLoaded, setIsLoaded] = useState({ isLoadedPts: false, isLoadedAst: false, isLoadedReb: false })

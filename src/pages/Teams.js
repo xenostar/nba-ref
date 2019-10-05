@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 
 // Components
-import Table from 'components/table/Table'
+import { Table } from 'components'
 
 const StyledTeam = styled.div`
   form {
@@ -46,7 +46,7 @@ const StyledTeam = styled.div`
   }
 `
 
-export default function Teams() {
+export const Teams = () => {
   const [values, setValues] = useState({ season: '2018-2019', team: 'ind' })
   const [roster, setRoster] = useState({ roster: [] })
   const [isLoaded, setIsLoaded] = useState(false)

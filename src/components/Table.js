@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Loader from '../loader/Loader'
+import { Loader } from 'components'
 
 const StyledTable = styled.div`
   .tb-name {
@@ -57,7 +57,7 @@ const StyledTable = styled.div`
   }
 `
 
-export default function Table(props) {
+export const Table = props => {
   let isLoaded = props.isLoaded
   let dataCols = props.tableData
   let tableHeaders = (

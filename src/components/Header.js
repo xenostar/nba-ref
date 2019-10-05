@@ -22,11 +22,9 @@ const StyledHeader = styled.header`
   }
 `
 
-export default function Header() {
-  return (
-    <StyledHeader>
-      <img src={logo} alt="NBA REF" />
-      <h1>nba<span>ref</span></h1>
-    </StyledHeader>
-  )
-}
+export const Header = () => (
+  <StyledHeader>
+    <img src={logo} alt="NBA REF" />
+    <h1>nba<span>ref</span></h1>
+  </StyledHeader>
+)

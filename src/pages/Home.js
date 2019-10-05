@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 const StyledHome = styled.div`
@@ -21,7 +21,7 @@ const StyledHome = styled.div`
   }
 `
 
-export default function Footer() {
+export const Home = () => {
   return (
     <StyledHome className="page">
       <div className="hero">

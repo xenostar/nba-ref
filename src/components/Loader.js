@@ -31,13 +31,11 @@ const StyledLoader = styled.div`
   }
 `
 
-export default function Loader() {
-  return (
-    <StyledLoader>
-      <div className="holder">
-        <img src={loader} alt="Loading..." />
-        <p>Loading</p>
-      </div>
-    </StyledLoader>
-  )
-}
+export const Loader = () => (
+  <StyledLoader>
+    <div className="holder">
+      <img src={loader} alt="Loading..." />
+      <p>Loading</p>
+    </div>
+  </StyledLoader>
+)

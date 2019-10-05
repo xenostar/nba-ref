@@ -12,10 +12,8 @@ const StyledFooter = styled.footer`
   }
 `
 
-export default function Footer() {
-  return (
-    <StyledFooter>
-      <p>Footer copyright stuff. Built with love, etc.</p>
-    </StyledFooter>
-  )
-}
+export const Footer = () => (
+  <StyledFooter>
+    <p>Footer copyright stuff. Built with love, etc.</p>
+  </StyledFooter>
+)
