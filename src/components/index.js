@@ -1,3 +1,6 @@
+export * from './forms/Form'
+export * from './forms/Label'
+export * from './forms/Select'
 export * from './Footer'
 export * from './Header'
 export * from './Loader'

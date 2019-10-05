@@ -1,50 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
+import { Table, Form, Label, Select } from 'components'
 
-// Components
-import { Table } from 'components'
-
-const StyledTeam = styled.div`
-  form {
-    margin-bottom: 2.5rem;
-    overflow: hidden;
-  }
-  form label {
-    background: rgba(0,0,0,0.05);
-    border: 1px solid #ddd;
-    border-right: 0;
-    border-radius: 3px 0 0 3px;
-    color: #aaa;
-    float: left;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 38px;
-    padding: 0 10px;
-    text-transform: uppercase;
-  }
-  form select {
-    border: 1px solid #ddd;
-    border-radius: 0 3px 3px 0;
-    color: #444;
-    cursor: pointer;
-    font-size: 1.125em;
-    font-weight: 500;
-    height: 2.5rem;
-    line-height: 2.5rem;
-    padding: 0 10px;
-    -webkit-appearance: none;
-  }
-  form select:-moz-focusring {
-    outline: 0;
-  }
-  form div {
-    float: left;
-    margin-left: 20px;
-  }
-  form div:first-child {
-    margin-left: 0;
-  }
-`
+const StyledTeam = styled.div``
 
 export const Teams = () => {
   const [values, setValues] = useState({ season: '2018-2019', team: 'ind' })
@@ -145,24 +103,24 @@ export const Teams = () => {
 
   return (
     <StyledTeam className="page">
-      <form>
+      <Form>
         <div>
-          <label>Team</label>
-          <select name="team" value={values.team} onChange={handleChange}>
+          <Label>Team</Label>
+          <Select name="team" value={values.team} onChange={handleChange}>
             {Object.entries(teams).map(([val, teamName]) => (
               <option key={val} value={val}>{teamName}</option>
             ))}
-          </select>
+          </Select>
         </div>
         <div>
-          <label>Season</label>
-          <select name="season" value={values.season} onChange={handleChange}>
+          <Label>Season</Label>
+          <Select name="season" value={values.season} onChange={handleChange}>
             {seasons.map(val => (
               <option value={val}>{val}</option>
             ))}
-          </select>
+          </Select>
         </div>
-      </form>
+      </Form>
       <Table tableTitle="Team Roster" tableData={tableData} isLoaded={isLoaded}>{roster.roster}</Table>
     </StyledTeam>
   )

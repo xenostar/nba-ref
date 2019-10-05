@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
-
-// Components
-import { Table } from 'components'
+import { Table, Form, Label, Select } from 'components'
 
 const StyledPlayers = styled.div`
   .grid {
@@ -15,46 +13,6 @@ const StyledPlayers = styled.div`
     .grid {
       grid-template-columns: 1fr;
     }
-  }
-
-  form {
-    margin-bottom: 2.5rem;
-    overflow: hidden;
-  }
-  form label {
-    background: rgba(0,0,0,0.05);
-    border: 1px solid #ddd;
-    border-right: 0;
-    border-radius: 3px 0 0 3px;
-    color: #aaa;
-    float: left;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 38px;
-    padding: 0 10px;
-    text-transform: uppercase;
-  }
-  form select {
-    border: 1px solid #ddd;
-    border-radius: 0 3px 3px 0;
-    color: #444;
-    cursor: pointer;
-    font-size: 1.125em;
-    font-weight: 500;
-    height: 2.5rem;
-    line-height: 2.5rem;
-    padding: 0 10px;
-    -webkit-appearance: none;
-  }
-  form select:-moz-focusring {
-    outline: 0;
-  }
-  form div {
-    float: left;
-    margin-left: 20px;
-  }
-  form div:first-child {
-    margin-left: 0;
   }
 `
 
@@ -131,16 +89,16 @@ export const Players = () => {
 
   return (
     <StyledPlayers className="page">
-      <form>
+      <Form>
         <div>
-          <label>Season</label>
-          <select name="season" value={season} onChange={handleChange}>
+          <Label>Season</Label>
+          <Select name="season" value={season} onChange={handleChange}>
             {seasons.map(val => (
               <option value={val}>{val}</option>
             ))}
-          </select>
+          </Select>
         </div>
-      </form>
+      </Form>
       <div className="grid">
         <Table tableTitle="Points Scored" tableData={tableDataPts} isLoaded={isLoaded.isLoadedPts}>{stats.points}</Table>
         <Table tableTitle="Assists" tableData={tableDataAst} isLoaded={isLoaded.isLoadedAst}>{stats.assists}</Table>
