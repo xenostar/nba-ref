@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 
 // Components
-import Table from '../../components/table/Table'
+import Table from 'components/table/Table'
 
 const StyledPlayers = styled.div`
   .grid {
@@ -135,7 +135,7 @@ export default function Players() {
         <div>
           <label>Season</label>
           <select name="season" value={season} onChange={handleChange}>
-            {seasons.map((val) => (
+            {seasons.map(val => (
               <option value={val}>{val}</option>
             ))}
           </select>

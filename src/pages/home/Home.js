@@ -22,10 +22,6 @@ const StyledHome = styled.div`
 `
 
 export default function Footer() {
-  // componentDidMount
-  useEffect(() => {
-  }, [])
-
   return (
     <StyledHome className="page">
       <div className="hero">

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 
 // Components
-import Table from '../../components/table/Table'
+import Table from 'components/table/Table'
 
 const StyledTeam = styled.div`
   form {
@@ -157,7 +157,7 @@ export default function Teams() {
         <div>
           <label>Season</label>
           <select name="season" value={values.season} onChange={handleChange}>
-            {seasons.map((val) => (
+            {seasons.map(val => (
               <option value={val}>{val}</option>
             ))}
           </select>
