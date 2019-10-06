@@ -64,16 +64,9 @@ export const Teams = () => {
   const handleFetch = useCallback(() => {
     setIsLoaded(false)
 
-    // fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/${ values.season }-regular/roster_players.json?team=${ values.team }&rosterstatus=assigned-to-roster`, {
-    //   headers: {
-    //     'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
-    //     'Cache-Control' : 'no-cache, no-store, must-revalidate',
-    //     'Accept-Encoding' : 'gzip'
-    //   },
-    // })
-    fetch(`https://api.mysportsfeeds.com/v2.1/pull/nba/players.json?season=${ values.season }-regular&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`, {
+    fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/${ values.season }-regular/roster_players.json?team=${ values.team }&rosterstatus=assigned-to-roster`, {
       headers: {
-        'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
+        'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
         'Cache-Control' : 'no-cache, no-store, must-revalidate',
         'Accept-Encoding' : 'gzip'
       },
@@ -82,27 +75,16 @@ export const Teams = () => {
       return response.json()
     })
     .then(data => {
-      console.log(data.players)
-      const values = data.players.map(({ player }, index) => (
+      const values = data.rosterplayers.playerentry.map(({ player }, index) => (
         <tr key={index}>
-          <td>{player.jerseyNumber}</td>
-          <td>{player.firstName} {player.lastName}</td>
-          <td>{player.primaryPosition || '--'}</td>
-          <td>{player.age || '--'}</td>
-          <td>{player.height || '--'}</td>
-          <td>{player.weight ? player.weight + ' lbs' : '--'}</td>
+          <td>{player.JerseyNumber}</td>
+          <td>{player.FirstName} {player.LastName}</td>
+          <td>{player.Position || '--'}</td>
+          <td>{player.Age || '--'}</td>
+          <td>{player.Height || '--'}</td>
+          <td>{player.Weight ? player.Weight + ' lbs' : '--'}</td>
         </tr>
       ))
-      // const values = data.rosterplayers.playerentry.map(({ player }, index) => (
-      //   <tr key={index}>
-      //     <td>{player.JerseyNumber}</td>
-      //     <td>{player.FirstName} {player.LastName}</td>
-      //     <td>{player.Position || '--'}</td>
-      //     <td>{player.Age || '--'}</td>
-      //     <td>{player.Height || '--'}</td>
-      //     <td>{player.Weight ? player.Weight + ' lbs' : '--'}</td>
-      //   </tr>
-      // ))
       setRoster(prevState => {
         return { ...prevState, roster: values }
       })
