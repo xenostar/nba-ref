@@ -13,7 +13,7 @@ const StyledTable = styled.div`
   }
   .tb-roster {
     border-collapse: collapse;
-    table-layout: fixed;
+    /* table-layout: fixed; */
     width: 100%;
     white-space: nowrap;
   }
@@ -22,13 +22,13 @@ const StyledTable = styled.div`
   }
   .tb-roster th {
     overflow: hidden;
-    padding: 10px 0 10px 10px;
+    padding: 10px;
     text-align: left;
     white-space: nowrap;
   }
   .tb-roster td {
     overflow: hidden;
-    padding: 10px 0 10px 10px;
+    padding: 10px;
     white-space: nowrap;
   }
   .tb-roster td.tb-loader {
