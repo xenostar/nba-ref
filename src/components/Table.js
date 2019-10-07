@@ -11,6 +11,9 @@ const StyledTable = styled.div`
     font-weight: 700;
     padding: 10px;
   }
+  .tb-holder {
+    overflow-x: scroll;
+  }
   .tb-roster {
     border-collapse: collapse;
     /* table-layout: fixed; */
@@ -74,20 +77,22 @@ export const Table = props => {
   return(
     <StyledTable>
       <div className="tb-name">{props.tableTitle}</div>
-      <table className="tb-roster">
-        {tableHeaders}
-        <tbody>
-          {isLoaded ? (
-            props.children
-          ) : (
-            <tr>
-              <td colSpan={props.tableData.length} className="tb-loader">
-                <Loader />
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+      <div className="tb-holder">
+        <table className="tb-roster">
+          {tableHeaders}
+          <tbody>
+            {isLoaded ? (
+              props.children
+            ) : (
+              <tr>
+                <td colSpan={props.tableData.length} className="tb-loader">
+                  <Loader />
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </StyledTable>
   )
 }
