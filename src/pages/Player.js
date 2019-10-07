@@ -4,6 +4,7 @@ import styled from 'styled-components'
 const StyledPlayer = styled.div``
 
 export const Player = ({ match }) => {
+  // const [values, setValues] = useState({ season: '2018-2019' })
 
   useEffect(() => { // componentDidMount
     console.log("Running...")
