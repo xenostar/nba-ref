@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
+import { Link } from "react-router-dom"
 import styled from 'styled-components'
 import { Table, Form, Label, Select } from 'components'
 
@@ -64,13 +65,6 @@ export const Teams = () => {
   const handleFetch = useCallback(() => {
     setIsLoaded(false)
 
-    // fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/${ values.season }-regular/roster_players.json?team=${ values.team }&rosterstatus=assigned-to-roster`, {
-    //   headers: {
-    //     'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
-    //     'Cache-Control' : 'no-cache, no-store, must-revalidate',
-    //     'Accept-Encoding' : 'gzip'
-    //   },
-    // })
     fetch(`https://api.mysportsfeeds.com/v2.1/pull/nba/players.json?season=${ values.season }-regular&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
@@ -83,26 +77,20 @@ export const Teams = () => {
     })
     .then(data => {
       console.log(data.players)
-      const values = data.players.map(({ player }, index) => (
-        <tr key={index}>
-          <td>{player.jerseyNumber}</td>
-          <td>{player.firstName} {player.lastName}</td>
-          <td>{player.primaryPosition || '--'}</td>
-          <td>{player.age || '--'}</td>
-          <td>{player.height || '--'}</td>
-          <td>{player.weight ? player.weight + ' lbs' : '--'}</td>
-        </tr>
-      ))
-      // const values = data.rosterplayers.playerentry.map(({ player }, index) => (
-      //   <tr key={index}>
-      //     <td>{player.JerseyNumber}</td>
-      //     <td>{player.FirstName} {player.LastName}</td>
-      //     <td>{player.Position || '--'}</td>
-      //     <td>{player.Age || '--'}</td>
-      //     <td>{player.Height || '--'}</td>
-      //     <td>{player.Weight ? player.Weight + ' lbs' : '--'}</td>
-      //   </tr>
-      // ))
+      const values = data.players.map(({ player }, index) => {
+        const url_firstName = player.firstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+        const url_LasttName = player.lastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+        return (
+          <tr key={index}>
+            <td>{player.jerseyNumber}</td>
+            <td><Link exact to={'/player/' + url_firstName + '-' + url_LasttName} activeClassName="active">{player.firstName} {player.lastName}</Link></td>
+            <td>{player.primaryPosition || '--'}</td>
+            <td>{player.age || '--'}</td>
+            <td>{player.height || '--'}</td>
+            <td>{player.weight ? player.weight + ' lbs' : '--'}</td>
+          </tr>
+        )
+      })
       setRoster(prevState => {
         return { ...prevState, roster: values }
       })
@@ -114,7 +102,6 @@ export const Teams = () => {
   }, [values])
 
   useEffect(() => { // componentDidMount
-    console.log("Running...")
     handleFetch()
     return () => console.log('Unmounting...')
   }, [handleFetch])
