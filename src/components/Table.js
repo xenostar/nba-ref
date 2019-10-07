@@ -74,7 +74,7 @@ export const Table = props => {
     </thead>
   )
 
-  return(
+  return (
     <StyledTable>
       <div className="tb-name">{props.tableTitle}</div>
       <div className="tb-holder">
