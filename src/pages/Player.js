@@ -22,7 +22,7 @@ const StyledPlayer = styled.div`
 export const Player = props => {
   const routePlayerName = props.match.params.playername
   const [season, setSeason] = useState('2018-2019')
-  const [info, setInfo] = useState({ info: [] })
+  const [info, setInfo] = useState({ playerInfo: [], playerStatsFieldGoals: [] })
   const [isLoaded, setIsLoaded] = useState(false)
   const seasons = [
     '2018-2019',
@@ -31,8 +31,7 @@ export const Player = props => {
     '2015-2016'
   ]
   const tableData = [
-    [ 'Pts', '5vw' ],
-    [ 'Position', '5vw' ],
+    [ 'Stat', '50%' ],
     [ 'Name', 'auto' ]
   ]
 
@@ -53,19 +52,35 @@ export const Player = props => {
     })
     .then(data => {
       console.log(data.playerStatsTotals)
-      const values = data.playerStatsTotals.map(({ player, team, stats }, index) => {
-        // const url_firstName = player.firstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
-        // const url_LasttName = player.lastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+      const playerInfoData = data.playerStatsTotals.map(({ player }, index) => {
+        return (
+          <div key={index}>
+            <img src={player.officialImageSrc} alt="Player" />
+            <h1>{player.firstName} {player.lastName}</h1>
+            <div>Team: {player.currentTeam.abbreviation}</div>
+            <div>Position: {player.primaryPosition}</div>
+            <div>Jersey Number: {player.jerseyNumber}</div>
+            <div>Current Roster Status: {player.currentRosterStatus}</div>
+            <div>Height: {player.height}</div>
+            <div>Weight: {player.weight}</div>
+            <div>Age: {player.age} ({player.birthDate})</div>
+          </div>
+        )
+      })
+      const playerStatsFieldGoalsData = data.playerStatsTotals.map(({ stats }, index) => {
         return (
           <tr key={index}>
-            <td>{player.firstName} {player.lastName}</td>
-            <td>{team.abbreviation}</td>
-            <td>{stats.gamesPlayed}</td>
+            <td>FG2PtAtt</td>
+            <td>{stats.fieldGoals.fg2PtAtt}</td>
           </tr>
         )
       })
       setInfo(prevState => {
-        return { ...prevState, info: values }
+        return {
+          ...prevState,
+          playerInfo: playerInfoData,
+          playerStatsFieldGoals: playerStatsFieldGoalsData
+        }
       })
       setIsLoaded(true)
     })
@@ -93,10 +108,10 @@ export const Player = props => {
         </div>
       </Form>
       <div className="player-card">
-        <h1>{props.match.params.playername}</h1>
+        {info.playerInfo}
       </div>
       <div className="grid">
-        <Table tableTitle="Offensive Stats" tableData={tableData} isLoaded={isLoaded}>{info.info}</Table>
+        <Table tableTitle="Field Goals" tableData={tableData} isLoaded={isLoaded}>{info.playerStatsFieldGoals}</Table>
         <div>Player page for {props.match.params.playername}</div>
         <div>Player page for {props.match.params.playername}</div>
       </div>
