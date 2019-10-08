@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Table, Form, Label, Select } from 'components'
 
@@ -102,8 +102,9 @@ export const Teams = () => {
   }, [values])
 
   useEffect(() => { // componentDidMount
+    console.log("Mounting Teams...")
     handleFetch()
-    return () => console.log('Unmounting...')
+    return () => console.log('Unmounting Teams...')
   }, [handleFetch])
 
   return (

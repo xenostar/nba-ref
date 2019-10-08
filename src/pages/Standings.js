@@ -48,14 +48,14 @@ export const Standings = () => {
       return response.json()
     })
     .then(data => {
-      const eastern_standings = data.conferenceteamstandings.conference[0].teamentry.map((team, index) => (
+      const easternStandingsData = data.conferenceteamstandings.conference[0].teamentry.map((team, index) => (
         <tr key={index}>
           <td>{team.rank}</td>
           <td>{team.stats.Wins['#text']}</td>
           <td>{team.team.City} {team.team.Name}</td>
         </tr>
       ))
-      const western_standings = data.conferenceteamstandings.conference[1].teamentry.map((team, index) => (
+      const westernStandingsDate = data.conferenceteamstandings.conference[1].teamentry.map((team, index) => (
         <tr key={index}>
           <td>{team.rank}</td>
           <td>{team.stats.Wins['#text']}</td>
@@ -63,7 +63,7 @@ export const Standings = () => {
         </tr>
       ))
       setStandings(prevState => {
-        return { ...prevState, eastern: eastern_standings, western: western_standings }
+        return { ...prevState, eastern: easternStandingsData, western: westernStandingsDate }
       })
       setIsLoaded(true)
     })
@@ -73,9 +73,9 @@ export const Standings = () => {
   }, [season])
 
   useEffect(() => { // componentDidMount
-    console.log("Running...")
+    console.log("Mounting Standings...")
     handleFetch()
-    return () => console.log('Unmounting...')
+    return () => console.log('Unmounting Standings...')
   }, [handleFetch])
 
   return (

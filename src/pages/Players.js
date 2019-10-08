@@ -80,11 +80,11 @@ export const Players = () => {
   }, [season])
 
   useEffect(() => { // componentDidMount
-    console.log("Running...")
+    console.log("Mounting Players...")
     handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'Pts', 'points', 'isLoadedPts')
     handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'Ast', 'assists', 'isLoadedAst')
     handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'Reb', 'rebounds', 'isLoadedReb')
-    return () => console.log('Unmounting...')
+    return () => console.log('Unmounting Players...')
   }, [handleFetch])
 
   return (
