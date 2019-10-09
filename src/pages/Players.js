@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Table, Form, Label, Select } from 'components'
 
@@ -60,13 +61,17 @@ export const Players = () => {
       return response.json()
     })
     .then(data => {
-      const values = data.cumulativeplayerstats.playerstatsentry.map((player, index) => (
-        <tr key={index}>
-          <td>{player.stats[stat_type]['#text']}</td>
-          <td>{player.player.Position}</td>
-          <td>{player.player.FirstName} {player.player.LastName}</td>
-        </tr>
-      ))
+      const values = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
+        const url_firstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+        const url_LasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+        return (
+          <tr key={index}>
+            <td>{player.stats[stat_type]['#text']}</td>
+            <td>{player.player.Position}</td>
+            <td><Link exact to={'/player/' + url_firstName + '-' + url_LasttName} activeClassName="active">{player.player.FirstName} {player.player.LastName}</Link></td>
+          </tr>
+        )
+      })
       setStats(prevState => {
         return { ...prevState, [state_value]: values }
       })

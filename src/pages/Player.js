@@ -22,7 +22,8 @@ const StyledPlayer = styled.div`
 export const Player = props => {
   const routePlayerName = props.match.params.playername
   const [season, setSeason] = useState('2018-2019')
-  const [info, setInfo] = useState({ playerInfo: [], playerStatsFieldGoals: [] })
+  const [playerInfo, setPlayerInfo] = useState({})
+  const [playerStats, setPlayerStats] = useState({})
   const [isLoaded, setIsLoaded] = useState(false)
   const seasons = [
     '2018-2019',
@@ -32,7 +33,7 @@ export const Player = props => {
   ]
   const tableData = [
     [ 'Stat', '50%' ],
-    [ 'Name', 'auto' ]
+    [ 'Value', 'auto' ]
   ]
 
   const handleChange = ({ target: { value } }) => setSeason(value)
@@ -51,37 +52,8 @@ export const Player = props => {
       return response.json()
     })
     .then(data => {
-      console.log(data.playerStatsTotals)
-      const playerInfoData = data.playerStatsTotals.map(({ player }, index) => {
-        return (
-          <div key={index}>
-            <img src={player.officialImageSrc} alt="Player" />
-            <h1>{player.firstName} {player.lastName}</h1>
-            <div>Team: {player.currentTeam.abbreviation}</div>
-            <div>Position: {player.primaryPosition}</div>
-            <div>Jersey Number: {player.jerseyNumber}</div>
-            <div>Current Roster Status: {player.currentRosterStatus}</div>
-            <div>Height: {player.height}</div>
-            <div>Weight: {player.weight}</div>
-            <div>Age: {player.age} ({player.birthDate})</div>
-          </div>
-        )
-      })
-      const playerStatsFieldGoalsData = data.playerStatsTotals.map(({ stats }, index) => {
-        return (
-          <tr key={index}>
-            <td>FG2PtAtt</td>
-            <td>{stats.fieldGoals.fg2PtAtt}</td>
-          </tr>
-        )
-      })
-      setInfo(prevState => {
-        return {
-          ...prevState,
-          playerInfo: playerInfoData,
-          playerStatsFieldGoals: playerStatsFieldGoalsData
-        }
-      })
+      setPlayerInfo(data.playerStatsTotals[0].player)
+      setPlayerStats(data.playerStatsTotals[0].stats)
       setIsLoaded(true)
     })
     .catch(error => {
@@ -108,12 +80,60 @@ export const Player = props => {
         </div>
       </Form>
       <div className="player-card">
-        {info.playerInfo}
+        <div><img src={playerInfo.officialImageSrc} alt="Player" /></div>
+        <div>{playerInfo.firstName} {playerInfo.lastName}</div>
+        <div>Age: {playerInfo.age}</div>
+        <div>Games Played: {playerStats.gamesPlayed}</div>
       </div>
       <div className="grid">
-        <Table tableTitle="Field Goals" tableData={tableData} isLoaded={isLoaded}>{info.playerStatsFieldGoals}</Table>
-        <div>Player page for {props.match.params.playername}</div>
-        <div>Player page for {props.match.params.playername}</div>
+      <Table tableTitle="Offense" tableData={tableData} isLoaded={isLoaded}>
+          {isLoaded && Object.entries(playerStats.offense).map(([key, value]) => (
+            <tr key={key}>
+              <td>{key}</td>
+              <td>{value}</td>
+            </tr>
+          ))}
+        </Table>
+        <Table tableTitle="Free Throws" tableData={tableData} isLoaded={isLoaded}>
+          {isLoaded && Object.entries(playerStats.freeThrows).map(([key, value]) => (
+            <tr key={key}>
+              <td>{key}</td>
+              <td>{value}</td>
+            </tr>
+          ))}
+        </Table>
+        <Table tableTitle="Rebounds" tableData={tableData} isLoaded={isLoaded}>
+          {isLoaded && Object.entries(playerStats.rebounds).map(([key, value]) => (
+            <tr key={key}>
+              <td>{key}</td>
+              <td>{value}</td>
+            </tr>
+          ))}
+        </Table>
+        <Table tableTitle="Field Goals" tableData={tableData} isLoaded={isLoaded}>
+          {isLoaded && Object.entries(playerStats.fieldGoals).map(([key, value]) => (
+            <tr key={key}>
+              <td>{key}</td>
+              <td>{value}</td>
+            </tr>
+          ))}
+        </Table>
+        <Table tableTitle="Defense" tableData={tableData} isLoaded={isLoaded}>
+          {isLoaded && Object.entries(playerStats.defense).map(([key, value]) => (
+            <tr key={key}>
+              <td>{key}</td>
+              <td>{value}</td>
+            </tr>
+          ))}
+        </Table>
+        <Table tableTitle="Miscellaneous" tableData={tableData} isLoaded={isLoaded}>
+          {isLoaded && Object.entries(playerStats.miscellaneous).map(([key, value]) => (
+            <tr key={key}>
+              <td>{key}</td>
+              <td>{value}</td>
+            </tr>
+          ))}
+        </Table>
       </div>
     </StyledPlayer>
   )
