@@ -7,7 +7,7 @@ const StyledTeam = styled.div``
 
 export const Teams = () => {
   const [values, setValues] = useState({ season: '2018-2019', team: 'ind' })
-  const [roster, setRoster] = useState({ roster: [] })
+  const [roster, setRoster] = useState({})
   const [isLoaded, setIsLoaded] = useState(false)
   const teams = {
     atl: 'Atlanta Hawks',
@@ -77,7 +77,7 @@ export const Teams = () => {
     })
     .then(data => {
       console.log(data.players)
-      const values = data.players.map(({ player }, index) => {
+      const teamData = data.players.map(({ player }, index) => {
         const url_firstName = player.firstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
         const url_LasttName = player.lastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
         return (
@@ -91,9 +91,10 @@ export const Teams = () => {
           </tr>
         )
       })
-      setRoster(prevState => {
-        return { ...prevState, roster: values }
-      })
+      setRoster(teamData)
+      // setRoster(prevState => {
+      //   return { ...prevState, roster: values }
+      // })
       setIsLoaded(true)
     })
     .catch(error => {
@@ -127,7 +128,9 @@ export const Teams = () => {
           </Select>
         </div>
       </Form>
-      <Table tableTitle="Team Roster" tableData={tableData} isLoaded={isLoaded}>{roster.roster}</Table>
+      <Table tableTitle="Team Roster" tableData={tableData} isLoaded={isLoaded}>
+        {roster}
+      </Table>
     </StyledTeam>
   )
 }

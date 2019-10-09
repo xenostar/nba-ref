@@ -87,9 +87,15 @@ export const Player = props => {
       </Form>
       <div className="player-card">
         <div><img src={playerInfo.officialImageSrc} alt="Player" /></div>
-        <div>{playerInfo.firstName} {playerInfo.lastName}</div>
+        <h1>{playerInfo.firstName} {playerInfo.lastName}</h1>
         <div>Age: {playerInfo.age}</div>
-        <div>Games Played: {playerStats.gamesPlayed}</div>
+        <div>Position: {playerInfo.primaryPosition}</div>
+        <div>Jersey #: {playerInfo.jerseyNumber}</div>
+        <div>Status: {playerInfo.currentRosterStatus}</div>
+        <div>Height: {playerInfo.height}</div>
+        <div>Weight: {playerInfo.weight}</div>
+        <div>Birthdate: {playerInfo.birthDate}</div>
+        <div>From: {playerInfo.birthCity}, {playerInfo.birthCountry}</div>
       </div>
       <div className="grid">
       <Table tableTitle="Offense" tableData={tableData} isLoaded={isLoaded}>

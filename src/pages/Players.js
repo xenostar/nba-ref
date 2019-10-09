@@ -61,7 +61,7 @@ export const Players = () => {
       return response.json()
     })
     .then(data => {
-      const values = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
+      const playerData = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
         const url_firstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
         const url_LasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
         return (
@@ -73,7 +73,7 @@ export const Players = () => {
         )
       })
       setStats(prevState => {
-        return { ...prevState, [state_value]: values }
+        return { ...prevState, [state_value]: playerData }
       })
       setIsLoaded(prevState => {
         return { ...prevState, [load_value]: true }
