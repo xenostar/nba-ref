@@ -119,9 +119,13 @@ export const Player = props => {
   useEffect(() => { // componentDidMount
     console.log("Mounting Player...")
     handleFetch()
-    window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop })
+    // window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop })
     return () => console.log('Unmounting Player...')
   }, [handleFetch])
+
+  useEffect(() => { // componentDidMount
+    window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop })
+  }, [])
 
   return (
     <StyledPlayer className="page" ref={myRef}>
