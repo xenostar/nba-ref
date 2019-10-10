@@ -6,6 +6,7 @@ const StyledNav = styled.nav`
   background-color: rgba(0,0,0,0.05);
   border-radius: 3px;
   display: flex;
+  margin-top: 2.5rem;
   overflow: hidden;
 
   a {
@@ -36,6 +37,7 @@ const StyledNav = styled.nav`
     bottom: 0;
     left: 0;
     right: 0;
+    margin-top: 0;
     z-index: 1000;
 
     a {
