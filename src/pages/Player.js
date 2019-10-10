@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import styled from 'styled-components'
 import { Table, Form, Label, Select } from 'components'
 
 const StyledPlayer = styled.div`
   .grid {
     display: grid;
-    grid-gap: 40px;
+    grid-gap: 2.5rem;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
   }
@@ -18,9 +18,9 @@ const StyledPlayer = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
-    grid-column-gap: 40px;
-    grid-row-gap: 40px;
-    margin-bottom: 40px;
+    grid-column-gap: 2.5rem;
+    grid-row-gap: 2.5rem;
+    margin-bottom: 2.5rem;
   }
   .pc .pc-col-1 {
     display: flex;
@@ -32,7 +32,7 @@ const StyledPlayer = styled.div`
     justify-content: center;
     grid-column: 2 / 4;
   }
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 600px) {
     .pc {
       grid-template-columns: 1fr;
     }
@@ -42,7 +42,8 @@ const StyledPlayer = styled.div`
     }
   }
   .pc-img-wrapper {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.05);
+    border: 1px solid #ddd;
     border-radius: 3px;
     position: relative;
     padding-top: 60%;
@@ -61,7 +62,7 @@ const StyledPlayer = styled.div`
     opacity: 0;
     margin: 0 auto;
     transition: 0.4s opacity ease;
-    width: 80%;
+    width: 82.4%;
   }
 `
 
@@ -72,6 +73,7 @@ export const Player = props => {
   const [playerInfo, setPlayerInfo] = useState({})
   const [playerStats, setPlayerStats] = useState({})
   const [isLoaded, setIsLoaded] = useState(false)
+  let myRef = useRef()
   const seasons = [
     '2018-2019',
     '2017-2018',
@@ -117,11 +119,12 @@ export const Player = props => {
   useEffect(() => { // componentDidMount
     console.log("Mounting Player...")
     handleFetch()
+    window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop })
     return () => console.log('Unmounting Player...')
   }, [handleFetch])
 
   return (
-    <StyledPlayer className="page">
+    <StyledPlayer className="page" ref={myRef}>
       <Form>
         <div>
           <Label>Season</Label>

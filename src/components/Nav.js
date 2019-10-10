@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom"
 const StyledNav = styled.nav`
   background: rgba(0,0,0,0.05);
   border-radius: 3px;
-  margin-bottom: 2.5rem;
+  /* margin-bottom: 2.5rem; */
   overflow: hidden;
 
   a {

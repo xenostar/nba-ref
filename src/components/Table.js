@@ -9,7 +9,7 @@ const StyledTable = styled.div`
     color:#fff;
     font-size: 1.25em;
     font-weight: 700;
-    padding: 10px;
+    padding: 0.625rem;
   }
   .tb-holder {
     overflow-x: auto;
@@ -25,13 +25,13 @@ const StyledTable = styled.div`
   }
   .tb-roster th {
     overflow: hidden;
-    padding: 10px;
+    padding: 0.625rem;
     text-align: left;
     white-space: nowrap;
   }
   .tb-roster td {
     overflow: hidden;
-    padding: 10px;
+    padding: 0.625rem;
     white-space: nowrap;
   }
   .tb-roster td.tb-loader {

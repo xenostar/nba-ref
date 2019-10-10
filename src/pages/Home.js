@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const StyledHome = styled.div`
   display: grid;
-  grid-gap: 40px;
+  grid-gap: 2.5rem;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto;
   @media only screen and (max-width: 1000px) {
