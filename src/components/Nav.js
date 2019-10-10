@@ -3,25 +3,25 @@ import styled from 'styled-components'
 import { NavLink } from "react-router-dom"
 
 const StyledNav = styled.nav`
-  background: rgba(0,0,0,0.05);
+  background-color: rgba(0,0,0,0.05);
   border-radius: 3px;
-  /* margin-bottom: 2.5rem; */
+  display: flex;
   overflow: hidden;
 
   a {
     border-bottom: 5px solid transparent;
     color: #aaa;
     display: block;
-    float: left;
     font-weight: 700;
     height: 3.4375rem;
     line-height: 3.4375rem;
+    text-align: center;
     text-transform: uppercase;
-    transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease;
     padding: 0 1.25rem;
   }
   a:hover {
-    color: #888;
+    color: #777;
   }
   a.active {
     border-bottom: 5px solid #ED5429;
@@ -29,14 +29,19 @@ const StyledNav = styled.nav`
   }
 
   @media only screen and (max-width: 1000px) {
+    background-color: rgba(255,255,255,1);
+    border-radius: 0;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
     a {
-      border-bottom: none;
-      border-left: 5px solid transparent;
-      float: none;
-    }
-    a.active {
-      border-bottom: none;
-      border-left: 5px solid #ED5429;
+      font-size: 0.8em;
+      padding: 0;
+      width: 25%;
     }
   }
 `

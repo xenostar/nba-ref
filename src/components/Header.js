@@ -5,6 +5,9 @@ import logo from './img/nba-logo--orange.svg'
 const StyledHeader = styled.header`
   overflow: hidden;
   margin-bottom: 2.5rem;
+  @media only screen and (max-width: 1000px) {
+    margin-bottom: 0;
+  }
 
   img {
     height: 7.5rem;
