@@ -12,7 +12,7 @@ const StyledTable = styled.div`
     padding: 10px;
   }
   .tb-holder {
-    overflow-x: scroll;
+    overflow-x: auto;
   }
   .tb-roster {
     border-collapse: collapse;
