@@ -52,15 +52,15 @@ const StyledPlayer = styled.div`
   .pc-img-holder {
     position: absolute;
     bottom: 0;
-    opacity: 0;
-    transition: 0.3s opacity ease;
     width: 100%;
   }
-  .pc-img-holder.loaded {
+  .pc-img-holder.loaded img {
     opacity: 1;
   }
   .pc-img-holder img {
+    opacity: 0;
     margin: 0 auto;
+    transition: 0.4s opacity ease;
     width: 80%;
   }
 `
