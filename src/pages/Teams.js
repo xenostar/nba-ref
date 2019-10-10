@@ -6,6 +6,7 @@ import { Table, Form, Label, Select } from 'components'
 const StyledTeam = styled.div``
 
 export const Teams = () => {
+  const __API__ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
   const [values, setValues] = useState({ season: '2018-2019', team: 'ind' })
   const [roster, setRoster] = useState({})
   const [isLoaded, setIsLoaded] = useState(false)
@@ -65,7 +66,7 @@ export const Teams = () => {
   const handleFetch = useCallback(() => {
     setIsLoaded(false)
 
-    fetch(`https://api.mysportsfeeds.com/v2.1/pull/nba/players.json?season=${ values.season }-regular&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`, {
+    fetch(`${ __API__ }players.json?season=${ values.season }-regular&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
         'Cache-Control' : 'no-cache, no-store, must-revalidate',
@@ -76,25 +77,7 @@ export const Teams = () => {
       return response.json()
     })
     .then(data => {
-      console.log(data.players)
-      const teamData = data.players.map(({ player }, index) => {
-        const url_firstName = player.firstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
-        const url_LasttName = player.lastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
-        return (
-          <tr key={index}>
-            <td>{player.jerseyNumber}</td>
-            <td><Link exact to={'/player/' + url_firstName + '-' + url_LasttName} activeClassName="active">{player.firstName} {player.lastName}</Link></td>
-            <td>{player.primaryPosition || '--'}</td>
-            <td>{player.age || '--'}</td>
-            <td>{player.height || '--'}</td>
-            <td>{player.weight ? player.weight + ' lbs' : '--'}</td>
-          </tr>
-        )
-      })
-      setRoster(teamData)
-      // setRoster(prevState => {
-      //   return { ...prevState, roster: values }
-      // })
+      setRoster(data.players)
       setIsLoaded(true)
     })
     .catch(error => {
@@ -129,7 +112,20 @@ export const Teams = () => {
         </div>
       </Form>
       <Table tableTitle="Team Roster" tableData={tableData} isLoaded={isLoaded}>
-        {roster}
+        {isLoaded && roster.map(({ player }, index) => {
+          const url_firstName = player.firstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+          const url_LasttName = player.lastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+          return (
+            <tr key={index}>
+              <td>{player.jerseyNumber}</td>
+              <td><Link exact to={'/player/' + url_firstName + '-' + url_LasttName} activeClassName="active">{player.firstName} {player.lastName}</Link></td>
+              <td>{player.primaryPosition || '--'}</td>
+              <td>{player.age || '--'}</td>
+              <td>{player.height || '--'}</td>
+              <td>{player.weight ? player.weight + ' lbs' : '--'}</td>
+            </tr>
+          )
+        })}
       </Table>
     </StyledTeam>
   )

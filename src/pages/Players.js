@@ -18,6 +18,7 @@ const StyledPlayers = styled.div`
 `
 
 export const Players = () => {
+  const __API__ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
   const [season, setSeason] = useState('2018-2019')
   const [stats, setStats] = useState({ points: [], assists: [], rebounds: [] })
   const [isLoaded, setIsLoaded] = useState({ isLoadedPts: false, isLoadedAst: false, isLoadedReb: false })
@@ -45,12 +46,12 @@ export const Players = () => {
 
   const handleChange = ({ target: { value } }) => setSeason(value)
 
-  const handleFetch = useCallback((url, stat_type, state_value, load_value) => {
+  const handleFetch = useCallback((url, state_value, load_value) => {
     setIsLoaded(prevState => {
       return { ...prevState, [load_value]: false }
     })
 
-    fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/${ season }-regular/cumulative_player_stats.json?${ url }`,{
+    fetch(`${ __API__ + season }-regular/cumulative_player_stats.json?${ url }`,{
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
         'Cache-Control' : 'no-cache, no-store, must-revalidate',
@@ -61,19 +62,8 @@ export const Players = () => {
       return response.json()
     })
     .then(data => {
-      const playerData = data.cumulativeplayerstats.playerstatsentry.map((player, index) => {
-        const url_firstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
-        const url_LasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
-        return (
-          <tr key={index}>
-            <td>{player.stats[stat_type]['#text']}</td>
-            <td>{player.player.Position}</td>
-            <td><Link exact to={'/player/' + url_firstName + '-' + url_LasttName} activeClassName="active">{player.player.FirstName} {player.player.LastName}</Link></td>
-          </tr>
-        )
-      })
       setStats(prevState => {
-        return { ...prevState, [state_value]: playerData }
+        return { ...prevState, [state_value]: data.cumulativeplayerstats.playerstatsentry }
       })
       setIsLoaded(prevState => {
         return { ...prevState, [load_value]: true }
@@ -86,9 +76,9 @@ export const Players = () => {
 
   useEffect(() => { // componentDidMount
     console.log("Mounting Players...")
-    handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'Pts', 'points', 'isLoadedPts')
-    handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'Ast', 'assists', 'isLoadedAst')
-    handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'Reb', 'rebounds', 'isLoadedReb')
+    handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'points', 'isLoadedPts')
+    handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'assists', 'isLoadedAst')
+    handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'rebounds', 'isLoadedReb')
     return () => console.log('Unmounting Players...')
   }, [handleFetch])
 
@@ -105,9 +95,45 @@ export const Players = () => {
         </div>
       </Form>
       <div className="grid">
-        <Table tableTitle="Points Scored" tableData={tableDataPts} isLoaded={isLoaded.isLoadedPts}>{stats.points}</Table>
-        <Table tableTitle="Assists" tableData={tableDataAst} isLoaded={isLoaded.isLoadedAst}>{stats.assists}</Table>
-        <Table tableTitle="Rebounds" tableData={tableDataReb} isLoaded={isLoaded.isLoadedReb}>{stats.rebounds}</Table>
+        <Table tableTitle="Points Scored" tableData={tableDataPts} isLoaded={isLoaded.isLoadedPts}>
+          {stats.points.map((player, index) => {
+            const url_firstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+            const url_LasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+            return (
+              <tr key={index}>
+                <td>{player.stats['Pts']['#text']}</td>
+                <td>{player.player.Position}</td>
+                <td><Link exact to={'/player/' + url_firstName + '-' + url_LasttName} activeClassName="active">{player.player.FirstName} {player.player.LastName}</Link></td>
+              </tr>
+            )
+          })}
+        </Table>
+        <Table tableTitle="Assists" tableData={tableDataAst} isLoaded={isLoaded.isLoadedAst}>
+          {stats.assists.map((player, index) => {
+            const url_firstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+            const url_LasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+            return (
+              <tr key={index}>
+                <td>{player.stats['Ast']['#text']}</td>
+                <td>{player.player.Position}</td>
+                <td><Link exact to={'/player/' + url_firstName + '-' + url_LasttName} activeClassName="active">{player.player.FirstName} {player.player.LastName}</Link></td>
+              </tr>
+            )
+          })}
+        </Table>
+        <Table tableTitle="Rebounds" tableData={tableDataReb} isLoaded={isLoaded.isLoadedReb}>
+          {stats.rebounds.map((player, index) => {
+            const url_firstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+            const url_LasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+            return (
+              <tr key={index}>
+                <td>{player.stats['Reb']['#text']}</td>
+                <td>{player.player.Position}</td>
+                <td><Link exact to={'/player/' + url_firstName + '-' + url_LasttName} activeClassName="active">{player.player.FirstName} {player.player.LastName}</Link></td>
+              </tr>
+            )
+          })}
+        </Table>
       </div>
     </StyledPlayers>
   )

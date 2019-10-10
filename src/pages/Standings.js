@@ -17,6 +17,7 @@ const StyledStandings = styled.div`
 `
 
 export const Standings = () => {
+  const __API__ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
   const [season, setSeason] = useState('2018-2019')
   const [standings, setStandings] = useState({ eastern: [], western: [] })
   const [isLoaded, setIsLoaded] = useState(false)
@@ -37,7 +38,7 @@ export const Standings = () => {
   const handleFetch = useCallback(() => {
     setIsLoaded(false)
 
-    fetch(`https://api.mysportsfeeds.com/v1.2/pull/nba/${ season }-regular/conference_team_standings.json?teamstats=w`, {
+    fetch(`${ __API__ + season }-regular/conference_team_standings.json?teamstats=w`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
         'Cache-Control' : 'no-cache, no-store, must-revalidate',
@@ -48,22 +49,12 @@ export const Standings = () => {
       return response.json()
     })
     .then(data => {
-      const easternStandingsData = data.conferenceteamstandings.conference[0].teamentry.map((team, index) => (
-        <tr key={index}>
-          <td>{team.rank}</td>
-          <td>{team.stats.Wins['#text']}</td>
-          <td>{team.team.City} {team.team.Name}</td>
-        </tr>
-      ))
-      const westernStandingsDate = data.conferenceteamstandings.conference[1].teamentry.map((team, index) => (
-        <tr key={index}>
-          <td>{team.rank}</td>
-          <td>{team.stats.Wins['#text']}</td>
-          <td>{team.team.City} {team.team.Name}</td>
-        </tr>
-      ))
       setStandings(prevState => {
-        return { ...prevState, eastern: easternStandingsData, western: westernStandingsDate }
+        return {
+          ...prevState,
+          eastern: data.conferenceteamstandings.conference[0].teamentry,
+          western: data.conferenceteamstandings.conference[1].teamentry
+        }
       })
       setIsLoaded(true)
     })
@@ -91,8 +82,24 @@ export const Standings = () => {
         </div>
       </Form>
       <div className="grid">
-        <Table tableTitle="Western Standings" tableData={tableData} isLoaded={isLoaded}>{standings.western}</Table>
-        <Table tableTitle="Eastern Standings" tableData={tableData} isLoaded={isLoaded}>{standings.eastern}</Table>
+        <Table tableTitle="Western Standings" tableData={tableData} isLoaded={isLoaded}>
+          {isLoaded && standings.western.map((team, index) => (
+            <tr key={index}>
+              <td>{team.rank}</td>
+              <td>{team.stats.Wins['#text']}</td>
+              <td>{team.team.City} {team.team.Name}</td>
+            </tr>
+          ))}
+        </Table>
+        <Table tableTitle="Eastern Standings" tableData={tableData} isLoaded={isLoaded}>
+          {isLoaded && standings.eastern.map((team, index) => (
+            <tr key={index}>
+              <td>{team.rank}</td>
+              <td>{team.stats.Wins['#text']}</td>
+              <td>{team.team.City} {team.team.Name}</td>
+            </tr>
+          ))}
+        </Table>
       </div>
     </StyledStandings>
   )

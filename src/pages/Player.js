@@ -14,12 +14,59 @@ const StyledPlayer = styled.div`
       grid-template-columns: 1fr;
     }
   }
-  .player-card {
+  .pc {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    grid-column-gap: 40px;
+    grid-row-gap: 40px;
     margin-bottom: 40px;
+  }
+  .pc .pc-col-1 {
+    display: flex;
+    grid-column: 1 / 2;
+  }
+  .pc .pc-col-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-column: 2 / 4;
+  }
+  @media only screen and (max-width: 1000px) {
+    .pc {
+      grid-template-columns: 1fr;
+    }
+    .pc .pc-col-1,
+    .pc .pc-col-2 {
+      grid-column: 1;
+    }
+  }
+  .pc-img-wrapper {
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 3px;
+    position: relative;
+    padding-top: 60%;
+    overflow: hidden;
+    width: 100%;
+  }
+  .pc-img-holder {
+    position: absolute;
+    bottom: 0;
+    opacity: 0;
+    transition: 0.3s opacity ease;
+    width: 100%;
+  }
+  .pc-img-holder.loaded {
+    opacity: 1;
+  }
+  .pc-img-holder img {
+    margin: 0 auto;
+    width: 80%;
   }
 `
 
 export const Player = props => {
+  const __API__ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
   const routePlayerName = props.match.params.playername
   const [season, setSeason] = useState('2018-2019')
   const [playerInfo, setPlayerInfo] = useState({})
@@ -47,7 +94,7 @@ export const Player = props => {
   const handleFetch = useCallback(() => {
     setIsLoaded(false)
 
-    fetch(`https://api.mysportsfeeds.com/v2.1/pull/nba/${ season }-regular/player_stats_totals.json?player=${ routePlayerName }`, {
+    fetch(`${ __API__ + season }-regular/player_stats_totals.json?player=${ routePlayerName }`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
         'Cache-Control' : 'no-cache, no-store, must-revalidate',
@@ -85,17 +132,25 @@ export const Player = props => {
           </Select>
         </div>
       </Form>
-      <div className="player-card">
-        <div><img src={playerInfo.officialImageSrc} alt="Player" /></div>
-        <h1>{playerInfo.firstName} {playerInfo.lastName}</h1>
-        <div>Age: {playerInfo.age}</div>
-        <div>Position: {playerInfo.primaryPosition}</div>
-        <div>Jersey #: {playerInfo.jerseyNumber}</div>
-        <div>Status: {playerInfo.currentRosterStatus}</div>
-        <div>Height: {playerInfo.height}</div>
-        <div>Weight: {playerInfo.weight}</div>
-        <div>Birthdate: {playerInfo.birthDate}</div>
-        <div>From: {playerInfo.birthCity}, {playerInfo.birthCountry}</div>
+      <div className="pc">
+        <div className="pc-col-1">
+          <div className="pc-img-wrapper">
+            <div  className={isLoaded ? 'pc-img-holder loaded' : 'pc-img-holder'}>
+              <img src={playerInfo.officialImageSrc} alt="Player Headshot" />
+            </div>
+          </div>
+        </div>
+        <div className="pc-col-2">
+          <h1>{playerInfo.firstName} {playerInfo.lastName}</h1>
+          <div>Age: {playerInfo.age}</div>
+          <div>Position: {playerInfo.primaryPosition}</div>
+          <div>Jersey #: {playerInfo.jerseyNumber}</div>
+          <div>Status: {playerInfo.currentRosterStatus}</div>
+          <div>Height: {playerInfo.height}</div>
+          <div>Weight: {playerInfo.weight}</div>
+          <div>Birthdate: {playerInfo.birthDate}</div>
+          <div>From: {playerInfo.birthCity}, {playerInfo.birthCountry}</div>
+        </div>
       </div>
       <div className="grid">
       <Table tableTitle="Offense" tableData={tableData} isLoaded={isLoaded}>
