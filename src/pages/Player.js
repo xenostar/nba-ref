@@ -55,16 +55,16 @@ const StyledPlayer = styled.div`
     bottom: 0;
     width: 100%;
   }
-  .pc-img-holder.loaded img {
-    opacity: 1;
-    transform: scale(1) translateY(0%);
-  }
   .pc-img-holder img {
     opacity: 0;
     margin: 0 auto;
     transition: 0.4s all ease;
     transform: scale(0.8) translateY(16%);
     width: 82.4%;
+  }
+  .pc-img-holder.loaded img {
+    opacity: 1;
+    transform: scale(1) translateY(0%);
   }
 `
 
