@@ -14,49 +14,31 @@ const StyledTable = styled.div`
   .tb-holder {
     overflow-x: auto;
   }
-  .tb-roster {
+  .tb {
     border-collapse: collapse;
     /* table-layout: fixed; */
     width: 100%;
     white-space: nowrap;
   }
-  .tb-roster thead {
+  .tb thead {
     background-color: rgba(237, 84, 41, 0.075);
   }
-  .tb-roster th {
+  .tb th {
     overflow: hidden;
     padding: 0.625rem;
     text-align: left;
     white-space: nowrap;
   }
-  .tb-roster td {
+  .tb td {
     overflow: hidden;
     padding: 0.625rem;
     white-space: nowrap;
   }
-  .tb-roster td.tb-loader {
+  .tb td.tb-loader {
     padding: 0;
   }
-  .tb-roster tbody tr:nth-child(even) {
+  .tb tbody tr:nth-child(even) {
     background-color: rgba(0,0,0,0.025);
-  }
-  .tb-roster .row-number {
-    width: 5%;
-  }
-  .tb-roster .row-name {
-    width: auto;
-  }
-  .tb-roster .row-position {
-    width: 10%;
-  }
-  .tb-roster .row-age {
-    width: 10%;
-  }
-  .tb-roster .row-height {
-    width: 10%;
-  }
-  .tb-roster .row-weight {
-    width: 10%;
   }
 `
 
@@ -78,7 +60,7 @@ export const Table = props => {
     <StyledTable>
       <div className="tb-name">{props.tableTitle}</div>
       <div className="tb-holder">
-        <table className="tb-roster">
+        <table className="tb">
           {tableHeaders}
           <tbody>
             {isLoaded ? (
