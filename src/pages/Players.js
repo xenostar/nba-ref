@@ -10,9 +10,14 @@ const StyledPlayers = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
   }
-  @media only screen and (max-width: 62.5rem) {
+  @media only screen and (max-width: 62.5rem) { /* 1000px */
     .grid {
       grid-template-columns: 1fr;
+    }
+  }
+  @media only screen and (max-width: 87.5rem) { /* 1400px */
+    .grid {
+      grid-template-columns: 1fr 1fr;
     }
   }
 `
@@ -29,19 +34,19 @@ export const Players = () => {
     '2015-2016'
   ]
   const tableDataPts = [
-    [ 'Pts', '5vw' ],
-    [ 'Position', '5vw' ],
-    [ 'Name', 'auto' ]
+    [ 'Pts', 'auto' ],
+    [ 'Posn', 'auto' ],
+    [ 'Name', '100%' ]
   ]
   const tableDataAst = [
-    [ 'Ast', '5vw' ],
-    [ 'Position', '5vw' ],
-    [ 'Name', 'auto' ]
+    [ 'Ast', 'auto' ],
+    [ 'Posn', 'auto' ],
+    [ 'Name', '100%' ]
   ]
   const tableDataReb = [
-    [ 'Reb', '5vw' ],
-    [ 'Position', '5vw' ],
-    [ 'Name', 'auto' ]
+    [ 'Reb', 'auto' ],
+    [ 'Posn', 'auto' ],
+    [ 'Name', '100%' ]
   ]
 
   const handleChange = ({ target: { value } }) => setSeason(value)

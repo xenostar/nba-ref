@@ -49,12 +49,12 @@ export const Teams = () => {
     '2015-2016'
   ]
   const tableData = [
-    [ '#', '5vw' ],
-    [ 'Name', 'auto' ],
-    [ 'Position', '10vw' ],
-    [ 'Age', '10vw' ],
-    [ 'Height', '10vw' ],
-    [ 'Weight', '10vw' ]
+    [ '#', 'auto' ],
+    [ 'Name', '60%' ],
+    [ 'Posn', '10%' ],
+    [ 'Age', '10%' ],
+    [ 'Height', '10%' ],
+    [ 'Weight', '10%' ]
   ]
 
   const handleChange = ({ target: { name, value } }) => {
