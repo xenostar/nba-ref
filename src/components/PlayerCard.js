@@ -14,18 +14,19 @@ const StyledPlayerCard = styled.div`
   grid-column-gap: 2.5rem;
   grid-template-areas:
     "frame name name"
-    "frame info info"
-    "frame info info"
-    "frame info info"
+    "frame info1 info2"
+    "frame info1 info2"
+    "frame info1 info2"
   ;
-  @media only screen and (max-width: 37.5rem) {
+  @media only screen and (max-width: 50rem) { /* 800px */
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     grid-row-gap: 1.25rem;
     grid-template-areas:
       "name"
       "frame"
-      "info"
+      "info1"
+      "info2"
     ;
   }
 
@@ -39,11 +40,47 @@ const StyledPlayerCard = styled.div`
     flex-direction: column;
     justify-content: center;
   }
-  .pcard__info {
-    grid-area: info;
+  .pcard__info1,
+  .pcard__info2 {
+    border: 1px solid #ddd;
+    border-top: 0;
+    overflow: hidden;
+    border-radius: 3px;
+    grid-area: info1;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
+  }
+  .pcard__info2 {
+    grid-area: info2;
+  }
+
+  .pcard-col {
+    border-top: 1px solid #ddd;
+    align-items: stretch;
+    display: flex;
+    width: 100%;
+  }
+  .pcard-label {
+    align-items: center;
+    background: rgba(0,0,0,0.05);
+    border-right: 0;
+    color: #aaa;
+    display: flex;
+    font-size: 14px;
+    font-weight: 700;
+    justify-content: right;
+    padding: 10px;
+    min-width: 35%;
+    text-transform: uppercase;
+  }
+  .pcard-val {
+    align-items: center;
+    color: #444;
+    display: flex;
+    font-size: 16px;
+    flex-grow: 1;
+    padding: 10px;
   }
 
   .pcard-img {
@@ -68,6 +105,14 @@ const StyledPlayerCard = styled.div`
     animation: ${fadeIn} 0.4s;
     animation-fill-mode: both;
   }
+
+  .pcard-table {
+    display: flex;
+    flex-direction: column;
+  }
+  .pcard-table div {
+    background-color: #eee;
+  }
 `
 
 export const PlayerCard = ({ playerInfo, isLoaded }) => {
@@ -84,15 +129,41 @@ export const PlayerCard = ({ playerInfo, isLoaded }) => {
       <div className="pcard__name">
         <h1>{playerInfo.firstName} {playerInfo.lastName}</h1>
       </div>
-      <div className="pcard__info">
-        <div>Age: {playerInfo.age}</div>
-        <div>Position: {playerInfo.primaryPosition}</div>
-        <div>Jersey #: {playerInfo.jerseyNumber}</div>
-        <div>Status: {playerInfo.currentRosterStatus}</div>
-        <div>Height: {playerInfo.height}</div>
-        <div>Weight: {playerInfo.weight}</div>
-        <div>Birthdate: {playerInfo.birthDate}</div>
-        <div>From: {playerInfo.birthCity}, {playerInfo.birthCountry}</div>
+      <div className="pcard__info1">
+        <div className="pcard-col">
+          <div className="pcard-label">Age</div>
+          <div className="pcard-val">{playerInfo.age}</div>
+        </div>
+        <div className="pcard-col">
+          <div className="pcard-label">Posn</div>
+          <div className="pcard-val">{playerInfo.primaryPosition}</div>
+        </div>
+        <div className="pcard-col">
+          <div className="pcard-label">Height</div>
+          <div className="pcard-val">{playerInfo.height}</div>
+        </div>
+        <div className="pcard-col">
+          <div className="pcard-label">Weight</div>
+          <div className="pcard-val">{playerInfo.weight}</div>
+        </div>
+      </div>
+      <div className="pcard__info2">
+        <div className="pcard-col">
+          <div className="pcard-label">Jersey</div>
+          <div className="pcard-val">{playerInfo.jerseyNumber}</div>
+        </div>
+        <div className="pcard-col">
+          <div className="pcard-label">Status</div>
+          <div className="pcard-val">{playerInfo.currentRosterStatus === "ROSTER" ? "Active" : "Inactive" }</div>
+        </div>
+        <div className="pcard-col">
+          <div className="pcard-label">Born</div>
+          <div className="pcard-val">{playerInfo.birthDate}</div>
+        </div>
+        <div className="pcard-col">
+          <div className="pcard-label">From</div>
+          <div className="pcard-val">{playerInfo.birthCity}, {playerInfo.birthCountry}</div>
+        </div>
       </div>
     </StyledPlayerCard>
   )

@@ -6,7 +6,6 @@ export const Label = styled.label`
   border-right: 0;
   border-radius: 3px 0 0 3px;
   color: #aaa;
-  float: left;
   font-size: 12px;
   font-weight: 700;
   line-height: 38px;
