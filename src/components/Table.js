@@ -12,7 +12,6 @@ const StyledTable = styled.div`
     padding: 0.625rem;
   }
   .tb-holder {
-    max-width: 100%:
     overflow-x: auto;
   }
   .tb-roster {
