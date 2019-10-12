@@ -6,7 +6,7 @@ const StyledHome = styled.div`
   grid-gap: 2.5rem;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto;
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 62.5rem) {
     grid-template-columns: 1fr;
   }
 

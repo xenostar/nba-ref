@@ -9,7 +9,7 @@ const StyledPlayer = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
   }
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 62.5rem) {
     .grid {
       grid-template-columns: 1fr;
     }
@@ -91,7 +91,7 @@ export const Player = props => {
       </Form>
       <PlayerCard playerInfo={playerInfo} isLoaded={isLoaded} />
       <div className="grid">
-      <Table tableTitle="Offense" tableData={tableData} isLoaded={isLoaded}>
+        <Table tableTitle="Offense" tableData={tableData} isLoaded={isLoaded}>
           {isLoaded && Object.entries(playerStats.offense).map(([key, value]) => (
             <tr key={key}>
               <td>{camelCaseToWords(key)}</td>

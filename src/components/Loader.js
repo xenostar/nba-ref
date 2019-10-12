@@ -3,9 +3,9 @@ import styled, { keyframes } from 'styled-components'
 import loader from './img/Basketball-1s-200px.svg'
 
 const fadeInOut = keyframes`
-  0% { opacity: 0.75; }
+  0% { opacity: 0.6; }
   50% { opacity: 1; }
-  100% { opacity: 0.75; }
+  100% { opacity: 0.6; }
 `
 
 const StyledLoader = styled.div`

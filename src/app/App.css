@@ -48,6 +48,12 @@ h2 {
   min-height: 100vh;
   padding: 2.5rem;
 }
+@media only screen and (max-width: 62.5rem) {
+  .app-container {
+    min-width: 100%;
+    padding: 2.5rem 1.25rem;
+  }
+}
 
 .page {
   margin-bottom: 5rem;
@@ -87,11 +93,4 @@ h2 {
 
 .page *:last-child {
   margin-bottom: 0;
-}
-
-@media only screen and (max-width: 1000px) {
-  .app-container {
-    min-width: 100%;
-    padding: 2.5rem 1.25rem;
-  }
 }

@@ -8,6 +8,17 @@ const StyledNav = styled.nav`
   display: flex;
   margin-top: 2.5rem;
   overflow: hidden;
+  @media only screen and (max-width: 62.5rem) {
+    background-color: rgba(255,255,255,1);
+    border-radius: 0;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+    z-index: 1000;
+  }
 
   a {
     border-bottom: 5px solid transparent;
@@ -29,17 +40,7 @@ const StyledNav = styled.nav`
     color: #ED5429;
   }
 
-  @media only screen and (max-width: 1000px) {
-    background-color: rgba(255,255,255,1);
-    border-radius: 0;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin-top: 0;
-    z-index: 1000;
-
+  @media only screen and (max-width: 62.5rem) {
     a {
       font-size: 0.8em;
       padding: 0;

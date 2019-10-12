@@ -9,7 +9,7 @@ const StyledStandings = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
   }
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 62.5rem) {
     .grid {
       grid-template-columns: 1fr;
     }

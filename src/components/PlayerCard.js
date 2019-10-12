@@ -1,5 +1,10 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const fadeIn = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`
 
 const StyledPlayerCard = styled.div`
   display: grid;
@@ -8,41 +13,40 @@ const StyledPlayerCard = styled.div`
   grid-template-rows: repeat(4, 1fr);
   grid-column-gap: 2.5rem;
   grid-template-areas:
-    "card name name"
-    "card info info"
-    "card info info"
-    "card info info"
+    "frame name name"
+    "frame info info"
+    "frame info info"
+    "frame info info"
   ;
-
-  .player-card__col-1 {
-    display: flex;
-    grid-area: card;
+  @media only screen and (max-width: 37.5rem) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-row-gap: 1.25rem;
+    grid-template-areas:
+      "name"
+      "frame"
+      "info"
+    ;
   }
-  .player-card__col-2 {
+
+  .pcard__frame {
+    display: flex;
+    grid-area: frame;
+  }
+  .pcard__name {
     grid-area: name;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
-  .player-card__col-3 {
+  .pcard__info {
     grid-area: info;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
-  @media only screen and (max-width: 600px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-row-gap: 1.25rem;
-    grid-template-areas:
-      "name"
-      "card"
-      "info"
-    ;
-  }
-
-  .player-card__img-wrapper {
+  .pcard-img {
     background-color: rgba(0,0,0,0.05);
     border: 1px solid #ddd;
     border-radius: 3px;
@@ -51,45 +55,45 @@ const StyledPlayerCard = styled.div`
     overflow: hidden;
     width: 100%;
   }
-  .player-card__img-holder {
+  .pcard-img__bg {
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: contain;
     position: absolute;
+    top: 0;
     bottom: 0;
     width: 100%;
   }
-  .player-card__img-holder img {
-    opacity: 0;
-    margin: 0 auto;
-    transition: 0.4s all ease;
-    transform: scale(0.8) translateY(16%);
-    width: 82.4%;
-  }
-  .player-card__img-holder.loaded img {
-    opacity: 1;
-    transform: scale(1) translateY(0%);
+  .pcard-img__bg--loaded {
+    animation: ${fadeIn} 0.4s;
+    animation-fill-mode: both;
   }
 `
 
-export const PlayerCard = ({ playerInfo, isLoaded }) => (
-  <StyledPlayerCard>
-    <div className="player-card__col-1">
-      <div className="player-card__img-wrapper">
-        <div  className={isLoaded ? 'player-card__img-holder loaded' : 'player-card__img-holder'}>
-          <img src={playerInfo.officialImageSrc} alt="Player Headshot" />
+export const PlayerCard = ({ playerInfo, isLoaded }) => {
+  const playerImage = {
+    backgroundImage: `url(${playerInfo.officialImageSrc})`
+  }
+  return (
+    <StyledPlayerCard>
+      <div className="pcard__frame">
+        <div className="pcard-img">
+          <div className={isLoaded ? 'pcard-img__bg pcard-img__bg--loaded' : 'pcard-img__bg'} style={playerImage}></div>
         </div>
       </div>
-    </div>
-    <div className="player-card__col-2">
-      <h1>{playerInfo.firstName} {playerInfo.lastName}</h1>
-    </div>
-    <div className="player-card__col-3">
-      <div>Age: {playerInfo.age}</div>
-      <div>Position: {playerInfo.primaryPosition}</div>
-      <div>Jersey #: {playerInfo.jerseyNumber}</div>
-      <div>Status: {playerInfo.currentRosterStatus}</div>
-      <div>Height: {playerInfo.height}</div>
-      <div>Weight: {playerInfo.weight}</div>
-      <div>Birthdate: {playerInfo.birthDate}</div>
-      <div>From: {playerInfo.birthCity}, {playerInfo.birthCountry}</div>
-    </div>
-  </StyledPlayerCard>
-)
+      <div className="pcard__name">
+        <h1>{playerInfo.firstName} {playerInfo.lastName}</h1>
+      </div>
+      <div className="pcard__info">
+        <div>Age: {playerInfo.age}</div>
+        <div>Position: {playerInfo.primaryPosition}</div>
+        <div>Jersey #: {playerInfo.jerseyNumber}</div>
+        <div>Status: {playerInfo.currentRosterStatus}</div>
+        <div>Height: {playerInfo.height}</div>
+        <div>Weight: {playerInfo.weight}</div>
+        <div>Birthdate: {playerInfo.birthDate}</div>
+        <div>From: {playerInfo.birthCity}, {playerInfo.birthCountry}</div>
+      </div>
+    </StyledPlayerCard>
+  )
+}
