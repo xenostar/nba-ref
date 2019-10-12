@@ -64,19 +64,21 @@ const StyledPlayerCard = styled.div`
   .pcard-label {
     align-items: center;
     background: rgba(0,0,0,0.05);
-    border-right: 0;
+    border-right: 1px solid #ddd;
     color: #aaa;
+    cursor: default;
     display: flex;
     font-size: 14px;
     font-weight: 700;
     justify-content: right;
-    padding: 10px;
+    padding: 10px 10px 10px 2px;
     min-width: 35%;
     text-transform: uppercase;
   }
   .pcard-val {
     align-items: center;
     color: #444;
+    cursor: default;
     display: flex;
     font-size: 16px;
     flex-grow: 1;
@@ -135,7 +137,7 @@ export const PlayerCard = ({ playerInfo, isLoaded }) => {
           <div className="pcard-val">{playerInfo.age}</div>
         </div>
         <div className="pcard-col">
-          <div className="pcard-label">Posn</div>
+          <div className="pcard-label">Position</div>
           <div className="pcard-val">{playerInfo.primaryPosition}</div>
         </div>
         <div className="pcard-col">
