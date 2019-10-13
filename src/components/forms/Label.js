@@ -11,6 +11,7 @@ export const Label = styled.label`
   line-height: 38px;
   padding: 0 10px;
   text-transform: uppercase;
+  user-select: none;
 
   @media only screen and (max-width: 1000px) {
     min-width: 20%;

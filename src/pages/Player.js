@@ -27,6 +27,7 @@ export const Player = props => {
   const [season, setSeason] = useState('2018-2019')
   const [playerInfo, setPlayerInfo] = useState({})
   const [playerStats, setPlayerStats] = useState({})
+  const [playerReferences, setPlayerReferences] = useState({})
   const [isLoaded, setIsLoaded] = useState(false)
   const myRef = useRef()
   const seasons = [
@@ -64,6 +65,7 @@ export const Player = props => {
     .then(data => {
       setPlayerInfo(data.playerStatsTotals[0].player)
       setPlayerStats(data.playerStatsTotals[0].stats)
+      setPlayerReferences(data.references.teamReferences[0])
       setIsLoaded(true)
     })
     .catch(error => {
@@ -94,7 +96,7 @@ export const Player = props => {
           </Select>
         </div>
       </Form>
-      <PlayerCard playerInfo={playerInfo} isLoaded={isLoaded} />
+      <PlayerCard playerInfo={playerInfo} playerReferences={playerReferences} isLoaded={isLoaded} />
       <div className="grid">
         <Table tableTitle="Offense" tableData={tableData} isLoaded={isLoaded}>
           {isLoaded && Object.entries(playerStats.offense).map(([key, value]) => (

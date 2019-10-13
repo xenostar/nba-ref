@@ -5,6 +5,10 @@ const fadeIn = keyframes`
   0% { opacity: 0; }
   100% { opacity: 1; }
 `
+const fadeIn2 = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 0.5; }
+`
 
 const StyledPlayerCard = styled.div`
   display: grid;
@@ -94,7 +98,7 @@ const StyledPlayerCard = styled.div`
     overflow: hidden;
     width: 100%;
   }
-  .pcard-img__bg {
+  .pcard-img__pic {
     background-position: bottom center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -103,8 +107,22 @@ const StyledPlayerCard = styled.div`
     bottom: 0;
     width: 100%;
   }
-  .pcard-img__bg--loaded {
+  .pcard-img__team {
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    background-size: 25%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  .pcard-img__pic--loaded {
     animation: ${fadeIn} 0.4s;
+    animation-fill-mode: both;
+  }
+  .pcard-img__team--loaded{
+    animation: ${fadeIn2} 0.4s;
+    animation-delay: 0.4s;
     animation-fill-mode: both;
   }
 
@@ -117,15 +135,19 @@ const StyledPlayerCard = styled.div`
   }
 `
 
-export const PlayerCard = ({ playerInfo, isLoaded }) => {
+export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
   const playerImage = {
     backgroundImage: `url(${playerInfo.officialImageSrc})`
+  }
+  const teamImage = {
+    backgroundImage: `url(${playerReferences.officialLogoImageSrc})`
   }
   return (
     <StyledPlayerCard>
       <div className="pcard__frame">
         <div className="pcard-img">
-          <div className={isLoaded ? 'pcard-img__bg pcard-img__bg--loaded' : 'pcard-img__bg'} style={playerImage}></div>
+          <div className={isLoaded ? 'pcard-img__team pcard-img__team--loaded' : 'pcard-img__team'} style={teamImage}></div>
+          <div className={isLoaded ? 'pcard-img__pic pcard-img__pic--loaded' : 'pcard-img__pic'} style={playerImage}></div>
         </div>
       </div>
       <div className="pcard__name">
@@ -133,12 +155,16 @@ export const PlayerCard = ({ playerInfo, isLoaded }) => {
       </div>
       <div className="pcard__info1">
         <div className="pcard-col">
-          <div className="pcard-label">Age</div>
-          <div className="pcard-val">{playerInfo.age}</div>
+          <div className="pcard-label">Team</div>
+          <div className="pcard-val">{playerReferences.city + ' ' + playerReferences.name}</div>
         </div>
         <div className="pcard-col">
           <div className="pcard-label">Position</div>
           <div className="pcard-val">{playerInfo.primaryPosition}</div>
+        </div>
+        <div className="pcard-col">
+          <div className="pcard-label">Age</div>
+          <div className="pcard-val">{playerInfo.age}</div>
         </div>
         <div className="pcard-col">
           <div className="pcard-label">Height</div>
@@ -165,6 +191,10 @@ export const PlayerCard = ({ playerInfo, isLoaded }) => {
         <div className="pcard-col">
           <div className="pcard-label">From</div>
           <div className="pcard-val">{playerInfo.birthCity}, {playerInfo.birthCountry}</div>
+        </div>
+        <div className="pcard-col">
+          <div className="pcard-label">College</div>
+          <div className="pcard-val">{playerInfo.college}</div>
         </div>
       </div>
     </StyledPlayerCard>

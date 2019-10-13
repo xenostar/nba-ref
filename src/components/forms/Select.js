@@ -10,6 +10,7 @@ export const Select = styled.select`
   height: 2.5rem;
   line-height: 2.5rem;
   padding: 0 10px;
+  user-select: none;
   -webkit-appearance: none;
 
   :-moz-focusring {
