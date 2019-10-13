@@ -74,7 +74,7 @@ const StyledPlayerCard = styled.div`
     display: flex;
     font-size: 14px;
     font-weight: 700;
-    justify-content: right;
+    justify-content: flex-end;
     padding: 10px 10px 10px 2px;
     min-width: 35%;
     text-transform: uppercase;
