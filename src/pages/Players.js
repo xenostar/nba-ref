@@ -24,14 +24,18 @@ const StyledPlayers = styled.div`
 
 export const Players = () => {
   const __API__ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
-  const [season, setSeason] = useState('2018-2019')
+  const [values, setValues] = useState({ season: '2018-2019', seasonType: 'regular' })
   const [stats, setStats] = useState({ points: [], assists: [], rebounds: [] })
   const [isLoaded, setIsLoaded] = useState({ isLoadedPts: false, isLoadedAst: false, isLoadedReb: false })
   const seasons = [
     '2018-2019',
     '2017-2018',
     '2016-2017',
-    '2015-2016'
+    // '2015-2016'
+  ]
+  const seasonType = [
+    'regular',
+    'playoff'
   ]
   const tableDataPts = [
     [ 'Pts', 'auto' ],
@@ -49,14 +53,18 @@ export const Players = () => {
     [ 'Name', '100%' ]
   ]
 
-  const handleChange = ({ target: { value } }) => setSeason(value)
+  const handleChange = ({ target: { name, value } }) => {
+    setValues(prevState => {
+      return { ...prevState, [name]: value }
+    })
+  }
 
   const handleFetch = useCallback((url, state_value, load_value) => {
     setIsLoaded(prevState => {
       return { ...prevState, [load_value]: false }
     })
 
-    fetch(`${ __API__ + season }-regular/cumulative_player_stats.json?${ url }`,{
+    fetch(`${ __API__ + values.season }-${ values.seasonType }/cumulative_player_stats.json?${ url }`,{
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
         'Cache-Control' : 'no-cache, no-store, must-revalidate',
@@ -77,7 +85,7 @@ export const Players = () => {
     .catch(error => {
       console.log(error)
     })
-  }, [season])
+  }, [values])
 
   useEffect(() => { // componentDidMount
     console.log("Mounting Players...")
@@ -92,9 +100,17 @@ export const Players = () => {
       <Form>
         <div>
           <Label>Season</Label>
-          <Select name="season" value={season} onChange={handleChange}>
+          <Select name="season" value={values.season} onChange={handleChange}>
             {seasons.map(val => (
               <option value={val}>{val}</option>
+            ))}
+          </Select>
+        </div>
+        <div>
+          <Label>Type</Label>
+          <Select name="seasonType" value={values.seasonType} onChange={handleChange}>
+            {seasonType.map(val => (
+              <option value={val}>{val.charAt(0).toUpperCase() + val.substring(1)}</option>
             ))}
           </Select>
         </div>

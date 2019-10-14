@@ -7,7 +7,7 @@ const StyledTeam = styled.div``
 
 export const Teams = () => {
   const __API__ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
-  const [values, setValues] = useState({ season: '2018-2019', team: 'ind' })
+  const [values, setValues] = useState({ team: 'ind', season: '2018-2019', seasonType: 'regular' })
   const [roster, setRoster] = useState({})
   const [isLoaded, setIsLoaded] = useState(false)
   const teams = {
@@ -48,6 +48,10 @@ export const Teams = () => {
     '2016-2017',
     '2015-2016'
   ]
+  const seasonType = [
+    'regular',
+    'playoff'
+  ]
   const tableData = [
     [ '#', 'auto' ],
     [ 'Name', '60%' ],
@@ -66,7 +70,7 @@ export const Teams = () => {
   const handleFetch = useCallback(() => {
     setIsLoaded(false)
 
-    fetch(`${ __API__ }players.json?season=${ values.season }-regular&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`, {
+    fetch(`${ __API__ }players.json?season=${ values.season }-${ values.seasonType }&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
         'Cache-Control' : 'no-cache, no-store, must-revalidate',
@@ -107,6 +111,14 @@ export const Teams = () => {
           <Select name="season" value={values.season} onChange={handleChange}>
             {seasons.map(val => (
               <option value={val}>{val}</option>
+            ))}
+          </Select>
+        </div>
+        <div>
+          <Label>Type</Label>
+          <Select name="seasonType" value={values.seasonType} onChange={handleChange}>
+            {seasonType.map(val => (
+              <option value={val}>{val.charAt(0).toUpperCase() + val.substring(1)}</option>
             ))}
           </Select>
         </div>
