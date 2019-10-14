@@ -1,5 +1,8 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
+import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 
 const fadeIn = keyframes`
   0% { opacity: 0; }
@@ -41,9 +44,19 @@ const StyledPlayerCard = styled.div`
   .pcard__name {
     grid-area: name;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    /* flex-direction: row; */
+    /* justify-content: flex-start; */
+    align-items: center;
   }
+  .pcard__name h1 {
+    margin-bottom: 0;
+  }
+  .pcard__name a {
+    font-size: 30px;
+    margin-left: 10px;
+  }
+
+
   .pcard__info1,
   .pcard__info2 {
     border: 1px solid #ddd;
@@ -142,6 +155,7 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
   const teamImage = {
     backgroundImage: `url(${playerReferences.officialLogoImageSrc})`
   }
+  // console.log(playerInfo.socialMediaAccounts[0])
   return (
     <StyledPlayerCard>
       <div className="pcard__frame">
@@ -151,7 +165,8 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
         </div>
       </div>
       <div className="pcard__name">
-        <h1>{playerInfo.firstName} {playerInfo.lastName}</h1>
+        <h1 className="pcard-text">{playerInfo.firstName} {playerInfo.lastName}</h1>
+        <a href={'https://twitter.com/'} target="_blank"><FontAwesomeIcon icon={faTwitter} /></a>
       </div>
       <div className="pcard__info1">
         <div className="pcard-col">
