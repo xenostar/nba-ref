@@ -49,10 +49,9 @@ export const Table = props => {
   const tableHeaders = (
     <thead>
       <tr>
-        {dataCols.map(function(column, index) {
-          const width = column[1]
-          return <th key={index} style={{ width: width }}>{column[0]}</th>
-        })}
+        {Object.entries(dataCols).map(([name, width]) => (
+          <th key={name} style={{ width: width }}>{name}</th>
+        ))}
       </tr>
     </thead>
   )
@@ -68,7 +67,7 @@ export const Table = props => {
               props.children
             ) : (
               <tr>
-                <td colSpan={props.tableData.length} className="tb-loader">
+                <td colSpan={Object.keys(dataCols).length} className="tb-loader">
                   <Loader />
                 </td>
               </tr>

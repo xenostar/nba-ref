@@ -31,27 +31,27 @@ export const Players = () => {
     '2018-2019',
     '2017-2018',
     '2016-2017',
-    // '2015-2016'
+    // '2015-2016',
   ]
   const seasonType = [
     'regular',
-    'playoff'
+    'playoff',
   ]
-  const tableDataPts = [
-    [ 'Pts', 'auto' ],
-    [ 'Posn', 'auto' ],
-    [ 'Name', '100%' ]
-  ]
-  const tableDataAst = [
-    [ 'Ast', 'auto' ],
-    [ 'Posn', 'auto' ],
-    [ 'Name', '100%' ]
-  ]
-  const tableDataReb = [
-    [ 'Reb', 'auto' ],
-    [ 'Posn', 'auto' ],
-    [ 'Name', '100%' ]
-  ]
+  const tableDataPts = {
+    'Pts': 'auto',
+    'Posn': 'auto',
+    'Name': '100%',
+  }
+  const tableDataAst = {
+    'Ast': 'auto',
+    'Posn': 'auto',
+    'Name': '100%',
+  }
+  const tableDataReb = {
+    'Reb': 'auto',
+    'Posn': 'auto',
+    'Name': '100%',
+  }
 
   const handleChange = ({ target: { name, value } }) => {
     setValues(prevState => {

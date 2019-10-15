@@ -24,7 +24,6 @@ const StyledPlayer = styled.div`
 export const Player = props => {
   const __API__ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
   const routePlayerName = props.match.params.playername
-  // const [season, setSeason] = useState('2018-2019')
   const [values, setValues] = useState({ season: '2018-2019', seasonType: 'regular' })
   const [playerInfo, setPlayerInfo] = useState({})
   const [playerStats, setPlayerStats] = useState({})
@@ -35,16 +34,16 @@ export const Player = props => {
     '2018-2019',
     '2017-2018',
     '2016-2017',
-    '2015-2016'
+    '2015-2016',
   ]
   const seasonType = [
     'regular',
-    'playoff'
+    'playoff',
   ]
-  const tableData = [
-    [ 'Stat', '50%' ],
-    [ 'Value', 'auto' ]
-  ]
+  const tableData = {
+    'Stat': '50%',
+    'Value': 'auto',
+  }
 
   const camelCaseToWords = str => {
     return str.match(/^[a-z]+|[A-Z][a-z]*/g).map(function(x){

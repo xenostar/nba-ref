@@ -40,26 +40,26 @@ export const Teams = () => {
     sas: 'San Antonio',
     tor: 'Toronto Raptors',
     uta: 'Utah Jazz',
-    was: 'Washington Wizards'
+    was: 'Washington Wizards',
   }
   const seasons = [
     '2018-2019',
     '2017-2018',
     '2016-2017',
-    '2015-2016'
+    '2015-2016',
   ]
   const seasonType = [
     'regular',
-    'playoff'
+    'playoff',
   ]
-  const tableData = [
-    [ '#', 'auto' ],
-    [ 'Name', '60%' ],
-    [ 'Posn', '10%' ],
-    [ 'Age', '10%' ],
-    [ 'Height', '10%' ],
-    [ 'Weight', '10%' ]
-  ]
+  const tableData = {
+    '#': 'auto',
+    'Name': '60%',
+    'Posn': '10%',
+    'Age': '10%',
+    'Height': '10%',
+    'Weight': '10%',
+  }
 
   const handleChange = ({ target: { name, value } }) => {
     setValues(prevState => {

@@ -25,13 +25,13 @@ export const Standings = () => {
     '2018-2019',
     '2017-2018',
     '2016-2017',
-    '2015-2016'
+    '2015-2016',
   ]
-  const tableData = [
-    [ '#', 'auto' ],
-    [ 'Wins', 'auto' ],
-    [ 'Name', '100%' ]
-  ]
+  const tableData = {
+    '#': 'auto',
+    'Wins': 'auto',
+    'Name': '100%',
+  }
 
   const handleChange = ({ target: { value } }) => setSeason(value)
 
