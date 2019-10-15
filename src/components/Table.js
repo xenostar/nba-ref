@@ -44,7 +44,6 @@ const StyledTable = styled.div`
 `
 
 export const Table = props => {
-  const isLoaded = props.isLoaded
   const dataCols = props.tableData
   const tableHeaders = (
     <thead>
@@ -63,7 +62,7 @@ export const Table = props => {
         <table>
           {tableHeaders}
           <tbody>
-            {isLoaded ? (
+            {props.isLoaded ? (
               props.children
             ) : (
               <tr>

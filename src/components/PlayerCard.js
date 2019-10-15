@@ -113,7 +113,6 @@ const PlayerCardGridTable = styled.div`
     background: rgba(0,0,0,0.05);
     border-right: 1px solid #ddd;
     color: #aaa;
-    cursor: default;
     display: flex;
     font-size: 14px;
     font-weight: 700;
@@ -125,7 +124,6 @@ const PlayerCardGridTable = styled.div`
   .val {
     align-items: center;
     color: #444;
-    cursor: default;
     display: flex;
     font-size: 16px;
     flex-grow: 1;
