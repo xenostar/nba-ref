@@ -154,6 +154,7 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
   const teamImage = {
     backgroundImage: `url(${playerReferences.officialLogoImageSrc})`
   }
+  const hasSocial = (playerInfo.socialMediaAccounts !== undefined && playerInfo.socialMediaAccounts.length !== 0)
   console.log(playerInfo.socialMediaAccounts)
   return (
     <StyledPlayerCard>
@@ -165,8 +166,8 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
       </div>
       <div className="pcard__name">
         <h1 className="pcard-text">{playerInfo.firstName} {playerInfo.lastName}</h1>
-        {(playerInfo.socialMediaAccounts !== undefined && playerInfo.socialMediaAccounts.length !== 0) && (
-          <a href={isLoaded && ('https://www.twitter.com/' + playerInfo.socialMediaAccounts[0].value)} target="_blank" rel="noopener noreferrer">
+        {hasSocial && (
+          <a href={'https://www.twitter.com/' + playerInfo.socialMediaAccounts[0].value} target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faTwitter} />
           </a>
         )}
