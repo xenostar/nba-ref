@@ -16,9 +16,7 @@ const StyledLoader = styled.div`
   .holder {
     align-self: center;
   }
-  img {
-    margin: 0 auto;
-  }
+
   p {
     animation: ${fadeInOut} infinite 1s ease-in-out;
     animation-fill-mode: both;
@@ -28,6 +26,9 @@ const StyledLoader = styled.div`
     letter-spacing: 2px;
     text-align: center;
     text-transform: uppercase;
+  }
+  img {
+    margin: 0 auto;
   }
 `
 

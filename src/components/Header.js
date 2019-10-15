@@ -5,11 +5,6 @@ import logo from './img/nba-logo--orange.svg'
 const StyledHeader = styled.header`
   overflow: hidden;
 
-  img {
-    height: 7.5rem;
-    float: left;
-    margin-right: 1.25rem;
-  }
   h1 {
     cursor: default;
     float: left;
@@ -18,6 +13,11 @@ const StyledHeader = styled.header`
   }
   h1 span {
     color: #ED5429;
+  }
+  img {
+    height: 7.5rem;
+    float: left;
+    margin-right: 1.25rem;
   }
 `
 

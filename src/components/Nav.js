@@ -12,11 +12,11 @@ const StyledNav = styled.nav`
     background-color: rgba(255,255,255,1);
     border-radius: 0;
     box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+    margin-top: 0;
     position: fixed;
+    right: 0;
     bottom: 0;
     left: 0;
-    right: 0;
-    margin-top: 0;
     z-index: 1000;
   }
 

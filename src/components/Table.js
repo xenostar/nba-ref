@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Loader } from 'components'
 
 const StyledTable = styled.div`
-  .tb-name {
+  .name {
     background-color: rgba(237, 84, 41, 1);
     border-radius: 3px 3px 0 0;
     color:#fff;
@@ -11,45 +11,46 @@ const StyledTable = styled.div`
     font-weight: 700;
     padding: 0.625rem;
   }
-  .tb-holder {
+  .holder {
     overflow-x: auto;
   }
-  .tb {
+
+  table {
     border-collapse: collapse;
     /* table-layout: fixed; */
     width: 100%;
     white-space: nowrap;
   }
-  .tb thead {
+  table thead {
     background-color: rgba(237, 84, 41, 0.075);
   }
-  .tb th {
+  table thead th {
     overflow: hidden;
     padding: 0.625rem;
     text-align: left;
     white-space: nowrap;
   }
-  .tb td {
+  table tbody td {
     overflow: hidden;
     padding: 0.625rem;
     white-space: nowrap;
   }
-  .tb td.tb-loader {
+  table tbody td.tb-loader {
     padding: 0;
   }
-  .tb tbody tr:nth-child(even) {
+  table tbody tr:nth-child(even) {
     background-color: rgba(0,0,0,0.025);
   }
 `
 
 export const Table = props => {
-  let isLoaded = props.isLoaded
-  let dataCols = props.tableData
-  let tableHeaders = (
+  const isLoaded = props.isLoaded
+  const dataCols = props.tableData
+  const tableHeaders = (
     <thead>
       <tr>
         {dataCols.map(function(column, index) {
-          let width = column[1]
+          const width = column[1]
           return <th key={index} style={{ width: width }}>{column[0]}</th>
         })}
       </tr>
@@ -58,9 +59,9 @@ export const Table = props => {
 
   return (
     <StyledTable>
-      <div className="tb-name">{props.tableTitle}</div>
-      <div className="tb-holder">
-        <table className="tb">
+      <div className="name">{props.tableTitle}</div>
+      <div className="holder">
+        <table>
           {tableHeaders}
           <tbody>
             {isLoaded ? (

@@ -14,6 +14,7 @@ const StyledHome = styled.div`
     grid-column: 1 / 2;
     grid-row: 1 / 3;
   }
+
   h1 {
     color: #ED5429;
     font-size: 4.25em;
