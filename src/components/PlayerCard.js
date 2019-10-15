@@ -1,6 +1,5 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 
@@ -155,7 +154,7 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
   const teamImage = {
     backgroundImage: `url(${playerReferences.officialLogoImageSrc})`
   }
-  // console.log(playerInfo.socialMediaAccounts[0])
+  console.log(playerInfo.socialMediaAccounts)
   return (
     <StyledPlayerCard>
       <div className="pcard__frame">
@@ -166,7 +165,11 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
       </div>
       <div className="pcard__name">
         <h1 className="pcard-text">{playerInfo.firstName} {playerInfo.lastName}</h1>
-        <a href={'https://twitter.com/'} target="_blank"><FontAwesomeIcon icon={faTwitter} /></a>
+        {(playerInfo.socialMediaAccounts !== undefined && playerInfo.socialMediaAccounts.length !== 0) && (
+          <a href={isLoaded && ('https://www.twitter.com/' + playerInfo.socialMediaAccounts[0].value)} target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon={faTwitter} />
+          </a>
+        )}
       </div>
       <div className="pcard__info1">
         <div className="pcard-col">
