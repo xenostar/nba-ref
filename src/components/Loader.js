@@ -10,7 +10,7 @@ const fadeInOut = keyframes`
 
 const StyledLoader = styled.div`
   display: flex;
-  min-height: 24.3125rem;
+  /* min-height: 24.3125rem; */
   justify-content: center;
 
   .holder {
@@ -32,8 +32,8 @@ const StyledLoader = styled.div`
   }
 `
 
-export const Loader = () => (
-  <StyledLoader>
+export const Loader = ({ loaderHeight })  => (
+  <StyledLoader style={{ minHeight: (loaderHeight * 2.434375) + 'rem' }}>
     <div className="holder">
       <img src={loader} alt="Loading..." />
       <p>Loading</p>

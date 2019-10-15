@@ -116,7 +116,7 @@ export const Players = () => {
         </div>
       </Form>
       <div className="grid">
-        <Table tableTitle="Points Scored" tableData={tableDataPts} isLoaded={isLoaded.isLoadedPts}>
+        <Table tableTitle="Points Scored" tableData={tableDataPts} loaderHeight="10" isLoaded={isLoaded.isLoadedPts}>
           {stats.points.map((player, index) => {
             const url_firstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
             const url_LasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
@@ -129,7 +129,7 @@ export const Players = () => {
             )
           })}
         </Table>
-        <Table tableTitle="Assists" tableData={tableDataAst} isLoaded={isLoaded.isLoadedAst}>
+        <Table tableTitle="Assists" tableData={tableDataAst} loaderHeight="10" isLoaded={isLoaded.isLoadedAst}>
           {stats.assists.map((player, index) => {
             const url_firstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
             const url_LasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
@@ -142,7 +142,7 @@ export const Players = () => {
             )
           })}
         </Table>
-        <Table tableTitle="Rebounds" tableData={tableDataReb} isLoaded={isLoaded.isLoadedReb}>
+        <Table tableTitle="Rebounds" tableData={tableDataReb} loaderHeight="10" isLoaded={isLoaded.isLoadedReb}>
           {stats.rebounds.map((player, index) => {
             const url_firstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
             const url_LasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")

@@ -67,7 +67,7 @@ export const Table = props => {
             ) : (
               <tr>
                 <td colSpan={Object.keys(dataCols).length} className="tb-loader">
-                  <Loader />
+                  <Loader loaderHeight={props.loaderHeight ? props.loaderHeight : 10} />
                 </td>
               </tr>
             )}

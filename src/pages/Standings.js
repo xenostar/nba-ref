@@ -82,7 +82,7 @@ export const Standings = () => {
         </div>
       </Form>
       <div className="grid">
-        <Table tableTitle="Western Standings" tableData={tableData} isLoaded={isLoaded}>
+        <Table tableTitle="Western Standings" tableData={tableData} loaderHeight="15" isLoaded={isLoaded}>
           {isLoaded && standings.western.map((team, index) => (
             <tr key={index}>
               <td>{team.rank}</td>
@@ -91,7 +91,7 @@ export const Standings = () => {
             </tr>
           ))}
         </Table>
-        <Table tableTitle="Eastern Standings" tableData={tableData} isLoaded={isLoaded}>
+        <Table tableTitle="Eastern Standings" tableData={tableData} loaderHeight="15" isLoaded={isLoaded}>
           {isLoaded && standings.eastern.map((team, index) => (
             <tr key={index}>
               <td>{team.rank}</td>

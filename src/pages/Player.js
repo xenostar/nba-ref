@@ -114,7 +114,7 @@ export const Player = props => {
       </Form>
       <PlayerCard playerInfo={playerInfo} playerReferences={playerReferences} isLoaded={isLoaded} />
       <div className="grid">
-        <Table tableTitle="Offense" tableData={tableData} isLoaded={isLoaded}>
+        <Table tableTitle="Offense" tableData={tableData} loaderHeight="4" isLoaded={isLoaded}>
           {isLoaded && Object.entries(playerStats.offense).map(([key, value]) => (
             <tr key={key}>
               <td>{camelCaseToWords(key)}</td>
@@ -122,7 +122,7 @@ export const Player = props => {
             </tr>
           ))}
         </Table>
-        <Table tableTitle="Free Throws" tableData={tableData} isLoaded={isLoaded}>
+        <Table tableTitle="Free Throws" tableData={tableData} loaderHeight="5" isLoaded={isLoaded}>
           {isLoaded && Object.entries(playerStats.freeThrows).map(([key, value]) => (
             <tr key={key}>
               <td>{camelCaseToWords(key)}</td>
@@ -130,7 +130,7 @@ export const Player = props => {
             </tr>
           ))}
         </Table>
-        <Table tableTitle="Rebounds" tableData={tableData} isLoaded={isLoaded}>
+        <Table tableTitle="Rebounds" tableData={tableData} loaderHeight="6" isLoaded={isLoaded}>
           {isLoaded && Object.entries(playerStats.rebounds).map(([key, value]) => (
             <tr key={key}>
               <td>{camelCaseToWords(key)}</td>
@@ -138,7 +138,7 @@ export const Player = props => {
             </tr>
           ))}
         </Table>
-        <Table tableTitle="Field Goals" tableData={tableData} isLoaded={isLoaded}>
+        <Table tableTitle="Field Goals" tableData={tableData} loaderHeight="15" isLoaded={isLoaded}>
           {isLoaded && Object.entries(playerStats.fieldGoals).map(([key, value]) => (
             <tr key={key}>
               <td>{camelCaseToWords(key)}</td>
@@ -146,7 +146,7 @@ export const Player = props => {
             </tr>
           ))}
         </Table>
-        <Table tableTitle="Defense" tableData={tableData} isLoaded={isLoaded}>
+        <Table tableTitle="Defense" tableData={tableData} loaderHeight="8" isLoaded={isLoaded}>
           {isLoaded && Object.entries(playerStats.defense).map(([key, value]) => (
             <tr key={key}>
               <td>{camelCaseToWords(key)}</td>
@@ -154,7 +154,7 @@ export const Player = props => {
             </tr>
           ))}
         </Table>
-        <Table tableTitle="Miscellaneous" tableData={tableData} isLoaded={isLoaded}>
+        <Table tableTitle="Miscellaneous" tableData={tableData} loaderHeight="26" isLoaded={isLoaded}>
           {isLoaded && Object.entries(playerStats.miscellaneous).map(([key, value]) => (
             <tr key={key}>
               <td>{camelCaseToWords(key)}</td>
