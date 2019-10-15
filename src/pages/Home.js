@@ -23,7 +23,7 @@ const StyledHome = styled.div`
 
 export const Home = () => {
   return (
-    <StyledHome className="page">
+    <StyledHome className="page content">
       <div className="hero">
         <h1>Welcome</h1>
         <h2>To quite possibly the greatest reference for NBA statistics in the universe.</h2>

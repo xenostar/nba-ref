@@ -15,69 +15,100 @@ const fadeIn2 = keyframes`
 const StyledPlayerCard = styled.div`
   display: grid;
   margin-bottom: 2.5rem;
+  grid-column-gap: 2.5rem;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  grid-column-gap: 2.5rem;
   grid-template-areas:
     "frame name name"
-    "frame info1 info2"
-    "frame info1 info2"
-    "frame info1 info2"
+    "frame table1 table2"
+    "frame table1 table2"
+    "frame table1 table2"
   ;
   @media only screen and (max-width: 50rem) { /* 800px */
+    grid-row-gap: 1.25rem;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    grid-row-gap: 1.25rem;
     grid-template-areas:
       "name"
       "frame"
-      "info1"
-      "info2"
+      "table1"
+      "table2"
     ;
   }
+`
 
-  .pcard__frame {
-    display: flex;
-    grid-area: frame;
+const PlayerCardGridImage = styled.div`
+  display: flex;
+  grid-area: frame;
+
+  .img {
+    background-color: rgba(0,0,0,0.05);
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding-top: 60%;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
   }
-  .pcard__name {
-    grid-area: name;
-    display: flex;
-    /* flex-direction: row; */
-    /* justify-content: flex-start; */
-    align-items: center;
+  .img__playerImage {
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
   }
-  .pcard__name h1 {
+  .img__playerImage--loaded {
+    animation: ${fadeIn} 0.4s;
+    animation-fill-mode: both;
+  }
+  .img__teamImage {
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    background-size: 25%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  .img__teamImage--loaded {
+    animation: ${fadeIn2} 0.4s;
+    animation-delay: 0.4s;
+    animation-fill-mode: both;
+  }
+`
+
+const PlayerCardGridName = styled.div`
+  grid-area: name;
+  display: flex;
+  align-items: center;
+
+  h1 {
     margin-bottom: 0;
   }
-  .pcard__name a {
+  a {
     font-size: 30px;
     margin-left: 10px;
   }
+`
 
+const PlayerCardGridTable = styled.div`
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  border-top: 0;
+  display: flex;
+  grid-area: table1;
+  flex-wrap: wrap;
+  justify-content: center;
 
-  .pcard__info1,
-  .pcard__info2 {
-    border: 1px solid #ddd;
-    border-top: 0;
-    overflow: hidden;
-    border-radius: 3px;
-    grid-area: info1;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .pcard__info2 {
-    grid-area: info2;
-  }
-
-  .pcard-col {
+  .col {
     border-top: 1px solid #ddd;
     align-items: stretch;
     display: flex;
     width: 100%;
   }
-  .pcard-label {
+  .label {
     align-items: center;
     background: rgba(0,0,0,0.05);
     border-right: 1px solid #ddd;
@@ -91,7 +122,7 @@ const StyledPlayerCard = styled.div`
     min-width: 35%;
     text-transform: uppercase;
   }
-  .pcard-val {
+  .val {
     align-items: center;
     color: #444;
     cursor: default;
@@ -100,51 +131,9 @@ const StyledPlayerCard = styled.div`
     flex-grow: 1;
     padding: 10px;
   }
-
-  .pcard-img {
-    background-color: rgba(0,0,0,0.05);
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    position: relative;
-    padding-top: 60%;
-    overflow: hidden;
-    width: 100%;
-  }
-  .pcard-img__pic {
-    background-position: bottom center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-  }
-  .pcard-img__team {
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
-    background-size: 25%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-  }
-  .pcard-img__pic--loaded {
-    animation: ${fadeIn} 0.4s;
-    animation-fill-mode: both;
-  }
-  .pcard-img__team--loaded{
-    animation: ${fadeIn2} 0.4s;
-    animation-delay: 0.4s;
-    animation-fill-mode: both;
-  }
-
-  .pcard-table {
-    display: flex;
-    flex-direction: column;
-  }
-  .pcard-table div {
-    background-color: #eee;
-  }
+`
+const PlayerCardGridTable2 = styled(PlayerCardGridTable)`
+  grid-area: table2;
 `
 
 export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
@@ -155,67 +144,66 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
     backgroundImage: `url(${playerReferences.officialLogoImageSrc})`
   }
   const hasSocial = (playerInfo.socialMediaAccounts !== undefined && playerInfo.socialMediaAccounts.length !== 0)
-  console.log(playerInfo.socialMediaAccounts)
   return (
     <StyledPlayerCard>
-      <div className="pcard__frame">
-        <div className="pcard-img">
-          <div className={isLoaded ? 'pcard-img__team pcard-img__team--loaded' : 'pcard-img__team'} style={teamImage}></div>
-          <div className={isLoaded ? 'pcard-img__pic pcard-img__pic--loaded' : 'pcard-img__pic'} style={playerImage}></div>
+      <PlayerCardGridImage>
+        <div className="img">
+          <div className={isLoaded ? 'img__teamImage img__teamImage--loaded' : 'img__teamImage'} style={teamImage}></div>
+          <div className={isLoaded ? 'img__playerImage img__playerImage--loaded' : 'img__playerImage'} style={playerImage}></div>
         </div>
-      </div>
-      <div className="pcard__name">
-        <h1 className="pcard-text">{playerInfo.firstName} {playerInfo.lastName}</h1>
+      </PlayerCardGridImage>
+      <PlayerCardGridName>
+        <h1>{playerInfo.firstName} {playerInfo.lastName}</h1>
         {hasSocial && (
           <a href={'https://www.twitter.com/' + playerInfo.socialMediaAccounts[0].value} target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faTwitter} />
           </a>
         )}
-      </div>
-      <div className="pcard__info1">
-        <div className="pcard-col">
-          <div className="pcard-label">Team</div>
-          <div className="pcard-val">{playerReferences.city + ' ' + playerReferences.name}</div>
+      </PlayerCardGridName>
+      <PlayerCardGridTable>
+        <div className="col">
+          <div className="label">Team</div>
+          <div className="val">{playerReferences.city + ' ' + playerReferences.name}</div>
         </div>
-        <div className="pcard-col">
-          <div className="pcard-label">Position</div>
-          <div className="pcard-val">{playerInfo.primaryPosition}</div>
+        <div className="col">
+          <div className="label">Position</div>
+          <div className="val">{playerInfo.primaryPosition}</div>
         </div>
-        <div className="pcard-col">
-          <div className="pcard-label">Age</div>
-          <div className="pcard-val">{playerInfo.age}</div>
+        <div className="col">
+          <div className="label">Age</div>
+          <div className="val">{playerInfo.age}</div>
         </div>
-        <div className="pcard-col">
-          <div className="pcard-label">Height</div>
-          <div className="pcard-val">{playerInfo.height}</div>
+        <div className="col">
+          <div className="label">Height</div>
+          <div className="val">{playerInfo.height}</div>
         </div>
-        <div className="pcard-col">
-          <div className="pcard-label">Weight</div>
-          <div className="pcard-val">{playerInfo.weight}</div>
+        <div className="col">
+          <div className="label">Weight</div>
+          <div className="val">{playerInfo.weight}</div>
         </div>
-      </div>
-      <div className="pcard__info2">
-        <div className="pcard-col">
-          <div className="pcard-label">Jersey</div>
-          <div className="pcard-val">{playerInfo.jerseyNumber}</div>
+      </PlayerCardGridTable>
+      <PlayerCardGridTable2>
+        <div className="col">
+          <div className="label">Jersey</div>
+          <div className="val">{playerInfo.jerseyNumber}</div>
         </div>
-        <div className="pcard-col">
-          <div className="pcard-label">Status</div>
-          <div className="pcard-val">{playerInfo.currentRosterStatus === "ROSTER" ? "Active" : "Inactive" }</div>
+        <div className="col">
+          <div className="label">Status</div>
+          <div className="val">{playerInfo.currentRosterStatus === "ROSTER" ? "Active" : "Inactive" }</div>
         </div>
-        <div className="pcard-col">
-          <div className="pcard-label">Born</div>
-          <div className="pcard-val">{playerInfo.birthDate}</div>
+        <div className="col">
+          <div className="label">Born</div>
+          <div className="val">{playerInfo.birthDate}</div>
         </div>
-        <div className="pcard-col">
-          <div className="pcard-label">From</div>
-          <div className="pcard-val">{playerInfo.birthCity}, {playerInfo.birthCountry}</div>
+        <div className="col">
+          <div className="label">From</div>
+          <div className="val">{playerInfo.birthCity}, {playerInfo.birthCountry}</div>
         </div>
-        <div className="pcard-col">
-          <div className="pcard-label">College</div>
-          <div className="pcard-val">{playerInfo.college}</div>
+        <div className="col">
+          <div className="label">College</div>
+          <div className="val">{playerInfo.college}</div>
         </div>
-      </div>
+      </PlayerCardGridTable2>
     </StyledPlayerCard>
   )
 }

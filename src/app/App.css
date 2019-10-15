@@ -4,7 +4,6 @@
 *
 */
 
-
 html {
   color: #444;
   font-family: 'Ubuntu', sans-serif;
@@ -15,7 +14,6 @@ html {
 
 body {
   background-image: url('./img/funky-lines.png');
-  /* background-image: url('./img/white_wall_hash.png'); */
 }
 
 a {
@@ -23,8 +21,9 @@ a {
   text-decoration: none;
 }
 
-p, ul, ol {
+p, ol, ul {
   font-size: 1.25em;
+  font-weight: 300;
   line-height: 1.5;
 }
 
@@ -33,11 +32,7 @@ ol, ul {
   list-style-type: disc;
 }
 
-h1 {
-  line-height: 1.5;
-}
-
-h2 {
+h1, h2, h3, h4, h5, h6 {
   line-height: 1.5;
 }
 
@@ -63,18 +58,8 @@ h2 {
 .page a {
   border-bottom: 1px solid transparent;
 }
-
 .page a:hover {
   border-bottom: 1px solid #ED5429;
-}
-
-.page p {
-  font-weight: 300;
-}
-
-.page ol,
-.page ul {
-  font-weight: 300;
 }
 
 .page h2 {
@@ -83,14 +68,14 @@ h2 {
   font-weight: 500;
 }
 
-.page h1,
-.page h2,
-.page p,
-.page ul,
-.page ol {
+.page.content h1,
+.page.content h2,
+.page.content p,
+.page.content ol,
+.page.content ul {
   margin-bottom: 1.25rem;
 }
 
-.page *:last-child {
+.page.content *:last-child {
   margin-bottom: 0;
 }
