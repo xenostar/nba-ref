@@ -31,6 +31,7 @@ const StyledNav = styled.nav`
     text-transform: uppercase;
     transition: all 0.4s ease;
     padding: 0 1.25rem;
+    user-select: none;
   }
   a:hover {
     color: #777;

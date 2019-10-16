@@ -199,7 +199,7 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
         </div>
         <div className="col">
           <div className="label">College</div>
-          <div className="val">{playerInfo.college}</div>
+          <div className="val">{playerInfo.college || "None"}</div>
         </div>
       </PlayerCardGridTable2>
     </StyledPlayerCard>

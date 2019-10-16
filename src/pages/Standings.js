@@ -28,9 +28,9 @@ export const Standings = () => {
     '2015-2016',
   ]
   const tableData = {
-    '#': 'auto',
-    'Wins': 'auto',
-    'Name': '100%',
+    '#': '3.125rem',
+    'Wins': '3.75rem',
+    'Name': 'auto',
   }
 
   const handleChange = ({ target: { value } }) => setSeason(value)

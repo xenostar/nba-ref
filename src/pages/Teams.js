@@ -53,8 +53,8 @@ export const Teams = () => {
     'playoff',
   ]
   const tableData = {
-    '#': 'auto',
-    'Name': '60%',
+    '#': '3.125rem',
+    'Name': 'auto',
     'Posn': '10%',
     'Age': '10%',
     'Height': '10%',

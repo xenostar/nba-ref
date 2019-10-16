@@ -38,19 +38,19 @@ export const Players = () => {
     'playoff',
   ]
   const tableDataPts = {
-    'Pts': 'auto',
-    'Posn': 'auto',
-    'Name': '100%',
+    'Pts': '3.75rem',
+    'Posn': '10%',
+    'Name': 'auto',
   }
   const tableDataAst = {
-    'Ast': 'auto',
-    'Posn': 'auto',
-    'Name': '100%',
+    'Ast': '3.75rem',
+    'Posn': '10%',
+    'Name': 'auto',
   }
   const tableDataReb = {
-    'Reb': 'auto',
-    'Posn': 'auto',
-    'Name': '100%',
+    'Reb': '3.75rem',
+    'Posn': '10%',
+    'Name': 'auto',
   }
 
   const handleChange = ({ target: { name, value } }) => {
