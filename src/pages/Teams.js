@@ -110,7 +110,7 @@ export const Teams = () => {
           <Label>Season</Label>
           <Select name="season" value={values.season} onChange={handleChange}>
             {seasons.map(val => (
-              <option value={val}>{val}</option>
+              <option key={val} value={val}>{val}</option>
             ))}
           </Select>
         </div>
@@ -118,7 +118,7 @@ export const Teams = () => {
           <Label>Type</Label>
           <Select name="seasonType" value={values.seasonType} onChange={handleChange}>
             {seasonType.map(val => (
-              <option value={val}>{val.charAt(0).toUpperCase() + val.substring(1)}</option>
+              <option key={val} value={val}>{val.charAt(0).toUpperCase() + val.substring(1)}</option>
             ))}
           </Select>
         </div>

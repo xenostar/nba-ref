@@ -76,7 +76,7 @@ export const Standings = () => {
           <Label>Season</Label>
           <Select name="season" value={season} onChange={handleChange}>
             {seasons.map(val => (
-              <option value={val}>{val}</option>
+              <option key={val} value={val}>{val}</option>
             ))}
           </Select>
         </div>
