@@ -20,10 +20,12 @@ export const Select = styled.select`
 
   :active,
   :focus,
-  :-moz-focus-inner,
   :-moz-focus-outer,
+  :-moz-focus-inner,
   :-moz-focusring {
     border: 0;
     outline: 0;
+    color: rgba(0,0,0,0);
+    opacity: 0;
   }
 `
