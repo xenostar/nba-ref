@@ -130,7 +130,7 @@ export const Teams = () => {
           return (
             <tr key={index}>
               <td>{player.jerseyNumber}</td>
-              <td><Link exact to={'/player/' + url_firstName + '-' + url_LasttName} activeClassName="active">{player.firstName} {player.lastName}</Link></td>
+              <td><Link to={'/player/' + url_firstName + '-' + url_LasttName}>{player.firstName} {player.lastName}</Link></td>
               <td>{player.primaryPosition || '--'}</td>
               <td>{player.age || '--'}</td>
               <td>{player.height || '--'}</td>

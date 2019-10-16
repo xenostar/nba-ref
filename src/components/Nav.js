@@ -59,9 +59,9 @@ const StyledNav = styled.nav`
 
 export const Nav = () => (
   <StyledNav>
-    <NavLink exact to="/" activeClassName="active">Home</NavLink>
-    <NavLink exact to="/players" activeClassName="active">Players</NavLink>
-    <NavLink exact to="/standings" activeClassName="active">Standings</NavLink>
-    <NavLink exact to="/teams" activeClassName="active">Teams</NavLink>
+    <NavLink exact to="/">Home</NavLink>
+    <NavLink exact to="/players">Players</NavLink>
+    <NavLink exact to="/standings">Standings</NavLink>
+    <NavLink exact to="/teams">Teams</NavLink>
   </StyledNav>
 )

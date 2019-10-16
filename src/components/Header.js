@@ -29,7 +29,7 @@ const StyledHeader = styled.header`
 
 export const Header = () => (
   <StyledHeader>
-    <Link exact to="/">
+    <Link to="/">
       <img src={logo} alt="NBA REF" />
       <h1>nba<span>ref</span></h1>
     </Link>

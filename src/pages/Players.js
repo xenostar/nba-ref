@@ -124,7 +124,7 @@ export const Players = () => {
               <tr key={index}>
                 <td>{player.stats['Pts']['#text']}</td>
                 <td>{player.player.Position}</td>
-                <td><Link exact to={'/player/' + url_firstName + '-' + url_LasttName} activeClassName="active">{player.player.FirstName} {player.player.LastName}</Link></td>
+                <td><Link to={'/player/' + url_firstName + '-' + url_LasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
               </tr>
             )
           })}
@@ -137,7 +137,7 @@ export const Players = () => {
               <tr key={index}>
                 <td>{player.stats['Ast']['#text']}</td>
                 <td>{player.player.Position}</td>
-                <td><Link exact to={'/player/' + url_firstName + '-' + url_LasttName} activeClassName="active">{player.player.FirstName} {player.player.LastName}</Link></td>
+                <td><Link to={'/player/' + url_firstName + '-' + url_LasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
               </tr>
             )
           })}
@@ -150,7 +150,7 @@ export const Players = () => {
               <tr key={index}>
                 <td>{player.stats['Reb']['#text']}</td>
                 <td>{player.player.Position}</td>
-                <td><Link exact to={'/player/' + url_firstName + '-' + url_LasttName} activeClassName="active">{player.player.FirstName} {player.player.LastName}</Link></td>
+                <td><Link to={'/player/' + url_firstName + '-' + url_LasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
               </tr>
             )
           })}
