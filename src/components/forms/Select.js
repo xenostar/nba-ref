@@ -6,10 +6,11 @@ export const Select = styled.select`
   border-radius: 0 3px 3px 0;
   color: #444;
   cursor: pointer;
+  font-family: inherit;
   font-size: 1.125em;
-  font-weight: 500;
+  /* font-weight: 500; */
   height: 2.5rem;
-  line-height: 2.5rem;
+  /* line-height: 2.5rem; */
   padding: 0 10px;
   user-select: none;
   -webkit-appearance: none;
