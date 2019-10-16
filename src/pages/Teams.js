@@ -73,7 +73,7 @@ export const Teams = () => {
     fetch(`${ __API__ }players.json?season=${ values.season }-${ values.seasonType }&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
-        'Cache-Control' : 'no-cache, no-store, must-revalidate',
+        // 'Cache-Control' : 'no-cache, no-store, must-revalidate',
         'Accept-Encoding' : 'gzip'
       },
     })
