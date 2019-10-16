@@ -13,12 +13,17 @@ export const Select = styled.select`
   padding: 0 10px;
   user-select: none;
   -webkit-appearance: none;
-
-  :-moz-focusring {
-    outline: 0;
-  }
   @media only screen and (max-width: 1000px) {
     width: auto;
     flex-grow: 1;
+  }
+
+  :active,
+  :focus,
+  :-moz-focus-inner,
+  :-moz-focus-outer,
+  :-moz-focusring {
+    border: 0;
+    outline: 0;
   }
 `

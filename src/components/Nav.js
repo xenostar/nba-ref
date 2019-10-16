@@ -40,7 +40,14 @@ const StyledNav = styled.nav`
     border-bottom: 5px solid #ED5429;
     color: #ED5429;
   }
-
+  a:active,
+  a:focus,
+  a:-moz-focus-inner,
+  a:-moz-focus-outer,
+  a:-moz-focusring {
+    border: 0;
+    outline: 0;
+  }
   @media only screen and (max-width: 62.5rem) {
     a {
       font-size: 0.8em;
