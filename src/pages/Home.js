@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-
 import ATL_logo from './img/ATL_logo.svg'
 import BKN_logo from './img/BKN_logo.svg'
 import BOS_logo from './img/BOS_logo.svg'
@@ -47,6 +46,10 @@ const StyledHome = styled.div`
   }
   .team-grid div {
     border-radius: 5px;
+  }
+  .team-grid img {
+    max-height: 100px;
+    margin: 0 auto;
   }
 
   h1 {
@@ -148,54 +151,231 @@ export const Home = () => {
         "#c8102e",
         "#006bb6",
         "#bec0c2",
-        "#002d62"
+        "#002d62",
       ],
       logo: DET_logo,
     },
     {
-      city: 'Detroit',
-      name: 'Pistons',
+      city: 'Golden State',
+      name: 'Warriors',
       color: [
-        "#c8102e",
+        "#fdb927",
         "#006bb6",
-        "#bec0c2",
-        "#002d62"
+        "#26282a",
       ],
-      logo: DET_logo,
+      logo: GSW_logo,
+    },
+    {
+      city: 'Houston',
+      name: 'Rockets',
+      color: [
+        "#ce1141",
+        "#000000",
+        "#c4ced4",
+      ],
+      logo: HOU_logo,
+    },
+    {
+      city: 'Indiana',
+      name: 'Pacers',
+      color: [
+        "#002d62",
+        "#fdbb30",
+        "#bec0c2",
+      ],
+      logo: IND_logo,
+    },
+    {
+      city: 'Los Angeles',
+      name: 'Clippers',
+      color: [
+        "#bec0c2",
+        "#000000",
+        "#c8102e",
+        "#1d428a",
+      ],
+      logo: LAC_logo,
+    },
+    {
+      city: 'Los Angeles',
+      name: 'Lakers',
+      color: [
+        "#552583",
+        "#fdb927",
+        "#000000",
+      ],
+      logo: LAL_logo,
+    },
+    {
+      city: 'Memphis',
+      name: 'Grizzlies',
+      color: [
+        "#5d76a9",
+        "#12173f",
+        "#f5b112",
+        "#707271",
+      ],
+      logo: MEM_logo,
+    },
+    {
+      city: 'Miami',
+      name: 'Heat',
+      color: [
+        "#98002e",
+        "#f9a01b",
+        "#000000"
+      ],
+      logo: MIA_logo,
+    },
+    {
+      city: 'Milwaukee',
+      name: 'Bucks',
+      color: [
+        "#00471b",
+        "#eee1c6",
+        "#0077c0",
+        "#000000",
+      ],
+      logo: MIL_logo,
+    },
+    {
+      city: 'Minnesota',
+      name: 'Timberwolves',
+      color: [
+        "#0c2340",
+        "#236192",
+        "#9ea2a2",
+        "#78be20",
+      ],
+      logo: MIN_logo,
+    },
+    {
+      city: 'New Orleans',
+      name: 'Pelicans',
+      color: [
+        "#0c2340",
+        "#c8102e",
+        "#857a4d"
+      ],
+      logo: NOP_logo,
+    },
+    {
+      city: 'New York',
+      name: 'Knicks',
+      color: [
+        "#006bb6",
+        "#f58426",
+        "#bec0c2",
+        "#000000"
+      ],
+      logo: NYK_logo,
+    },
+    {
+      city: 'Oklahoma City',
+      name: 'Thunder',
+      color: [
+        "#007ac1",
+        "#ef3b24",
+        "#002d62",
+        "#fdbb30",
+      ],
+      logo: OKC_logo,
+    },
+    {
+      city: 'Orlando',
+      name: 'Magic',
+      color: [
+        "#c4ced4",
+        "#0077c0",
+        "#000000",
+      ],
+      logo: ORL_logo,
+    },
+    {
+      city: 'Philadelphia',
+      name: '76ers',
+      color: [
+        "#ed174c",
+        "#006bb6",
+        "#002b5c",
+        "#c4ced4",
+      ],
+      logo: PHI_logo,
+    },
+    {
+      city: 'Phoenix',
+      name: 'Suns',
+      color: [
+        "#1d1160",
+        "#e56020",
+        "#000000",
+        "#63727a",
+        "#f9ad1b",
+        "#b95915",
+        "#bec0c2",
+      ],
+      logo: PHX_logo,
+    },
+    {
+      city: 'Portland',
+      name: 'Trail Blazers',
+      color: [
+        "#e03a3e",
+        "#000000",
+      ],
+      logo: POR_logo,
+    },
+    {
+      city: 'Sacramento',
+      name: 'Kings',
+      color: [
+        "#5a2d81",
+        "#63727a",
+        "#000000",
+      ],
+      logo: SAC_logo,
+    },
+    {
+      city: 'San Antonio',
+      name: 'Spurs',
+      color: [
+        "#c4ced4",
+        "#000000"
+      ],
+      logo: SAS_logo,
+    },
+    {
+      city: 'Toronto',
+      name: 'Raptors',
+      color: [
+        "#ce1141",
+        "#000000",
+        "#a1a1a4",
+        "#b4975a",
+      ],
+      logo: TOR_logo,
+    },
+    {
+      city: 'Utah',
+      name: 'Jazz',
+      color: [
+        "#f9a01b",
+        "#002b5c",
+        "#00471b",
+      ],
+      logo: UTA_logo,
+    },
+    {
+      city: 'Washington',
+      name: 'Wizards',
+      color: [
+        "#002b5c",
+        "#e31837",
+        "#c4ced4",
+      ],
+      logo: WAS_logo,
     },
   ]
-
-  // const __API__ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
-  // const [teams, setTeams] = useState([])
-  // const [isLoaded, setIsLoaded] = useState(false)
-
-  // const handleFetch = useCallback(() => {
-  //   setIsLoaded(false)
-
-  //   fetch(`${ __API__ }2018-2019-regular/team_stats_totals.json?stats=none`, {
-  //     headers: {
-  //       'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
-  //       'Accept-Encoding' : 'gzip'
-  //     },
-  //   })
-  //   .then(response => {
-  //     return response.json()
-  //   })
-  //   .then(data => {
-  //     console.log(data.teamStatsTotals)
-  //     setTeams(data.teamStatsTotals)
-  //     setIsLoaded(true)
-  //   })
-  //   .catch(error => {
-  //     console.log(error)
-  //   })
-  // }, [])
-
-  // useEffect(() => { // componentDidMount
-  //   console.log("Mounting Home...")
-  //   handleFetch()
-  //   return () => console.log('Unmounting Home...')
-  // }, [handleFetch])
 
   return (
     <StyledHome className="page content">
@@ -214,18 +394,6 @@ export const Home = () => {
             )
           })}
         </div>
-        {/* <div>
-          {isLoaded && teams.map(({ team }, index) => {
-            const teamImage = {
-              backgroundImage: `url(${team.officialLogoImageSrc})`,
-              backgroundSize: `contain`,
-              height: '100px'
-            }
-            return (
-              <p key={index} style={teamImage}>{team.abbreviation}</p>
-            )
-          })}
-        </div> */}
       </div>
     </StyledHome>
   )
