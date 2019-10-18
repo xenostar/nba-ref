@@ -1,5 +1,5 @@
 export * from './Home'
+export * from './Leaderboards'
 export * from './Player'
-export * from './Players'
 export * from './Standings'
 export * from './Teams'

@@ -22,7 +22,7 @@ const StyledPlayers = styled.div`
   }
 `
 
-export const Players = () => {
+export const Leaderboards = () => {
   const __API__ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
   const [values, setValues] = useState({ season: '2018-2019', seasonType: 'regular' })
   const [stats, setStats] = useState({ points: [], assists: [], rebounds: [] })
