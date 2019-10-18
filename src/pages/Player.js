@@ -63,7 +63,6 @@ export const Player = props => {
     fetch(`${ __API__ + values.season }-${ values.seasonType }/player_stats_totals.json?player=${ routePlayerName }`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
-        // 'Cache-Control' : 'no-cache, no-store, must-revalidate',
         'Accept-Encoding' : 'gzip'
       },
     })

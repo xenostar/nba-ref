@@ -41,6 +41,9 @@ const StyledTable = styled.div`
   table tbody tr:nth-child(even) {
     background-color: rgba(0,0,0,0.025);
   }
+  table tbody tr:hover {
+    background-color: rgba(0,0,0,0.05);
+  }
 `
 
 export const Table = props => {

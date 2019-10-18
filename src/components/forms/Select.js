@@ -19,6 +19,14 @@ export const Select = styled.select`
     flex-grow: 1;
   }
 
+  option {
+    line-height: 50px;
+  }
+
+  :hover {
+    background-color: rgba(0,0,0,0.025);
+  }
+
   :active,
   :focus,
   :-moz-focus-outer,

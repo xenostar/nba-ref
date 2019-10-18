@@ -67,7 +67,6 @@ export const Players = () => {
     fetch(`${ __API__ + values.season }-${ values.seasonType }/cumulative_player_stats.json?${ url }`,{
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
-        // 'Cache-Control' : 'no-cache, no-store, must-revalidate',
         'Accept-Encoding' : 'gzip'
       },
     })

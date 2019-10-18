@@ -8,7 +8,7 @@ const StyledTeam = styled.div``
 export const Teams = () => {
   const __API__ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
   const [values, setValues] = useState({ team: 'ind', season: '2018-2019', seasonType: 'regular' })
-  const [roster, setRoster] = useState({})
+  const [roster, setRoster] = useState([])
   const [isLoaded, setIsLoaded] = useState(false)
   const teams = {
     atl: 'Atlanta Hawks',
@@ -73,7 +73,6 @@ export const Teams = () => {
     fetch(`${ __API__ }players.json?season=${ values.season }-${ values.seasonType }&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
-        // 'Cache-Control' : 'no-cache, no-store, must-revalidate',
         'Accept-Encoding' : 'gzip'
       },
     })
