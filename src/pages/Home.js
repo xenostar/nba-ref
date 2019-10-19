@@ -1,6 +1,6 @@
 import React, { useState} from 'react'
 import styled from 'styled-components'
-import teams from 'api/teams.js'
+import teams from 'api/teams'
 
 const StyledHome = styled.div`
   display: grid;
