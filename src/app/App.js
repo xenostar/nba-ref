@@ -13,9 +13,9 @@ const App = () => (
       <Nav />
       <Route exact path="/" component={Home} />
       <Route path="/leaderboards" component={Leaderboards} />
-      <Route path="/player/:playername" component={Player} />
+      <Route path="/player/:playerNameSlug" component={Player} />
       <Route path="/standings" component={Standings} />
-      <Route path="/teams" component={Teams} />
+      <Route path="/teams/:teamNameSlug" component={Teams} />
       <Footer />
     </div>
   </Router>

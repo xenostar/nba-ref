@@ -31,250 +31,275 @@ import WAS_logo from 'img/WAS_logo.svg'
 
 export default [
   {
+    "abbreviation": "ATL",
     "city": "Atlanta",
     "name": "Hawks",
-    "color": [
+    "logo": ATL_logo,
+    "colors": [
       "#e03a3e",
       "#c1d32f",
       "#26282a",
     ],
-    "logo": ATL_logo,
   },
   {
+    "abbreviation": "BOS",
     "city": "Boston",
     "name": "Celtics",
-    "color": [
+    "logo": BOS_logo,
+    "colors": [
       "#007a33",
       "#ba9653",
       "#963821",
       "#e59e6d",
       "#000000",
     ],
-    "logo": BOS_logo,
   },
   {
+    "abbreviation": "BRO",
     "city": "Brooklyn",
     "name": "Nets",
-    "color": [
+    "logo": BKN_logo,
+    "colors": [
       "#ffffff",
       "#000000",
     ],
-    "logo": BKN_logo,
   },
   {
+    "abbreviation": "CHA",
     "city": "Charlotte",
     "name": "Hornets",
-    "color": [
+    "logo": CHA_logo,
+    "colors": [
       "#1d1160",
       "#00788c",
       "#a1a1a4",
     ],
-    "logo": CHA_logo,
   },
   {
+    "abbreviation": "CHI",
     "city": "Chicago",
     "name": "Bulls",
-    "color": [
+    "logo": CHI_logo,
+    "colors": [
       "#ce1141",
       "#000000",
     ],
-    "logo": CHI_logo,
   },
   {
+    "abbreviation": "CLE",
     "city": "Cleveland",
     "name": "Cavaliers",
-    "color": [
+    "logo": CLE_logo,
+    "colors": [
       "#6f263d",
       "#041e42",
       "#ffb81c",
       "#000000"
     ],
-    "logo": CLE_logo,
   },
   {
+    "abbreviation": "DAL",
     "city": "Dallas",
     "name": "Mavericks",
-    "color": [
+    "logo": DAL_logo,
+    "colors": [
       "#00538c",
       "#002b5e",
       "#b8c4ca",
       "#000000",
     ],
-    "logo": DAL_logo,
   },
   {
+    "abbreviation": "DEN",
     "city": "Denver",
     "name": "Nuggets",
-    "color": [
+    "logo": DEN_logo,
+    "colors": [
       "#0e2240",
       "#fec524",
       "#8b2131",
       "#1d428a",
     ],
-    "logo": DEN_logo,
   },
   {
+    "abbreviation": "DET",
     "city": "Detroit",
     "name": "Pistons",
-    "color": [
+    "logo": DET_logo,
+    "colors": [
       "#c8102e",
       "#006bb6",
       "#bec0c2",
       "#002d62",
     ],
-    "logo": DET_logo,
   },
   {
+    "abbreviation": "GSW",
     "city": "Golden State",
     "name": "Warriors",
-    "color": [
+    "logo": GSW_logo,
+    "colors": [
       "#fdb927",
       "#006bb6",
       "#26282a",
     ],
-    "logo": GSW_logo,
   },
   {
+    "abbreviation": "HOU",
     "city": "Houston",
     "name": "Rockets",
-    "color": [
+    "logo": HOU_logo,
+    "colors": [
       "#ce1141",
       "#000000",
       "#c4ced4",
     ],
-    "logo": HOU_logo,
   },
   {
+    "abbreviation": "IND",
     "city": "Indiana",
     "name": "Pacers",
-    "color": [
+    "logo": IND_logo,
+    "colors": [
       "#002d62",
       "#fdbb30",
       "#bec0c2",
     ],
-    "logo": IND_logo,
   },
   {
+    "abbreviation": "LAC",
     "city": "Los Angeles",
     "name": "Clippers",
-    "color": [
+    "logo": LAC_logo,
+    "colors": [
       "#bec0c2",
       "#000000",
       "#c8102e",
       "#1d428a",
     ],
-    "logo": LAC_logo,
   },
   {
+    "abbreviation": "LAL",
     "city": "Los Angeles",
     "name": "Lakers",
-    "color": [
+    "logo": LAL_logo,
+    "colors": [
       "#552583",
       "#fdb927",
       "#000000",
     ],
-    "logo": LAL_logo,
   },
   {
+    "abbreviation": "MEM",
     "city": "Memphis",
     "name": "Grizzlies",
-    "color": [
+    "logo": MEM_logo,
+    "colors": [
       "#5d76a9",
       "#12173f",
       "#f5b112",
       "#707271",
     ],
-    "logo": MEM_logo,
   },
   {
+    "abbreviation": "MIA",
     "city": "Miami",
     "name": "Heat",
-    "color": [
+    "logo": MIA_logo,
+    "colors": [
       "#98002e",
       "#f9a01b",
       "#000000"
     ],
-    "logo": MIA_logo,
   },
   {
+    "abbreviation": "MIL",
     "city": "Milwaukee",
     "name": "Bucks",
-    "color": [
+    "logo": MIL_logo,
+    "colors": [
       "#00471b",
       "#eee1c6",
       "#0077c0",
       "#000000",
     ],
-    "logo": MIL_logo,
   },
   {
+    "abbreviation": "MIN",
     "city": "Minnesota",
     "name": "Timberwolves",
-    "color": [
+    "logo": MIN_logo,
+    "colors": [
       "#0c2340",
       "#236192",
       "#9ea2a2",
       "#78be20",
     ],
-    "logo": MIN_logo,
   },
   {
+    "abbreviation": "NOP",
     "city": "New Orleans",
     "name": "Pelicans",
-    "color": [
+    "logo": NOP_logo,
+    "colors": [
       "#0c2340",
       "#c8102e",
       "#857a4d"
     ],
-    "logo": NOP_logo,
   },
   {
+    "abbreviation": "NYK",
     "city": "New York",
     "name": "Knicks",
-    "color": [
+    "logo": NYK_logo,
+    "colors": [
       "#006bb6",
       "#f58426",
       "#bec0c2",
       "#000000"
     ],
-    "logo": NYK_logo,
   },
   {
+    "abbreviation": "OKL",
     "city": "Oklahoma City",
     "name": "Thunder",
-    "color": [
+    "logo": OKC_logo,
+    "colors": [
       "#007ac1",
       "#ef3b24",
       "#002d62",
       "#fdbb30",
     ],
-    "logo": OKC_logo,
   },
   {
+    "abbreviation": "ORL",
     "city": "Orlando",
     "name": "Magic",
-    "color": [
+    "logo": ORL_logo,
+    "colors": [
       "#c4ced4",
       "#0077c0",
       "#000000",
     ],
-    "logo": ORL_logo,
   },
   {
+    "abbreviation": "PHI",
     "city": "Philadelphia",
     "name": "76ers",
-    "color": [
+    "logo": PHI_logo,
+    "colors": [
       "#ed174c",
       "#006bb6",
       "#002b5c",
       "#c4ced4",
     ],
-    "logo": PHI_logo,
   },
   {
+    "abbreviation": "PHX",
     "city": "Phoenix",
     "name": "Suns",
-    "color": [
+    "logo": PHX_logo,
+    "colors": [
       "#1d1160",
       "#e56020",
       "#000000",
@@ -283,65 +308,70 @@ export default [
       "#b95915",
       "#bec0c2",
     ],
-    "logo": PHX_logo,
   },
   {
+    "abbreviation": "POR",
     "city": "Portland",
     "name": "Trail Blazers",
-    "color": [
+    "logo": POR_logo,
+    "colors": [
       "#e03a3e",
       "#000000",
     ],
-    "logo": POR_logo,
   },
   {
+    "abbreviation": "SAC",
     "city": "Sacramento",
     "name": "Kings",
-    "color": [
+    "logo": SAC_logo,
+    "colors": [
       "#5a2d81",
       "#63727a",
       "#000000",
     ],
-    "logo": SAC_logo,
   },
   {
+    "abbreviation": "SAS",
     "city": "San Antonio",
     "name": "Spurs",
-    "color": [
+    "logo": SAS_logo,
+    "colors": [
       "#c4ced4",
       "#000000"
     ],
-    "logo": SAS_logo,
   },
   {
+    "abbreviation": "TOR",
     "city": "Toronto",
     "name": "Raptors",
-    "color": [
+    "logo": TOR_logo,
+    "colors": [
       "#ce1141",
       "#000000",
       "#a1a1a4",
       "#b4975a",
     ],
-    "logo": TOR_logo,
   },
   {
+    "abbreviation": "UTA",
     "city": "Utah",
     "name": "Jazz",
-    "color": [
+    "logo": UTA_logo,
+    "colors": [
       "#f9a01b",
       "#002b5c",
       "#00471b",
     ],
-    "logo": UTA_logo,
   },
   {
+    "abbreviation": "WAS",
     "city": "Washington",
     "name": "Wizards",
-    "color": [
+    "logo": WAS_logo,
+    "colors": [
       "#002b5c",
       "#e31837",
       "#c4ced4",
     ],
-    "logo": WAS_logo,
   },
 ]

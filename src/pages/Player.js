@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import styled from 'styled-components'
+import { useParams } from 'react-router-dom'
 import { PlayerCard, Table, Form, Label, Select } from 'components'
 
 const StyledPlayer = styled.div`
@@ -21,9 +22,9 @@ const StyledPlayer = styled.div`
   }
 `
 
-export const Player = props => {
+export const Player = () => {
   const __API__ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
-  const routePlayerName = props.match.params.playername
+  const {playerNameSlug} = useParams()
   const [values, setValues] = useState({ season: '2018-2019', seasonType: 'regular' })
   const [playerInfo, setPlayerInfo] = useState({})
   const [playerStats, setPlayerStats] = useState({})
@@ -60,7 +61,7 @@ export const Player = props => {
   const handleFetch = useCallback(() => {
     setIsLoaded(false)
 
-    fetch(`${ __API__ + values.season }-${ values.seasonType }/player_stats_totals.json?player=${ routePlayerName }`, {
+    fetch(`${ __API__ + values.season }-${ values.seasonType }/player_stats_totals.json?player=${ playerNameSlug }`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
         'Accept-Encoding' : 'gzip'
@@ -78,16 +79,13 @@ export const Player = props => {
     .catch(error => {
       console.log(error)
     })
-  }, [values, routePlayerName])
+  }, [values, playerNameSlug])
 
-  useEffect(() => { // componentDidMount
-    console.log("Mounting Player...")
+  useEffect(() => {
     handleFetch()
-    // window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop })
-    return () => console.log('Unmounting Player...')
   }, [handleFetch])
 
-  useEffect(() => { // componentDidMount
+  useEffect(() => {
     window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop })
   }, [])
 

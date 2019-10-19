@@ -1,7 +1,12 @@
 import React, { useState} from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { Link } from 'react-router-dom'
 import teams from 'api/teams'
+
+const fadeIn = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`
 
 const StyledHome = styled.div`
   display: grid;
@@ -28,7 +33,7 @@ const StyledHome = styled.div`
   }
 
   .img-wrapper {
-    border-radius: 5px;
+    border-radius: 3px;
     overflow: hidden;
     padding-top: 75%;
     position: relative;
@@ -36,24 +41,28 @@ const StyledHome = styled.div`
   }
   .img-wrapper:hover {
     box-shadow: 0 2px 5px rgba(0,0,0,0.25);
-    transform: scale(1.1);
+    transform: scale(1.1) translateZ(0);
   }
   .img-wrapper.loaded img {
-    opacity: 1;
+    /* opacity: 1; */
+    animation: ${fadeIn} 1s;
+    animation-fill-mode: both;
   }
   .img-wrapper img {
+    backface-visibility: hidden;
     bottom: 0;
     height: 100%;
     position: absolute;
     object-fit: contain;
     opacity: 0;
-    transition: opacity 1s;
+    transform: scale(1) translateZ(0);
+    /* transition: opacity 1s; */
     width: 100%;
   }
 
   h1 {
     color: #ED5429;
-    font-size: 4.25em;
+    font-size: 3em;
     line-height: 0.975;
   }
 `
@@ -68,7 +77,7 @@ export const Home = () => {
   }
 
   return (
-    <StyledHome className="page">
+    <StyledHome className="page content">
       <div>
         <h1>Welcome</h1>
         <h2>To quite possibly the greatest reference for NBA statistics in the universe.</h2>
@@ -76,11 +85,12 @@ export const Home = () => {
       <div>
         <div className="team-grid">
           {teams.map((data, index) => {
+            const urlTeamAbbreviation = data.abbreviation.toLowerCase()
             const teamColor = {
-              backgroundColor: data.color[0],
+              backgroundColor: data.colors[0],
             }
             return (
-              <Link to={'/teams/'} key={index} className={isLoaded[data.name] ? 'img-wrapper loaded' : 'img-wrapper'} style={teamColor}>
+              <Link to={'/teams/' + urlTeamAbbreviation} key={index} className={isLoaded[data.name] ? 'img-wrapper loaded' : 'img-wrapper'} style={teamColor}>
                 <img src={data.logo} alt={data.city + ' ' + data.name} onLoad={() => handleImgLoad(data.name)} />
               </Link>
             )

@@ -62,6 +62,6 @@ export const Nav = () => (
     <NavLink exact to="/">Home</NavLink>
     <NavLink exact to="/leaderboards">Leaderboards</NavLink>
     <NavLink exact to="/standings">Standings</NavLink>
-    <NavLink exact to="/teams">Teams</NavLink>
+    <NavLink exact to="/teams/atl">Teams</NavLink>
   </StyledNav>
 )
