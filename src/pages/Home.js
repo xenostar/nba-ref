@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState} from 'react'
 import styled from 'styled-components'
 import ATL_logo from './img/ATL_logo.svg'
 import BKN_logo from './img/BKN_logo.svg'
@@ -80,7 +80,6 @@ const StyledHome = styled.div`
 `
 
 export const Home = () => {
-  const myImg = useRef()
   const [isLoaded, setIsLoaded] = useState([])
 
 
@@ -406,8 +405,11 @@ export const Home = () => {
   //   imgWrapper.className += imgWrapper.className ? ' loaded' : 'loaded';
   // };
 
-  let imgLoaded = () => {
-    setIsLoaded([])
+  const imgLoaded = (teamName) => {
+    setIsLoaded(prevState => {
+      return { ...prevState, [teamName]: true }
+    })
+    console.log(isLoaded)
   }
 
   return (
@@ -424,8 +426,8 @@ export const Home = () => {
             }
             return (
               // <div style={teamColor}><img src={data.logo} alt={data.city + ' ' + data.name} /></div>
-              <div key={index} className="img_wrapper" style={teamColor} ref={myImg}>
-                <img src={data.logo} alt={data.city + ' ' + data.name} onLoad={imgLoaded} />
+              <div key={index} className={isLoaded[data.name] ? 'img_wrapper loaded' : 'img_wrapper'} className="img_wrapper loaded" style={teamColor}>
+                <img src={data.logo} alt={data.city + ' ' + data.name} onLoad={() => imgLoaded(data.name)} />
               </div>
             )
           })}
