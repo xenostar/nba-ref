@@ -58,7 +58,8 @@ h1, h2, h3, h4, h5, h6 {
 .page a {
   border-bottom: 1px solid transparent;
 }
-.page a:hover {
+.page p a:hover,
+.page table a:hover {
   border-bottom: 1px solid #ED5429;
 }
 

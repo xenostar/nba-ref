@@ -1,5 +1,6 @@
 import React, { useState} from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import teams from 'api/teams'
 
 const StyledHome = styled.div`
@@ -15,25 +16,35 @@ const StyledHome = styled.div`
     grid-gap: 1.25rem;
     grid-template-columns: repeat(5, 1fr);
   }
-  .team-grid div {
-    border-radius: 5px;
+  @media only screen and (max-width: 87.5rem) { /* 1400px */
+    .team-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
-  .team-grid img {
-    margin: 0 auto;
+  @media only screen and (max-width: 62.5rem) { /* 1000px */
+    .team-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   .img-wrapper {
-    position: relative;
-    padding-top: 75%;
+    border-radius: 5px;
     overflow: hidden;
+    padding-top: 75%;
+    position: relative;
+    transition: all 0.2s;
+  }
+  .img-wrapper:hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+    transform: scale(1.1);
   }
   .img-wrapper.loaded img {
     opacity: 1;
   }
   .img-wrapper img {
-    position: absolute;
     bottom: 0;
     height: 100%;
+    position: absolute;
     object-fit: contain;
     opacity: 0;
     transition: opacity 1s;
@@ -57,7 +68,7 @@ export const Home = () => {
   }
 
   return (
-    <StyledHome className="page content">
+    <StyledHome className="page">
       <div>
         <h1>Welcome</h1>
         <h2>To quite possibly the greatest reference for NBA statistics in the universe.</h2>
@@ -69,9 +80,9 @@ export const Home = () => {
               backgroundColor: data.color[0],
             }
             return (
-              <div key={index} className={isLoaded[data.name] ? 'img-wrapper loaded' : 'img-wrapper'} style={teamColor}>
+              <Link to={'/teams/'} key={index} className={isLoaded[data.name] ? 'img-wrapper loaded' : 'img-wrapper'} style={teamColor}>
                 <img src={data.logo} alt={data.city + ' ' + data.name} onLoad={() => handleImgLoad(data.name)} />
-              </div>
+              </Link>
             )
           })}
         </div>
