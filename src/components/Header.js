@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import logo from './img/nba-logo--orange.svg'
+import logo from 'img/nba-logo--orange.svg'
 
 const StyledHeader = styled.header`
   overflow: hidden;

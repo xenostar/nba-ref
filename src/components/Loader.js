@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import loader from './img/Basketball-1s-200px.svg'
+import loader from 'img/Basketball-1s-200px.svg'
 
 const fadeInOut = keyframes`
   0% { opacity: 0.6; }
