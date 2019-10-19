@@ -81,8 +81,6 @@ const StyledHome = styled.div`
 
 export const Home = () => {
   const [isLoaded, setIsLoaded] = useState([])
-
-
   const teams = [
     {
       city: 'Atlanta',
@@ -400,17 +398,14 @@ export const Home = () => {
     },
   ]
 
-  // const imgLoaded = (img) => {
-  //   var imgWrapper = img.parentNode;
-  //   imgWrapper.className += imgWrapper.className ? ' loaded' : 'loaded';
-  // };
-
   const imgLoaded = (teamName) => {
     setIsLoaded(prevState => {
       return { ...prevState, [teamName]: true }
     })
-    console.log(isLoaded)
   }
+
+  console.log(isLoaded)
+
 
   return (
     <StyledHome className="page content">
@@ -425,8 +420,7 @@ export const Home = () => {
               backgroundColor: data.color[0],
             }
             return (
-              // <div style={teamColor}><img src={data.logo} alt={data.city + ' ' + data.name} /></div>
-              <div key={index} className={isLoaded[data.name] ? 'img_wrapper loaded' : 'img_wrapper'} className="img_wrapper loaded" style={teamColor}>
+              <div key={index} className={isLoaded[data.name] ? 'img_wrapper loaded' : 'img_wrapper'} style={teamColor}>
                 <img src={data.logo} alt={data.city + ' ' + data.name} onLoad={() => imgLoaded(data.name)} />
               </div>
             )
