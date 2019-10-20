@@ -21,6 +21,7 @@ const StyledTable = styled.div`
     width: 100%;
     white-space: nowrap;
   }
+
   table thead {
     background-color: rgba(237, 84, 41, 0.075);
   }
@@ -30,51 +31,51 @@ const StyledTable = styled.div`
     text-align: left;
     white-space: nowrap;
   }
-  table tbody td {
+
+  table td {
     overflow: hidden;
     padding: 0.625rem;
     white-space: nowrap;
   }
-  table tbody td.tb-loader {
+  table tbody tr.tb-loader td {
     padding: 0;
   }
   table tbody tr:nth-child(even) {
     background-color: rgba(0,0,0,0.025);
   }
-  table tbody tr:hover {
+  table tbody tr:not(.tb-loader):hover {
     background-color: rgba(0,0,0,0.05);
   }
 `
 
 export const Table = props => {
   const dataCols = props.tableData
-  const tableHeaders = (
-    <thead>
-      <tr>
-        {Object.entries(dataCols).map(([name, width]) => (
-          <th key={name} style={{ width: width }}>{name}</th>
-        ))}
-      </tr>
-    </thead>
-  )
 
   return (
     <StyledTable>
       <div className="name">{props.tableTitle}</div>
       <div className="holder">
         <table>
-          {tableHeaders}
-          <tbody>
-            {props.isLoaded ? (
-              props.children
-            ) : (
-              <tr>
-                <td colSpan={Object.keys(dataCols).length} className="tb-loader">
+          <thead>
+            <tr>
+              {Object.entries(dataCols).map(([name, width]) => (
+                <th key={name} style={{ width: width }}>{name}</th>
+              ))}
+            </tr>
+          </thead>
+          {props.isLoaded ? (
+            <tbody>
+              {props.children}
+            </tbody>
+          ) : (
+            <tbody>
+              <tr className="tb-loader">
+                <td colSpan={Object.keys(dataCols).length}>
                   <Loader loaderHeight={props.loaderHeight ? props.loaderHeight : 10} />
                 </td>
               </tr>
-            )}
-          </tbody>
+            </tbody>
+          )}
         </table>
       </div>
     </StyledTable>

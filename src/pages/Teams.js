@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { Link, useHistory, useParams } from 'react-router-dom'
 import { Table, Form, Label, Select } from 'components'
+import seasons from 'api/seasons'
 
 const StyledTeam = styled.div``
 
@@ -9,7 +10,7 @@ export const Teams = () => {
   const __API__ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
   const history = useHistory()
   const {teamNameSlug} = useParams()
-  const [values, setValues] = useState({ team: teamNameSlug, season: '2018-2019', seasonType: 'regular' })
+  const [values, setValues] = useState({ team: teamNameSlug, season: '2018-2019-regular'})
   const [roster, setRoster] = useState([])
   const [isLoaded, setIsLoaded] = useState(false)
   const teams = {
@@ -44,16 +45,6 @@ export const Teams = () => {
     uta: 'Utah Jazz',
     was: 'Washington Wizards',
   }
-  const seasons = [
-    '2018-2019',
-    '2017-2018',
-    '2016-2017',
-    '2015-2016',
-  ]
-  const seasonType = [
-    'regular',
-    'playoff',
-  ]
   const tableData = {
     '#': '3.125rem',
     'Name': 'auto',
@@ -75,7 +66,7 @@ export const Teams = () => {
   const handleFetch = useCallback(() => {
     setIsLoaded(false)
 
-    fetch(`${ __API__ }players.json?season=${ values.season }-${ values.seasonType }&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`, {
+    fetch(`${ __API__ }players.json?season=${ values.season }&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
         'Accept-Encoding' : 'gzip'
@@ -117,16 +108,8 @@ export const Teams = () => {
         <div>
           <Label>Season</Label>
           <Select name="season" value={values.season} onChange={handleChange}>
-            {seasons.map(val => (
-              <option key={val} value={val}>{val}</option>
-            ))}
-          </Select>
-        </div>
-        <div>
-          <Label>Type</Label>
-          <Select name="seasonType" value={values.seasonType} onChange={handleChange}>
-            {seasonType.map(val => (
-              <option key={val} value={val}>{val.charAt(0).toUpperCase() + val.substring(1)}</option>
+            {seasons.map(({name, value}) => (
+              <option key={value} value={value}>{name}</option>
             ))}
           </Select>
         </div>

@@ -60,6 +60,7 @@ export default [
     "name": "Nets",
     "logo": BKN_logo,
     "colors": [
+      "#eeeeee",
       "#ffffff",
       "#000000",
     ],

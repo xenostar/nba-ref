@@ -1,6 +1,6 @@
 export * from './Home'
-export * from './Leaderboards'
 export * from './Player'
+export * from './Seasons'
 export * from './Standings'
 export * from './Teams'
 export * from './Test'
