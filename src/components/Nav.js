@@ -57,11 +57,22 @@ const StyledNav = styled.nav`
   }
 `
 
-export const Nav = () => (
+export const Nav = props => (
   <StyledNav>
     <NavLink exact to="/">Home</NavLink>
     <NavLink exact to="/leaderboards">Leaderboards</NavLink>
     <NavLink exact to="/standings">Standings</NavLink>
-    <NavLink exact to="/teams/atl">Teams</NavLink>
+    <NavLink
+      to="/teams/atl"
+      isActive={(match, location) => {
+        if (location.pathname.includes("/teams/")) {
+          return true
+        } else {
+          return false
+        }
+      }}
+    >
+      Teams
+    </NavLink>
   </StyledNav>
 )
