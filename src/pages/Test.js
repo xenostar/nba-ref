@@ -2,7 +2,8 @@ import React, { useState, useEffect, useCallback, useRef } from 'react'
 import styled from 'styled-components'
 import { PlayerCard, Form, Label, Select } from 'components'
 
-import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis} from 'react-vis'
+import { RadarChart } from 'react-vis'
+import 'react-vis/dist/style.css'
 
 const StyledPlayer = styled.div`
   .grid {
@@ -25,10 +26,10 @@ const StyledPlayer = styled.div`
 
 export const Test = props => {
   const __API__ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
-  const routePlayerName = props.match.params.playername
+  const routePlayerName = props.match.params.playerNameSlug
   const [values, setValues] = useState({ season: '2018-2019', seasonType: 'regular' })
   const [playerInfo, setPlayerInfo] = useState({})
-  const [playerStats, setPlayerStats] = useState({})
+  const [playerStats, setPlayerStats] = useState(null)
   const [playerReferences, setPlayerReferences] = useState({})
   const [isLoaded, setIsLoaded] = useState(false)
   const myRef = useRef()
@@ -43,17 +44,20 @@ export const Test = props => {
     'playoff',
   ]
 
-  const testData = [
-    {x: 0, y: 8},
-    {x: 1, y: 5},
-    {x: 2, y: 4},
-    {x: 3, y: 9},
-    {x: 4, y: 1},
-    {x: 5, y: 7},
-    {x: 6, y: 6},
-    {x: 7, y: 3},
-    {x: 8, y: 2},
-    {x: 9, y: 0}
+  const powerGridDomains = [
+      {name: '2PT %', domain: [0, 100], getValue: d => d.fg2PtPct},
+      {name: '3PT %', domain: [0, 100], getValue: d => d.fg3PtPct},
+      {name: 'FG %', domain: [0, 100], getValue: d => d.fgPct},
+      {name: 'FT %', domain: [0, 100], getValue: d => d.ftPct}
+  ]
+
+  const powerGridData = !playerStats ? [] : [
+    {
+      fg2PtPct: playerStats.fieldGoals.fg2PtPct,
+      fg3PtPct: playerStats.fieldGoals.fg3PtPct,
+      fgPct: playerStats.fieldGoals.fgPct,
+      ftPct: playerStats.freeThrows.ftPct
+    }
   ]
 
   const handleChange = ({ target: { name, value } }) => {
@@ -117,13 +121,28 @@ export const Test = props => {
         </div>
       </Form>
       <div className="powerGrid">
-      <XYPlot height={300} width= {300}>
-            <VerticalGridLines />
-            <HorizontalGridLines />
-            <XAxis />
-            <YAxis />
-            <LineSeries data={testData} />
-        </XYPlot>
+        <RadarChart 
+          data={powerGridData} 
+          domains={powerGridDomains} 
+          width={400} 
+          height={400} 
+          margin={{ left: 75, right: 75, top: 75, bottom: 75 }}
+          style={{
+            labels: {
+              fill: "#444",
+              fontSize: 12,
+              fontWeight: 700
+            },
+            polygons: {
+              strokeWidth: 2,
+              strokeOpacity: 1,
+              stroke: "#ED5429",
+              strokeLinejoin: "round",
+              fillOpacity: 0.1,
+              fill: "#ED5429"
+            }
+          }}
+        />
       </div>
       <PlayerCard playerInfo={playerInfo} playerReferences={playerReferences} isLoaded={isLoaded} />
     </StyledPlayer>

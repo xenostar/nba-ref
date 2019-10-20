@@ -16,7 +16,7 @@ const App = () => (
       <Route path="/player/:playerNameSlug" component={Player} />
       <Route path="/standings" component={Standings} />
       <Route path="/teams/:teamNameSlug" component={Teams} />
-      <Route path="/test" component={Test} />
+      <Route path="/test/:playerNameSlug" component={Test} />
       <Footer />
     </div>
   </Router>
