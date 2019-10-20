@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { Table, Form, Label, Select } from 'components'
+import seasons from 'api/seasons'
 
 const StyledStandings = styled.div`
   .grid {
@@ -18,15 +19,9 @@ const StyledStandings = styled.div`
 
 export const Standings = () => {
   const __API__ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
-  const [season, setSeason] = useState('2018-2019')
+  const [season, setSeason] = useState('2018-2019-regular')
   const [standings, setStandings] = useState({ eastern: [], western: [] })
   const [isLoaded, setIsLoaded] = useState(false)
-  const seasons = [
-    '2018-2019',
-    '2017-2018',
-    '2016-2017',
-    '2015-2016',
-  ]
   const tableData = {
     '#': '3.125rem',
     'Wins': '3.75rem',
@@ -38,7 +33,7 @@ export const Standings = () => {
   const handleFetch = useCallback(() => {
     setIsLoaded(false)
 
-    fetch(`${ __API__ + season }-regular/conference_team_standings.json?teamstats=w`, {
+    fetch(`${ __API__ + season }/conference_team_standings.json?teamstats=w`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
         'Accept-Encoding' : 'gzip'
@@ -72,8 +67,8 @@ export const Standings = () => {
         <div>
           <Label>Season</Label>
           <Select name="season" value={season} onChange={handleChange}>
-            {seasons.map(val => (
-              <option key={val} value={val}>{val}</option>
+          {seasons.map(({name, value}) => (
+              <option key={value} value={value}>{name}</option>
             ))}
           </Select>
         </div>

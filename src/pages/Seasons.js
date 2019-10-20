@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Table, Form, Label, Select } from 'components'
+import seasons from 'api/seasons'
 
 const StyledPlayers = styled.div`
   .grid {
@@ -22,21 +23,11 @@ const StyledPlayers = styled.div`
   }
 `
 
-export const Leaderboards = () => {
+export const Seasons = () => {
   const __API__ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
-  const [values, setValues] = useState({ season: '2018-2019', seasonType: 'regular' })
+  const [values, setValues] = useState({ season: '2018-2019-regular' })
   const [stats, setStats] = useState({ points: [], assists: [], rebounds: [] })
   const [isLoaded, setIsLoaded] = useState({ isLoadedPts: false, isLoadedAst: false, isLoadedReb: false })
-  const seasons = [
-    '2018-2019',
-    '2017-2018',
-    '2016-2017',
-    // '2015-2016',
-  ]
-  const seasonType = [
-    'regular',
-    'playoff',
-  ]
   const tableDataPts = {
     'Pts': '3.75rem',
     'Posn': '10%',
@@ -64,7 +55,7 @@ export const Leaderboards = () => {
       return { ...prevState, [loadValue]: false }
     })
 
-    fetch(`${ __API__ + values.season }-${ values.seasonType }/cumulative_player_stats.json?${ url }`,{
+    fetch(`${ __API__ + values.season }/cumulative_player_stats.json?${ url }`,{
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
         'Accept-Encoding' : 'gzip'
@@ -98,16 +89,8 @@ export const Leaderboards = () => {
         <div>
           <Label>Season</Label>
           <Select name="season" value={values.season} onChange={handleChange}>
-            {seasons.map(val => (
-              <option key={val} value={val}>{val}</option>
-            ))}
-          </Select>
-        </div>
-        <div>
-          <Label>Type</Label>
-          <Select name="seasonType" value={values.seasonType} onChange={handleChange}>
-            {seasonType.map(val => (
-              <option key={val} value={val}>{val.charAt(0).toUpperCase() + val.substring(1)}</option>
+            {seasons.map(({name, value}) => (
+              <option key={value} value={value}>{name}</option>
             ))}
           </Select>
         </div>
