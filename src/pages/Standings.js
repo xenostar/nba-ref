@@ -62,10 +62,8 @@ export const Standings = () => {
     })
   }, [season])
 
-  useEffect(() => { // componentDidMount
-    console.log("Mounting Standings...")
+  useEffect(() => {
     handleFetch()
-    return () => console.log('Unmounting Standings...')
   }, [handleFetch])
 
   return (

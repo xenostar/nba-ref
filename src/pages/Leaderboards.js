@@ -59,9 +59,9 @@ export const Leaderboards = () => {
     })
   }
 
-  const handleFetch = useCallback((url, state_value, load_value) => {
+  const handleFetch = useCallback((url, stateValue, loadValue) => {
     setIsLoaded(prevState => {
-      return { ...prevState, [load_value]: false }
+      return { ...prevState, [loadValue]: false }
     })
 
     fetch(`${ __API__ + values.season }-${ values.seasonType }/cumulative_player_stats.json?${ url }`,{
@@ -75,10 +75,10 @@ export const Leaderboards = () => {
     })
     .then(data => {
       setStats(prevState => {
-        return { ...prevState, [state_value]: data.cumulativeplayerstats.playerstatsentry }
+        return { ...prevState, [stateValue]: data.cumulativeplayerstats.playerstatsentry }
       })
       setIsLoaded(prevState => {
-        return { ...prevState, [load_value]: true }
+        return { ...prevState, [loadValue]: true }
       })
     })
     .catch(error => {
@@ -86,12 +86,10 @@ export const Leaderboards = () => {
     })
   }, [values])
 
-  useEffect(() => { // componentDidMount
-    console.log("Mounting Players...")
+  useEffect(() => {
     handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'points', 'isLoadedPts')
     handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'assists', 'isLoadedAst')
     handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'rebounds', 'isLoadedReb')
-    return () => console.log('Unmounting Players...')
   }, [handleFetch])
 
   return (
@@ -117,39 +115,39 @@ export const Leaderboards = () => {
       <div className="grid">
         <Table tableTitle="Points Scored" tableData={tableDataPts} loaderHeight="10" isLoaded={isLoaded.isLoadedPts}>
           {stats.points.map((player, index) => {
-            const url_firstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
-            const url_LasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+            const urlFirstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+            const urlLasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
             return (
               <tr key={index}>
                 <td>{player.stats['Pts']['#text']}</td>
                 <td>{player.player.Position}</td>
-                <td><Link to={'/player/' + url_firstName + '-' + url_LasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
+                <td><Link to={'/player/' + urlFirstName + '-' + urlLasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
               </tr>
             )
           })}
         </Table>
         <Table tableTitle="Assists" tableData={tableDataAst} loaderHeight="10" isLoaded={isLoaded.isLoadedAst}>
           {stats.assists.map((player, index) => {
-            const url_firstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
-            const url_LasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+            const urlFirstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+            const urlLasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
             return (
               <tr key={index}>
                 <td>{player.stats['Ast']['#text']}</td>
                 <td>{player.player.Position}</td>
-                <td><Link to={'/player/' + url_firstName + '-' + url_LasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
+                <td><Link to={'/player/' + urlFirstName + '-' + urlLasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
               </tr>
             )
           })}
         </Table>
         <Table tableTitle="Rebounds" tableData={tableDataReb} loaderHeight="10" isLoaded={isLoaded.isLoadedReb}>
           {stats.rebounds.map((player, index) => {
-            const url_firstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
-            const url_LasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+            const urlFirstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+            const urlLasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
             return (
               <tr key={index}>
                 <td>{player.stats['Reb']['#text']}</td>
                 <td>{player.player.Position}</td>
-                <td><Link to={'/player/' + url_firstName + '-' + url_LasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
+                <td><Link to={'/player/' + urlFirstName + '-' + urlLasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
               </tr>
             )
           })}

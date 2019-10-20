@@ -1,6 +1,12 @@
 import React, { useState} from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+import { Link } from 'react-router-dom'
 import teams from 'api/teams'
+
+const fadeIn = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`
 
 const StyledHome = styled.div`
   display: grid;
@@ -15,34 +21,48 @@ const StyledHome = styled.div`
     grid-gap: 1.25rem;
     grid-template-columns: repeat(5, 1fr);
   }
-  .team-grid div {
-    border-radius: 5px;
+  @media only screen and (max-width: 87.5rem) { /* 1400px */
+    .team-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
-  .team-grid img {
-    margin: 0 auto;
+  @media only screen and (max-width: 62.5rem) { /* 1000px */
+    .team-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   .img-wrapper {
-    position: relative;
-    padding-top: 75%;
+    border-radius: 3px;
     overflow: hidden;
+    padding-top: 75%;
+    position: relative;
+    transition: all 0.2s;
+  }
+  .img-wrapper:hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+    transform: scale(1.1) translateZ(0);
   }
   .img-wrapper.loaded img {
-    opacity: 1;
+    /* opacity: 1; */
+    animation: ${fadeIn} 1s;
+    animation-fill-mode: both;
   }
   .img-wrapper img {
-    position: absolute;
+    backface-visibility: hidden;
     bottom: 0;
     height: 100%;
+    position: absolute;
     object-fit: contain;
     opacity: 0;
-    transition: opacity 1s;
+    transform: scale(1) translateZ(0);
+    /* transition: opacity 1s; */
     width: 100%;
   }
 
   h1 {
     color: #ED5429;
-    font-size: 4.25em;
+    font-size: 3em;
     line-height: 0.975;
   }
 `
@@ -65,13 +85,14 @@ export const Home = () => {
       <div>
         <div className="team-grid">
           {teams.map((data, index) => {
+            const urlTeamAbbreviation = data.abbreviation.toLowerCase()
             const teamColor = {
-              backgroundColor: data.color[0],
+              backgroundColor: data.colors[0],
             }
             return (
-              <div key={index} className={isLoaded[data.name] ? 'img-wrapper loaded' : 'img-wrapper'} style={teamColor}>
+              <Link to={'/teams/' + urlTeamAbbreviation} key={index} className={isLoaded[data.name] ? 'img-wrapper loaded' : 'img-wrapper'} style={teamColor}>
                 <img src={data.logo} alt={data.city + ' ' + data.name} onLoad={() => handleImgLoad(data.name)} />
-              </div>
+              </Link>
             )
           })}
         </div>
