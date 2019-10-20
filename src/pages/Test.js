@@ -1,0 +1,131 @@
+import React, { useState, useEffect, useCallback, useRef } from 'react'
+import styled from 'styled-components'
+import { PlayerCard, Form, Label, Select } from 'components'
+
+import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis} from 'react-vis'
+
+const StyledPlayer = styled.div`
+  .grid {
+    display: grid;
+    grid-gap: 2.5rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  @media only screen and (max-width: 87.5rem) { /* 1400px */
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media only screen and (max-width: 62.5rem) { /* 1000px */
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+`
+
+export const Test = props => {
+  const __API__ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
+  const routePlayerName = props.match.params.playername
+  const [values, setValues] = useState({ season: '2018-2019', seasonType: 'regular' })
+  const [playerInfo, setPlayerInfo] = useState({})
+  const [playerStats, setPlayerStats] = useState({})
+  const [playerReferences, setPlayerReferences] = useState({})
+  const [isLoaded, setIsLoaded] = useState(false)
+  const myRef = useRef()
+  const seasons = [
+    '2018-2019',
+    '2017-2018',
+    '2016-2017',
+    '2015-2016',
+  ]
+  const seasonType = [
+    'regular',
+    'playoff',
+  ]
+
+  const testData = [
+    {x: 0, y: 8},
+    {x: 1, y: 5},
+    {x: 2, y: 4},
+    {x: 3, y: 9},
+    {x: 4, y: 1},
+    {x: 5, y: 7},
+    {x: 6, y: 6},
+    {x: 7, y: 3},
+    {x: 8, y: 2},
+    {x: 9, y: 0}
+  ]
+
+  const handleChange = ({ target: { name, value } }) => {
+    setValues(prevState => {
+      return { ...prevState, [name]: value }
+    })
+  }
+
+  const handleFetch = useCallback(() => {
+    setIsLoaded(false)
+
+    fetch(`${ __API__ + values.season }-${ values.seasonType }/player_stats_totals.json?player=${ routePlayerName }`, {
+      headers: {
+        'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
+        'Accept-Encoding' : 'gzip'
+      },
+    })
+    .then(response => {
+      return response.json()
+    })
+    .then(data => {
+      setPlayerInfo(data.playerStatsTotals[0].player)
+      setPlayerStats(data.playerStatsTotals[0].stats)
+      setPlayerReferences(data.references.teamReferences[0])
+      setIsLoaded(true)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }, [values, routePlayerName])
+
+  useEffect(() => { // componentDidMount
+    console.log("Mounting Player...")
+    handleFetch()
+    // window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop })
+    return () => console.log('Unmounting Player...')
+  }, [handleFetch])
+
+  useEffect(() => { // componentDidMount
+    window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop })
+  }, [])
+
+  return (
+    <StyledPlayer className="page" ref={myRef}>
+      <Form>
+        <div>
+          <Label>Season</Label>
+          <Select name="season" value={values.season} onChange={handleChange}>
+            {seasons.map(val => (
+              <option key={val} value={val}>{val}</option>
+            ))}
+          </Select>
+        </div>
+        <div>
+          <Label>Type</Label>
+          <Select name="seasonType" value={values.seasonType} onChange={handleChange}>
+            {seasonType.map(val => (
+              <option key={val} value={val}>{val.charAt(0).toUpperCase() + val.substring(1)}</option>
+            ))}
+          </Select>
+        </div>
+      </Form>
+      <div className="powerGrid">
+      <XYPlot height={300} width= {300}>
+            <VerticalGridLines />
+            <HorizontalGridLines />
+            <XAxis />
+            <YAxis />
+            <LineSeries data={testData} />
+        </XYPlot>
+      </div>
+      <PlayerCard playerInfo={playerInfo} playerReferences={playerReferences} isLoaded={isLoaded} />
+    </StyledPlayer>
+  )
+}
