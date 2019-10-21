@@ -10,6 +10,7 @@ import './App.css'
 const App = () => (
   <Router>
     <div className="app-container">
+      {/* <HeaderBig /> */}
       <Header />
       <Nav />
       <Route exact path="/" component={Home} />
