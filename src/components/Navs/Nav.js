@@ -1,8 +1,6 @@
-import React from 'react'
 import styled from 'styled-components'
-import { NavLink } from "react-router-dom"
 
-const StyledNav = styled.nav`
+export const Nav = styled.nav`
   background-color: rgba(0,0,0,0.05);
   border-radius: 3px;
   display: flex;
@@ -56,23 +54,3 @@ const StyledNav = styled.nav`
     }
   }
 `
-
-export const Nav = () => (
-  <StyledNav>
-    <NavLink exact to="/">Home</NavLink>
-    <NavLink exact to="/seasons">Seasons</NavLink>
-    <NavLink exact to="/standings">Standings</NavLink>
-    <NavLink
-      to="/teams/atl"
-      isActive={(_, location) => {
-        if (location.pathname.includes("/teams/")) {
-          return true
-        } else {
-          return false
-        }
-      }}
-    >
-      Teams
-    </NavLink>
-  </StyledNav>
-)

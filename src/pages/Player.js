@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
 import { PlayerCard, Table, Form, Label, Select } from 'components'
@@ -25,7 +25,6 @@ const StyledPlayer = styled.div`
 
 export const Player = () => {
   const __API__ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
-  const myRef = useRef()
   const {playerNameSlug} = useParams()
   const [values, setValues] = useState({ season: '2018-2019-regular' })
   const [playerInfo, setPlayerInfo] = useState({})
@@ -76,12 +75,8 @@ export const Player = () => {
     handleFetch()
   }, [handleFetch])
 
-  useEffect(() => {
-    window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop })
-  }, [])
-
   return (
-    <StyledPlayer className="page" ref={myRef}>
+    <StyledPlayer className="page">
       <Form>
         <div>
           <Label>Season</Label>

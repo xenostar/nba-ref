@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import loader from 'img/Basketball-1s-200px.svg'
+import loaderImg from 'img/Basketball-1s-200px.svg'
 
 const fadeInOut = keyframes`
   0% { opacity: 0.6; }
@@ -35,7 +35,7 @@ const StyledLoader = styled.div`
 export const Loader = ({ loaderHeight })  => (
   <StyledLoader style={{ minHeight: (loaderHeight * 2.434375) + 'rem' }}>
     <div className="holder">
-      <img src={loader} alt="Loading..." />
+      <img src={loaderImg} alt="Loading..." />
       <p>Loading</p>
     </div>
   </StyledLoader>

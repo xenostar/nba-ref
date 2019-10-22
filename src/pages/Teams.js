@@ -121,7 +121,7 @@ export const Teams = () => {
           return (
             <tr key={index}>
               <td>{player.jerseyNumber}</td>
-              <td><Link to={'/player/' + urlFirstName + '-' + urlLasttName}>{player.firstName} {player.lastName}</Link></td>
+              <td><Link to={'/players/' + urlFirstName + '-' + urlLasttName}>{player.firstName} {player.lastName}</Link></td>
               <td>{player.primaryPosition || '--'}</td>
               <td>{player.age || '--'}</td>
               <td>{player.height || '--'}</td>

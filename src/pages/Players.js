@@ -23,7 +23,7 @@ const StyledPlayers = styled.div`
   }
 `
 
-export const Seasons = () => {
+export const Players = () => {
   const __API__ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
   const [values, setValues] = useState({ season: '2018-2019-regular' })
   const [stats, setStats] = useState({ points: [], assists: [], rebounds: [] })
@@ -104,7 +104,7 @@ export const Seasons = () => {
               <tr key={index}>
                 <td>{player.stats['Pts']['#text']}</td>
                 <td>{player.player.Position}</td>
-                <td><Link to={'/player/' + urlFirstName + '-' + urlLasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
+                <td><Link to={'/players/' + urlFirstName + '-' + urlLasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
               </tr>
             )
           })}
@@ -117,7 +117,7 @@ export const Seasons = () => {
               <tr key={index}>
                 <td>{player.stats['Ast']['#text']}</td>
                 <td>{player.player.Position}</td>
-                <td><Link to={'/player/' + urlFirstName + '-' + urlLasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
+                <td><Link to={'/players/' + urlFirstName + '-' + urlLasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
               </tr>
             )
           })}
@@ -130,7 +130,7 @@ export const Seasons = () => {
               <tr key={index}>
                 <td>{player.stats['Reb']['#text']}</td>
                 <td>{player.player.Position}</td>
-                <td><Link to={'/player/' + urlFirstName + '-' + urlLasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
+                <td><Link to={'/players/' + urlFirstName + '-' + urlLasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
               </tr>
             )
           })}
