@@ -90,7 +90,7 @@ export const Home = () => {
               backgroundColor: data.colors[0],
             }
             return (
-              <Link to={'/teams/' + urlTeamAbbreviation} key={index} className={isLoaded[data.name] ? 'img-wrapper loaded' : 'img-wrapper'} style={teamColor}>
+              <Link to={'/teams/roster/' + urlTeamAbbreviation} key={index} className={isLoaded[data.name] ? 'img-wrapper loaded' : 'img-wrapper'} style={teamColor}>
                 <img src={data.logo} alt={data.city + ' ' + data.name} onLoad={() => handleImgLoad(data.name)} />
               </Link>
             )

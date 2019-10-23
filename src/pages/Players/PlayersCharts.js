@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { PlayerCard, Form, Label, Select } from 'components'
+import seasons from 'api/seasons'
 
 import { RadarChart } from 'react-vis'
 import 'react-vis/dist/style.css'
@@ -32,16 +33,6 @@ export const PlayersCharts = props => {
   const [playerStats, setPlayerStats] = useState(null)
   const [playerReferences, setPlayerReferences] = useState({})
   const [isLoaded, setIsLoaded] = useState(false)
-  const seasons = [
-    '2018-2019',
-    '2017-2018',
-    '2016-2017',
-    '2015-2016',
-  ]
-  const seasonType = [
-    'regular',
-    'playoff',
-  ]
 
   const powerGridDomains = [
       {name: '2PT %', domain: [0, 100], getValue: d => d.fg2PtPct},
@@ -68,7 +59,7 @@ export const PlayersCharts = props => {
   const handleFetch = useCallback(() => {
     setIsLoaded(false)
 
-    fetch(`${ __API__ + values.season }-${ values.seasonType }/player_stats_totals.json?player=${ routePlayerName }`, {
+    fetch(`${ __API__ + values.season }/player_stats_totals.json?player=${ routePlayerName }`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
         'Accept-Encoding' : 'gzip'
@@ -100,16 +91,8 @@ export const PlayersCharts = props => {
         <div>
           <Label>Season</Label>
           <Select name="season" value={values.season} onChange={handleChange}>
-            {seasons.map(val => (
-              <option key={val} value={val}>{val}</option>
-            ))}
-          </Select>
-        </div>
-        <div>
-          <Label>Type</Label>
-          <Select name="seasonType" value={values.seasonType} onChange={handleChange}>
-            {seasonType.map(val => (
-              <option key={val} value={val}>{val.charAt(0).toUpperCase() + val.substring(1)}</option>
+            {seasons.map(({name, value}) => (
+              <option key={value} value={value}>{name}</option>
             ))}
           </Select>
         </div>
