@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Table, Form, Label, Select } from 'components'
 import seasons from 'api/seasons'
 
-const StyledPlayers = styled.div`
+const StyledSeasons = styled.div`
   .grid {
     display: grid;
     grid-gap: 2.5rem;
@@ -23,7 +23,7 @@ const StyledPlayers = styled.div`
   }
 `
 
-export const Players = () => {
+export const SeasonsLeaders = () => {
   const __API__ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
   const [values, setValues] = useState({ season: '2018-2019-regular' })
   const [stats, setStats] = useState({ points: [], assists: [], rebounds: [] })
@@ -84,7 +84,7 @@ export const Players = () => {
   }, [handleFetch])
 
   return (
-    <StyledPlayers className="page">
+    <StyledSeasons className="page">
       <Form>
         <div>
           <Label>Season</Label>
@@ -104,7 +104,7 @@ export const Players = () => {
               <tr key={index}>
                 <td>{player.stats['Pts']['#text']}</td>
                 <td>{player.player.Position}</td>
-                <td><Link to={'/players/' + urlFirstName + '-' + urlLasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
+                <td><Link to={'/players/stats/' + urlFirstName + '-' + urlLasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
               </tr>
             )
           })}
@@ -117,7 +117,7 @@ export const Players = () => {
               <tr key={index}>
                 <td>{player.stats['Ast']['#text']}</td>
                 <td>{player.player.Position}</td>
-                <td><Link to={'/players/' + urlFirstName + '-' + urlLasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
+                <td><Link to={'/players/stats/' + urlFirstName + '-' + urlLasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
               </tr>
             )
           })}
@@ -130,12 +130,12 @@ export const Players = () => {
               <tr key={index}>
                 <td>{player.stats['Reb']['#text']}</td>
                 <td>{player.player.Position}</td>
-                <td><Link to={'/players/' + urlFirstName + '-' + urlLasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
+                <td><Link to={'/players/stats/' + urlFirstName + '-' + urlLasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
               </tr>
             )
           })}
         </Table>
       </div>
-    </StyledPlayers>
+    </StyledSeasons>
   )
 }

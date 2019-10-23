@@ -6,7 +6,7 @@ import seasons from 'api/seasons'
 
 const StyledTeam = styled.div``
 
-export const Teams = () => {
+export const TeamsRoster = () => {
   const __API__ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
   const history = useHistory()
   const {teamNameSlug} = useParams()
@@ -121,7 +121,7 @@ export const Teams = () => {
           return (
             <tr key={index}>
               <td>{player.jerseyNumber}</td>
-              <td><Link to={'/players/' + urlFirstName + '-' + urlLasttName}>{player.firstName} {player.lastName}</Link></td>
+              <td><Link to={'/players/stats/' + urlFirstName + '-' + urlLasttName}>{player.firstName} {player.lastName}</Link></td>
               <td>{player.primaryPosition || '--'}</td>
               <td>{player.age || '--'}</td>
               <td>{player.height || '--'}</td>

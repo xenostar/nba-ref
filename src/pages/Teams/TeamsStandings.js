@@ -17,7 +17,7 @@ const StyledStandings = styled.div`
   }
 `
 
-export const Standings = () => {
+export const TeamsStandings = () => {
   const __API__ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
   const [season, setSeason] = useState('2018-2019-regular')
   const [standings, setStandings] = useState({ eastern: [], western: [] })

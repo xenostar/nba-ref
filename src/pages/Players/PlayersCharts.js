@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { PlayerCard, Form, Label, Select } from 'components'
 
 import { RadarChart } from 'react-vis'
 import 'react-vis/dist/style.css'
 
-const StyledPlayer = styled.div`
+const StyledPlayersCharts = styled.div`
   .grid {
     display: grid;
     grid-gap: 2.5rem;
@@ -24,7 +24,7 @@ const StyledPlayer = styled.div`
   }
 `
 
-export const Test = props => {
+export const PlayersCharts = props => {
   const __API__ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
   const routePlayerName = props.match.params.playerNameSlug
   const [values, setValues] = useState({ season: '2018-2019', seasonType: 'regular' })
@@ -32,7 +32,6 @@ export const Test = props => {
   const [playerStats, setPlayerStats] = useState(null)
   const [playerReferences, setPlayerReferences] = useState({})
   const [isLoaded, setIsLoaded] = useState(false)
-  const myRef = useRef()
   const seasons = [
     '2018-2019',
     '2017-2018',
@@ -92,16 +91,11 @@ export const Test = props => {
   useEffect(() => { // componentDidMount
     console.log("Mounting Player...")
     handleFetch()
-    // window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop })
     return () => console.log('Unmounting Player...')
   }, [handleFetch])
 
-  useEffect(() => { // componentDidMount
-    window.scrollTo({ behavior: 'smooth', top: myRef.current.offsetTop })
-  }, [])
-
   return (
-    <StyledPlayer className="page" ref={myRef}>
+    <StyledPlayersCharts className="page">
       <Form>
         <div>
           <Label>Season</Label>
@@ -121,11 +115,11 @@ export const Test = props => {
         </div>
       </Form>
       <div className="powerGrid">
-        <RadarChart 
-          data={powerGridData} 
-          domains={powerGridDomains} 
-          width={400} 
-          height={400} 
+        <RadarChart
+          data={powerGridData}
+          domains={powerGridDomains}
+          width={400}
+          height={400}
           margin={{ left: 75, right: 75, top: 75, bottom: 75 }}
           style={{
             labels: {
@@ -145,6 +139,6 @@ export const Test = props => {
         />
       </div>
       <PlayerCard playerInfo={playerInfo} playerReferences={playerReferences} isLoaded={isLoaded} />
-    </StyledPlayer>
+    </StyledPlayersCharts>
   )
 }

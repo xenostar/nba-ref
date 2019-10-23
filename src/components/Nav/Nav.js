@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Nav = styled.nav`
   background-color: rgba(0,0,0,0.05);
-  border-radius: 3px;
+  border-radius: 3px 3px 0 0;
   display: flex;
   margin-top: 2.5rem;
   overflow: hidden;
