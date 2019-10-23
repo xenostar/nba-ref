@@ -14,6 +14,7 @@ html {
 
 body {
   background-image: url('./img/funky-lines.png');
+  overflow-y: scroll;
 }
 
 a {
