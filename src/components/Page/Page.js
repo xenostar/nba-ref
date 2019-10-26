@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Page = styled.label`
+export const Page = styled.div`
   margin-bottom: 5rem;
   padding-top: 2.5rem;
 
