@@ -44,11 +44,6 @@ const StyledHome = styled(Page)`
     box-shadow: 0 2px 5px rgba(0,0,0,0.25);
     transform: scale(1.1) translateZ(0);
   }
-  .img-wrapper.loaded img {
-    /* opacity: 1; */
-    animation: ${fadeIn} 1s;
-    animation-fill-mode: both;
-  }
   .img-wrapper img {
     backface-visibility: hidden;
     bottom: 0;
@@ -59,6 +54,11 @@ const StyledHome = styled(Page)`
     transform: scale(1) translateZ(0);
     /* transition: opacity 1s; */
     width: 100%;
+  }
+  .img-wrapper.loaded img {
+    /* opacity: 1; */
+    animation: ${fadeIn} 1s;
+    animation-fill-mode: both;
   }
 
   h1 {

@@ -7,7 +7,6 @@ export const NavSub = styled.nav`
   overflow: hidden;
 
   a {
-    /* border-bottom: 2px solid transparent; */
     color: #fff;
     display: block;
     font-weight: 700;
@@ -24,7 +23,6 @@ export const NavSub = styled.nav`
   }
   a.active {
     background-color: rgba(255, 255, 255, 0.2);
-    /* border-bottom: 2px solid #fff; */
     color: #fff;
   }
   a:active,

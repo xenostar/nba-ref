@@ -6,10 +6,10 @@ import { Page } from 'components'
 const StyledNoMatch = styled(Page)``
 
 export const NoMatch = () => {
-  const location = useLocation();
+  const location = useLocation()
 
   return (
-    <StyledNoMatch>
+    <StyledNoMatch className="content">
       <h1>Oops!</h1>
       <p>No page found for <code>{location.pathname}</code>.</p>
     </StyledNoMatch>

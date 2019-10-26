@@ -1,10 +1,14 @@
 import React from 'react'
-import { NavLink } from "react-router-dom"
+import { NavLink, useRouteMatch } from 'react-router-dom'
 import { NavSub } from 'components'
 
-export const NavSubSeasons = () => (
-  <NavSub>
-    <NavLink to="/seasons/leaders" isActive={(_, loc) => loc.pathname.includes("/leaders") }>Leaders</NavLink>
-    <NavLink to="/seasons/news" isActive={(_, loc) => loc.pathname.includes("/news") }>News</NavLink>
-  </NavSub>
-)
+export const NavSubSeasons = () => {
+  const match = useRouteMatch()
+
+  return (
+    <NavSub>
+      <NavLink to={`${match.url}/leaders`} isActive={(_, loc) => loc.pathname.includes("/leaders")}>Leaders</NavLink>
+      <NavLink to={`${match.url}/news`} isActive={(_, loc) => loc.pathname.includes("/news")}>News</NavLink>
+    </NavSub>
+  )
+}

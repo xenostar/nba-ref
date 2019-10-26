@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
+import { useParams } from 'react-router-dom'
 import { Page, PlayerCard, Form, Label, Select } from 'components'
 import seasons from 'api/seasons'
 
@@ -25,9 +26,9 @@ const StyledPlayersCharts = styled(Page)`
   }
 `
 
-export const PlayersCharts = props => {
+export const PlayersCharts = () => {
   const __API__ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
-  const routePlayerName = props.match.params.playerNameSlug
+  const {playerNameSlug} = useParams()
   const [values, setValues] = useState({ season: '2018-2019', seasonType: 'regular' })
   const [playerInfo, setPlayerInfo] = useState({})
   const [playerStats, setPlayerStats] = useState(null)
@@ -35,10 +36,10 @@ export const PlayersCharts = props => {
   const [isLoaded, setIsLoaded] = useState(false)
 
   const powerGridDomains = [
-      {name: '2PT %', domain: [0, 100], getValue: d => d.fg2PtPct},
-      {name: '3PT %', domain: [0, 100], getValue: d => d.fg3PtPct},
-      {name: 'FG %', domain: [0, 100], getValue: d => d.fgPct},
-      {name: 'FT %', domain: [0, 100], getValue: d => d.ftPct}
+    {name: '2PT %', domain: [0, 100], getValue: d => d.fg2PtPct},
+    {name: '3PT %', domain: [0, 100], getValue: d => d.fg3PtPct},
+    {name: 'FG %', domain: [0, 100], getValue: d => d.fgPct},
+    {name: 'FT %', domain: [0, 100], getValue: d => d.ftPct}
   ]
 
   const powerGridData = !playerStats ? [] : [
@@ -59,7 +60,7 @@ export const PlayersCharts = props => {
   const handleFetch = useCallback(() => {
     setIsLoaded(false)
 
-    fetch(`${ __API__ + values.season }/player_stats_totals.json?player=${ routePlayerName }`, {
+    fetch(`${ __API__ + values.season }/player_stats_totals.json?player=${ playerNameSlug }`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
         'Accept-Encoding' : 'gzip'
@@ -77,7 +78,7 @@ export const PlayersCharts = props => {
     .catch(error => {
       console.log(error)
     })
-  }, [values, routePlayerName])
+  }, [values, playerNameSlug])
 
   useEffect(() => { // componentDidMount
     console.log("Mounting Player...")
