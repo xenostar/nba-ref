@@ -8,10 +8,10 @@ import teams from 'api/teams'
 const StyledTeam = styled(Page)``
 
 export const TeamsRoster = () => {
-  const __API__ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
+  const _API_ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
   const history = useHistory()
   const {teamNameSlug} = useParams()
-  const [values, setValues] = useState({ team: teamNameSlug, season: '2018-2019-regular'})
+  const [values, setValues] = useState({ team: teamNameSlug, season: seasons[0].value })
   const [roster, setRoster] = useState([])
   const [isLoaded, setIsLoaded] = useState(false)
   const tableData = {
@@ -35,7 +35,7 @@ export const TeamsRoster = () => {
   const handleFetch = useCallback(() => {
     setIsLoaded(false)
 
-    fetch(`${ __API__ }players.json?season=${ values.season }&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`, {
+    fetch(`${ _API_ }players.json?season=${ values.season }&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
         'Accept-Encoding' : 'gzip'

@@ -24,8 +24,8 @@ const StyledSeasons = styled(Page)`
 `
 
 export const SeasonsLeaders = () => {
-  const __API__ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
-  const [values, setValues] = useState({ season: '2018-2019-regular' })
+  const _API_ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
+  const [values, setValues] = useState({ season: seasons[0].value })
   const [stats, setStats] = useState({ points: [], assists: [], rebounds: [] })
   const [isLoaded, setIsLoaded] = useState({ isLoadedPts: false, isLoadedAst: false, isLoadedReb: false })
   const tableDataPts = {
@@ -55,7 +55,7 @@ export const SeasonsLeaders = () => {
       return { ...prevState, [loadValue]: false }
     })
 
-    fetch(`${ __API__ + values.season }/cumulative_player_stats.json?${ url }`,{
+    fetch(`${ _API_ + values.season }/cumulative_player_stats.json?${ url }`,{
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
         'Accept-Encoding' : 'gzip'

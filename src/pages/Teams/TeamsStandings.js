@@ -18,8 +18,8 @@ const StyledStandings = styled(Page)`
 `
 
 export const TeamsStandings = () => {
-  const __API__ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
-  const [season, setSeason] = useState('2018-2019-regular')
+  const _API_ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
+  const [values, setValues] = useState({ season: seasons[0].value })
   const [standings, setStandings] = useState({ eastern: [], western: [] })
   const [isLoaded, setIsLoaded] = useState(false)
   const tableData = {
@@ -28,12 +28,16 @@ export const TeamsStandings = () => {
     'Name': 'auto',
   }
 
-  const handleChange = ({ target: { value } }) => setSeason(value)
+  const handleChange = ({ target: { name, value } }) => {
+    setValues(prevState => {
+      return { ...prevState, [name]: value }
+    })
+  }
 
   const handleFetch = useCallback(() => {
     setIsLoaded(false)
 
-    fetch(`${ __API__ + season }/conference_team_standings.json?teamstats=w`, {
+    fetch(`${ _API_ + values.season }/conference_team_standings.json?teamstats=w`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
         'Accept-Encoding' : 'gzip'
@@ -55,7 +59,7 @@ export const TeamsStandings = () => {
     .catch(error => {
       console.log(error)
     })
-  }, [season])
+  }, [values])
 
   useEffect(() => {
     handleFetch()
@@ -66,7 +70,7 @@ export const TeamsStandings = () => {
       <Form>
         <div>
           <Label>Season</Label>
-          <Select name="season" value={season} onChange={handleChange}>
+          <Select name="season" value={values.season} onChange={handleChange}>
           {seasons.map(({name, value}) => (
               <option key={value} value={value}>{name}</option>
             ))}
