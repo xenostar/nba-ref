@@ -1,6 +1,6 @@
 import React from 'react'
-import { Route, Switch } from "react-router-dom"
 import styled from 'styled-components'
+import { Route, Switch } from 'react-router-dom'
 import { NavSubTeams} from 'components'
 import { TeamsRoster, TeamsStandings, NoMatch } from 'pages'
 

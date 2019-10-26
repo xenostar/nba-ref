@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Header, NavMain, Footer, ScrollToTop } from 'components'
 import { Home, Seasons, Teams, Players, NoMatch } from 'pages'
 import './Normalize.css'
@@ -7,7 +7,7 @@ import './Reset.css'
 import './App.css'
 
 const App = () => (
-  <Router>
+  <BrowserRouter>
     <ScrollToTop />
     <div className="app-container">
       <Header />
@@ -19,14 +19,9 @@ const App = () => (
         <Route path="/players" component={Players} />
         <Route path="*" component={NoMatch} />
       </Switch>
-      {/* <Route exact path="/players" component={Players} />
-      <Route exact path="/players/:playerNameSlug" component={Player} />
-      <Route exact path="/standings" component={Standings} />
-      <Route exact path="/teams/:teamNameSlug" component={Teams} />
-      <Route exact path="/test/:playerNameSlug" component={Test} /> */}
       <Footer />
     </div>
-  </Router>
+  </BrowserRouter>
 )
 
 export default App

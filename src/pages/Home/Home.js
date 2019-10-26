@@ -70,7 +70,7 @@ const StyledHome = styled.div`
 export const Home = () => {
   const [isLoaded, setIsLoaded] = useState([])
 
-  const handleImgLoad = (teamName) => {
+  const handleImgLoad = teamName => {
     setIsLoaded(prevState => {
       return { ...prevState, [teamName]: true }
     })
