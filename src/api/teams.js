@@ -31,7 +31,7 @@ import WAS_logo from 'img/WAS_logo.svg'
 
 export default [
   {
-    "abbreviation": "ATL",
+    "abbreviation": "atl",
     "city": "Atlanta",
     "name": "Hawks",
     "logo": ATL_logo,
@@ -42,7 +42,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "BOS",
+    "abbreviation": "bos",
     "city": "Boston",
     "name": "Celtics",
     "logo": BOS_logo,
@@ -55,7 +55,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "BRO",
+    "abbreviation": "bro",
     "city": "Brooklyn",
     "name": "Nets",
     "logo": BKN_logo,
@@ -66,7 +66,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "CHA",
+    "abbreviation": "cha",
     "city": "Charlotte",
     "name": "Hornets",
     "logo": CHA_logo,
@@ -77,7 +77,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "CHI",
+    "abbreviation": "chi",
     "city": "Chicago",
     "name": "Bulls",
     "logo": CHI_logo,
@@ -87,7 +87,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "CLE",
+    "abbreviation": "cle",
     "city": "Cleveland",
     "name": "Cavaliers",
     "logo": CLE_logo,
@@ -99,7 +99,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "DAL",
+    "abbreviation": "dal",
     "city": "Dallas",
     "name": "Mavericks",
     "logo": DAL_logo,
@@ -111,7 +111,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "DEN",
+    "abbreviation": "den",
     "city": "Denver",
     "name": "Nuggets",
     "logo": DEN_logo,
@@ -123,7 +123,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "DET",
+    "abbreviation": "det",
     "city": "Detroit",
     "name": "Pistons",
     "logo": DET_logo,
@@ -135,7 +135,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "GSW",
+    "abbreviation": "gsw",
     "city": "Golden State",
     "name": "Warriors",
     "logo": GSW_logo,
@@ -146,7 +146,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "HOU",
+    "abbreviation": "hou",
     "city": "Houston",
     "name": "Rockets",
     "logo": HOU_logo,
@@ -157,7 +157,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "IND",
+    "abbreviation": "ind",
     "city": "Indiana",
     "name": "Pacers",
     "logo": IND_logo,
@@ -168,7 +168,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "LAC",
+    "abbreviation": "lac",
     "city": "Los Angeles",
     "name": "Clippers",
     "logo": LAC_logo,
@@ -180,7 +180,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "LAL",
+    "abbreviation": "lal",
     "city": "Los Angeles",
     "name": "Lakers",
     "logo": LAL_logo,
@@ -191,7 +191,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "MEM",
+    "abbreviation": "mem",
     "city": "Memphis",
     "name": "Grizzlies",
     "logo": MEM_logo,
@@ -203,7 +203,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "MIA",
+    "abbreviation": "mia",
     "city": "Miami",
     "name": "Heat",
     "logo": MIA_logo,
@@ -214,7 +214,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "MIL",
+    "abbreviation": "mil",
     "city": "Milwaukee",
     "name": "Bucks",
     "logo": MIL_logo,
@@ -226,7 +226,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "MIN",
+    "abbreviation": "min",
     "city": "Minnesota",
     "name": "Timberwolves",
     "logo": MIN_logo,
@@ -238,7 +238,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "NOP",
+    "abbreviation": "nop",
     "city": "New Orleans",
     "name": "Pelicans",
     "logo": NOP_logo,
@@ -249,7 +249,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "NYK",
+    "abbreviation": "nyk",
     "city": "New York",
     "name": "Knicks",
     "logo": NYK_logo,
@@ -261,7 +261,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "OKL",
+    "abbreviation": "okl",
     "city": "Oklahoma City",
     "name": "Thunder",
     "logo": OKC_logo,
@@ -273,7 +273,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "ORL",
+    "abbreviation": "orl",
     "city": "Orlando",
     "name": "Magic",
     "logo": ORL_logo,
@@ -284,7 +284,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "PHI",
+    "abbreviation": "phi",
     "city": "Philadelphia",
     "name": "76ers",
     "logo": PHI_logo,
@@ -296,7 +296,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "PHX",
+    "abbreviation": "phx",
     "city": "Phoenix",
     "name": "Suns",
     "logo": PHX_logo,
@@ -311,7 +311,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "POR",
+    "abbreviation": "por",
     "city": "Portland",
     "name": "Trail Blazers",
     "logo": POR_logo,
@@ -321,7 +321,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "SAC",
+    "abbreviation": "sac",
     "city": "Sacramento",
     "name": "Kings",
     "logo": SAC_logo,
@@ -332,7 +332,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "SAS",
+    "abbreviation": "sas",
     "city": "San Antonio",
     "name": "Spurs",
     "logo": SAS_logo,
@@ -342,7 +342,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "TOR",
+    "abbreviation": "tor",
     "city": "Toronto",
     "name": "Raptors",
     "logo": TOR_logo,
@@ -354,7 +354,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "UTA",
+    "abbreviation": "uta",
     "city": "Utah",
     "name": "Jazz",
     "logo": UTA_logo,
@@ -365,7 +365,7 @@ export default [
     ],
   },
   {
-    "abbreviation": "WAS",
+    "abbreviation": "was",
     "city": "Washington",
     "name": "Wizards",
     "logo": WAS_logo,

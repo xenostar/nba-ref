@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Link, useHistory, useParams } from 'react-router-dom'
 import { Page, Table, Form, Label, Select } from 'components'
 import seasons from 'api/seasons'
+import teams from 'api/teams'
 
 const StyledTeam = styled(Page)``
 
@@ -13,38 +14,6 @@ export const TeamsRoster = () => {
   const [values, setValues] = useState({ team: teamNameSlug, season: '2018-2019-regular'})
   const [roster, setRoster] = useState([])
   const [isLoaded, setIsLoaded] = useState(false)
-  const teams = {
-    atl: 'Atlanta Hawks',
-    bos: 'Boston Celtics',
-    bro: 'Brooklyn Nets',
-    chi: 'Chicago Bulls',
-    cle: 'Cleveland Cavaliers',
-    cha: 'Charlotte Hornets',
-    dal: 'Dallas Mavericks',
-    det: 'Detroit Pistons',
-    den: 'Denver Nuggets',
-    gsw: 'Golden State',
-    hou: 'Houston Rockets',
-    ind: 'Indiana Pacers',
-    lac: 'LA Clippers',
-    lal: 'Los Angeles',
-    mem: 'Memphis Grizzlies',
-    mia: 'Miami Heat',
-    mil: 'Milwaukee Bucks',
-    min: 'Minnesota Timberwolves',
-    nop: 'New Orleans',
-    nyk: 'New York',
-    okl: 'Oklhahoma City',
-    orl: 'Orlando Magic',
-    phx: 'Pheonix Suns',
-    phi: 'Philadelphia 76ers',
-    por: 'Portland Trailblazers',
-    sac: 'Sacremento Kings',
-    sas: 'San Antonio',
-    tor: 'Toronto Raptors',
-    uta: 'Utah Jazz',
-    was: 'Washington Wizards',
-  }
   const tableData = {
     '#': '3.125rem',
     'Name': 'auto',
@@ -100,8 +69,8 @@ export const TeamsRoster = () => {
         <div>
           <Label>Team</Label>
           <Select name="team" value={values.team} onChange={handleChange}>
-            {Object.entries(teams).map(([val, teamName]) => (
-              <option key={val} value={val}>{teamName}</option>
+            {teams.map(data => (
+              <option key={data.name} value={data.abbreviation}>{data.city + ' ' + data.name}</option>
             ))}
           </Select>
         </div>
