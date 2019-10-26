@@ -4,8 +4,8 @@ import { NavSub } from 'components'
 
 export const NavSubPlayers = () => (
   <NavSub>
-    <NavLink to="/players/stats/lebron-james" isActive={(_, loc) => (loc.pathname.includes("/stats") ? true : false) }>Stats</NavLink>
-    <NavLink to="/players/charts/lebron-james" isActive={(_, loc) => (loc.pathname.includes("/charts") ? true : false) }>Charts</NavLink>
-    <NavLink to="/players/search" isActive={(_, loc) => (loc.pathname.includes("/search") ? true : false) }>Search</NavLink>
+    <NavLink to="/players/stats" isActive={(_, loc) => loc.pathname.includes("/stats") }>Stats</NavLink>
+    <NavLink to="/players/charts" isActive={(_, loc) => loc.pathname.includes("/charts") }>Charts</NavLink>
+    <NavLink to="/players/search" isActive={(_, loc) => loc.pathname.includes("/search") }>Search</NavLink>
   </NavSub>
 )
