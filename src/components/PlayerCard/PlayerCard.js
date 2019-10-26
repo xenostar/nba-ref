@@ -135,12 +135,8 @@ const PlayerCardGridTable2 = styled(PlayerCardGridTable)`
 `
 
 export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
-  const playerImage = {
-    backgroundImage: `url(${playerInfo.officialImageSrc})`
-  }
-  const teamImage = {
-    backgroundImage: `url(${playerReferences.officialLogoImageSrc})`
-  }
+  const playerImage = { backgroundImage: `url(${playerInfo.officialImageSrc})` }
+  const teamImage = { backgroundImage: `url(${playerReferences.officialLogoImageSrc})` }
   const hasSocial = (playerInfo.socialMediaAccounts !== undefined && playerInfo.socialMediaAccounts.length !== 0)
   return (
     <StyledPlayerCard>
