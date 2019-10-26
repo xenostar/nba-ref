@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
-import { PlayerCard, Table, Form, Label, Select } from 'components'
+import { Page, PlayerCard, Table, Form, Label, Select } from 'components'
 import seasons from 'api/seasons'
 
-const StyledPlayersStats = styled.div`
+const StyledPlayersStats = styled(Page)`
   .grid {
     display: grid;
     grid-gap: 2.5rem;
@@ -76,7 +76,7 @@ export const PlayersStats = () => {
   }, [handleFetch])
 
   return (
-    <StyledPlayersStats className="page">
+    <StyledPlayersStats>
       <Form>
         <div>
           <Label>Season</Label>

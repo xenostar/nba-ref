@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
-import { PlayerCard, Form, Label, Select } from 'components'
+import { Page, PlayerCard, Form, Label, Select } from 'components'
 import seasons from 'api/seasons'
 
 import { RadarChart } from 'react-vis'
 import 'react-vis/dist/style.css'
 
-const StyledPlayersCharts = styled.div`
+const StyledPlayersCharts = styled(Page)`
   .grid {
     display: grid;
     grid-gap: 2.5rem;
@@ -86,7 +86,7 @@ export const PlayersCharts = props => {
   }, [handleFetch])
 
   return (
-    <StyledPlayersCharts className="page">
+    <StyledPlayersCharts>
       <Form>
         <div>
           <Label>Season</Label>

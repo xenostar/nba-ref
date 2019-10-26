@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { Table, Form, Label, Select } from 'components'
+import { Page, Table, Form, Label, Select } from 'components'
 import seasons from 'api/seasons'
 
-const StyledSeasons = styled.div`
+const StyledSeasons = styled(Page)`
   .grid {
     display: grid;
     grid-gap: 2.5rem;
@@ -84,7 +84,7 @@ export const SeasonsLeaders = () => {
   }, [handleFetch])
 
   return (
-    <StyledSeasons className="page">
+    <StyledSeasons>
       <Form>
         <div>
           <Label>Season</Label>

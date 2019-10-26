@@ -1,6 +1,7 @@
 import React, { useState} from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Link } from 'react-router-dom'
+import { Page } from 'components'
 import teams from 'api/teams'
 
 const fadeIn = keyframes`
@@ -8,7 +9,7 @@ const fadeIn = keyframes`
   100% { opacity: 1; }
 `
 
-const StyledHome = styled.div`
+const StyledHome = styled(Page)`
   display: grid;
   grid-gap: 2.5rem;
   grid-template-columns: 1fr 2fr;
@@ -77,7 +78,7 @@ export const Home = () => {
   }
 
   return (
-    <StyledHome className="page content">
+    <StyledHome className="content">
       <div>
         <h1>Welcome</h1>
         <h2>To quite possibly the greatest reference for NBA statistics in the universe.</h2>

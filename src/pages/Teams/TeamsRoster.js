@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { Link, useHistory, useParams } from 'react-router-dom'
-import { Table, Form, Label, Select } from 'components'
+import { Page, Table, Form, Label, Select } from 'components'
 import seasons from 'api/seasons'
 
-const StyledTeam = styled.div``
+const StyledTeam = styled(Page)``
 
 export const TeamsRoster = () => {
   const __API__ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
@@ -95,7 +95,7 @@ export const TeamsRoster = () => {
   }, [teamNameSlug]);
 
   return (
-    <StyledTeam className="page">
+    <StyledTeam>
       <Form>
         <div>
           <Label>Team</Label>

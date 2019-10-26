@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
-import { Table, Form, Label, Select } from 'components'
+import { Page, Table, Form, Label, Select } from 'components'
 import seasons from 'api/seasons'
 
-const StyledStandings = styled.div`
+const StyledStandings = styled(Page)`
   .grid {
     display: grid;
     grid-gap: 2.5rem;
@@ -62,7 +62,7 @@ export const TeamsStandings = () => {
   }, [handleFetch])
 
   return (
-    <StyledStandings className="page">
+    <StyledStandings>
       <Form>
         <div>
           <Label>Season</Label>
