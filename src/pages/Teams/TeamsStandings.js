@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 import { Table, Form, Label, Select } from 'components'
 import seasons from 'api/seasons'
 
@@ -20,7 +20,9 @@ const StyledStandings = styled.div`
 
 export const TeamsStandings = () => {
   const _API_ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
-  const [values, setValues] = useState({ season: seasons[0].value })
+  const history = useHistory()
+  const {seasonSlug} = useParams()
+  const [values, setValues] = useState({ season: seasonSlug })
   const [standings, setStandings] = useState({ eastern: [], western: [] })
   const [isLoaded, setIsLoaded] = useState(false)
   const tableData = {
@@ -33,6 +35,9 @@ export const TeamsStandings = () => {
     setValues(prevState => {
       return { ...prevState, [name]: value }
     })
+    if (name === "season") {
+      history.push(value)
+    }
   }
 
   const handleFetch = useCallback(() => {
@@ -65,6 +70,12 @@ export const TeamsStandings = () => {
   useEffect(() => {
     handleFetch()
   }, [handleFetch])
+
+  useEffect(() => {
+    setValues(prevState => {
+      return { ...prevState, team: seasonSlug }
+    })
+  }, [seasonSlug])
 
   return (
     <StyledStandings>

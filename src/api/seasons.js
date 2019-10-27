@@ -5,7 +5,7 @@ export default [
   },
   {
     "name": "2019 Playoff",
-    "value": "2019-Playoff",
+    "value": "2019-playoff",
   },
   {
     "name": "2018-2019 Regular",
@@ -13,7 +13,7 @@ export default [
   },
   {
     "name": "2018 Playoff",
-    "value": "2018-Playoff",
+    "value": "2018-playoff",
   },
   {
     "name": "2017-2018 Regular",
@@ -21,7 +21,7 @@ export default [
   },
   {
     "name": "2017 Playoff",
-    "value": "2017-Playoff",
+    "value": "2017-playoff",
   },
   {
     "name": "2016-2017 Regular",
@@ -29,7 +29,7 @@ export default [
   },
   {
     "name": "2016 Playoff",
-    "value": "2016-Playoff",
+    "value": "2016-playoff",
   },
   {
     "name": "2015-2016 Regular",

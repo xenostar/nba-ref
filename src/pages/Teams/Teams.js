@@ -13,7 +13,7 @@ export const Teams = () => {
     <StyledTeam>
       <NavSubTeams />
       <Switch>
-        <Route path={`${match.path}/standings`} component={TeamsStandings} />
+        <Route path={`${match.path}/standings/:seasonSlug`} component={TeamsStandings} />
         <Route path={`${match.path}/roster/:teamNameSlug`} component={TeamsRoster} />
         <Route path="*" component={NoMatch} />
       </Switch>

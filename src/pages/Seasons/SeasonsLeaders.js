@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 import { Table, Form, Label, Select } from 'components'
 import seasons from 'api/seasons'
 
@@ -25,7 +25,9 @@ const StyledSeasons = styled.div`
 
 export const SeasonsLeaders = () => {
   const _API_ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
-  const [values, setValues] = useState({ season: seasons[0].value })
+  const history = useHistory()
+  const {seasonSlug} = useParams()
+  const [values, setValues] = useState({ season: seasonSlug })
   const [leaders, setLeaders] = useState({ points: [], assists: [], rebounds: [] })
   const [isLoaded, setIsLoaded] = useState({ isLoadedPts: false, isLoadedAst: false, isLoadedReb: false })
   const tableDataPts = {
@@ -48,6 +50,9 @@ export const SeasonsLeaders = () => {
     setValues(prevState => {
       return { ...prevState, [name]: value }
     })
+    if (name === "season") {
+      history.push(value)
+    }
   }
 
   const handleFetch = useCallback((url, stateValue, loadValue) => {
@@ -82,6 +87,12 @@ export const SeasonsLeaders = () => {
     handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'assists', 'isLoadedAst')
     handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'rebounds', 'isLoadedReb')
   }, [handleFetch])
+
+  useEffect(() => {
+    setValues(prevState => {
+      return { ...prevState, team: seasonSlug }
+    })
+  }, [seasonSlug])
 
   return (
     <StyledSeasons>

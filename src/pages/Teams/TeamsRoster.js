@@ -61,7 +61,7 @@ export const TeamsRoster = () => {
     setValues(prevState => {
       return { ...prevState, team: teamNameSlug }
     })
-  }, [teamNameSlug]);
+  }, [teamNameSlug])
 
   return (
     <StyledTeam>
