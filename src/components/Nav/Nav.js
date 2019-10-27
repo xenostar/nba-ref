@@ -27,7 +27,7 @@ export const Nav = styled.nav`
     line-height: 3.4375rem;
     text-align: center;
     text-transform: uppercase;
-    transition: all 0.4s ease;
+    transition: all 0.4s;
     padding: 0 1.25rem;
     user-select: none;
   }

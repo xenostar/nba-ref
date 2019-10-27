@@ -1,13 +1,8 @@
 import React, { useState} from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Page } from 'components'
 import teams from 'api/teams'
-
-const fadeIn = keyframes`
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-`
 
 const StyledHome = styled(Page)`
   display: grid;
@@ -38,7 +33,7 @@ const StyledHome = styled(Page)`
     overflow: hidden;
     padding-top: 75%;
     position: relative;
-    transition: all 0.2s;
+    transition: transform 0.2s;
   }
   .img-wrapper:hover {
     box-shadow: 0 2px 5px rgba(0,0,0,0.25);
@@ -52,13 +47,11 @@ const StyledHome = styled(Page)`
     object-fit: contain;
     opacity: 0;
     transform: scale(1) translateZ(0);
-    /* transition: opacity 1s; */
+    transition: opacity 1s;
     width: 100%;
   }
   .img-wrapper.loaded img {
-    /* opacity: 1; */
-    animation: ${fadeIn} 1s;
-    animation-fill-mode: both;
+    opacity: 1;
   }
 
   h1 {
@@ -87,9 +80,7 @@ export const Home = () => {
         <div className="team-grid">
           {teams.map(data => {
             const urlTeamAbbreviation = data.abbreviation
-            const teamColor = {
-              backgroundColor: data.colors[0],
-            }
+            const teamColor = { backgroundColor: data.colors[0] }
             return (
               <Link to={'/teams/roster/' + urlTeamAbbreviation} key={data.name} className={isLoaded[data.name] ? 'img-wrapper loaded' : 'img-wrapper'} style={teamColor}>
                 <img src={data.logo} alt={data.city + ' ' + data.name} onLoad={() => handleImgLoad(data.name)} />

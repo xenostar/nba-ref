@@ -14,7 +14,7 @@ export const NavSub = styled.nav`
     line-height: 40px;
     text-align: center;
     text-transform: uppercase;
-    transition: all 0.4s ease;
+    transition: all 0.4s;
     padding: 0 1.25rem;
     user-select: none;
   }
