@@ -26,7 +26,7 @@ const StyledSeasons = styled(Page)`
 export const SeasonsLeaders = () => {
   const _API_ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
   const [values, setValues] = useState({ season: seasons[0].value })
-  const [stats, setStats] = useState({ points: [], assists: [], rebounds: [] })
+  const [leaders, setLeaders] = useState({ points: [], assists: [], rebounds: [] })
   const [isLoaded, setIsLoaded] = useState({ isLoadedPts: false, isLoadedAst: false, isLoadedReb: false })
   const tableDataPts = {
     'Pts': '3.75rem',
@@ -65,7 +65,7 @@ export const SeasonsLeaders = () => {
       return response.json()
     })
     .then(data => {
-      setStats(prevState => {
+      setLeaders(prevState => {
         return { ...prevState, [stateValue]: data.cumulativeplayerstats.playerstatsentry }
       })
       setIsLoaded(prevState => {
@@ -97,7 +97,7 @@ export const SeasonsLeaders = () => {
       </Form>
       <div className="grid">
         <Table tableTitle="Points Scored" tableData={tableDataPts} loaderHeight="10" isLoaded={isLoaded.isLoadedPts}>
-          {stats.points.map((player, index) => {
+          {leaders.points.map((player, index) => {
             const urlFirstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
             const urlLasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
             return (
@@ -110,7 +110,7 @@ export const SeasonsLeaders = () => {
           })}
         </Table>
         <Table tableTitle="Assists" tableData={tableDataAst} loaderHeight="10" isLoaded={isLoaded.isLoadedAst}>
-          {stats.assists.map((player, index) => {
+          {leaders.assists.map((player, index) => {
             const urlFirstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
             const urlLasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
             return (
@@ -123,7 +123,7 @@ export const SeasonsLeaders = () => {
           })}
         </Table>
         <Table tableTitle="Rebounds" tableData={tableDataReb} loaderHeight="10" isLoaded={isLoaded.isLoadedReb}>
-          {stats.rebounds.map((player, index) => {
+          {leaders.rebounds.map((player, index) => {
             const urlFirstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
             const urlLasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
             return (
