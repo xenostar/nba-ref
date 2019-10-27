@@ -8,6 +8,7 @@ const StyledHome = styled(Page)`
   display: grid;
   grid-gap: 2.5rem;
   grid-template-columns: 1fr 2fr;
+  margin-top: 2.5rem;
   @media only screen and (max-width: 62.5rem) {
     grid-template-columns: 1fr;
   }

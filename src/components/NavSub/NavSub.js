@@ -4,6 +4,7 @@ export const NavSub = styled.nav`
   background-color: rgba(237, 84, 41, 1);
   border-radius: 0 0 3px 3px;
   display: flex;
+  margin-bottom: 2.5rem;
   overflow: hidden;
 
   a {

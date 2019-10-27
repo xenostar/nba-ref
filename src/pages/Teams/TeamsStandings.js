@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
-import { Page, Table, Form, Label, Select } from 'components'
+import { Link } from 'react-router-dom'
+import { Table, Form, Label, Select } from 'components'
 import seasons from 'api/seasons'
 
-const StyledStandings = styled(Page)`
+const StyledStandings = styled.div`
   .grid {
     display: grid;
     grid-gap: 2.5rem;
@@ -79,20 +80,20 @@ export const TeamsStandings = () => {
       </Form>
       <div className="grid">
         <Table tableTitle="Western Standings" tableData={tableData} loaderHeight="15" isLoaded={isLoaded}>
-          {isLoaded && standings.western.map((team, index) => (
-            <tr key={index}>
-              <td>{team.rank}</td>
-              <td>{team.stats.Wins['#text']}</td>
-              <td>{team.team.City} {team.team.Name}</td>
+          {isLoaded && standings.western.map(data => (
+            <tr key={data.team.Name}>
+              <td>{data.rank}</td>
+              <td>{data.stats.Wins['#text']}</td>
+              <td><Link to={'/teams/roster/' + data.team.Abbreviation.toLowerCase()}>{data.team.City} {data.team.Name}</Link></td>
             </tr>
           ))}
         </Table>
         <Table tableTitle="Eastern Standings" tableData={tableData} loaderHeight="15" isLoaded={isLoaded}>
-          {isLoaded && standings.eastern.map((team, index) => (
-            <tr key={index}>
-              <td>{team.rank}</td>
-              <td>{team.stats.Wins['#text']}</td>
-              <td>{team.team.City} {team.team.Name}</td>
+          {isLoaded && standings.eastern.map(data => (
+            <tr key={data.team.Name}>
+              <td>{data.rank}</td>
+              <td>{data.stats.Wins['#text']}</td>
+              <td><Link to={'/teams/roster/' + data.team.Abbreviation.toLowerCase()}>{data.team.City} {data.team.Name}</Link></td>
             </tr>
           ))}
         </Table>

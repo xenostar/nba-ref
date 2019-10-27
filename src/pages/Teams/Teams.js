@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
-import { NavSubTeams } from 'components'
+import { Page, NavSubTeams } from 'components'
 import { TeamsRoster, TeamsStandings, NoMatch } from 'pages'
 
-const StyledTeam = styled.div``
+const StyledTeam = styled(Page)``
 
 export const Teams = () => {
   const match = useRouteMatch()

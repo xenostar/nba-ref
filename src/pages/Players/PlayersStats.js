@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
-import { Page, PlayerCard, Table, Form, Label, Select } from 'components'
+import { PlayerCard, Table, Form, Label, Select } from 'components'
 import seasons from 'api/seasons'
 
-const StyledPlayersStats = styled(Page)`
+const StyledPlayersStats = styled.div`
   .grid {
     display: grid;
     grid-gap: 2.5rem;

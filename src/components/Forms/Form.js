@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const Form = styled.form`
   margin-bottom: 2.5rem;
   overflow: hidden;
+
   div {
     display: flex;
     float: left;

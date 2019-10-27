@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { Page, Table, Form, Label, Select } from 'components'
+import { Table, Form, Label, Select } from 'components'
 import seasons from 'api/seasons'
 
-const StyledSeasons = styled(Page)`
+const StyledSeasons = styled.div`
   .grid {
     display: grid;
     grid-gap: 2.5rem;

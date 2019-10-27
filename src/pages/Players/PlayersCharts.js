@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
-import { Page, PlayerCard, Form, Label, Select } from 'components'
+import { PlayerCard, Form, Label, Select } from 'components'
 import seasons from 'api/seasons'
 
 import { RadarChart } from 'react-vis'
 import 'react-vis/dist/style.css'
 
-const StyledPlayersCharts = styled(Page)`
+const StyledPlayersCharts = styled.div`
   .grid {
     display: grid;
     grid-gap: 2.5rem;

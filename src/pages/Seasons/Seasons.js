@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
-import { NavSubSeasons } from 'components'
+import { Page, NavSubSeasons } from 'components'
 import { SeasonsLeaders, NoMatch } from 'pages'
 
-const StyledSeasons = styled.div``
+const StyledSeasons = styled(Page)``
 
 export const Seasons = () => {
   const match = useRouteMatch()
