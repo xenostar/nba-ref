@@ -6,6 +6,16 @@ export const NavSub = styled.nav`
   display: flex;
   margin-bottom: 2.5rem;
   overflow: hidden;
+  @media only screen and (max-width: 62.5rem) {
+    border-radius: 0;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+    margin: 0;
+    position: fixed;
+    right: 0;
+    bottom: 3.4375rem;
+    left: 0;
+    z-index: 900;
+  }
 
   a {
     color: #fff;
@@ -33,5 +43,12 @@ export const NavSub = styled.nav`
   a:-moz-focusring {
     border: 0;
     outline: 0;
+  }
+  @media only screen and (max-width: 62.5rem) {
+    a {
+      flex-basis: 0;
+      flex-grow: 1;
+      padding: 0;
+    }
   }
 `
