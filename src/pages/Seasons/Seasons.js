@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import { Page, NavSubSeasons } from 'components'
 import { SeasonsLeaders, NoMatch } from 'pages'
-import seasons from 'api/seasons'
 
 const StyledSeasons = styled(Page)``
 
