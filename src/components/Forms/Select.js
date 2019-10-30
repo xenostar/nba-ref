@@ -6,7 +6,7 @@ export const Select = styled.select`
   border-radius: 0 3px 3px 0;
   color: #444;
   cursor: pointer;
-  font-size: 1.125em;
+  font-size: 1em;
   height: 2.5rem;
   padding: 0 10px;
   user-select: none;
