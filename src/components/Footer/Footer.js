@@ -18,6 +18,6 @@ const StyledFooter = styled.footer`
 
 export const Footer = () => (
   <StyledFooter>
-    <p>Built with <FontAwesomeIcon icon={faHeart} />.</p>
+    <p>Built with <FontAwesomeIcon icon={faHeart} /> by <a href="https://github.com/xenostar" target="_blank" rel="nofollow noreferrer noopener">Xenostar</a>.</p>
   </StyledFooter>
 )

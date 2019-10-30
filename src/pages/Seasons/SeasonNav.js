@@ -3,7 +3,7 @@ import { NavLink, useRouteMatch } from 'react-router-dom'
 import { NavSub } from 'components'
 import seasons from 'api/seasons'
 
-export const NavSubSeasons = () => {
+export const SeasonNav = () => {
   const match = useRouteMatch()
 
   return (

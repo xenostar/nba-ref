@@ -3,7 +3,7 @@ import { NavLink, useRouteMatch } from 'react-router-dom'
 import { NavSub } from 'components'
 import teams from 'api/teams'
 
-export const NavSubTeams = () => {
+export const TeamNav = () => {
   const match = useRouteMatch()
 
   return (

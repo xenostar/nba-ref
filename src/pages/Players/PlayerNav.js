@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink, useRouteMatch } from 'react-router-dom'
 import { NavSub } from 'components'
 
-export const NavSubPlayers = () => {
+export const PlayerNav = () => {
   const match = useRouteMatch()
 
   return (
