@@ -3,7 +3,9 @@ import styled from 'styled-components'
 export const Page = styled.div`
   clear: both;
   margin-bottom: 5rem;
-  /* padding-top: 2.5rem; */
+  @media only screen and (max-width: 62.5rem) {
+    margin-top: 2.5rem;
+  }
 
   p a,
   table a {

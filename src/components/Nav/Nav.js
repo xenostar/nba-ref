@@ -12,6 +12,7 @@ export const Nav = styled.nav`
     border-radius: 0;
     box-shadow: 0 3px 10px rgba(0,0,0,0.5);
     margin-top: 0;
+    margin-bottom: 0;
     position: fixed;
     right: 0;
     bottom: 0;
