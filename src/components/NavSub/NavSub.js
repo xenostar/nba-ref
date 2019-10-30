@@ -2,9 +2,11 @@ import styled from 'styled-components'
 
 export const NavSub = styled.nav`
   background-color: rgba(237, 84, 41, 1);
-  border-radius: 0 0 3px 3px;
+  border-radius: 3px;
   display: flex;
+  float: left;
   margin-bottom: 2.5rem;
+  margin-right: 1.25rem;
   overflow: hidden;
   @media only screen and (max-width: 62.5rem) {
     border-radius: 0;

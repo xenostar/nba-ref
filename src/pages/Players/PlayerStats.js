@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { PlayerCard, Table, Form, Label, Select } from 'components'
 import seasons from 'api/seasons'
 
-const StyledPlayersStats = styled.div`
+const StyledPlayerStats = styled.div`
   .grid {
     display: grid;
     grid-gap: 2.5rem;
@@ -23,7 +23,7 @@ const StyledPlayersStats = styled.div`
   }
 `
 
-export const PlayersStats = () => {
+export const PlayerStats = () => {
   const _API_ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
   const {playerNameSlug} = useParams()
   const [values, setValues] = useState({ season: seasons[0].value })
@@ -76,7 +76,7 @@ export const PlayersStats = () => {
   }, [handleFetch])
 
   return (
-    <StyledPlayersStats>
+    <StyledPlayerStats>
       <Form>
         <div>
           <Label>Season</Label>
@@ -138,6 +138,6 @@ export const PlayersStats = () => {
           ))}
         </Table>
       </div>
-    </StyledPlayersStats>
+    </StyledPlayerStats>
   )
 }

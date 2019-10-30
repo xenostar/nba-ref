@@ -9,7 +9,6 @@ export const NavSubPlayers = () => {
     <NavSub>
       <NavLink to={`${match.url}/stats`} isActive={(_, loc) => loc.pathname.includes('/stats')}>Stats</NavLink>
       <NavLink to={`${match.url}/charts`} isActive={(_, loc) => loc.pathname.includes('/charts')}>Charts</NavLink>
-      <NavLink to={`${match.url}/search`} isActive={(_, loc) => loc.pathname.includes('/search')}>Search</NavLink>
     </NavSub>
   )
 }

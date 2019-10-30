@@ -7,7 +7,7 @@ import seasons from 'api/seasons'
 import { RadarChart } from 'react-vis'
 import 'react-vis/dist/style.css'
 
-const StyledPlayersCharts = styled.div`
+const StyledPlayerCharts = styled.div`
   .grid {
     display: grid;
     grid-gap: 2.5rem;
@@ -26,7 +26,7 @@ const StyledPlayersCharts = styled.div`
   }
 `
 
-export const PlayersCharts = () => {
+export const PlayerCharts = () => {
   const _API_ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
   const {playerNameSlug} = useParams()
   const [values, setValues] = useState({ season: seasons[0].value })
@@ -87,7 +87,7 @@ export const PlayersCharts = () => {
   }, [handleFetch])
 
   return (
-    <StyledPlayersCharts>
+    <StyledPlayerCharts>
       <Form>
         <div>
           <Label>Season</Label>
@@ -123,6 +123,6 @@ export const PlayersCharts = () => {
         />
       </div>
       <PlayerCard playerInfo={playerInfo} playerReferences={playerReferences} isLoaded={isLoaded} />
-    </StyledPlayersCharts>
+    </StyledPlayerCharts>
   )
 }

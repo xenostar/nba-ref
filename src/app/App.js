@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Header, NavMain, Footer, ScrollToTop } from 'components'
-import { Home, Seasons, Teams, Players, NoMatch } from 'pages'
+import { Home, Season, Team, Player, NoMatch } from 'pages'
 import './_Normalize.css'
 import './_Reset.css'
 import './_Global.css'
@@ -29,9 +29,9 @@ const App = () => (
       <NavMain />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/seasons" component={Seasons} />
-        <Route path="/teams" component={Teams} />
-        <Route path="/players" component={Players} />
+        <Route path="/seasons" component={Season} />
+        <Route path="/teams" component={Team} />
+        <Route path="/players" component={Player} />
         <Route path="*" component={NoMatch} />
       </Switch>
       <Footer />

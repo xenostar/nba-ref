@@ -4,7 +4,7 @@ import { Link, useHistory, useParams } from 'react-router-dom'
 import { Table, Form, Label, Select } from 'components'
 import seasons from 'api/seasons'
 
-const StyledSeasons = styled.div`
+const StyledSeasonLeaders = styled.div`
   .grid {
     display: grid;
     grid-gap: 2.5rem;
@@ -23,7 +23,7 @@ const StyledSeasons = styled.div`
   }
 `
 
-export const SeasonsLeaders = () => {
+export const SeasonLeaders = () => {
   const _API_ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
   const history = useHistory()
   const {seasonSlug} = useParams()
@@ -95,7 +95,7 @@ export const SeasonsLeaders = () => {
   }, [seasonSlug])
 
   return (
-    <StyledSeasons>
+    <StyledSeasonLeaders>
       <Form>
         <div>
           <Label>Season</Label>
@@ -147,6 +147,6 @@ export const SeasonsLeaders = () => {
           })}
         </Table>
       </div>
-    </StyledSeasons>
+    </StyledSeasonLeaders>
   )
 }

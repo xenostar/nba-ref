@@ -5,9 +5,9 @@ import { Table, Form, Label, Select } from 'components'
 import seasons from 'api/seasons'
 import teams from 'api/teams'
 
-const StyledTeam = styled.div``
+const StyledTeamRoster = styled.div``
 
-export const TeamsRoster = () => {
+export const TeamRoster = () => {
   const _API_ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
   const history = useHistory()
   const {teamNameSlug} = useParams()
@@ -64,7 +64,7 @@ export const TeamsRoster = () => {
   }, [teamNameSlug])
 
   return (
-    <StyledTeam>
+    <StyledTeamRoster>
       <Form>
         <div>
           <Label>Team</Label>
@@ -99,6 +99,6 @@ export const TeamsRoster = () => {
           )
         })}
       </Table>
-    </StyledTeam>
+    </StyledTeamRoster>
   )
 }
