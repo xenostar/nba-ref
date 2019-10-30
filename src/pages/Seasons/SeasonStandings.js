@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { Link, useHistory, useParams } from 'react-router-dom'
-import { Table, Form, Label, Select } from 'components'
+import { Table, Form, Select } from 'components'
 import seasons from 'api/seasons'
 
 const StyledSeasonStandings = styled.div`
@@ -80,14 +80,11 @@ export const SeasonStandings = () => {
   return (
     <StyledSeasonStandings>
       <Form>
-        <div>
-          <Label>Season</Label>
-          <Select name="season" value={values.season} onChange={handleChange}>
+        <Select label="Season" name="season" value={values.season} onChange={handleChange}>
           {seasons.map(({name, value}) => (
-              <option key={value} value={value}>{name}</option>
-            ))}
-          </Select>
-        </div>
+            <option key={value} value={value}>{name}</option>
+          ))}
+        </Select>
       </Form>
       <div className="grid">
         <Table tableTitle="Western Standings" tableData={tableData} loaderHeight="15" isLoaded={isLoaded}>

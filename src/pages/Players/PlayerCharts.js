@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
-import { PlayerCard, Form, Label, Select } from 'components'
+import { PlayerCard, Form, Select } from 'components'
 import seasons from 'api/seasons'
 
 import { RadarChart } from 'react-vis'
@@ -89,14 +89,11 @@ export const PlayerCharts = () => {
   return (
     <StyledPlayerCharts>
       <Form>
-        <div>
-          <Label>Season</Label>
-          <Select name="season" value={values.season} onChange={handleChange}>
-            {seasons.map(({name, value}) => (
-              <option key={value} value={value}>{name}</option>
-            ))}
-          </Select>
-        </div>
+        <Select label="Season" name="season" value={values.season} onChange={handleChange}>
+          {seasons.map(({name, value}) => (
+            <option key={value} value={value}>{name}</option>
+          ))}
+        </Select>
       </Form>
       <div className="powerGrid">
         <RadarChart

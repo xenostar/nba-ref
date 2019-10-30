@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
-import { PlayerCard, Table, Form, Label, Select } from 'components'
+import { PlayerCard, Table, Form, Select } from 'components'
 import seasons from 'api/seasons'
 
 const StyledPlayerStats = styled.div`
@@ -78,14 +78,11 @@ export const PlayerStats = () => {
   return (
     <StyledPlayerStats>
       <Form>
-        <div>
-          <Label>Season</Label>
-          <Select name="season" value={values.season} onChange={handleChange}>
-            {seasons.map(({name, value}) => (
-              <option key={value} value={value}>{name}</option>
-            ))}
-          </Select>
-        </div>
+        <Select label="Season" name="season" value={values.season} onChange={handleChange}>
+          {seasons.map(({name, value}) => (
+            <option key={value} value={value}>{name}</option>
+          ))}
+        </Select>
       </Form>
       <PlayerCard playerInfo={playerInfo} playerReferences={playerReferences} isLoaded={isLoaded} />
       <div className="grid">

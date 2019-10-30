@@ -1,6 +1,8 @@
+import React from 'react'
 import styled from 'styled-components'
+import { Label } from 'components'
 
-export const Select = styled.select`
+const StyledSelect = styled.select`
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 0 3px 3px 0;
@@ -31,3 +33,12 @@ export const Select = styled.select`
     opacity: 0;
   }
 `
+
+export const Select = props => (
+  <div>
+    <Label>{props.label}</Label>
+    <StyledSelect>
+      {props.children}
+    </StyledSelect>
+  </div>
+)

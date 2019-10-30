@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { Link, useHistory, useParams } from 'react-router-dom'
-import { Table, Form, Label, Select } from 'components'
+import { Table, Form, Select } from 'components'
 import seasons from 'api/seasons'
 
 const StyledSeasonLeaders = styled.div`
@@ -45,6 +45,8 @@ export const SeasonLeaders = () => {
     'Posn': '10%',
     'Name': 'auto',
   }
+
+  const formatPlayerName = (name) => name.toLowerCase().replace(/[^a-zA-Z]/g, "")
 
   const handleChange = ({ target: { name, value } }) => {
     setValues(prevState => {
@@ -97,20 +99,17 @@ export const SeasonLeaders = () => {
   return (
     <StyledSeasonLeaders>
       <Form>
-        <div>
-          <Label>Season</Label>
-          <Select name="season" value={values.season} onChange={handleChange}>
-            {seasons.map(({name, value}) => (
-              <option key={value} value={value}>{name}</option>
-            ))}
-          </Select>
-        </div>
+        <Select label="Season" name="season" value={values.season} onChange={handleChange}>
+          {seasons.map(({name, value}) => (
+            <option key={value} value={value}>{name}</option>
+          ))}
+        </Select>
       </Form>
       <div className="grid">
         <Table tableTitle="Points Scored" tableData={tableDataPts} loaderHeight="10" isLoaded={isLoaded.isLoadedPts}>
           {leaders.points.map((player, index) => {
-            const urlFirstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
-            const urlLasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+            const urlFirstName = formatPlayerName(player.player.FirstName)
+            const urlLasttName = formatPlayerName(player.player.LastName)
             return (
               <tr key={index}>
                 <td>{player.stats['Pts']['#text']}</td>
@@ -122,8 +121,8 @@ export const SeasonLeaders = () => {
         </Table>
         <Table tableTitle="Assists" tableData={tableDataAst} loaderHeight="10" isLoaded={isLoaded.isLoadedAst}>
           {leaders.assists.map((player, index) => {
-            const urlFirstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
-            const urlLasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+            const urlFirstName = formatPlayerName(player.player.FirstName)
+            const urlLasttName = formatPlayerName(player.player.LastName)
             return (
               <tr key={index}>
                 <td>{player.stats['Ast']['#text']}</td>
@@ -135,8 +134,8 @@ export const SeasonLeaders = () => {
         </Table>
         <Table tableTitle="Rebounds" tableData={tableDataReb} loaderHeight="10" isLoaded={isLoaded.isLoadedReb}>
           {leaders.rebounds.map((player, index) => {
-            const urlFirstName = player.player.FirstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
-            const urlLasttName = player.player.LastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+            const urlFirstName = formatPlayerName(player.player.FirstName)
+            const urlLasttName = formatPlayerName(player.player.LastName)
             return (
               <tr key={index}>
                 <td>{player.stats['Reb']['#text']}</td>

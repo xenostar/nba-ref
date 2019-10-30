@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { Link, useHistory, useParams } from 'react-router-dom'
-import { Table, Form, Label, Select } from 'components'
+import { Table, Form, Select } from 'components'
 import seasons from 'api/seasons'
 import teams from 'api/teams'
 
@@ -22,6 +22,8 @@ export const TeamRoster = () => {
     'Height': '10%',
     'Weight': '10%',
   }
+
+  const formatPlayerName = (name) => name.toLowerCase().replace(/[^a-zA-Z]/g, "")
 
   const handleChange = ({ target: { name, value } }) => {
     setValues(prevState => {
@@ -66,27 +68,21 @@ export const TeamRoster = () => {
   return (
     <StyledTeamRoster>
       <Form>
-        <div>
-          <Label>Team</Label>
-          <Select name="team" value={values.team} onChange={handleChange}>
-            {teams.map(data => (
-              <option key={data.name} value={data.abbreviation}>{data.city + ' ' + data.name}</option>
-            ))}
-          </Select>
-        </div>
-        <div>
-          <Label>Season</Label>
-          <Select name="season" value={values.season} onChange={handleChange}>
-            {seasons.map(({name, value}) => (
-              <option key={value} value={value}>{name}</option>
-            ))}
-          </Select>
-        </div>
+        <Select label="Team" name="team" value={values.team} onChange={handleChange}>
+          {teams.map(data => (
+            <option key={data.name} value={data.abbreviation}>{data.city + ' ' + data.name}</option>
+          ))}
+        </Select>
+        <Select label="Season" name="season" value={values.season} onChange={handleChange}>
+          {seasons.map(({name, value}) => (
+            <option key={value} value={value}>{name}</option>
+          ))}
+        </Select>
       </Form>
       <Table tableTitle="Team Roster" tableData={tableData} isLoaded={isLoaded}>
         {isLoaded && roster.map(({ player }, index) => {
-          const urlFirstName = player.firstName.toLowerCase().replace(/[^a-zA-Z]/g, "")
-          const urlLasttName = player.lastName.toLowerCase().replace(/[^a-zA-Z]/g, "")
+          const urlFirstName = formatPlayerName(player.firstName)
+          const urlLasttName = formatPlayerName(player.lastName)
           return (
             <tr key={index}>
               <td>{player.jerseyNumber}</td>
