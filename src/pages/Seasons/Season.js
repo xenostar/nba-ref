@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Route, Switch, NavLink, useRouteMatch, useHistory, useParams } from 'react-router-dom'
+import { Route, Switch, NavLink, useHistory, useParams } from 'react-router-dom'
 import { Page, NavSub, Form, Select } from 'components'
 import { SeasonLeaders, SeasonStandings, NoMatch } from 'pages'
 import seasons from 'api/seasons'
@@ -8,7 +8,6 @@ import seasons from 'api/seasons'
 const StyledSeasons = styled(Page)``
 
 export const Season = () => {
-  const match = useRouteMatch()
   const history = useHistory()
   const {seasonSlug} = useParams()
   const [values, setValues] = useState({ season: seasonSlug })
@@ -40,8 +39,6 @@ export const Season = () => {
         </Select>
       </Form>
       <Switch>
-        {/* <Route path={`${match.path}/leaders`} render={props => <SeasonLeaders {...props} values={values} />} />
-        <Route path={`${match.path}/standings`} render={props => <SeasonStandings {...props} values={values} />} /> */}
         <Route path={`/seasons/leaders`} render={props => <SeasonLeaders {...props} values={values} />} />
         <Route path={`/seasons/standings`} render={props => <SeasonStandings {...props} values={values} />} />
         <Route path="*" component={NoMatch} />
