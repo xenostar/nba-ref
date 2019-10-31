@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Route, Switch, useRouteMatch, useHistory, useParams } from 'react-router-dom'
-import { Page, Form, Select } from 'components'
-import { SeasonNav, SeasonLeaders, SeasonStandings, NoMatch } from 'pages'
+import { Route, Switch, NavLink, useRouteMatch, useHistory, useParams } from 'react-router-dom'
+import { Page, NavSub, Form, Select } from 'components'
+import { SeasonLeaders, SeasonStandings, NoMatch } from 'pages'
 import seasons from 'api/seasons'
 
 const StyledSeasons = styled(Page)``
@@ -31,7 +31,10 @@ export const Season = () => {
   return (
     <StyledSeasons>
       <Form>
-        <SeasonNav />
+        <NavSub>
+          <NavLink to={`/seasons/leaders/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/leaders')}>Leaders</NavLink>
+          <NavLink to={`/seasons/standings/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/standings')}>Standings</NavLink>
+        </NavSub>
         <Select label="Season" name="season" value={values.season} onChange={handleChange}>
           {seasons.map(({name, value}) => (
             <option key={value} value={value}>{name}</option>

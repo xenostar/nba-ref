@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Route, Switch, useRouteMatch, useHistory, useParams } from 'react-router-dom'
-import { Page, Form, Select } from 'components'
-import { PlayerNav, PlayerCharts, PlayerStats, NoMatch } from 'pages'
+import { Route, Switch, NavLink, useRouteMatch, useHistory, useParams } from 'react-router-dom'
+import { Page, NavSub, Form, Select } from 'components'
+import { PlayerCharts, PlayerStats, NoMatch } from 'pages'
 import seasons from 'api/seasons'
 
 const StyledPlayers = styled(Page)``
@@ -19,7 +19,6 @@ export const Player = () => {
       return { ...prevState, [name]: value }
     })
     if (name === "season") {
-      console.log(value)
       history.push(value)
     }
   }
@@ -33,7 +32,10 @@ export const Player = () => {
   return (
     <StyledPlayers>
       <Form>
-        <PlayerNav />
+        <NavSub>
+          <NavLink to={`/players/stats/${playerSlug}/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/stats')}>Stats</NavLink>
+          <NavLink to={`/players/charts/${playerSlug}/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/charts')}>Charts</NavLink>
+        </NavSub>
         <Select label="Season" name="season" value={values.season} onChange={handleChange}>
           {seasons.map(({name, value}) => (
             <option key={value} value={value}>{name}</option>
