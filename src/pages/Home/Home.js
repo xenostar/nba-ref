@@ -2,6 +2,7 @@ import React, { useState} from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Page } from 'components'
+import seasons from 'api/seasons'
 import teams from 'api/teams'
 
 const StyledHome = styled(Page)`
@@ -82,7 +83,7 @@ export const Home = () => {
             const urlTeamAbbreviation = data.abbreviation
             const teamColor = { backgroundColor: data.colors[0] }
             return (
-              <Link to={'/teams/roster/' + urlTeamAbbreviation} key={data.name} className={isLoaded[data.name] ? 'img-wrapper loaded' : 'img-wrapper'} style={teamColor}>
+              <Link to={'/teams/roster/' + urlTeamAbbreviation + '/' + seasons[0].value} key={data.name} className={isLoaded[data.name] ? 'img-wrapper loaded' : 'img-wrapper'} style={teamColor}>
                 <img src={data.logo} alt={data.city + ' ' + data.name} onLoad={() => handleImgLoad(data.name)} />
               </Link>
             )

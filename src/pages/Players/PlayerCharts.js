@@ -76,7 +76,7 @@ export const PlayerCharts = props => {
   return (
     <StyledPlayerCharts>
       <div className="powerGrid">
-        {isLoaded && <RadarChart
+        <RadarChart
           data={powerGridData}
           domains={powerGridDomains}
           width={400}
@@ -97,7 +97,7 @@ export const PlayerCharts = props => {
               fill: "#ED5429"
             }
           }}
-        />}
+        />
       </div>
       <PlayerCard playerInfo={playerInfo} playerReferences={playerReferences} isLoaded={isLoaded} />
     </StyledPlayerCharts>

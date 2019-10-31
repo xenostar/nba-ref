@@ -11,30 +11,36 @@ const StyledTeam = styled(Page)``
 export const Team = () => {
   const match = useRouteMatch()
   const history = useHistory()
+  const {seasonSlug} = useParams()
   const {teamSlug} = useParams()
-  const [values, setValues] = useState({ team: teamSlug, season: seasons[0].value })
+  const [values, setValues] = useState({ team: teamSlug, season: seasonSlug })
 
   const handleChange = ({ target: { name, value } }) => {
     setValues(prevState => {
       return { ...prevState, [name]: value }
     })
     if (name === "team") {
-      history.push(value)
+      history.push(`/teams/${match.params.pageSlug}/${value}/${values.season}`)
+    }
+    if (name === "season") {
+      history.push(`/teams/${match.params.pageSlug}/${values.team}/${value}`)
     }
   }
 
   useEffect(() => {
     setValues(prevState => {
-      return { ...prevState, team: teamSlug }
+      return { ...prevState, team: teamSlug, season: seasonSlug }
     })
-  }, [teamSlug])
+  }, [seasonSlug,teamSlug])
+
+  console.log(match)
 
   return (
     <StyledTeam>
       <Form>
         <NavSub>
-          <NavLink to={`/teams/roster/${teamSlug}`} isActive={(_, loc) => loc.pathname.includes('/roster')}>Roster</NavLink>
-          <NavLink to={`/teams/games/${teamSlug}`} isActive={(_, loc) => loc.pathname.includes('/games')}>Games</NavLink>
+          <NavLink to={`/teams/roster/${teamSlug}/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/roster')}>Roster</NavLink>
+          <NavLink to={`/teams/games/${teamSlug}/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/games')}>Games</NavLink>
         </NavSub>
         <Select label="Team" name="team" value={values.team} onChange={handleChange}>
           {teams.map(data => (

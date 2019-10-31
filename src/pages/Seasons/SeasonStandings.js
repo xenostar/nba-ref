@@ -61,7 +61,11 @@ export const SeasonStandings = props => {
           <tr key={data.team.Name}>
             <td>{data.rank}</td>
             <td>{data.stats.Wins['#text']}</td>
-            <td><Link to={'/teams/roster/' + data.team.Abbreviation.toLowerCase()}>{data.team.City} {data.team.Name}</Link></td>
+            <td>
+              <Link to={`/teams/roster/${data.team.Abbreviation.toLowerCase()}/${props.values.season}`}>
+                {data.team.City} {data.team.Name}
+              </Link>
+            </td>
           </tr>
         ))}
       </Table>
@@ -70,7 +74,11 @@ export const SeasonStandings = props => {
           <tr key={data.team.Name}>
             <td>{data.rank}</td>
             <td>{data.stats.Wins['#text']}</td>
-            <td><Link to={'/teams/roster/' + data.team.Abbreviation.toLowerCase()}>{data.team.City} {data.team.Name}</Link></td>
+            <td>
+              <Link to={`/teams/roster/${data.team.Abbreviation.toLowerCase()}/${props.values.season}`}>
+                {data.team.City} {data.team.Name}
+              </Link>
+            </td>
           </tr>
         ))}
       </Table>

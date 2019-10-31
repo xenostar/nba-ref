@@ -54,7 +54,11 @@ export const TeamRoster = props => {
           return (
             <tr key={index}>
               <td>{player.jerseyNumber}</td>
-              <td><Link to={'/players/stats/' + urlFirstName + '-' + urlLasttName + '/' + props.values.season}>{player.firstName} {player.lastName}</Link></td>
+              <td>
+                <Link to={`/players/stats/${urlFirstName}-${urlLasttName}/${props.values.season}`}>
+                  {player.firstName} {player.lastName}
+                </Link>
+              </td>
               <td>{player.primaryPosition || '--'}</td>
               <td>{player.age || '--'}</td>
               <td>{player.height || '--'}</td>
