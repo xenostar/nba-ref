@@ -1,9 +1,9 @@
 import React from 'react'
-import { NavLink, useRouteMatch, useParams } from 'react-router-dom'
+// import { NavLink, useRouteMatch, useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import { NavSub } from 'components'
 
 export const SeasonNav = () => {
-  const match = useRouteMatch()
   const {seasonSlug} = useParams()
 
   return (

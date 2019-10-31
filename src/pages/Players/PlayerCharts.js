@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
-import { useParams } from 'react-router-dom'
-import { PlayerCard, Form, Select } from 'components'
-import seasons from 'api/seasons'
-
+import { PlayerCard } from 'components'
 import { RadarChart } from 'react-vis'
 import 'react-vis/dist/style.css'
 
@@ -26,10 +23,8 @@ const StyledPlayerCharts = styled.div`
   }
 `
 
-export const PlayerCharts = () => {
+export const PlayerCharts = props => {
   const _API_ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
-  const {playerNameSlug} = useParams()
-  const [values, setValues] = useState({ season: seasons[0].value })
   const [playerInfo, setPlayerInfo] = useState({})
   const [playerStats, setPlayerStats] = useState(null)
   const [playerReferences, setPlayerReferences] = useState({})
@@ -51,16 +46,10 @@ export const PlayerCharts = () => {
     }
   ]
 
-  const handleChange = ({ target: { name, value } }) => {
-    setValues(prevState => {
-      return { ...prevState, [name]: value }
-    })
-  }
-
   const handleFetch = useCallback(() => {
     setIsLoaded(false)
 
-    fetch(`${ _API_ + values.season }/player_stats_totals.json?player=${ playerNameSlug }`, {
+    fetch(`${ _API_ + props.values.season }/player_stats_totals.json?player=${ props.values.player }`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
         'Accept-Encoding' : 'gzip'
@@ -78,25 +67,16 @@ export const PlayerCharts = () => {
     .catch(error => {
       console.log(error)
     })
-  }, [values, playerNameSlug])
+  }, [props.values])
 
-  useEffect(() => { // componentDidMount
-    console.log("Mounting Player...")
+  useEffect(() => {
     handleFetch()
-    return () => console.log('Unmounting Player...')
   }, [handleFetch])
 
   return (
     <StyledPlayerCharts>
-      <Form>
-        <Select label="Season" name="season" value={values.season} onChange={handleChange}>
-          {seasons.map(({name, value}) => (
-            <option key={value} value={value}>{name}</option>
-          ))}
-        </Select>
-      </Form>
       <div className="powerGrid">
-        <RadarChart
+        {isLoaded && <RadarChart
           data={powerGridData}
           domains={powerGridDomains}
           width={400}
@@ -117,7 +97,7 @@ export const PlayerCharts = () => {
               fill: "#ED5429"
             }
           }}
-        />
+        />}
       </div>
       <PlayerCard playerInfo={playerInfo} playerReferences={playerReferences} isLoaded={isLoaded} />
     </StyledPlayerCharts>

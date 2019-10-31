@@ -30,8 +30,8 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/seasons/:pageSlug?/:seasonSlug?" component={Season} />
-        <Route path="/teams" component={Team} />
-        <Route path="/players" component={Player} />
+        <Route path="/teams/:pageSlug?/:teamSlug?/:seasonSlug?" component={Team} />
+        <Route path="/players/:pageSlug?/:playerSlug?/:seasonSlug?" component={Player} />
         <Route path="*" component={NoMatch} />
       </Switch>
       <Footer />

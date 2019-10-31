@@ -5,13 +5,10 @@ export const NavSub = styled.nav`
   border-radius: 3px;
   display: flex;
   float: left;
-  /* margin-bottom: 2.5rem; */
-  margin-right: 1.25rem;
   overflow: hidden;
   @media only screen and (max-width: 62.5rem) {
     border-radius: 0;
     box-shadow: 0 3px 10px rgba(0,0,0,0.5);
-    margin: 0;
     position: fixed;
     right: 0;
     bottom: 3.4375rem;

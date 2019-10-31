@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
-import { useParams } from 'react-router-dom'
-import { PlayerCard, Table, Form, Select } from 'components'
-import seasons from 'api/seasons'
+import { PlayerCard, Table } from 'components'
 
 const StyledPlayerStats = styled.div`
   .grid {
@@ -23,10 +21,8 @@ const StyledPlayerStats = styled.div`
   }
 `
 
-export const PlayerStats = () => {
+export const PlayerStats = props => {
   const _API_ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
-  const {playerNameSlug} = useParams()
-  const [values, setValues] = useState({ season: seasons[0].value })
   const [playerInfo, setPlayerInfo] = useState({})
   const [playerStats, setPlayerStats] = useState({})
   const [playerReferences, setPlayerReferences] = useState({})
@@ -42,16 +38,10 @@ export const PlayerStats = () => {
     }).join(' ');
   }
 
-  const handleChange = ({ target: { name, value } }) => {
-    setValues(prevState => {
-      return { ...prevState, [name]: value }
-    })
-  }
-
   const handleFetch = useCallback(() => {
     setIsLoaded(false)
 
-    fetch(`${ _API_ + values.season }/player_stats_totals.json?player=${ playerNameSlug }`, {
+    fetch(`${ _API_ + props.values.season }/player_stats_totals.json?player=${ props.values.player }`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
         'Accept-Encoding' : 'gzip'
@@ -69,7 +59,7 @@ export const PlayerStats = () => {
     .catch(error => {
       console.log(error)
     })
-  }, [values, playerNameSlug])
+  }, [props.values])
 
   useEffect(() => {
     handleFetch()
@@ -77,13 +67,6 @@ export const PlayerStats = () => {
 
   return (
     <StyledPlayerStats>
-      <Form>
-        <Select label="Season" name="season" value={values.season} onChange={handleChange}>
-          {seasons.map(({name, value}) => (
-            <option key={value} value={value}>{name}</option>
-          ))}
-        </Select>
-      </Form>
       <PlayerCard playerInfo={playerInfo} playerReferences={playerReferences} isLoaded={isLoaded} />
       <div className="grid">
         <Table tableTitle="Offense" tableData={tableData} loaderHeight="4" isLoaded={isLoaded}>

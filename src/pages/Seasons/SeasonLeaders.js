@@ -81,7 +81,7 @@ export const SeasonLeaders = props => {
             <tr key={index}>
               <td>{player.stats['Pts']['#text']}</td>
               <td>{player.player.Position}</td>
-              <td><Link to={'/players/stats/' + urlFirstName + '-' + urlLasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
+              <td><Link to={'/players/stats/' + urlFirstName + '-' + urlLasttName + '/' + props.values.season}>{player.player.FirstName} {player.player.LastName}</Link></td>
             </tr>
           )
         })}
@@ -94,7 +94,7 @@ export const SeasonLeaders = props => {
             <tr key={index}>
               <td>{player.stats['Ast']['#text']}</td>
               <td>{player.player.Position}</td>
-              <td><Link to={'/players/stats/' + urlFirstName + '-' + urlLasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
+              <td><Link to={'/players/stats/' + urlFirstName + '-' + urlLasttName + '/' + props.values.season}>{player.player.FirstName} {player.player.LastName}</Link></td>
             </tr>
           )
         })}
@@ -107,7 +107,7 @@ export const SeasonLeaders = props => {
             <tr key={index}>
               <td>{player.stats['Reb']['#text']}</td>
               <td>{player.player.Position}</td>
-              <td><Link to={'/players/stats/' + urlFirstName + '-' + urlLasttName}>{player.player.FirstName} {player.player.LastName}</Link></td>
+              <td><Link to={'/players/stats/' + urlFirstName + '-' + urlLasttName + '/' + props.values.season}>{player.player.FirstName} {player.player.LastName}</Link></td>
             </tr>
           )
         })}

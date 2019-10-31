@@ -1,15 +1,16 @@
 import React from 'react'
-import { NavLink, useRouteMatch } from 'react-router-dom'
+// import { NavLink, useRouteMatch, useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import { NavSub } from 'components'
-import teams from 'api/teams'
 
 export const TeamNav = () => {
-  const match = useRouteMatch()
+  // const match = useRouteMatch()
+  const {teamSlug} = useParams()
 
   return (
     <NavSub>
-      <NavLink to={`${match.url}/roster/${teams[0].abbreviation}`} isActive={(_, loc) => loc.pathname.includes('/roster')}>Roster</NavLink>
-      <NavLink to={`${match.url}/games`} isActive={(_, loc) => loc.pathname.includes('/games')}>Games</NavLink>
+      <NavLink to={`/teams/roster/${teamSlug}`} isActive={(_, loc) => loc.pathname.includes('/roster')}>Roster</NavLink>
+      <NavLink to={`/teams/games/${teamSlug}`} isActive={(_, loc) => loc.pathname.includes('/games')}>Games</NavLink>
     </NavSub>
   )
 }

@@ -9,6 +9,6 @@ export const NavMain = () => (
     <NavLink exact to="/">Home</NavLink>
     <NavLink to={`/seasons/leaders/${seasons[0].value}`} isActive={(_, loc) => loc.pathname.includes('/seasons')}>Seasons</NavLink>
     <NavLink to={`/teams/roster/${teams[0].abbreviation}`} isActive={(_, loc) => loc.pathname.includes('/teams')}>Teams</NavLink>
-    <NavLink to="/players/stats" isActive={(_, loc) => loc.pathname.includes('/players')}>Players</NavLink>
+    <NavLink to={`/players/stats/lebron-james/${seasons[0].value}`} isActive={(_, loc) => loc.pathname.includes('/players')}>Players</NavLink>
   </Nav>
 )
