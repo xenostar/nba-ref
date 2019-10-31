@@ -18,9 +18,7 @@ export const Player = () => {
     setValues(prevState => {
       return { ...prevState, [name]: value }
     })
-    if (name === "season") {
-      history.push(value)
-    }
+    history.push(value)
   }
 
   useEffect(() => {
@@ -43,8 +41,8 @@ export const Player = () => {
         </Select>
       </Form>
       <Switch>
-        <Route path={`${match.path}/stats/:playerSlug/:seasonSlug`} render={props => <PlayerStats {...props} values={values} />} />
-        <Route path={`${match.path}/charts/:playerSlug/:seasonSlug`} render={props => <PlayerCharts {...props} values={values} />} />
+        <Route path={`/players/stats`} render={props => <PlayerStats {...props} values={values} />} />
+        <Route path={`/players/charts`} render={props => <PlayerCharts {...props} values={values} />} />
         <Route path="*" component={NoMatch} />
       </Switch>
     </StyledPlayers>

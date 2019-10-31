@@ -13,7 +13,7 @@ const StyledSeasonStandings = styled.div`
   }
 `
 
-export const SeasonStandings = props => {
+export const SeasonStandings = ({values}) => {
   const _API_ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
   const [standings, setStandings] = useState({ eastern: [], western: [] })
   const [isLoaded, setIsLoaded] = useState(false)
@@ -26,7 +26,7 @@ export const SeasonStandings = props => {
   const handleFetch = useCallback(() => {
     setIsLoaded(false)
 
-    fetch(`${ _API_ + props.values.season }/conference_team_standings.json?teamstats=w`, {
+    fetch(`${ _API_ + values.season }/conference_team_standings.json?teamstats=w`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
         'Accept-Encoding' : 'gzip'
@@ -48,7 +48,7 @@ export const SeasonStandings = props => {
     .catch(error => {
       console.log(error)
     })
-  }, [props.values])
+  }, [values])
 
   useEffect(() => {
     handleFetch()
@@ -62,7 +62,7 @@ export const SeasonStandings = props => {
             <td>{data.rank}</td>
             <td>{data.stats.Wins['#text']}</td>
             <td>
-              <Link to={`/teams/roster/${data.team.Abbreviation.toLowerCase()}/${props.values.season}`}>
+              <Link to={`/teams/roster/${data.team.Abbreviation.toLowerCase()}/${values.season}`}>
                 {data.team.City} {data.team.Name}
               </Link>
             </td>
@@ -75,7 +75,7 @@ export const SeasonStandings = props => {
             <td>{data.rank}</td>
             <td>{data.stats.Wins['#text']}</td>
             <td>
-              <Link to={`/teams/roster/${data.team.Abbreviation.toLowerCase()}/${props.values.season}`}>
+              <Link to={`/teams/roster/${data.team.Abbreviation.toLowerCase()}/${values.season}`}>
                 {data.team.City} {data.team.Name}
               </Link>
             </td>

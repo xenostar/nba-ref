@@ -5,7 +5,7 @@ import { Table } from 'components'
 
 const StyledTeamRoster = styled.div``
 
-export const TeamRoster = props => {
+export const TeamRoster = ({values}) => {
   const _API_ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
   const [roster, setRoster] = useState([])
   const [isLoaded, setIsLoaded] = useState(false)
@@ -23,7 +23,7 @@ export const TeamRoster = props => {
   const handleFetch = useCallback(() => {
     setIsLoaded(false)
 
-    fetch(`${ _API_ }players.json?season=${ props.values.season }&team=${ props.values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`, {
+    fetch(`${ _API_ }players.json?season=${ values.season }&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
         'Accept-Encoding' : 'gzip'
@@ -39,7 +39,7 @@ export const TeamRoster = props => {
     .catch(error => {
       console.log(error)
     })
-  }, [props.values])
+  }, [values])
 
   useEffect(() => {
     handleFetch()
@@ -55,7 +55,7 @@ export const TeamRoster = props => {
             <tr key={index}>
               <td>{player.jerseyNumber}</td>
               <td>
-                <Link to={`/players/stats/${urlFirstName}-${urlLasttName}/${props.values.season}`}>
+                <Link to={`/players/stats/${urlFirstName}-${urlLasttName}/${values.season}`}>
                   {player.firstName} {player.lastName}
                 </Link>
               </td>

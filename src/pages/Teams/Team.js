@@ -33,8 +33,6 @@ export const Team = () => {
     })
   }, [seasonSlug,teamSlug])
 
-  console.log(match)
-
   return (
     <StyledTeam>
       <Form>
@@ -54,7 +52,7 @@ export const Team = () => {
         </Select>
       </Form>
       <Switch>
-        <Route path={`${match.path}/roster`} render={props => <TeamRoster {...props} values={values} />} />
+        <Route path={`/teams/roster`} render={props => <TeamRoster {...props} values={values} />} />
         <Route path="*" component={NoMatch} />
       </Switch>
     </StyledTeam>

@@ -16,7 +16,7 @@ const StyledSeasonLeaders = styled.div`
   }
 `
 
-export const SeasonLeaders = props => {
+export const SeasonLeaders = ({values}) => {
   const _API_ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
   const [leaders, setLeaders] = useState({ points: [], assists: [], rebounds: [] })
   const [isLoaded, setIsLoaded] = useState({ isLoadedPts: false, isLoadedAst: false, isLoadedReb: false })
@@ -43,7 +43,7 @@ export const SeasonLeaders = props => {
       return { ...prevState, [loadValue]: false }
     })
 
-    fetch(`${ _API_ + props.values.season }/cumulative_player_stats.json?${ url }`,{
+    fetch(`${ _API_ + values.season }/cumulative_player_stats.json?${ url }`,{
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
         'Accept-Encoding' : 'gzip'
@@ -63,7 +63,7 @@ export const SeasonLeaders = props => {
     .catch(error => {
       console.log(error)
     })
-  }, [props.values])
+  }, [values])
 
   useEffect(() => {
     handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'points', 'isLoadedPts')
@@ -82,7 +82,7 @@ export const SeasonLeaders = props => {
               <td>{player.stats['Pts']['#text']}</td>
               <td>{player.player.Position}</td>
               <td>
-                <Link to={`/players/stats/${urlFirstName}-${urlLasttName}/${props.values.season}`}>
+                <Link to={`/players/stats/${urlFirstName}-${urlLasttName}/${values.season}`}>
                   {player.player.FirstName} {player.player.LastName}
                 </Link>
               </td>
@@ -99,7 +99,7 @@ export const SeasonLeaders = props => {
               <td>{player.stats['Ast']['#text']}</td>
               <td>{player.player.Position}</td>
               <td>
-                <Link to={`/players/stats/${urlFirstName}-${urlLasttName}/${props.values.season}`}>
+                <Link to={`/players/stats/${urlFirstName}-${urlLasttName}/${values.season}`}>
                   {player.player.FirstName} {player.player.LastName}
                 </Link>
               </td>
@@ -116,7 +116,7 @@ export const SeasonLeaders = props => {
               <td>{player.stats['Reb']['#text']}</td>
               <td>{player.player.Position}</td>
               <td>
-                <Link to={`/players/stats/${urlFirstName}-${urlLasttName}/${props.values.season}`}>
+                <Link to={`/players/stats/${urlFirstName}-${urlLasttName}/${values.season}`}>
                   {player.player.FirstName} {player.player.LastName}
                 </Link>
               </td>

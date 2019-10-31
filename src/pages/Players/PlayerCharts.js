@@ -23,7 +23,7 @@ const StyledPlayerCharts = styled.div`
   }
 `
 
-export const PlayerCharts = props => {
+export const PlayerCharts = ({values}) => {
   const _API_ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
   const [playerInfo, setPlayerInfo] = useState({})
   const [playerStats, setPlayerStats] = useState(null)
@@ -49,7 +49,7 @@ export const PlayerCharts = props => {
   const handleFetch = useCallback(() => {
     setIsLoaded(false)
 
-    fetch(`${ _API_ + props.values.season }/player_stats_totals.json?player=${ props.values.player }`, {
+    fetch(`${ _API_ + values.season }/player_stats_totals.json?player=${ values.player }`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
         'Accept-Encoding' : 'gzip'
@@ -67,7 +67,7 @@ export const PlayerCharts = props => {
     .catch(error => {
       console.log(error)
     })
-  }, [props.values])
+  }, [values])
 
   useEffect(() => {
     handleFetch()
