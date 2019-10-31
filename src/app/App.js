@@ -29,7 +29,7 @@ const App = () => (
       <NavMain />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/seasons" component={Season} />
+        <Route path="/seasons/:pageSlug?/:seasonSlug?" component={Season} />
         <Route path="/teams" component={Team} />
         <Route path="/players" component={Player} />
         <Route path="*" component={NoMatch} />

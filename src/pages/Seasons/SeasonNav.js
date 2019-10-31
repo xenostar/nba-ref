@@ -1,15 +1,15 @@
 import React from 'react'
-import { NavLink, useRouteMatch } from 'react-router-dom'
+import { NavLink, useRouteMatch, useParams } from 'react-router-dom'
 import { NavSub } from 'components'
-import seasons from 'api/seasons'
 
 export const SeasonNav = () => {
   const match = useRouteMatch()
+  const {seasonSlug} = useParams()
 
   return (
     <NavSub>
-      <NavLink to={`${match.url}/leaders/${seasons[0].value}`} isActive={(_, loc) => loc.pathname.includes('/leaders')}>Leaders</NavLink>
-      <NavLink to={`${match.url}/standings/${seasons[0].value}`} isActive={(_, loc) => loc.pathname.includes('/standings')}>Standings</NavLink>
+      <NavLink to={`/seasons/leaders/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/leaders')}>Leaders</NavLink>
+      <NavLink to={`/seasons/standings/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/standings')}>Standings</NavLink>
     </NavSub>
   )
 }

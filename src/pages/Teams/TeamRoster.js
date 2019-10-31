@@ -23,7 +23,7 @@ export const TeamRoster = () => {
     'Weight': '10%',
   }
 
-  const formatPlayerName = (name) => name.toLowerCase().replace(/[^a-zA-Z]/g, "")
+  const formatPlayerName = name => name.toLowerCase().replace(/[^a-zA-Z]/g, "")
 
   const handleChange = ({ target: { name, value } }) => {
     setValues(prevState => {

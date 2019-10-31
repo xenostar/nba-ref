@@ -5,7 +5,7 @@ export const NavSub = styled.nav`
   border-radius: 3px;
   display: flex;
   float: left;
-  margin-bottom: 2.5rem;
+  /* margin-bottom: 2.5rem; */
   margin-right: 1.25rem;
   overflow: hidden;
   @media only screen and (max-width: 62.5rem) {

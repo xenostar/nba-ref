@@ -4,14 +4,12 @@ export const Nav = styled.nav`
   background-color: rgba(0,0,0,0.05);
   border-radius: 3px;
   display: flex;
-  margin-top: 2.5rem;
   margin-bottom: 2.5rem;
   overflow: hidden;
   @media only screen and (max-width: 62.5rem) {
     background-color: rgba(255,255,255,1);
     border-radius: 0;
     box-shadow: 0 3px 10px rgba(0,0,0,0.5);
-    margin-top: 0;
     margin-bottom: 0;
     position: fixed;
     right: 0;

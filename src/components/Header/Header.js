@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import logoImg from 'img/img_nba-logo--orange.svg'
 
 const StyledHeader = styled.header`
+  margin-bottom: 2.5rem;
   overflow: hidden;
 
   a {
