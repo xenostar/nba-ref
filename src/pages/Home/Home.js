@@ -80,10 +80,9 @@ export const Home = () => {
       <div>
         <div className="team-grid">
           {teams.map(data => {
-            const urlTeam = data.abbreviation
             const teamColor = { backgroundColor: data.colors[0] }
             return (
-              <Link to={`/teams/roster/${urlTeam}/${seasons[0].value}`} key={data.name} className={isLoaded[data.name] ? 'img-wrapper loaded' : 'img-wrapper'} style={teamColor} >
+              <Link to={`/teams/roster/${data.abbreviation}/${seasons[0].value}`} key={data.name} className={isLoaded[data.name] ? 'img-wrapper loaded' : 'img-wrapper'} style={teamColor} >
                 <img src={data.logo} alt={`${data.city} ${data.name}`} onLoad={() => handleImgLoad(data.name)} />
               </Link>
             )
