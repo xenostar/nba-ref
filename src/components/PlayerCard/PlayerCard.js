@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
+import { LoaderText } from 'components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 
@@ -101,34 +102,33 @@ const PlayerCardGridTable = styled.div`
   grid-area: table1;
   flex-wrap: wrap;
   justify-content: center;
-
-  .col {
-    border-top: 1px solid #ddd;
-    align-items: stretch;
-    display: flex;
-    width: 100%;
-  }
-  .label {
-    align-items: center;
-    background: rgba(0,0,0,0.05);
-    border-right: 1px solid #ddd;
-    color: #aaa;
-    display: flex;
-    font-size: 14px;
-    font-weight: 700;
-    justify-content: flex-end;
-    padding: 10px 10px 10px 2px;
-    min-width: 35%;
-    text-transform: uppercase;
-  }
-  .val {
-    align-items: center;
-    color: #444;
-    display: flex;
-    font-size: 16px;
-    flex-grow: 1;
-    padding: 10px;
-  }
+`
+const Label = styled.div`
+  align-items: center;
+  background: rgba(0,0,0,0.05);
+  border-right: 1px solid #ddd;
+  color: #aaa;
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+  justify-content: flex-end;
+  padding: 10px 10px 10px 2px;
+  min-width: 35%;
+  text-transform: uppercase;
+`
+const Col = styled.div`
+  border-top: 1px solid #ddd;
+  align-items: stretch;
+  display: flex;
+  width: 100%;
+`
+const Val = styled.div`
+  align-items: center;
+  color: #444;
+  display: flex;
+  font-size: 16px;
+  flex-grow: 1;
+  padding: 5px 10px;
 `
 const PlayerCardGridTable2 = styled(PlayerCardGridTable)`
   grid-area: table2;
@@ -142,8 +142,8 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
     <StyledPlayerCard>
       <PlayerCardGridImage>
         <div className="img">
-          <div className={isLoaded ? 'img__teamImage img__teamImage--loaded' : 'img__teamImage'} style={teamImage}></div>
-          <div className={isLoaded ? 'img__playerImage img__playerImage--loaded' : 'img__playerImage'} style={playerImage}></div>
+          <div className={isLoaded ? 'img__teamImage img__teamImage--loaded' : 'img__teamImage'} style={isLoaded ? teamImage : null}></div>
+          <div className={isLoaded ? 'img__playerImage img__playerImage--loaded' : 'img__playerImage'} style={isLoaded ? playerImage : null}></div>
         </div>
       </PlayerCardGridImage>
       <PlayerCardGridName>
@@ -155,48 +155,49 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
         )}
       </PlayerCardGridName>
       <PlayerCardGridTable>
-        <div className="col">
-          <div className="label">Team</div>
-          <div className="val">{playerReferences.city + ' ' + playerReferences.name}</div>
-        </div>
-        <div className="col">
-          <div className="label">Position</div>
-          <div className="val">{playerInfo.primaryPosition}</div>
-        </div>
-        <div className="col">
-          <div className="label">Age</div>
-          <div className="val">{playerInfo.age}</div>
-        </div>
-        <div className="col">
-          <div className="label">Height</div>
-          <div className="val">{playerInfo.height}</div>
-        </div>
-        <div className="col">
-          <div className="label">Weight</div>
-          <div className="val">{playerInfo.weight}</div>
-        </div>
+        <Col>
+          <Label>Team</Label>
+          <Val>{playerReferences.city} {playerReferences.name}</Val>
+        </Col>
+        <Col>
+          <Label>Position</Label>
+          <Val>{playerInfo.primaryPosition || <LoaderText />}</Val>
+          {/* <Val><LoaderText /></Val> */}
+        </Col>
+        <Col>
+          <Label>Age</Label>
+          <Val>{playerInfo.age}</Val>
+        </Col>
+        <Col>
+          <Label>Height</Label>
+          <Val>{playerInfo.height}</Val>
+        </Col>
+        <Col>
+          <Label>Weight</Label>
+          <Val>{playerInfo.weight}</Val>
+        </Col>
       </PlayerCardGridTable>
       <PlayerCardGridTable2>
-        <div className="col">
-          <div className="label">Jersey</div>
-          <div className="val">{playerInfo.jerseyNumber}</div>
-        </div>
-        <div className="col">
-          <div className="label">Status</div>
-          <div className="val">{playerInfo.currentRosterStatus === "ROSTER" ? "Active" : "Inactive" }</div>
-        </div>
-        <div className="col">
-          <div className="label">Born</div>
-          <div className="val">{playerInfo.birthDate}</div>
-        </div>
-        <div className="col">
-          <div className="label">From</div>
-          <div className="val">{playerInfo.birthCity}, {playerInfo.birthCountry}</div>
-        </div>
-        <div className="col">
-          <div className="label">College</div>
-          <div className="val">{playerInfo.college || "None"}</div>
-        </div>
+        <Col>
+          <Label>Jersey</Label>
+          <Val>{playerInfo.jerseyNumber}</Val>
+        </Col>
+        <Col>
+          <Label>Status</Label>
+          <Val>{playerInfo.currentRosterStatus || playerInfo.currentRosterStatus === "ROSTER" ? "Active" : "Inactive" }</Val>
+        </Col>
+        <Col>
+          <Label>Born</Label>
+          <Val>{playerInfo.birthDate}</Val>
+        </Col>
+        <Col>
+          <Label>From</Label>
+          <Val>{playerInfo.birthCity} {playerInfo.birthCountry}</Val>
+        </Col>
+        <Col>
+          <Label>College</Label>
+          <Val>{playerInfo.college || "None"}</Val>
+        </Col>
       </PlayerCardGridTable2>
     </StyledPlayerCard>
   )

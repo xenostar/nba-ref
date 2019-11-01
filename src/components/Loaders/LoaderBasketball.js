@@ -8,9 +8,8 @@ const fadeInOut = keyframes`
   100% { opacity: 0.6; }
 `
 
-const StyledLoader = styled.div`
+const StyledLoaderBasketball = styled.div`
   display: flex;
-  /* min-height: 24.3125rem; */
   justify-content: center;
 
   .holder {
@@ -32,11 +31,11 @@ const StyledLoader = styled.div`
   }
 `
 
-export const Loader = ({ loaderHeight })  => (
-  <StyledLoader style={{ minHeight: (loaderHeight * 2.434375) + 'rem' }}>
+export const LoaderBasketball = ({ loaderHeight })  => (
+  <StyledLoaderBasketball style={{ minHeight: (loaderHeight * 2.434375) + 'rem' }}>
     <div className="holder">
       <img src={loaderImg} alt="Loading..." />
       <p>Loading</p>
     </div>
-  </StyledLoader>
+  </StyledLoaderBasketball>
 )

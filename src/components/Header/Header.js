@@ -5,23 +5,20 @@ import logoImg from 'img/img_nba-logo--orange.svg'
 
 const StyledHeader = styled.header`
   margin-bottom: 2.5rem;
-  overflow: hidden;
 
   a {
+    display: inline-flex;
     float: left;
   }
   h1 {
     color: #444;
-    float: left;
     font-size: 4em;
-    line-height: 6rem;
     user-select: none;
   }
   h1 span {
     color: #ED5429;
   }
   img {
-    float: left;
     height: 6rem;
     margin-right: 1.25rem;
     user-select: none;

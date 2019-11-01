@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Loader } from 'components'
+import { LoaderBasketball } from 'components'
 
 const StyledTable = styled.div`
   .name {
@@ -71,7 +71,7 @@ export const Table = props => {
             <tbody>
               <tr className="tb-loader">
                 <td colSpan={Object.keys(dataCols).length}>
-                  <Loader loaderHeight={props.loaderHeight ? props.loaderHeight : 10} />
+                  <LoaderBasketball loaderHeight={props.loaderHeight ? props.loaderHeight : 10} />
                 </td>
               </tr>
             </tbody>
