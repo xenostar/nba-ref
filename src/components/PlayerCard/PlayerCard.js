@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { LoaderText } from 'components'
+import { TextLoader } from 'components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 
@@ -161,8 +161,8 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
         </Col>
         <Col>
           <Label>Position</Label>
-          <Val>{playerInfo.primaryPosition || <LoaderText />}</Val>
-          {/* <Val><LoaderText /></Val> */}
+          {/* <Val>{playerInfo.primaryPosition || <TextLoader />}</Val> */}
+          <Val><TextLoader /></Val>
         </Col>
         <Col>
           <Label>Age</Label>
