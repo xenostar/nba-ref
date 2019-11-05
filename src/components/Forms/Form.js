@@ -20,5 +20,8 @@ export const Form = styled.form`
       margin-left: 0;
       margin-bottom: 5px;
     }
+    div:last-child {
+      margin-bottom: 0;
+    }
   }
 `

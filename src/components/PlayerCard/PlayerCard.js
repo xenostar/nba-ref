@@ -182,7 +182,13 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
         </Col>
         <Col>
           <Label>Age</Label>
-          <Val>{playerInfo.age || <TextLoader />}</Val>
+          <Val>
+            {(playerInfo.age !== undefined) ? (
+              (playerInfo.age === 0) ? "Unknown" : playerInfo.age
+            ) : (
+              undefined
+            ) || <TextLoader />}
+          </Val>
         </Col>
         <Col>
           <Label>Height</Label>
@@ -198,7 +204,7 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
           <Label>Jersey</Label>
           <Val>
             {(playerInfo.jerseyNumber !== undefined) ? (
-              (playerInfo.jerseyNumber !== null) ? playerInfo.jerseyNumber : "None"
+              (playerInfo.jerseyNumber === null) ? "None" : playerInfo.jerseyNumber
             ) : (
               undefined
             ) || <TextLoader />}
@@ -222,7 +228,7 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
           <Label>From</Label>
           <Val>
             {(playerInfo.birthCity !== undefined && playerInfo.birthCountry !== undefined) ? (
-              `${playerInfo.birthCity} ${playerInfo.birthCountry}`
+              (playerInfo.birthCity === null || playerInfo.birthCountry === null) ? "Unknown" : `${playerInfo.birthCity} ${playerInfo.birthCountry}`
             ) : (
               undefined
             ) || <TextLoader />}
