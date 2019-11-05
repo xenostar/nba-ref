@@ -139,9 +139,6 @@ const PlayerCardGridTable2 = styled(PlayerCardGridTable)`
 export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
   const playerImage = { backgroundImage: `url(${playerInfo.officialImageSrc})` }
   const teamImage = { backgroundImage: `url(${playerReferences.officialLogoImageSrc})` }
-  const hasSocial = (playerInfo.socialMediaAccounts !== undefined && playerInfo.socialMediaAccounts.length !== 0)
-  console.log("Jersey", playerInfo.jerseyNumber)
-  console.log("Age", playerInfo.age)
 
   return (
     <StyledPlayerCard>
@@ -155,7 +152,7 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
         {(playerInfo.firstName !== undefined && playerInfo.lastName !== undefined) ? (
           <>
             <h2>{`${playerInfo.firstName} ${playerInfo.lastName}`}</h2>
-            {hasSocial && (
+            {(playerInfo.socialMediaAccounts !== undefined && playerInfo.socialMediaAccounts.length !== 0) && (
               <a href={'https://www.twitter.com/' + playerInfo.socialMediaAccounts[0].value} target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faTwitter} />
               </a>
@@ -178,13 +175,19 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
         </Col>
         <Col>
           <Label>Position</Label>
-          <Val>{playerInfo.primaryPosition || <TextLoader />}</Val>
+          <Val>
+            {(playerInfo.primaryPosition !== undefined) ? (
+              (playerInfo.primaryPosition === null) ? "Unknown" : playerInfo.primaryPosition
+            ) : (
+              undefined
+            ) || <TextLoader />}
+          </Val>
         </Col>
         <Col>
           <Label>Age</Label>
           <Val>
             {(playerInfo.age !== undefined) ? (
-              (playerInfo.age === 0) ? "Unknown" : playerInfo.age
+              (playerInfo.age === null) ? "Unknown" : playerInfo.age
             ) : (
               undefined
             ) || <TextLoader />}
@@ -192,11 +195,23 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
         </Col>
         <Col>
           <Label>Height</Label>
-          <Val>{playerInfo.height || <TextLoader />}</Val>
+          <Val>
+            {(playerInfo.height !== undefined) ? (
+              (playerInfo.height === null) ? "Unknown" : playerInfo.height
+            ) : (
+              undefined
+            ) || <TextLoader />}
+          </Val>
         </Col>
         <Col>
           <Label>Weight</Label>
-          <Val>{playerInfo.weight || <TextLoader />}</Val>
+          <Val>
+            {(playerInfo.weight !== undefined) ? (
+              (playerInfo.weight === null) ? "Unknown" : playerInfo.weight
+            ) : (
+              undefined
+            ) || <TextLoader />}
+          </Val>
         </Col>
       </PlayerCardGridTable>
       <PlayerCardGridTable2>
