@@ -2,8 +2,7 @@ import React, { useState} from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Page } from 'components'
-import seasons from 'api/seasons'
-import teams from 'api/teams'
+import { seasons, teams } from 'api'
 
 const StyledHome = styled(Page)`
   display: grid;

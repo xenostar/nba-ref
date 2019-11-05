@@ -1,4 +1,4 @@
-export default [
+export const seasons = [
   {
     "name": "2019-2020 Regular",
     "value": "2019-2020-regular",

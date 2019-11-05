@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import { Route, Switch, NavLink, useRouteMatch, useHistory, useParams } from 'react-router-dom'
 import { Page, NavSub, Form, Select } from 'components'
 import { TeamRoster, NoMatch } from 'pages'
-import seasons from 'api/seasons'
-import teams from 'api/teams'
+import { seasons, teams } from 'api'
 
 const StyledTeam = styled(Page)``
 

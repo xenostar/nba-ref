@@ -1,8 +1,7 @@
 import React from 'react'
 import { NavLink } from "react-router-dom"
 import { Nav } from 'components'
-import seasons from 'api/seasons'
-import teams from 'api/teams'
+import { seasons, teams } from 'api'
 
 export const NavMain = () => (
   <Nav>

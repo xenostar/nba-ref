@@ -29,7 +29,7 @@ import TOR_logo from 'img/TOR_logo.svg'
 import UTA_logo from 'img/UTA_logo.svg'
 import WAS_logo from 'img/WAS_logo.svg'
 
-export default [
+export const teams = [
   {
     "abbreviation": "atl",
     "city": "Atlanta",
