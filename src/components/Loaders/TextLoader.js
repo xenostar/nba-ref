@@ -17,7 +17,7 @@ const StyledTextLoader = styled.div`
     opacity: 0;
   }
 `
-const TextGradient = styled.div`
+const Gradient = styled.div`
   animation: ${slide} infinite 0.4s ease-in-out;
   animation-fill-mode: both;
   background: rgb(238,238,238);
@@ -49,7 +49,7 @@ export const TextLoader = props  => {
 
   return (
     <StyledTextLoader style={width}>
-      <TextGradient></TextGradient>
+      <Gradient></Gradient>
     </StyledTextLoader>
   )
 }
