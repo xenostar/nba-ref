@@ -21,7 +21,7 @@ const TextGradient = styled.div`
   animation: ${slide} infinite 0.4s ease-in-out;
   animation-fill-mode: both;
   background: rgb(238,238,238);
-  background: linear-gradient(120deg, rgba(238,238,238,1) 15%, rgba(255,255,255,1) 50%, rgba(238,238,238,1) 85%);
+  background: linear-gradient(120deg, rgba(238,238,238,1) 20%, rgba(255,255,255,1) 50%, rgba(238,238,238,1) 80%);
   position: absolute;
   bottom: 0;
   top: 0;

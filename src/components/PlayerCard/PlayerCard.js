@@ -130,7 +130,7 @@ const Val = styled.div`
   font-size: 16px;
   flex-grow: 1;
   line-height: 1.5;
-  padding: 0 10px;
+  padding: 2px 10px;
 `
 const PlayerCardGridTable2 = styled(PlayerCardGridTable)`
   grid-area: table2;
@@ -140,8 +140,8 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
   const playerImage = { backgroundImage: `url(${playerInfo.officialImageSrc})` }
   const teamImage = { backgroundImage: `url(${playerReferences.officialLogoImageSrc})` }
   const hasSocial = (playerInfo.socialMediaAccounts !== undefined && playerInfo.socialMediaAccounts.length !== 0)
-  console.log("Jersey", playerInfo.jerseyNumber);
-  console.log("Age", playerInfo.age);
+  console.log("Jersey", playerInfo.jerseyNumber)
+  console.log("Age", playerInfo.age)
 
   return (
     <StyledPlayerCard>
