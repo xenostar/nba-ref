@@ -7,12 +7,14 @@ const StyledHeader = styled.header`
   margin-bottom: 2.5rem;
 
   a {
+    align-items: center;
     display: inline-flex;
     float: left;
   }
   h1 {
     color: #444;
     font-size: 4em;
+    line-height: 1;
     user-select: none;
   }
   h1 span {

@@ -84,6 +84,7 @@ const PlayerCardGridName = styled.div`
   grid-area: name;
   display: flex;
   align-items: center;
+  line-height: 3.75rem;
 
   h1 {
     margin-bottom: 0;
@@ -128,7 +129,8 @@ const Val = styled.div`
   display: flex;
   font-size: 16px;
   flex-grow: 1;
-  padding: 5px 10px;
+  line-height: 1.5;
+  padding: 0 10px;
 `
 const PlayerCardGridTable2 = styled(PlayerCardGridTable)`
   grid-area: table2;
@@ -138,6 +140,9 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
   const playerImage = { backgroundImage: `url(${playerInfo.officialImageSrc})` }
   const teamImage = { backgroundImage: `url(${playerReferences.officialLogoImageSrc})` }
   const hasSocial = (playerInfo.socialMediaAccounts !== undefined && playerInfo.socialMediaAccounts.length !== 0)
+  console.log("Jersey", playerInfo.jerseyNumber);
+  console.log("Age", playerInfo.age);
+
   return (
     <StyledPlayerCard>
       <PlayerCardGridImage>
@@ -147,56 +152,91 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
         </div>
       </PlayerCardGridImage>
       <PlayerCardGridName>
-        <h1>{playerInfo.firstName} {playerInfo.lastName}</h1>
-        {hasSocial && (
-          <a href={'https://www.twitter.com/' + playerInfo.socialMediaAccounts[0].value} target="_blank" rel="noopener noreferrer">
-            <FontAwesomeIcon icon={faTwitter} />
-          </a>
-        )}
+        {(playerInfo.firstName !== undefined && playerInfo.lastName !== undefined) ? (
+          <>
+            <h2>{`${playerInfo.firstName} ${playerInfo.lastName}`}</h2>
+            {hasSocial && (
+              <a href={'https://www.twitter.com/' + playerInfo.socialMediaAccounts[0].value} target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faTwitter} />
+              </a>
+            )}
+          </>
+        ) : (
+          undefined
+        ) || <TextLoader />}
       </PlayerCardGridName>
       <PlayerCardGridTable>
         <Col>
           <Label>Team</Label>
-          <Val>{playerReferences.city} {playerReferences.name}</Val>
+          <Val>
+            {(playerReferences.city !== undefined && playerReferences.name !== undefined) ? (
+              `${playerReferences.city} ${playerReferences.name}`
+            ) : (
+              undefined
+            ) || <TextLoader />}
+          </Val>
         </Col>
         <Col>
           <Label>Position</Label>
-          {/* <Val>{playerInfo.primaryPosition || <TextLoader />}</Val> */}
-          <Val><TextLoader /></Val>
+          <Val>{playerInfo.primaryPosition || <TextLoader />}</Val>
         </Col>
         <Col>
           <Label>Age</Label>
-          <Val>{playerInfo.age}</Val>
+          <Val>{playerInfo.age || <TextLoader />}</Val>
         </Col>
         <Col>
           <Label>Height</Label>
-          <Val>{playerInfo.height}</Val>
+          <Val>{playerInfo.height || <TextLoader />}</Val>
         </Col>
         <Col>
           <Label>Weight</Label>
-          <Val>{playerInfo.weight}</Val>
+          <Val>{playerInfo.weight || <TextLoader />}</Val>
         </Col>
       </PlayerCardGridTable>
       <PlayerCardGridTable2>
         <Col>
           <Label>Jersey</Label>
-          <Val>{playerInfo.jerseyNumber}</Val>
+          <Val>
+            {(playerInfo.jerseyNumber !== undefined) ? (
+              (playerInfo.jerseyNumber !== null) ? playerInfo.jerseyNumber : "None"
+            ) : (
+              undefined
+            ) || <TextLoader />}
+          </Val>
         </Col>
         <Col>
           <Label>Status</Label>
-          <Val>{playerInfo.currentRosterStatus || playerInfo.currentRosterStatus === "ROSTER" ? "Active" : "Inactive" }</Val>
+          <Val>
+            {(playerInfo.currentRosterStatus !== undefined) ? (
+              (playerInfo.currentRosterStatus === "ROSTER") ? "Active" : "Inactive"
+            ) : (
+              undefined
+            ) || <TextLoader />}
+          </Val>
         </Col>
         <Col>
           <Label>Born</Label>
-          <Val>{playerInfo.birthDate}</Val>
+          <Val>{playerInfo.birthDate || <TextLoader />}</Val>
         </Col>
         <Col>
           <Label>From</Label>
-          <Val>{playerInfo.birthCity} {playerInfo.birthCountry}</Val>
+          <Val>
+            {(playerInfo.birthCity !== undefined && playerInfo.birthCountry !== undefined) ? (
+              `${playerInfo.birthCity} ${playerInfo.birthCountry}`
+            ) : (
+              undefined
+            ) || <TextLoader />}
+          </Val>
         </Col>
         <Col>
           <Label>College</Label>
-          <Val>{playerInfo.college || "None"}</Val>
+          <Val>
+            {(playerInfo.college !== undefined) ? (
+              (playerInfo.college === null) ? "None" : playerInfo.college
+            ) : (
+              undefined
+            ) || <TextLoader />}
+          </Val>
         </Col>
       </PlayerCardGridTable2>
     </StyledPlayerCard>

@@ -57,8 +57,11 @@ const StyledHome = styled(Page)`
 
   h1 {
     color: #ED5429;
-    font-size: 3em;
     line-height: 0.975;
+  }
+  h4 {
+    color: #bbb;
+    font-weight: 500;
   }
 `
 
@@ -75,7 +78,7 @@ export const Home = () => {
     <StyledHome className="content">
       <div>
         <h1>Welcome</h1>
-        <h2>To quite possibly the greatest reference for NBA statistics in the universe.</h2>
+        <h4>To quite possibly the greatest reference for NBA statistics in the universe.</h4>
       </div>
       <div>
         <div className="team-grid">

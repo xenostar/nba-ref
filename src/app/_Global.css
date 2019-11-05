@@ -17,6 +17,11 @@ body {
   overflow-y: scroll;
 }
 
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.5;
+}
+
 a {
   color: #ED5429;
   text-decoration: none;
@@ -28,13 +33,12 @@ p, ol, ul {
   line-height: 1.5;
 }
 
-ol, ul {
+ul {
   list-style-position: inside;
   list-style-type: disc;
 }
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1.5;
+ol {
+  list-style-position:  inside;
 }
 
 code {

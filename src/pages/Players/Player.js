@@ -22,9 +22,9 @@ export const Player = () => {
 
   useEffect(() => {
     setValues(prevState => {
-      return { ...prevState, season: seasonSlug }
+      return { ...prevState, player: playerSlug, season: seasonSlug }
     })
-  }, [seasonSlug])
+  }, [playerSlug,seasonSlug])
 
   return (
     <StyledPlayers>

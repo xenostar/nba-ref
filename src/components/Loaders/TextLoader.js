@@ -1,11 +1,55 @@
-import React from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import styled, { keyframes } from 'styled-components'
 
+const slide = keyframes`
+  0% { left: -3.75rem; }
+  100% { left: 100%; }
+`
 const StyledTextLoader = styled.div`
   background-color: #eee;
-  width: 100%;
+  border-radius: 2px;
+  height: inherit;
+  line-height: inherit;
+  overflow: hidden;
+  position: relative;
+  :before {
+    content: ".";
+    opacity: 0;
+  }
+`
+const TextGradient = styled.div`
+  animation: ${slide} infinite 0.4s ease-in-out;
+  animation-fill-mode: both;
+  background: rgb(238,238,238);
+  background: linear-gradient(120deg, rgba(238,238,238,1) 15%, rgba(255,255,255,1) 50%, rgba(238,238,238,1) 85%);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: -3.75rem;
+  width: 3.75rem;
 `
 
-export const TextLoader = ()  => (
-  <StyledTextLoader></StyledTextLoader>
-)
+export const TextLoader = props  => {
+  const [width, setWidth] = useState({ width: 0 })
+
+  const getRandomInt = (min, max) => {
+    min = Math.ceil(min)
+    max = Math.floor(max)
+    //The maximum is exclusive and the minimum is inclusive
+    return Math.floor(Math.random() * (max - min)) + min
+  }
+
+  const calcWidth = useCallback(() => {
+    setWidth({ width: getRandomInt(25,60) + '%' })
+  }, [])
+
+  useEffect(() => {
+    calcWidth()
+  }, [calcWidth])
+
+  return (
+    <StyledTextLoader style={width}>
+      <TextGradient></TextGradient>
+    </StyledTextLoader>
+  )
+}
