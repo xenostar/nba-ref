@@ -19,7 +19,7 @@ const StyledSeasonLeaders = styled.div`
 export const SeasonLeaders = ({values}) => {
   const _API_ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
   const [leaders, setLeaders] = useState({ points: [], assists: [], rebounds: [] })
-  const [isLoaded, setIsLoaded] = useState({ isLoadedPts: false, isLoadedAst: false, isLoadedReb: false })
+  const [isLoading, setIsLoading] = useState({ isLoadingPts: true, isLoadingAst: true, isLoadingReb: true })
   const tableDataPts = {
     'Pts': '3.75rem',
     'Posn': '10%',
@@ -39,8 +39,8 @@ export const SeasonLeaders = ({values}) => {
   const formatPlayerName = name => name.toLowerCase().replace(/[^a-zA-Z]/g, "")
 
   const handleFetch = useCallback((url, stateValue, loadValue) => {
-    setIsLoaded(prevState => {
-      return { ...prevState, [loadValue]: false }
+    setIsLoading(prevState => {
+      return { ...prevState, [loadValue]: true }
     })
 
     fetch(`${ _API_ + values.season }/cumulative_player_stats.json?${ url }`,{
@@ -56,8 +56,8 @@ export const SeasonLeaders = ({values}) => {
       setLeaders(prevState => {
         return { ...prevState, [stateValue]: data.cumulativeplayerstats.playerstatsentry }
       })
-      setIsLoaded(prevState => {
-        return { ...prevState, [loadValue]: true }
+      setIsLoading(prevState => {
+        return { ...prevState, [loadValue]: false }
       })
     })
     .catch(error => {
@@ -66,14 +66,14 @@ export const SeasonLeaders = ({values}) => {
   }, [values])
 
   useEffect(() => {
-    handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'points', 'isLoadedPts')
-    handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'assists', 'isLoadedAst')
-    handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'rebounds', 'isLoadedReb')
+    handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'points', 'isLoadingPts')
+    handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'assists', 'isLoadingAst')
+    handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'rebounds', 'isLoadingReb')
   }, [handleFetch])
 
   return (
     <StyledSeasonLeaders>
-      <Table tableTitle="Points Scored" tableData={tableDataPts} loaderHeight="10" isLoaded={isLoaded.isLoadedPts}>
+      <Table tableTitle="Points Scored" tableData={tableDataPts} loaderHeight="10" isLoading={isLoading.isLoadingPts}>
         {leaders.points.map((player, index) => {
           const urlFirstName = formatPlayerName(player.player.FirstName)
           const urlLasttName = formatPlayerName(player.player.LastName)
@@ -90,7 +90,7 @@ export const SeasonLeaders = ({values}) => {
           )
         })}
       </Table>
-      <Table tableTitle="Assists" tableData={tableDataAst} loaderHeight="10" isLoaded={isLoaded.isLoadedAst}>
+      <Table tableTitle="Assists" tableData={tableDataAst} loaderHeight="10" isLoading={isLoading.isLoadingAst}>
         {leaders.assists.map((player, index) => {
           const urlFirstName = formatPlayerName(player.player.FirstName)
           const urlLasttName = formatPlayerName(player.player.LastName)
@@ -107,7 +107,7 @@ export const SeasonLeaders = ({values}) => {
           )
         })}
       </Table>
-      <Table tableTitle="Rebounds" tableData={tableDataReb} loaderHeight="10" isLoaded={isLoaded.isLoadedReb}>
+      <Table tableTitle="Rebounds" tableData={tableDataReb} loaderHeight="10" isLoading={isLoading.isLoadingReb}>
         {leaders.rebounds.map((player, index) => {
           const urlFirstName = formatPlayerName(player.player.FirstName)
           const urlLasttName = formatPlayerName(player.player.LastName)

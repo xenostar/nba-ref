@@ -16,7 +16,7 @@ const StyledSeasonStandings = styled.div`
 export const SeasonStandings = ({values}) => {
   const _API_ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
   const [standings, setStandings] = useState({ eastern: [], western: [] })
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const tableData = {
     '#': '3.125rem',
     'Wins': '3.75rem',
@@ -24,7 +24,7 @@ export const SeasonStandings = ({values}) => {
   }
 
   const handleFetch = useCallback(() => {
-    setIsLoaded(false)
+    setIsLoading(true)
 
     fetch(`${ _API_ + values.season }/conference_team_standings.json?teamstats=w`, {
       headers: {
@@ -43,7 +43,7 @@ export const SeasonStandings = ({values}) => {
           western: data.conferenceteamstandings.conference[1].teamentry
         }
       })
-      setIsLoaded(true)
+      setIsLoading(false)
     })
     .catch(error => {
       console.log(error)
@@ -56,8 +56,8 @@ export const SeasonStandings = ({values}) => {
 
   return (
     <StyledSeasonStandings>
-      <Table tableTitle="Western Standings" tableData={tableData} loaderHeight="15" isLoaded={isLoaded}>
-        {isLoaded && standings.western.map(data => (
+      <Table tableTitle="Western Standings" tableData={tableData} loaderHeight="15" isLoading={isLoading}>
+        {isLoading || standings.western.map(data => (
           <tr key={data.team.Name}>
             <td>{data.rank}</td>
             <td>{data.stats.Wins['#text']}</td>
@@ -69,8 +69,8 @@ export const SeasonStandings = ({values}) => {
           </tr>
         ))}
       </Table>
-      <Table tableTitle="Eastern Standings" tableData={tableData} loaderHeight="15" isLoaded={isLoaded}>
-        {isLoaded && standings.eastern.map(data => (
+      <Table tableTitle="Eastern Standings" tableData={tableData} loaderHeight="15" isLoading={isLoading}>
+        {isLoading || standings.eastern.map(data => (
           <tr key={data.team.Name}>
             <td>{data.rank}</td>
             <td>{data.stats.Wins['#text']}</td>

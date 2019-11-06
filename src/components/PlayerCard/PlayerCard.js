@@ -136,7 +136,7 @@ const PlayerCardGridTable2 = styled(PlayerCardGridTable)`
   grid-area: table2;
 `
 
-export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
+export const PlayerCard = ({ playerInfo, playerReferences, isLoading }) => {
   const playerImage = { backgroundImage: `url(${playerInfo.officialImageSrc})` }
   const teamImage = { backgroundImage: `url(${playerReferences.officialLogoImageSrc})` }
 
@@ -144,8 +144,8 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoaded }) => {
     <StyledPlayerCard>
       <PlayerCardGridImage>
         <div className="img">
-          <div className={isLoaded ? 'img__teamImage img__teamImage--loaded' : 'img__teamImage'} style={isLoaded ? teamImage : null}></div>
-          <div className={isLoaded ? 'img__playerImage img__playerImage--loaded' : 'img__playerImage'} style={isLoaded ? playerImage : null}></div>
+          <div className={isLoading ? 'img__teamImage' : 'img__teamImage img__teamImage--loaded'} style={isLoading ? null : teamImage}></div>
+          <div className={isLoading ? 'img__playerImage' : 'img__playerImage img__playerImage--loaded'} style={isLoading ? null : playerImage}></div>
         </div>
       </PlayerCardGridImage>
       <PlayerCardGridName>

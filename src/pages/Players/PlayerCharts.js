@@ -28,7 +28,7 @@ export const PlayerCharts = ({values}) => {
   const [playerInfo, setPlayerInfo] = useState({})
   const [playerStats, setPlayerStats] = useState(null)
   const [playerReferences, setPlayerReferences] = useState({})
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   const powerGridDomains = [
     {name: '2PT %', domain: [0, 100], getValue: d => d.fg2PtPct},
@@ -47,8 +47,7 @@ export const PlayerCharts = ({values}) => {
   ]
 
   const handleFetch = useCallback(() => {
-    setIsLoaded(false)
-
+    setIsLoading(true)
     fetch(`${ _API_ + values.season }/player_stats_totals.json?player=${ values.player }`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
@@ -62,7 +61,7 @@ export const PlayerCharts = ({values}) => {
       setPlayerInfo(data.playerStatsTotals[0].player)
       setPlayerStats(data.playerStatsTotals[0].stats)
       setPlayerReferences(data.references.teamReferences[0])
-      setIsLoaded(true)
+      setIsLoading(false)
     })
     .catch(error => {
       console.log(error)
@@ -99,7 +98,7 @@ export const PlayerCharts = ({values}) => {
           }}
         />
       </div>
-      <PlayerCard playerInfo={playerInfo} playerReferences={playerReferences} isLoaded={isLoaded} />
+      <PlayerCard playerInfo={playerInfo} playerReferences={playerReferences} isLoading={isLoading} />
     </StyledPlayerCharts>
   )
 }

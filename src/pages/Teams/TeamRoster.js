@@ -8,7 +8,7 @@ const StyledTeamRoster = styled.div``
 export const TeamRoster = ({values}) => {
   const _API_ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
   const [roster, setRoster] = useState([])
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const tableData = {
     '#': '3.125rem',
     'Name': 'auto',
@@ -21,7 +21,7 @@ export const TeamRoster = ({values}) => {
   const formatPlayerName = name => name.toLowerCase().replace(/[^a-zA-Z]/g, "")
 
   const handleFetch = useCallback(() => {
-    setIsLoaded(false)
+    setIsLoading(true)
 
     fetch(`${ _API_ }players.json?season=${ values.season }&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`, {
       headers: {
@@ -34,7 +34,7 @@ export const TeamRoster = ({values}) => {
     })
     .then(data => {
       setRoster(data.players)
-      setIsLoaded(true)
+      setIsLoading(false)
     })
     .catch(error => {
       console.log(error)
@@ -47,8 +47,8 @@ export const TeamRoster = ({values}) => {
 
   return (
     <StyledTeamRoster>
-      <Table tableTitle="Team Roster" tableData={tableData} isLoaded={isLoaded}>
-        {isLoaded && roster.map(({ player }, index) => {
+      <Table tableTitle="Team Roster" tableData={tableData} isLoading={isLoading}>
+        {isLoading || roster.map(({ player }, index) => {
           const urlFirstName = formatPlayerName(player.firstName)
           const urlLasttName = formatPlayerName(player.lastName)
           return (

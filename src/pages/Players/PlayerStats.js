@@ -26,7 +26,7 @@ export const PlayerStats = ({values}) => {
   const [playerInfo, setPlayerInfo] = useState({})
   const [playerStats, setPlayerStats] = useState({})
   const [playerReferences, setPlayerReferences] = useState({})
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const tableData = {
     'Stat': '50%',
     'Value': 'auto',
@@ -39,8 +39,7 @@ export const PlayerStats = ({values}) => {
   }
 
   const handleFetch = useCallback(() => {
-    setIsLoaded(false)
-
+    setIsLoading(true)
     fetch(`${ _API_ + values.season }/player_stats_totals.json?player=${ values.player }`, {
       headers: {
         'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
@@ -54,7 +53,7 @@ export const PlayerStats = ({values}) => {
       setPlayerInfo(data.playerStatsTotals[0].player)
       setPlayerStats(data.playerStatsTotals[0].stats)
       setPlayerReferences(data.references.teamReferences[0])
-      setIsLoaded(true)
+      setIsLoading(false)
     })
     .catch(error => {
       console.log(error)
@@ -67,50 +66,50 @@ export const PlayerStats = ({values}) => {
 
   return (
     <StyledPlayerStats>
-      <PlayerCard playerInfo={playerInfo} playerReferences={playerReferences} isLoaded={isLoaded} />
+      <PlayerCard playerInfo={playerInfo} playerReferences={playerReferences} isLoading={isLoading} />
       <div className="grid">
-        <Table tableTitle="Offense" tableData={tableData} loaderHeight="4" isLoaded={isLoaded}>
-          {isLoaded && Object.entries(playerStats.offense).map(([key, value]) => (
+        <Table tableTitle="Offense" tableData={tableData} loaderHeight="4" isLoading={isLoading}>
+          {isLoading || Object.entries(playerStats.offense).map(([key, value]) => (
             <tr key={key}>
               <td>{camelCaseToWords(key)}</td>
               <td>{value}</td>
             </tr>
           ))}
         </Table>
-        <Table tableTitle="Free Throws" tableData={tableData} loaderHeight="5" isLoaded={isLoaded}>
-          {isLoaded && Object.entries(playerStats.freeThrows).map(([key, value]) => (
+        <Table tableTitle="Free Throws" tableData={tableData} loaderHeight="5" isLoading={isLoading}>
+          {isLoading || Object.entries(playerStats.freeThrows).map(([key, value]) => (
             <tr key={key}>
               <td>{camelCaseToWords(key)}</td>
               <td>{value}</td>
             </tr>
           ))}
         </Table>
-        <Table tableTitle="Rebounds" tableData={tableData} loaderHeight="6" isLoaded={isLoaded}>
-          {isLoaded && Object.entries(playerStats.rebounds).map(([key, value]) => (
+        <Table tableTitle="Rebounds" tableData={tableData} loaderHeight="6" isLoading={isLoading}>
+          {isLoading || Object.entries(playerStats.rebounds).map(([key, value]) => (
             <tr key={key}>
               <td>{camelCaseToWords(key)}</td>
               <td>{value}</td>
             </tr>
           ))}
         </Table>
-        <Table tableTitle="Field Goals" tableData={tableData} loaderHeight="15" isLoaded={isLoaded}>
-          {isLoaded && Object.entries(playerStats.fieldGoals).map(([key, value]) => (
+        <Table tableTitle="Field Goals" tableData={tableData} loaderHeight="15" isLoading={isLoading}>
+          {isLoading || Object.entries(playerStats.fieldGoals).map(([key, value]) => (
             <tr key={key}>
               <td>{camelCaseToWords(key)}</td>
               <td>{value}</td>
             </tr>
           ))}
         </Table>
-        <Table tableTitle="Defense" tableData={tableData} loaderHeight="8" isLoaded={isLoaded}>
-          {isLoaded && Object.entries(playerStats.defense).map(([key, value]) => (
+        <Table tableTitle="Defense" tableData={tableData} loaderHeight="8" isLoading={isLoading}>
+          {isLoading || Object.entries(playerStats.defense).map(([key, value]) => (
             <tr key={key}>
               <td>{camelCaseToWords(key)}</td>
               <td>{value}</td>
             </tr>
           ))}
         </Table>
-        <Table tableTitle="Miscellaneous" tableData={tableData} loaderHeight="26" isLoaded={isLoaded}>
-          {isLoaded && Object.entries(playerStats.miscellaneous).map(([key, value]) => (
+        <Table tableTitle="Miscellaneous" tableData={tableData} loaderHeight="26" isLoading={isLoading}>
+          {isLoading || Object.entries(playerStats.miscellaneous).map(([key, value]) => (
             <tr key={key}>
               <td>{camelCaseToWords(key)}</td>
               <td>{value}</td>

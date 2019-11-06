@@ -63,17 +63,17 @@ export const Table = props => {
               ))}
             </tr>
           </thead>
-          {props.isLoaded ? (
-            <tbody>
-              {props.children}
-            </tbody>
-          ) : (
+          {props.isLoading ? (
             <tbody>
               <tr className="tb-loader">
                 <td colSpan={Object.keys(dataCols).length}>
                   <BasketballLoader loaderHeight={props.loaderHeight ? props.loaderHeight : 10} />
                 </td>
               </tr>
+            </tbody>
+          ) : (
+            <tbody>
+              {props.children}
             </tbody>
           )}
         </table>
