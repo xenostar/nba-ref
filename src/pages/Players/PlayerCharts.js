@@ -46,26 +46,23 @@ export const PlayerCharts = ({values}) => {
     }
   ]
 
-  const handleFetch = useCallback(() => {
+  const handleFetch = useCallback(async () => {
     setIsLoading(true)
-    fetch(`${ _API_ + values.season }/player_stats_totals.json?player=${ values.player }`, {
-      headers: {
-        'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
-        'Accept-Encoding' : 'gzip'
-      },
-    })
-    .then(response => {
-      return response.json()
-    })
-    .then(data => {
+    try {
+      const response = await fetch(`${ _API_ + values.season }/player_stats_totals.json?player=${ values.player }`, {
+        headers: {
+          'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
+          'Accept-Encoding' : 'gzip'
+        },
+      })
+      const data = await response.json()
       setPlayerInfo(data.playerStatsTotals[0].player)
       setPlayerStats(data.playerStatsTotals[0].stats)
       setPlayerReferences(data.references.teamReferences[0])
       setIsLoading(false)
-    })
-    .catch(error => {
+    } catch (error) {
       console.log(error)
-    })
+    }
   }, [values])
 
   useEffect(() => {

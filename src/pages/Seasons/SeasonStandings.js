@@ -19,35 +19,28 @@ export const SeasonStandings = ({values}) => {
   const [isLoading, setIsLoading] = useState(true)
   const tableData = {
     '#': '3.125rem',
-    'Wins': '3.75rem',
+    'W/L': '4.375rem',
     'Name': 'auto',
   }
 
-  const handleFetch = useCallback(() => {
+  const handleFetch = useCallback(async () => {
     setIsLoading(true)
-
-    fetch(`${ _API_ + values.season }/conference_team_standings.json?teamstats=w`, {
-      headers: {
-        'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
-        'Accept-Encoding' : 'gzip'
-      },
-    })
-    .then(response => {
-      return response.json()
-    })
-    .then(data => {
-      setStandings(prevState => {
-        return {
-          ...prevState,
-          eastern: data.conferenceteamstandings.conference[0].teamentry,
-          western: data.conferenceteamstandings.conference[1].teamentry
-        }
+    try {
+      const response = await fetch(`${ _API_ + values.season }/conference_team_standings.json?teamstats=w`, {
+        headers: {
+          'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
+          'Accept-Encoding' : 'gzip'
+        },
+      })
+      const data = await response.json()
+      setStandings({
+        eastern: data.conferenceteamstandings.conference[0].teamentry,
+        western: data.conferenceteamstandings.conference[1].teamentry
       })
       setIsLoading(false)
-    })
-    .catch(error => {
+    } catch (error) {
       console.log(error)
-    })
+    }
   }, [values])
 
   useEffect(() => {
@@ -60,7 +53,7 @@ export const SeasonStandings = ({values}) => {
         {isLoading || standings.western.map(data => (
           <tr key={data.team.Name}>
             <td>{data.rank}</td>
-            <td>{data.stats.Wins['#text']}</td>
+            <td>{data.stats.Wins['#text']} - {data.stats.GamesPlayed['#text'] - data.stats.Wins['#text']}</td>
             <td>
               <Link to={`/teams/roster/${data.team.Abbreviation.toLowerCase()}/${values.season}`}>
                 {data.team.City} {data.team.Name}
@@ -73,7 +66,7 @@ export const SeasonStandings = ({values}) => {
         {isLoading || standings.eastern.map(data => (
           <tr key={data.team.Name}>
             <td>{data.rank}</td>
-            <td>{data.stats.Wins['#text']}</td>
+            <td>{data.stats.Wins['#text']} - {data.stats.GamesPlayed['#text'] - data.stats.Wins['#text']}</td>
             <td>
               <Link to={`/teams/roster/${data.team.Abbreviation.toLowerCase()}/${values.season}`}>
                 {data.team.City} {data.team.Name}

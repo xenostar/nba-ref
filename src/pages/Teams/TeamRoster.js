@@ -20,25 +20,21 @@ export const TeamRoster = ({values}) => {
 
   const formatPlayerName = name => name.toLowerCase().replace(/[^a-zA-Z]/g, "")
 
-  const handleFetch = useCallback(() => {
+  const handleFetch = useCallback(async () => {
     setIsLoading(true)
-
-    fetch(`${ _API_ }players.json?season=${ values.season }&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`, {
-      headers: {
-        'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
-        'Accept-Encoding' : 'gzip'
-      },
-    })
-    .then(response => {
-      return response.json()
-    })
-    .then(data => {
+    try {
+      const response = await fetch(`${ _API_ }players.json?season=${ values.season }&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`, {
+        headers: {
+          'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
+          'Accept-Encoding' : 'gzip'
+        },
+      })
+      const data = await response.json()
       setRoster(data.players)
       setIsLoading(false)
-    })
-    .catch(error => {
+    } catch (error) {
       console.log(error)
-    })
+    }
   }, [values])
 
   useEffect(() => {

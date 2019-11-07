@@ -38,31 +38,27 @@ export const SeasonLeaders = ({values}) => {
 
   const formatPlayerName = name => name.toLowerCase().replace(/[^a-zA-Z]/g, "")
 
-  const handleFetch = useCallback((url, stateValue, loadValue) => {
+  const handleFetch = useCallback(async (url, stateValue, loadValue) => {
     setIsLoading(prevState => {
       return { ...prevState, [loadValue]: true }
     })
-
-    fetch(`${ _API_ + values.season }/cumulative_player_stats.json?${ url }`,{
-      headers: {
-        'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
-        'Accept-Encoding' : 'gzip'
-      },
-    })
-    .then(response => {
-      return response.json()
-    })
-    .then(data => {
+    try {
+      const response = await fetch(`${ _API_ + values.season }/cumulative_player_stats.json?${ url }`,{
+        headers: {
+          'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
+          'Accept-Encoding' : 'gzip'
+        },
+      })
+      const data = await response.json()
       setLeaders(prevState => {
         return { ...prevState, [stateValue]: data.cumulativeplayerstats.playerstatsentry }
       })
       setIsLoading(prevState => {
         return { ...prevState, [loadValue]: false }
       })
-    })
-    .catch(error => {
+    } catch (error) {
       console.log(error)
-    })
+    }
   }, [values])
 
   useEffect(() => {
