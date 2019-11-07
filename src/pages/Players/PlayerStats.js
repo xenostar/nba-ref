@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { PlayerCard, Table } from 'components'
+import { camelCaseToWords } from 'utilities'
 
 const StyledPlayerStats = styled.div`
   .grid {
@@ -30,12 +31,6 @@ export const PlayerStats = ({values}) => {
   const tableData = {
     'Stat': '50%',
     'Value': 'auto',
-  }
-
-  const camelCaseToWords = str => {
-    return str.match(/^[a-z]+|[A-Z][a-z]*/g).map(function(x) {
-      return x[0].toUpperCase() + x.substr(1).toLowerCase()
-    }).join(' ')
   }
 
   const handleFetch = useCallback(async () => {
