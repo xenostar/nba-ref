@@ -11,6 +11,7 @@
     "config": "^3.2.3",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-is-mounted-hook": "^1.0.2",
     "react-router": "^5.1.0",
     "react-router-dom": "^5.1.0",
     "react-scripts": "3.1.1",

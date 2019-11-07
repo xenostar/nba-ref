@@ -65,7 +65,7 @@ const StyledHome = styled(Page)`
 `
 
 export const Home = () => {
-  const [isLoaded, setIsLoaded] = useState([])
+  const [isLoaded, setIsLoaded] = useState({})
 
   const handleImgLoad = teamName => {
     setIsLoaded(prevState => {
@@ -84,8 +84,12 @@ export const Home = () => {
           {teams.map(data => {
             const teamColor = { backgroundColor: data.colors[0] }
             return (
-              <Link to={`/teams/roster/${data.abbreviation}/${seasons[0].value}`} key={data.name} className={isLoaded[data.name] ? 'img-wrapper loaded' : 'img-wrapper'} style={teamColor} >
-                <img src={data.logo} alt={`${data.city} ${data.name}`} onLoad={() => handleImgLoad(data.name)} />
+              <Link
+                key={data.name}
+                to={`/teams/roster/${data.abbreviation}/${seasons[0].value}`}
+                className={isLoaded[data.name] ? 'img-wrapper loaded' : 'img-wrapper'}
+                style={teamColor}>
+                  <img src={data.logo} alt={`${data.city} ${data.name}`} onLoad={() => handleImgLoad(data.name)} />
               </Link>
             )
           })}
