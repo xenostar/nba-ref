@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Provider } from 'use-http'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Header, NavMain, Footer, ScrollToTop } from 'components'
 import { Home, Season, Team, Player, NoMatch } from 'pages'
@@ -21,22 +22,33 @@ const StyledAppContainer = styled.div`
   }
 `
 
-const App = () => (
-  <Router>
-    <ScrollToTop />
-    <StyledAppContainer>
-      <Header />
-      <NavMain />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/seasons/:pageSlug/:seasonSlug" component={Season} />
-        <Route path="/teams/:pageSlug/:teamSlug/:seasonSlug" component={Team} />
-        <Route path="/players/:pageSlug/:playerSlug/:seasonSlug" component={Player} />
-        <Route path="*" component={NoMatch} />
-      </Switch>
-      <Footer />
-    </StyledAppContainer>
-  </Router>
-)
+const App = () => {
+  const options = {
+		headers: {
+      'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
+      'Accept-Encoding' : 'gzip',
+      'Accept' : 'application/json',
+    },
+	}
+  return (
+    <Provider url="https://api.mysportsfeeds.com" options={options}>
+      <Router>
+        <ScrollToTop />
+        <StyledAppContainer>
+          <Header />
+          <NavMain />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/seasons/:pageSlug/:seasonSlug" component={Season} />
+            <Route path="/teams/:pageSlug/:teamSlug/:seasonSlug" component={Team} />
+            <Route path="/players/:pageSlug/:playerSlug/:seasonSlug" component={Player} />
+            <Route path="*" component={NoMatch} />
+          </Switch>
+          <Footer />
+        </StyledAppContainer>
+      </Router>
+    </Provider>
+  )
+}
 
 export default App

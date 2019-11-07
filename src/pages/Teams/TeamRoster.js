@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Table } from 'components'
+import { formatPlayerName } from 'utilities'
 
 const StyledTeamRoster = styled.div``
 
@@ -17,8 +18,6 @@ export const TeamRoster = ({values}) => {
     'Height': '10%',
     'Weight': '10%',
   }
-
-  const formatPlayerName = name => name.toLowerCase().replace(/[^a-zA-Z]/g, "")
 
   const handleFetch = useCallback(async () => {
     setIsLoading(true)

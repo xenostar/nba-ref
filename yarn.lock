@@ -9961,6 +9961,18 @@ url@^0.11.0:
     punycode "1.3.2"
     querystring "0.2.0"
 
+use-http@^0.1.95:
+  version "0.1.95"
+  resolved "https://registry.yarnpkg.com/use-http/-/use-http-0.1.95.tgz#77ab58c0ee6932aa8dc834d63d299ce584004359"
+  integrity sha512-2qd0e47abmXb8QRhIDmEnADD2zrslzEyv/FoX4yfztIUBIoLeQw+kXfJTSNsXOvO5ebYeWu7KacPTfHnpreBDQ==
+  dependencies:
+    use-ssr "^1.0.19"
+
+use-ssr@^1.0.19:
+  version "1.0.19"
+  resolved "https://registry.yarnpkg.com/use-ssr/-/use-ssr-1.0.19.tgz#8c03bec79069103b2813f77d17d2e5fafc02461b"
+  integrity sha512-Bkor42KtUZHTTuEot4Nma0Q9bccu+ZOGqukyNJI1A11uSymNag7VX3ub2Rzi2nLez4fUYUUROn0mEtil5KOsCg==
+
 use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
