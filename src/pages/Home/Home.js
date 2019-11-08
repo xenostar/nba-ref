@@ -28,18 +28,28 @@ const StyledHome = styled(Page)`
     }
   }
 
-  .img-wrapper {
-    border-radius: 3px;
-    overflow: hidden;
-    padding-top: 75%;
-    position: relative;
-    transition: transform 0.2s;
+  h1 {
+    color: #ED5429;
+    line-height: 0.975;
   }
-  .img-wrapper:hover {
+  h4 {
+    color: #bbb;
+    font-weight: 500;
+  }
+`
+
+const TeamImage = styled(Link)`
+  border-radius: 3px;
+  overflow: hidden;
+  padding-top: 75%;
+  position: relative;
+  transition: transform 0.2s;
+  :hover {
     box-shadow: 0 2px 5px rgba(0,0,0,0.25);
     transform: scale(1.1) translateZ(0);
   }
-  .img-wrapper img {
+
+  .img_teamImage {
     backface-visibility: hidden;
     bottom: 0;
     height: 100%;
@@ -50,17 +60,8 @@ const StyledHome = styled(Page)`
     transition: opacity 1s;
     width: 100%;
   }
-  .img-wrapper.loaded img {
+  .img_teamImage.loaded {
     opacity: 1;
-  }
-
-  h1 {
-    color: #ED5429;
-    line-height: 0.975;
-  }
-  h4 {
-    color: #bbb;
-    font-weight: 500;
   }
 `
 
@@ -84,13 +85,16 @@ export const Home = () => {
           {teams.map(data => {
             const teamColor = { backgroundColor: data.colors[0] }
             return (
-              <Link
+              <TeamImage
                 key={data.name}
                 to={`/teams/roster/${data.abbreviation}/${seasons[0].value}`}
-                className={isLoaded[data.name] ? 'img-wrapper loaded' : 'img-wrapper'}
                 style={teamColor}>
-                  <img src={data.logo} alt={`${data.city} ${data.name}`} onLoad={() => handleImgLoad(data.name)} />
-              </Link>
+                  <img
+                    src={data.logo}
+                    alt={`${data.city} ${data.name}`}
+                    className={isLoaded[data.name] ? 'img_teamImage loaded' : 'img_teamImage'}
+                    onLoad={() => handleImgLoad(data.name)} />
+              </TeamImage>
             )
           })}
         </div>

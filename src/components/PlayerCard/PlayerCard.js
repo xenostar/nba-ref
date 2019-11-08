@@ -1,17 +1,8 @@
-import React from 'react'
-import styled, { keyframes } from 'styled-components'
+import React, { useState } from 'react'
+import styled from 'styled-components'
 import { TextLoader } from 'components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
-
-const fadeIn = keyframes`
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-`
-const fadeIn2 = keyframes`
-  0% { opacity: 0; }
-  100% { opacity: 0.5; }
-`
 
 const StyledPlayerCard = styled.div`
   display: grid;
@@ -46,37 +37,36 @@ const PlayerCardGridImage = styled.div`
     background-color: rgba(0,0,0,0.05);
     border: 1px solid #ddd;
     border-radius: 3px;
-    padding-top: 60%;
+    padding-top: 61%;
     position: relative;
     overflow: hidden;
     width: 100%;
   }
   .img__playerImage {
-    background-position: bottom center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    position: absolute;
+    border: 0;
+    height: 100%;
     top: 0;
-    bottom: 0;
+    left: 0;
+    object-fit: contain;
+    object-position: bottom;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 0.4s;
     width: 100%;
   }
-  .img__playerImage--loaded {
-    animation: ${fadeIn} 0.4s;
-    animation-fill-mode: both;
+  .img__playerImage.loaded {
+    opacity: 1;
   }
   .img__teamImage {
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
-    background-size: 25%;
     position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
+    top: 10px;
+    left: 10px;
+    opacity: 0;
+    transition: opacity 0.4s;
+    width: 25%;
   }
-  .img__teamImage--loaded {
-    animation: ${fadeIn2} 0.4s;
-    animation-delay: 0.4s;
-    animation-fill-mode: both;
+  .img__teamImage.loaded {
+    opacity: 0.25;
   }
 `
 
@@ -137,15 +127,28 @@ const PlayerCardGridTable2 = styled(PlayerCardGridTable)`
 `
 
 export const PlayerCard = ({ playerInfo, playerReferences, isLoading }) => {
-  const playerImage = { backgroundImage: `url(${playerInfo.officialImageSrc})` }
-  const teamImage = { backgroundImage: `url(${playerReferences.officialLogoImageSrc})` }
+  const [isLoaded, setIsLoaded] = useState({})
+
+  const handleImgLoad = imageName => {
+    setIsLoaded(prevState => {
+      return { ...prevState, [imageName]: true }
+    })
+  }
 
   return (
     <StyledPlayerCard>
       <PlayerCardGridImage>
         <div className="img">
-          <div className={isLoading ? 'img__teamImage' : 'img__teamImage img__teamImage--loaded'} style={isLoading ? null : teamImage}></div>
-          <div className={isLoading ? 'img__playerImage' : 'img__playerImage img__playerImage--loaded'} style={isLoading ? null : playerImage}></div>
+          <img
+            src={playerReferences.officialLogoImageSrc}
+            alt={`${playerReferences.city} ${playerReferences.name}`}
+            className={isLoaded['teamImage'] ? 'img__teamImage loaded' : 'img__teamImage'}
+            onLoad={() => handleImgLoad('teamImage')} />
+          <img
+            src={playerInfo.officialImageSrc}
+            alt={`${playerInfo.firstName} ${playerInfo.lastName}`}
+            className={isLoaded['playerImage'] ? 'img__playerImage loaded' : 'img__playerImage'}
+            onLoad={() => handleImgLoad('playerImage')} />
         </div>
       </PlayerCardGridImage>
       <PlayerCardGridName>
