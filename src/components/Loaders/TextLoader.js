@@ -21,12 +21,12 @@ const Gradient = styled.div`
   animation: ${slide} infinite 0.4s ease-in-out;
   animation-fill-mode: both;
   background: rgb(238,238,238);
-  background: linear-gradient(120deg, rgba(238,238,238,1) 20%, rgba(255,255,255,1) 50%, rgba(238,238,238,1) 80%);
+  background: linear-gradient(90deg, rgba(238,238,238,1) 20%, rgba(255,255,255,1) 50%, rgba(238,238,238,1) 80%);
   position: absolute;
   bottom: 0;
   top: 0;
-  left: -3.75rem;
-  width: 3.75rem;
+  left: -4rem;
+  width: 4rem;
 `
 
 export const TextLoader = props  => {
