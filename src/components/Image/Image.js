@@ -3,10 +3,10 @@ import styled from 'styled-components'
 
 const StyledImage = styled.img`
   transition: opacity 1s;
-  opacity: ${props => props.isLoaded ? '1' : '0'};
+  opacity: ${props => props.isLoaded ? (props.opacity ? props.opacity : 1) : 0 };
 `
 
-export const Image = ({className, src, alt}) => {
+export const Image = ({alt, className, opacity, src}) => {
   const [isLoaded, setIsLoaded] = useState(false)
 
   const handleImgLoad = () => {
@@ -19,6 +19,7 @@ export const Image = ({className, src, alt}) => {
       src={src}
       alt={alt}
       isLoaded={isLoaded}
+      opacity={opacity}
       onLoad={handleImgLoad}
     />
   )

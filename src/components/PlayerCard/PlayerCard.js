@@ -118,7 +118,7 @@ export const PlayerCard = ({ playerInfo, playerReferences }) => (
   <StyledPlayerCard>
     <PlayerCardGridImage>
       <div className="img">
-        <TeamImage src={playerReferences.officialLogoImageSrc} alt={`${playerReferences.city} ${playerReferences.name}`} />
+        <TeamImage src={playerReferences.officialLogoImageSrc} alt={`${playerReferences.city} ${playerReferences.name}`} opacity="0.5" />
         <PlayerImage src={playerInfo.officialImageSrc} alt={`${playerInfo.firstName} ${playerInfo.lastName}`} />
       </div>
     </PlayerCardGridImage>
