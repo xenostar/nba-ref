@@ -1,7 +1,7 @@
-import React, { useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { Page } from 'components'
+import { Page, Image } from 'components'
 import { seasons, teams } from 'api'
 
 const StyledHome = styled(Page)`
@@ -38,67 +38,46 @@ const StyledHome = styled(Page)`
   }
 `
 
-const TeamImage = styled(Link)`
+const TeamLink = styled(Link)`
+  background-color: ${props => props.bgcolor || "#eee"};
   border-radius: 3px;
-  overflow: hidden;
+  box-shadow: 0;
   padding-top: 75%;
   position: relative;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
   :hover {
     box-shadow: 0 2px 5px rgba(0,0,0,0.25);
     transform: scale(1.1) translateZ(0);
   }
-
-  .img_teamImage {
-    backface-visibility: hidden;
-    bottom: 0;
-    height: 100%;
-    position: absolute;
-    object-fit: contain;
-    opacity: 0;
-    transform: scale(1) translateZ(0);
-    transition: opacity 1s;
-    width: 100%;
-  }
-  .img_teamImage.loaded {
-    opacity: 1;
-  }
+`
+const TeamImage = styled(Image)`
+  height: 100%;
+  position: absolute;
+  object-fit: contain;
+  top: 0;
+  transform: scale(1) translateZ(0);
+  width: 100%;
 `
 
-export const Home = () => {
-  const [isLoaded, setIsLoaded] = useState({})
-
-  const handleImgLoad = teamName => {
-    setIsLoaded(prevState => {
-      return { ...prevState, [teamName]: true }
-    })
-  }
-
-  return (
-    <StyledHome className="content">
-      <div>
-        <h1>Welcome</h1>
-        <h4>To quite possibly the greatest reference for NBA statistics in the universe.</h4>
+export const Home = () => (
+  <StyledHome className="content">
+    <div>
+      <h1>Welcome</h1>
+      <h4>To quite possibly the greatest reference for NBA statistics in the universe.</h4>
+    </div>
+    <div>
+      <div className="team-grid">
+        {teams.map(data => {
+          return (
+            <TeamLink
+              key={data.name}
+              to={`/teams/roster/${data.abbreviation}/${seasons[0].value}`}
+              bgcolor={data.colors[0]}>
+                <TeamImage src={data.logo} alt={`${data.city} ${data.name}`} />
+            </TeamLink>
+          )
+        })}
       </div>
-      <div>
-        <div className="team-grid">
-          {teams.map(data => {
-            const teamColor = { backgroundColor: data.colors[0] }
-            return (
-              <TeamImage
-                key={data.name}
-                to={`/teams/roster/${data.abbreviation}/${seasons[0].value}`}
-                style={teamColor}>
-                  <img
-                    src={data.logo}
-                    alt={`${data.city} ${data.name}`}
-                    className={isLoaded[data.name] ? 'img_teamImage loaded' : 'img_teamImage'}
-                    onLoad={() => handleImgLoad(data.name)} />
-              </TeamImage>
-            )
-          })}
-        </div>
-      </div>
-    </StyledHome>
-  )
-}
+    </div>
+  </StyledHome>
+)

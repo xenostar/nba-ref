@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { TextLoader } from 'components'
+import { Image, TextLoader } from 'components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 
@@ -42,32 +42,20 @@ const PlayerCardGridImage = styled.div`
     overflow: hidden;
     width: 100%;
   }
-  .img__playerImage {
-    border: 0;
-    height: 100%;
-    top: 0;
-    left: 0;
-    object-fit: contain;
-    object-position: bottom;
-    opacity: 0;
-    position: absolute;
-    transition: opacity 0.4s;
-    width: 100%;
-  }
-  .img__playerImage.loaded {
-    opacity: 1;
-  }
-  .img__teamImage {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    opacity: 0;
-    transition: opacity 0.4s;
-    width: 25%;
-  }
-  .img__teamImage.loaded {
-    opacity: 0.25;
-  }
+`
+const PlayerImage = styled(Image)`
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom;
+  position: absolute;
+  top: 0;
+  width: 100%;
+`
+const TeamImage = styled(Image)`
+  left: 10px;
+  position: absolute;
+  top: 10px;
+  width: 25%;
 `
 
 const PlayerCardGridName = styled.div`
@@ -126,143 +114,125 @@ const PlayerCardGridTable2 = styled(PlayerCardGridTable)`
   grid-area: table2;
 `
 
-export const PlayerCard = ({ playerInfo, playerReferences, isLoading }) => {
-  const [isLoaded, setIsLoaded] = useState({})
-
-  const handleImgLoad = imageName => {
-    setIsLoaded(prevState => {
-      return { ...prevState, [imageName]: true }
-    })
-  }
-
-  return (
-    <StyledPlayerCard>
-      <PlayerCardGridImage>
-        <div className="img">
-          <img
-            src={playerReferences.officialLogoImageSrc}
-            alt={`${playerReferences.city} ${playerReferences.name}`}
-            className={isLoaded['teamImage'] ? 'img__teamImage loaded' : 'img__teamImage'}
-            onLoad={() => handleImgLoad('teamImage')} />
-          <img
-            src={playerInfo.officialImageSrc}
-            alt={`${playerInfo.firstName} ${playerInfo.lastName}`}
-            className={isLoaded['playerImage'] ? 'img__playerImage loaded' : 'img__playerImage'}
-            onLoad={() => handleImgLoad('playerImage')} />
-        </div>
-      </PlayerCardGridImage>
-      <PlayerCardGridName>
-        {(playerInfo.firstName !== undefined && playerInfo.lastName !== undefined) ? (
-          <>
-            <h2>{`${playerInfo.firstName} ${playerInfo.lastName}`}</h2>
-            {(playerInfo.socialMediaAccounts !== undefined && playerInfo.socialMediaAccounts.length !== 0) && (
-              <a href={'https://www.twitter.com/' + playerInfo.socialMediaAccounts[0].value} target="_blank" rel="noopener noreferrer">
-                <FontAwesomeIcon icon={faTwitter} />
-              </a>
-            )}
-          </>
-        ) : (
-          undefined
-        ) || <TextLoader />}
-      </PlayerCardGridName>
-      <PlayerCardGridTable>
-        <Col>
-          <Label>Team</Label>
-          <Val>
-            {(playerReferences.city !== undefined && playerReferences.name !== undefined) ? (
-              `${playerReferences.city} ${playerReferences.name}`
-            ) : (
-              undefined
-            ) || <TextLoader />}
-          </Val>
-        </Col>
-        <Col>
-          <Label>Position</Label>
-          <Val>
-            {(playerInfo.primaryPosition !== undefined) ? (
-              (playerInfo.primaryPosition === null) ? "Unknown" : playerInfo.primaryPosition
-            ) : (
-              undefined
-            ) || <TextLoader />}
-          </Val>
-        </Col>
-        <Col>
-          <Label>Age</Label>
-          <Val>
-            {(playerInfo.age !== undefined) ? (
-              (playerInfo.age === null) ? "Unknown" : playerInfo.age
-            ) : (
-              undefined
-            ) || <TextLoader />}
-          </Val>
-        </Col>
-        <Col>
-          <Label>Height</Label>
-          <Val>
-            {(playerInfo.height !== undefined) ? (
-              (playerInfo.height === null) ? "Unknown" : playerInfo.height
-            ) : (
-              undefined
-            ) || <TextLoader />}
-          </Val>
-        </Col>
-        <Col>
-          <Label>Weight</Label>
-          <Val>
-            {(playerInfo.weight !== undefined) ? (
-              (playerInfo.weight === null) ? "Unknown" : playerInfo.weight
-            ) : (
-              undefined
-            ) || <TextLoader />}
-          </Val>
-        </Col>
-      </PlayerCardGridTable>
-      <PlayerCardGridTable2>
-        <Col>
-          <Label>Jersey</Label>
-          <Val>
-            {(playerInfo.jerseyNumber !== undefined) ? (
-              (playerInfo.jerseyNumber === null) ? "None" : playerInfo.jerseyNumber
-            ) : (
-              undefined
-            ) || <TextLoader />}
-          </Val>
-        </Col>
-        <Col>
-          <Label>Status</Label>
-          <Val>
-            {(playerInfo.currentRosterStatus !== undefined) ? (
-              (playerInfo.currentRosterStatus === "ROSTER") ? "Active" : "Inactive"
-            ) : (
-              undefined
-            ) || <TextLoader />}
-          </Val>
-        </Col>
-        <Col>
-          <Label>Born</Label>
-          <Val>{playerInfo.birthDate || <TextLoader />}</Val>
-        </Col>
-        <Col>
-          <Label>From</Label>
-          <Val>
-            {(playerInfo.birthCity !== undefined && playerInfo.birthCountry !== undefined) ? (
-              (playerInfo.birthCity === null || playerInfo.birthCountry === null) ? "Unknown" : `${playerInfo.birthCity} ${playerInfo.birthCountry}`
-            ) : (
-              undefined
-            ) || <TextLoader />}
-          </Val>
-        </Col>
-        <Col>
-          <Label>College</Label>
-          <Val>
-            {(playerInfo.college !== undefined) ? (
-              (playerInfo.college === null) ? "None" : playerInfo.college
-            ) : (
-              undefined
-            ) || <TextLoader />}
-          </Val>
-        </Col>
-      </PlayerCardGridTable2>
-    </StyledPlayerCard>
-  )
-}
+export const PlayerCard = ({ playerInfo, playerReferences }) => (
+  <StyledPlayerCard>
+    <PlayerCardGridImage>
+      <div className="img">
+        <TeamImage src={playerReferences.officialLogoImageSrc} alt={`${playerReferences.city} ${playerReferences.name}`} />
+        <PlayerImage src={playerInfo.officialImageSrc} alt={`${playerInfo.firstName} ${playerInfo.lastName}`} />
+      </div>
+    </PlayerCardGridImage>
+    <PlayerCardGridName>
+      {(playerInfo.firstName !== undefined && playerInfo.lastName !== undefined) ? (
+        <>
+          <h2>{`${playerInfo.firstName} ${playerInfo.lastName}`}</h2>
+          {(playerInfo.socialMediaAccounts !== undefined && playerInfo.socialMediaAccounts.length !== 0) && (
+            <a href={'https://www.twitter.com/' + playerInfo.socialMediaAccounts[0].value} target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faTwitter} />
+            </a>
+          )}
+        </>
+      ) : (
+        undefined
+      ) || <TextLoader />}
+    </PlayerCardGridName>
+    <PlayerCardGridTable>
+      <Col>
+        <Label>Team</Label>
+        <Val>
+          {(playerReferences.city !== undefined && playerReferences.name !== undefined) ? (
+            `${playerReferences.city} ${playerReferences.name}`
+          ) : (
+            undefined
+          ) || <TextLoader />}
+        </Val>
+      </Col>
+      <Col>
+        <Label>Position</Label>
+        <Val>
+          {(playerInfo.primaryPosition !== undefined) ? (
+            (playerInfo.primaryPosition === null) ? "Unknown" : playerInfo.primaryPosition
+          ) : (
+            undefined
+          ) || <TextLoader />}
+        </Val>
+      </Col>
+      <Col>
+        <Label>Age</Label>
+        <Val>
+          {(playerInfo.age !== undefined) ? (
+            (playerInfo.age === null) ? "Unknown" : playerInfo.age
+          ) : (
+            undefined
+          ) || <TextLoader />}
+        </Val>
+      </Col>
+      <Col>
+        <Label>Height</Label>
+        <Val>
+          {(playerInfo.height !== undefined) ? (
+            (playerInfo.height === null) ? "Unknown" : playerInfo.height
+          ) : (
+            undefined
+          ) || <TextLoader />}
+        </Val>
+      </Col>
+      <Col>
+        <Label>Weight</Label>
+        <Val>
+          {(playerInfo.weight !== undefined) ? (
+            (playerInfo.weight === null) ? "Unknown" : playerInfo.weight
+          ) : (
+            undefined
+          ) || <TextLoader />}
+        </Val>
+      </Col>
+    </PlayerCardGridTable>
+    <PlayerCardGridTable2>
+      <Col>
+        <Label>Jersey</Label>
+        <Val>
+          {(playerInfo.jerseyNumber !== undefined) ? (
+            (playerInfo.jerseyNumber === null) ? "None" : playerInfo.jerseyNumber
+          ) : (
+            undefined
+          ) || <TextLoader />}
+        </Val>
+      </Col>
+      <Col>
+        <Label>Status</Label>
+        <Val>
+          {(playerInfo.currentRosterStatus !== undefined) ? (
+            (playerInfo.currentRosterStatus === "ROSTER") ? "Active" : "Inactive"
+          ) : (
+            undefined
+          ) || <TextLoader />}
+        </Val>
+      </Col>
+      <Col>
+        <Label>Born</Label>
+        <Val>{playerInfo.birthDate || <TextLoader />}</Val>
+      </Col>
+      <Col>
+        <Label>From</Label>
+        <Val>
+          {(playerInfo.birthCity !== undefined && playerInfo.birthCountry !== undefined) ? (
+            (playerInfo.birthCity === null || playerInfo.birthCountry === null) ? "Unknown" : `${playerInfo.birthCity} ${playerInfo.birthCountry}`
+          ) : (
+            undefined
+          ) || <TextLoader />}
+        </Val>
+      </Col>
+      <Col>
+        <Label>College</Label>
+        <Val>
+          {(playerInfo.college !== undefined) ? (
+            (playerInfo.college === null) ? "None" : playerInfo.college
+          ) : (
+            undefined
+          ) || <TextLoader />}
+        </Val>
+      </Col>
+    </PlayerCardGridTable2>
+  </StyledPlayerCard>
+)
