@@ -13,29 +13,12 @@ export const Page = styled.div`
     border-bottom: 1px solid #ED5429;
   }
 
-  h1 {
-    font-size: 3em;
-  }
-
-  h2 {
-    font-size: 2.5em;
-  }
-
-  h3 {
-    font-size: 2em;
-  }
-
-  h4 {
-    font-size: 1.5em;
-  }
-
-  h5 {
-    font-size: 1.25em;
-  }
-
-  h6 {
-    font-size: 1em;
-  }
+  h1 { font-size: 3em; }
+  h2 { font-size: 2.5em; }
+  h3 { font-size: 2em; }
+  h4 { font-size: 1.5em; }
+  h5 { font-size: 1.25em; }
+  h6 { font-size: 1em; }
 
   &.content h1,
   &.content h2,

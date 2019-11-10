@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import styled, { keyframes } from 'styled-components'
+import { getRandomInt } from 'utilities'
 
 const slide = keyframes`
   0% { left: -3.75rem; }
@@ -31,13 +32,6 @@ const Gradient = styled.div`
 
 export const TextLoader = props  => {
   const [width, setWidth] = useState({ width: 0 })
-
-  const getRandomInt = (min, max) => {
-    min = Math.ceil(min)
-    max = Math.floor(max)
-    //The maximum is exclusive and the minimum is inclusive
-    return Math.floor(Math.random() * (max - min)) + min
-  }
 
   const calcWidth = useCallback(() => {
     setWidth({ width: getRandomInt(25,60) + '%' })

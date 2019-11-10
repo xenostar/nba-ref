@@ -4,16 +4,8 @@ export const NavSub = styled.nav`
   background-color: rgba(237, 84, 41, 1);
   border-radius: 3px;
   display: flex;
-  float: left;
-  overflow: hidden;
   @media only screen and (max-width: 62.5rem) {
-    border-radius: 0;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.5);
-    position: fixed;
-    right: 0;
-    bottom: 3.4375rem;
-    left: 0;
-    z-index: 900;
+    margin-bottom: 5px;
   }
 
   a {
@@ -47,6 +39,7 @@ export const NavSub = styled.nav`
     a {
       flex-basis: 0;
       flex-grow: 1;
+      font-size: 0.8em;
       padding: 0;
     }
   }
