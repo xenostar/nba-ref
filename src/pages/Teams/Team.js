@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Route, Switch, NavLink, useRouteMatch, useHistory, useParams } from 'react-router-dom'
+import { seasons, teams } from 'api'
 import { Page, NavSub, Form, Select } from 'components'
 import { TeamRoster, NoMatch } from 'pages'
-import { seasons, teams } from 'api'
 
 const StyledTeam = styled(Page)``
 

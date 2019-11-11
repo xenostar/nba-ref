@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { Page, Image } from 'components'
 import { seasons, teams } from 'api'
+import { Page, Image } from 'components'
 
 const StyledHome = styled(Page)`
   display: grid;

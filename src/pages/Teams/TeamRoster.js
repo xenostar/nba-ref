@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { api } from 'api'
 import { Table } from 'components'
 import { formatPlayerName } from 'utilities'
 
 const StyledTeamRoster = styled.div``
 
 export const TeamRoster = ({values}) => {
-  const _API_ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
+  const _URL_ = 'v2.1/pull/nba/'
   const [roster, setRoster] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const tableData = {
@@ -22,14 +23,8 @@ export const TeamRoster = ({values}) => {
   const handleFetch = useCallback(async () => {
     setIsLoading(true)
     try {
-      const response = await fetch(`${ _API_ }players.json?season=${ values.season }&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`, {
-        headers: {
-          'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
-          'Accept-Encoding' : 'gzip'
-        },
-      })
-      const data = await response.json()
-      setRoster(data.players)
+      const response = await api.get(`${ _URL_ }players.json?season=${ values.season }&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`)
+      setRoster(response.data.players)
       setIsLoading(false)
     } catch (error) {
       console.log(error)

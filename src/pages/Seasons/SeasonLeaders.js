@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { api } from 'api'
 import { Table } from 'components'
+import { formatPlayerName } from 'utilities'
 
 const StyledSeasonLeaders = styled.div`
   display: grid;
@@ -17,7 +19,7 @@ const StyledSeasonLeaders = styled.div`
 `
 
 export const SeasonLeaders = ({values}) => {
-  const _API_ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
+  const _URL_ = 'v1.2/pull/nba/'
   const [leaders, setLeaders] = useState({ points: [], assists: [], rebounds: [] })
   const [isLoading, setIsLoading] = useState({ isLoadingPts: true, isLoadingAst: true, isLoadingReb: true })
   const tableDataPts = {
@@ -36,22 +38,19 @@ export const SeasonLeaders = ({values}) => {
     'Name': 'auto',
   }
 
-  const formatPlayerName = name => name.toLowerCase().replace(/[^a-zA-Z]/g, "")
-
   const handleFetch = useCallback(async (url, stateValue, loadValue) => {
     setIsLoading(prevState => {
       return { ...prevState, [loadValue]: true }
     })
     try {
-      const response = await fetch(`${ _API_ + values.season }/cumulative_player_stats.json?${ url }`,{
-        headers: {
-          'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
-          'Accept-Encoding' : 'gzip'
-        },
+      const response = await api.get(`${ _URL_ + values.season }/cumulative_player_stats.json?${ url }`,{
+        auth: {
+          username: process.env.REACT_APP_NBA_USERNAME,
+          password: process.env.REACT_APP_NBA_PASSWORD
+        }
       })
-      const data = await response.json()
       setLeaders(prevState => {
-        return { ...prevState, [stateValue]: data.cumulativeplayerstats.playerstatsentry }
+        return { ...prevState, [stateValue]: response.data.cumulativeplayerstats.playerstatsentry }
       })
       setIsLoading(prevState => {
         return { ...prevState, [loadValue]: false }

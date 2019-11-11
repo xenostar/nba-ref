@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { api } from 'api'
 import { Table } from 'components'
 
 const StyledSeasonStandings = styled.div`
@@ -14,7 +15,7 @@ const StyledSeasonStandings = styled.div`
 `
 
 export const SeasonStandings = ({values}) => {
-  const _API_ = 'https://api.mysportsfeeds.com/v1.2/pull/nba/'
+  const _URL_ = 'v1.2/pull/nba/'
   const [standings, setStandings] = useState({ eastern: [], western: [] })
   const [isLoading, setIsLoading] = useState(true)
   const tableData = {
@@ -26,16 +27,15 @@ export const SeasonStandings = ({values}) => {
   const handleFetch = useCallback(async () => {
     setIsLoading(true)
     try {
-      const response = await fetch(`${ _API_ + values.season }/conference_team_standings.json?teamstats=w`, {
-        headers: {
-          'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_USERNAME + ':' + process.env.REACT_APP_NBA_PASSWORD),
-          'Accept-Encoding' : 'gzip'
-        },
+      const response = await api.get(`${ _URL_ + values.season }/conference_team_standings.json?teamstats=w`, {
+        auth: {
+          username: process.env.REACT_APP_NBA_USERNAME,
+          password: process.env.REACT_APP_NBA_PASSWORD
+        }
       })
-      const data = await response.json()
       setStandings({
-        eastern: data.conferenceteamstandings.conference[0].teamentry,
-        western: data.conferenceteamstandings.conference[1].teamentry
+        eastern: response.data.conferenceteamstandings.conference[0].teamentry,
+        western: response.data.conferenceteamstandings.conference[1].teamentry
       })
       setIsLoading(false)
     } catch (error) {

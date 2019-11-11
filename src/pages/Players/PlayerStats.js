@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
+import { api } from 'api'
 import { PlayerCard, Table } from 'components'
 import { camelCaseToWords } from 'utilities'
 
@@ -23,7 +24,7 @@ const StyledPlayerStats = styled.div`
 `
 
 export const PlayerStats = ({values}) => {
-  const _API_ = 'https://api.mysportsfeeds.com/v2.1/pull/nba/'
+  const _URL_ = 'v2.1/pull/nba/'
   const [playerInfo, setPlayerInfo] = useState({})
   const [playerStats, setPlayerStats] = useState({})
   const [playerReferences, setPlayerReferences] = useState({})
@@ -36,16 +37,10 @@ export const PlayerStats = ({values}) => {
   const handleFetch = useCallback(async () => {
     setIsLoading(true)
     try {
-      const response = await fetch(`${ _API_ + values.season }/player_stats_totals.json?player=${ values.player }`, {
-        headers: {
-          'Authorization' : 'Basic ' + btoa(process.env.REACT_APP_NBA_APIKEY + ':' + process.env.REACT_APP_NBA_APIPASS),
-          'Accept-Encoding' : 'gzip'
-        },
-      })
-      const data = await response.json()
-      setPlayerInfo(data.playerStatsTotals[0].player)
-      setPlayerStats(data.playerStatsTotals[0].stats)
-      setPlayerReferences(data.references.teamReferences[0])
+      const response = await api.get(`${ _URL_ + values.season }/player_stats_totals.json?player=${ values.player }`)
+      setPlayerInfo(response.data.playerStatsTotals[0].player)
+      setPlayerStats(response.data.playerStatsTotals[0].stats)
+      setPlayerReferences(response.data.references.teamReferences[0])
       setIsLoading(false)
     } catch (error) {
       console.log(error)
