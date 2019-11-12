@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { api } from 'api'
+import axios from 'axios'
 import { Table } from 'components'
 
 const StyledSeasonStandings = styled.div`
@@ -24,28 +24,33 @@ export const SeasonStandings = ({values}) => {
     'Name': 'auto',
   }
 
-  const handleFetch = useCallback(async () => {
-    setIsLoading(true)
-    try {
-      const response = await api.get(`${ _URL_ + values.season }/conference_team_standings.json?teamstats=w`, {
-        auth: {
-          username: process.env.REACT_APP_NBA_USERNAME,
-          password: process.env.REACT_APP_NBA_PASSWORD
-        }
-      })
-      setStandings({
-        eastern: response.data.conferenceteamstandings.conference[0].teamentry,
-        western: response.data.conferenceteamstandings.conference[1].teamentry
-      })
-      setIsLoading(false)
-    } catch (error) {
-      console.log(error)
-    }
-  }, [values])
-
   useEffect(() => {
+    const source = axios.CancelToken.source()
+
+    const handleFetch = async () => {
+      setIsLoading(true)
+      try {
+        const res = await axios.get(`${ _URL_ + values.season }/conference_team_standings.json?teamstats=w`, {
+          auth: {
+            username: process.env.REACT_APP_NBA_USERNAME,
+            password: process.env.REACT_APP_NBA_PASSWORD
+          },
+          cancelToken: source.token
+        })
+        setStandings({
+          eastern: res.data.conferenceteamstandings.conference[0].teamentry,
+          western: res.data.conferenceteamstandings.conference[1].teamentry
+        })
+        setIsLoading(false)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
     handleFetch()
-  }, [handleFetch])
+
+    return () => source.cancel("Cancelling SeasonStandings request")
+  }, [values])
 
   return (
     <StyledSeasonStandings>

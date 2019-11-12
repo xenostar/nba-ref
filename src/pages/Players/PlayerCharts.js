@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { api } from 'api'
+import axios from 'axios'
 import { RadarChart } from 'react-vis'
 import { PlayerCard } from 'components'
 import 'react-vis/dist/style.css'
@@ -47,22 +47,28 @@ export const PlayerCharts = ({values}) => {
     }
   ]
 
-  const handleFetch = useCallback(async () => {
-    setIsLoading(true)
-    try {
-      const response = await api.get(`${ _URL_ + values.season }/player_stats_totals.json?player=${ values.player }`)
-      setPlayerInfo(response.data.playerStatsTotals[0].player)
-      setPlayerStats(response.data.playerStatsTotals[0].stats)
-      setPlayerReferences(response.data.references.teamReferences[0])
-      setIsLoading(false)
-    } catch (error) {
-      console.log(error)
-    }
-  }, [values])
-
   useEffect(() => {
+    const source = axios.CancelToken.source()
+
+    const handleFetch = async () => {
+      setIsLoading(true)
+      try {
+        const res = await axios.get(`${ _URL_ + values.season }/player_stats_totals.json?player=${ values.player }`,{
+          cancelToken: source.token
+        })
+        setPlayerInfo(res.data.playerStatsTotals[0].player)
+        setPlayerStats(res.data.playerStatsTotals[0].stats)
+        setPlayerReferences(res.data.references.teamReferences[0])
+        setIsLoading(false)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
     handleFetch()
-  }, [handleFetch])
+
+    return () => source.cancel("Cancelling PlayerCharts request")
+  }, [values])
 
   return (
     <StyledPlayerCharts>

@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { api } from 'api'
+import axios from 'axios'
 import { Table } from 'components'
 import { formatPlayerName } from 'utilities'
 
@@ -20,20 +20,26 @@ export const TeamRoster = ({values}) => {
     'Weight': '10%',
   }
 
-  const handleFetch = useCallback(async () => {
-    setIsLoading(true)
-    try {
-      const response = await api.get(`${ _URL_ }players.json?season=${ values.season }&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`)
-      setRoster(response.data.players)
-      setIsLoading(false)
-    } catch (error) {
-      console.log(error)
-    }
-  }, [values])
-
   useEffect(() => {
+    const source = axios.CancelToken.source()
+
+    const handleFetch = async () => {
+      setIsLoading(true)
+      try {
+        const res = await axios.get(`${ _URL_ }players.json?season=${ values.season }&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`,{
+          cancelToken: source.token
+        })
+        setRoster(res.data.players)
+        setIsLoading(false)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
     handleFetch()
-  }, [handleFetch])
+
+    return () => source.cancel("Cancelling TeamRoster request")
+  }, [values])
 
   return (
     <StyledTeamRoster>

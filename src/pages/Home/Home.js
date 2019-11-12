@@ -41,7 +41,7 @@ const StyledHome = styled(Page)`
 const TeamLink = styled(Link)`
   background-color: ${props => props.bgcolor || "#eee"};
   border-radius: 3px;
-  box-shadow: 0;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
   padding-top: 75%;
   position: relative;
   transition: transform 0.2s, box-shadow 0.2s;

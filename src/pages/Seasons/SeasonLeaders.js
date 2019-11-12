@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { api } from 'api'
+import axios from 'axios'
 import { Table } from 'components'
 import { formatPlayerName } from 'utilities'
 
@@ -38,33 +38,38 @@ export const SeasonLeaders = ({values}) => {
     'Name': 'auto',
   }
 
-  const handleFetch = useCallback(async (url, stateValue, loadValue) => {
-    setIsLoading(prevState => {
-      return { ...prevState, [loadValue]: true }
-    })
-    try {
-      const response = await api.get(`${ _URL_ + values.season }/cumulative_player_stats.json?${ url }`,{
-        auth: {
-          username: process.env.REACT_APP_NBA_USERNAME,
-          password: process.env.REACT_APP_NBA_PASSWORD
-        }
-      })
-      setLeaders(prevState => {
-        return { ...prevState, [stateValue]: response.data.cumulativeplayerstats.playerstatsentry }
-      })
-      setIsLoading(prevState => {
-        return { ...prevState, [loadValue]: false }
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }, [values])
-
   useEffect(() => {
+    const source = axios.CancelToken.source()
+
+    const handleFetch = async (url, stateValue, loadValue) => {
+      setIsLoading(prevState => {
+        return { ...prevState, [loadValue]: true }
+      })
+      try {
+        const res = await axios.get(`${ _URL_ + values.season }/cumulative_player_stats.json?${ url }`,{
+          auth: {
+            username: process.env.REACT_APP_NBA_USERNAME,
+            password: process.env.REACT_APP_NBA_PASSWORD
+          },
+          cancelToken: source.token
+        })
+        setLeaders(prevState => {
+          return { ...prevState, [stateValue]: res.data.cumulativeplayerstats.playerstatsentry }
+        })
+        setIsLoading(prevState => {
+          return { ...prevState, [loadValue]: false }
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
     handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'points', 'isLoadingPts')
     handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'assists', 'isLoadingAst')
     handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'rebounds', 'isLoadingReb')
-  }, [handleFetch])
+
+    return () => source.cancel("Cancelling SeasonLeaders requests")
+  }, [values])
 
   return (
     <StyledSeasonLeaders>
