@@ -1,6 +1,17 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { BasketballLoader } from 'components'
+
+const slideIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`
 
 const StyledTable = styled.div`
   .name {
@@ -37,13 +48,17 @@ const StyledTable = styled.div`
     padding: 0.625rem;
     white-space: nowrap;
   }
-  table tbody tr.tb-loader td {
+  table tbody.tb-loading tr td {
     padding: 0;
   }
-  table tbody tr:nth-child(even) {
+  table tbody.tb-loaded tr:nth-child(even) {
     background-color: rgba(0,0,0,0.025);
   }
-  table tbody tr:not(.tb-loader):hover {
+  table tbody.tb-loaded tr {
+    animation: ${slideIn} 0.4s;
+    animation-fill-mode: both;
+  }
+  table tbody.tb-loaded tr:hover {
     background-color: rgba(0,0,0,0.05);
   }
 `
@@ -64,15 +79,15 @@ export const Table = props => {
             </tr>
           </thead>
           {props.isLoading ? (
-            <tbody>
-              <tr className="tb-loader">
+            <tbody className="tb-loading">
+              <tr>
                 <td colSpan={Object.keys(dataCols).length}>
                   <BasketballLoader loaderHeight={props.loaderHeight ? props.loaderHeight : 10} />
                 </td>
               </tr>
             </tbody>
           ) : (
-            <tbody>
+            <tbody className="tb-loaded">
               {props.children}
             </tbody>
           )}
