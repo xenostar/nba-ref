@@ -24,6 +24,7 @@ const StyledTable = styled.div`
   }
   .holder {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   table {

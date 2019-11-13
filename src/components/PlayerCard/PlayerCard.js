@@ -64,9 +64,6 @@ const PlayerCardGridName = styled.div`
   align-items: center;
   line-height: 3.75rem;
 
-  h1 {
-    margin-bottom: 0;
-  }
   a {
     font-size: 30px;
     margin-left: 10px;
