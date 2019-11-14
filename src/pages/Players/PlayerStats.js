@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import { PlayerCard, Table } from 'components'
-import { camelCaseToWords } from 'utilities'
+import { camelCaseToWords } from 'utils'
 
 const StyledPlayerStats = styled.div`
   .grid {

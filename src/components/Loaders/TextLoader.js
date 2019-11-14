@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import styled, { keyframes } from 'styled-components'
-import { getRandomInt } from 'utilities'
+import { getRandomInt } from 'utils'
 
 const slide = keyframes`
   0% { left: -3.75rem; }

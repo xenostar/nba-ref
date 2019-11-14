@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Table } from 'components'
-import { formatPlayerName } from 'utilities'
+import { formatPlayerName } from 'utils'
 
 const StyledTeamRoster = styled.div``
 

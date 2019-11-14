@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Image } from 'components'
-import logoImg from 'img/img_nba-logo--orange.svg'
+import logoImg from 'assets/img_nba-logo--orange.svg'
 
 const StyledHeader = styled.header`
   margin-bottom: 2.5rem;
