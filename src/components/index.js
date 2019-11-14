@@ -1,3 +1,4 @@
+export * from './ErrorBoundary/ErrorBoundary'
 export * from './Footer/Footer'
 export * from './Forms/Form'
 export * from './Forms/Label'
