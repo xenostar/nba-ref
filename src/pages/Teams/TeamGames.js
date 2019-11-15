@@ -53,7 +53,8 @@ export const TeamGames = ({values}) => {
             <div>Away Team: {data.schedule.awayTeam.abbreviation} (ID: {data.schedule.awayTeam.id})</div>
             <div>Venue: {data.schedule.venue.name} (ID: {data.schedule.venue.id})</div>
             <div>Game Type: {data.schedule.venueAllegiance}</div>
-            <div>---</div>
+            <div>Away Score Total: {data.score.awayScoreTotal}</div>
+            <div>Home Score Total: {data.score.homeScoreTotal}</div>
           </div>
         )
       })}
