@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Route, Switch, NavLink, useRouteMatch, useHistory, useParams } from 'react-router-dom'
 import { seasons, teams } from 'api'
 import { Page, NavSub, Form, Select } from 'components'
-import { TeamRoster, NoMatch } from 'pages'
+import { TeamGames, TeamRoster, NoMatch } from 'pages'
 
 const StyledTeam = styled(Page)``
 
@@ -51,6 +51,7 @@ export const Team = () => {
       </Form>
       <Switch>
         <Route path={`/teams/roster`} render={props => <TeamRoster {...props} values={values} />} />
+        <Route path={`/teams/games`} render={props => <TeamGames {...props} values={values} />} />
         <Route path="*" component={NoMatch} />
       </Switch>
     </StyledTeam>
