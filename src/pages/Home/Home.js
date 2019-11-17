@@ -67,16 +67,14 @@ export const Home = () => (
     </div>
     <div>
       <div className="team-grid">
-        {teams.map(data => {
-          return (
-            <TeamLink
-              key={data.name}
-              to={`/teams/roster/${data.abbreviation}/${seasons[0].value}`}
-              bgcolor={data.colors[0]}>
-                <TeamImage src={data.logo} alt={`${data.city} ${data.name}`} />
-            </TeamLink>
-          )
-        })}
+        {Object.entries(teams).map(([key, value]) => (
+          <TeamLink
+            key={key}
+            to={`/teams/roster/${key}/${seasons[0].value}`}
+            bgcolor={value.colors[0]}>
+              <TeamImage src={value.logo} alt={`${value.city} ${value.name}`} />
+          </TeamLink>
+        ))}
       </div>
     </div>
   </StyledHome>

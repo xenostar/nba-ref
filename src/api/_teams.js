@@ -29,8 +29,9 @@ import TOR_logo from 'assets/TOR_logo.svg'
 import UTA_logo from 'assets/UTA_logo.svg'
 import WAS_logo from 'assets/WAS_logo.svg'
 
-export const teams = {
-  "atl": {
+export const teamsold = [
+  {
+    "abbreviation": "atl",
     "city": "Atlanta",
     "name": "Hawks",
     "logo": ATL_logo,
@@ -40,7 +41,8 @@ export const teams = {
       "#26282a",
     ],
   },
-  "bos": {
+  {
+    "abbreviation": "bos",
     "city": "Boston",
     "name": "Celtics",
     "logo": BOS_logo,
@@ -52,7 +54,8 @@ export const teams = {
       "#000000",
     ],
   },
-  "bro": {
+  {
+    "abbreviation": "bro",
     "city": "Brooklyn",
     "name": "Nets",
     "logo": BKN_logo,
@@ -62,7 +65,8 @@ export const teams = {
       "#000000",
     ],
   },
-  "cha": {
+  {
+    "abbreviation": "cha",
     "city": "Charlotte",
     "name": "Hornets",
     "logo": CHA_logo,
@@ -72,7 +76,8 @@ export const teams = {
       "#a1a1a4",
     ],
   },
-  "chi": {
+  {
+    "abbreviation": "chi",
     "city": "Chicago",
     "name": "Bulls",
     "logo": CHI_logo,
@@ -81,7 +86,8 @@ export const teams = {
       "#000000",
     ],
   },
-  "cle": {
+  {
+    "abbreviation": "cle",
     "city": "Cleveland",
     "name": "Cavaliers",
     "logo": CLE_logo,
@@ -92,7 +98,8 @@ export const teams = {
       "#000000"
     ],
   },
-  "dal": {
+  {
+    "abbreviation": "dal",
     "city": "Dallas",
     "name": "Mavericks",
     "logo": DAL_logo,
@@ -103,7 +110,8 @@ export const teams = {
       "#000000",
     ],
   },
-  "den": {
+  {
+    "abbreviation": "den",
     "city": "Denver",
     "name": "Nuggets",
     "logo": DEN_logo,
@@ -114,7 +122,8 @@ export const teams = {
       "#1d428a",
     ],
   },
-  "det": {
+  {
+    "abbreviation": "det",
     "city": "Detroit",
     "name": "Pistons",
     "logo": DET_logo,
@@ -125,7 +134,8 @@ export const teams = {
       "#002d62",
     ],
   },
-  "gsw": {
+  {
+    "abbreviation": "gsw",
     "city": "Golden State",
     "name": "Warriors",
     "logo": GSW_logo,
@@ -135,7 +145,8 @@ export const teams = {
       "#26282a",
     ],
   },
-  "hou": {
+  {
+    "abbreviation": "hou",
     "city": "Houston",
     "name": "Rockets",
     "logo": HOU_logo,
@@ -145,7 +156,8 @@ export const teams = {
       "#c4ced4",
     ],
   },
-  "ind": {
+  {
+    "abbreviation": "ind",
     "city": "Indiana",
     "name": "Pacers",
     "logo": IND_logo,
@@ -155,7 +167,8 @@ export const teams = {
       "#bec0c2",
     ],
   },
-  "lac": {
+  {
+    "abbreviation": "lac",
     "city": "Los Angeles",
     "name": "Clippers",
     "logo": LAC_logo,
@@ -166,7 +179,8 @@ export const teams = {
       "#1d428a",
     ],
   },
-  "lal": {
+  {
+    "abbreviation": "lal",
     "city": "Los Angeles",
     "name": "Lakers",
     "logo": LAL_logo,
@@ -176,7 +190,8 @@ export const teams = {
       "#000000",
     ],
   },
-  "mem": {
+  {
+    "abbreviation": "mem",
     "city": "Memphis",
     "name": "Grizzlies",
     "logo": MEM_logo,
@@ -187,7 +202,8 @@ export const teams = {
       "#707271",
     ],
   },
-  "mia": {
+  {
+    "abbreviation": "mia",
     "city": "Miami",
     "name": "Heat",
     "logo": MIA_logo,
@@ -197,7 +213,8 @@ export const teams = {
       "#000000"
     ],
   },
-  "mil": {
+  {
+    "abbreviation": "mil",
     "city": "Milwaukee",
     "name": "Bucks",
     "logo": MIL_logo,
@@ -208,7 +225,8 @@ export const teams = {
       "#000000",
     ],
   },
-  "min": {
+  {
+    "abbreviation": "min",
     "city": "Minnesota",
     "name": "Timberwolves",
     "logo": MIN_logo,
@@ -219,7 +237,8 @@ export const teams = {
       "#78be20",
     ],
   },
-  "nop": {
+  {
+    "abbreviation": "nop",
     "city": "New Orleans",
     "name": "Pelicans",
     "logo": NOP_logo,
@@ -229,7 +248,8 @@ export const teams = {
       "#857a4d"
     ],
   },
-  "nyk": {
+  {
+    "abbreviation": "nyk",
     "city": "New York",
     "name": "Knicks",
     "logo": NYK_logo,
@@ -240,7 +260,8 @@ export const teams = {
       "#000000"
     ],
   },
-  "okl": {
+  {
+    "abbreviation": "okl",
     "city": "Oklahoma City",
     "name": "Thunder",
     "logo": OKC_logo,
@@ -251,7 +272,8 @@ export const teams = {
       "#fdbb30",
     ],
   },
-  "orl": {
+  {
+    "abbreviation": "orl",
     "city": "Orlando",
     "name": "Magic",
     "logo": ORL_logo,
@@ -261,7 +283,8 @@ export const teams = {
       "#000000",
     ],
   },
-  "phi": {
+  {
+    "abbreviation": "phi",
     "city": "Philadelphia",
     "name": "76ers",
     "logo": PHI_logo,
@@ -272,7 +295,8 @@ export const teams = {
       "#c4ced4",
     ],
   },
-  "phx": {
+  {
+    "abbreviation": "phx",
     "city": "Phoenix",
     "name": "Suns",
     "logo": PHX_logo,
@@ -286,7 +310,8 @@ export const teams = {
       "#bec0c2",
     ],
   },
-  "por": {
+  {
+    "abbreviation": "por",
     "city": "Portland",
     "name": "Trail Blazers",
     "logo": POR_logo,
@@ -295,7 +320,8 @@ export const teams = {
       "#000000",
     ],
   },
-  "sac": {
+  {
+    "abbreviation": "sac",
     "city": "Sacramento",
     "name": "Kings",
     "logo": SAC_logo,
@@ -305,7 +331,8 @@ export const teams = {
       "#000000",
     ],
   },
-  "sas": {
+  {
+    "abbreviation": "sas",
     "city": "San Antonio",
     "name": "Spurs",
     "logo": SAS_logo,
@@ -314,7 +341,8 @@ export const teams = {
       "#000000"
     ],
   },
-  "tor": {
+  {
+    "abbreviation": "tor",
     "city": "Toronto",
     "name": "Raptors",
     "logo": TOR_logo,
@@ -325,7 +353,8 @@ export const teams = {
       "#b4975a",
     ],
   },
-  "uta": {
+  {
+    "abbreviation": "uta",
     "city": "Utah",
     "name": "Jazz",
     "logo": UTA_logo,
@@ -335,7 +364,8 @@ export const teams = {
       "#00471b",
     ],
   },
-  "was": {
+  {
+    "abbreviation": "was",
     "city": "Washington",
     "name": "Wizards",
     "logo": WAS_logo,
@@ -345,4 +375,4 @@ export const teams = {
       "#c4ced4",
     ],
   },
-}
+]

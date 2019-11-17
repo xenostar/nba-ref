@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 // import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { teams } from 'api'
 
 const StyledTeamGames = styled.div`
   display: grid;
@@ -14,6 +15,12 @@ const StyledTeamGames = styled.div`
   @media only screen and (max-width: 62.5rem) { /* 1000px */
     grid-template-columns: 1fr;
   }
+`
+
+const GameCard = styled.div`
+  background: #eee;
+  padding: 20px;
+  border-radius: 10px;
 `
 
 export const TeamGames = ({values}) => {
@@ -45,17 +52,26 @@ export const TeamGames = ({values}) => {
   return (
     <StyledTeamGames>
       {isLoading || games.map((data, index) => {
+        const abbrv_home = data.schedule.homeTeam.abbreviation.toLowerCase();
+        const abbrv_away = data.schedule.awayTeam.abbreviation.toLowerCase();
+        // console.log(test);
         return (
-          <div key={data.schedule.id}>
+          <GameCard key={data.schedule.id}>
             <div>Game ID: {data.schedule.id}</div>
-            <div>Start Time: {data.schedule.startTime}</div>
-            <div>Home Team: {data.schedule.homeTeam.abbreviation} (ID: {data.schedule.homeTeam.id})</div>
-            <div>Away Team: {data.schedule.awayTeam.abbreviation} (ID: {data.schedule.awayTeam.id})</div>
-            <div>Venue: {data.schedule.venue.name} (ID: {data.schedule.venue.id})</div>
             <div>Game Type: {data.schedule.venueAllegiance}</div>
-            <div>Away Score Total: {data.score.awayScoreTotal}</div>
+            <div>Start Time: {data.schedule.startTime}</div>
+            <div>Venue: {data.schedule.venue.name} (ID: {data.schedule.venue.id})</div>
+            <div>---</div>
+            <div>Home Team: {data.schedule.homeTeam.abbreviation} (ID: {data.schedule.homeTeam.id})</div>
             <div>Home Score Total: {data.score.homeScoreTotal}</div>
-          </div>
+            <div>Home Color: {teams[abbrv_home].colors[0]}</div>
+            <div>Home Image: {teams[abbrv_home].logo}</div>
+            <div>---</div>
+            <div>Away Team: {data.schedule.awayTeam.abbreviation} (ID: {data.schedule.awayTeam.id})</div>
+            <div>Away Score Total: {data.score.awayScoreTotal}</div>
+            <div>Away Color: {teams[abbrv_away].colors[0]}</div>
+            <div>Away Image: {teams[abbrv_away].logo}</div>
+          </GameCard>
         )
       })}
     </StyledTeamGames>
