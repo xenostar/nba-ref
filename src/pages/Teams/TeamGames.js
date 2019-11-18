@@ -18,9 +18,12 @@ const StyledTeamGames = styled.div`
 `
 
 const GameCard = styled.div`
-  background: #eee;
+  /* background: #eee; */
+  background: linear-gradient(90deg, ${props => props.homecolor || "#eee"} 30%, ${props => props.awaycolor || "#eee"} 70%);
   padding: 20px;
   border-radius: 10px;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.25);
 `
 
 export const TeamGames = ({values}) => {
@@ -56,7 +59,9 @@ export const TeamGames = ({values}) => {
         const abbrv_away = data.schedule.awayTeam.abbreviation.toLowerCase();
         // console.log(test);
         return (
-          <GameCard key={data.schedule.id}>
+          <GameCard key={data.schedule.id}
+            homecolor={teams[abbrv_home].colors[0]}
+            awaycolor={teams[abbrv_away].colors[0]}>
             <div>Game ID: {data.schedule.id}</div>
             <div>Game Type: {data.schedule.venueAllegiance}</div>
             <div>Start Time: {data.schedule.startTime}</div>

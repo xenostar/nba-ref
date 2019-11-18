@@ -26,7 +26,8 @@ export const TeamRoster = ({values}) => {
     const handleFetch = async () => {
       setIsLoading(true)
       try {
-        const res = await axios.get(`${ _URL_ }players.json?season=${ values.season }&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`,{
+        const res = await axios.get(`${ _URL_ }players.json?season=${ values.season }&team=${ values.team }&sort=player.lastname.A`,{
+        // const res = await axios.get(`${ _URL_ }players.json?season=${ values.season }&team=${ values.team }&rosterstatus=assigned-to-roster&sort=player.lastname.A`,{
           cancelToken: source.token
         })
         setRoster(res.data.players)
