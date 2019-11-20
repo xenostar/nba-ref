@@ -18,9 +18,15 @@ const StyledTeamGames = styled.div`
 `
 
 const GameCard = styled.div`
-  background: linear-gradient(120deg, ${props => props.homecolor || "#eee"} 50%, ${props => props.awaycolor || "#eee"} 50%);
+  background:
+    url('${props => props.homelogo}'),
+    url('${props => props.awaylogo}'),
+    linear-gradient(110deg, ${props => props.homecolor || "#eee"} 50%, ${props => props.awaycolor || "#eee"} 50%);
+  background-repeat: no-repeat;
+  background-position: left 10px center,right 10px center, 0;
+  background-size: 25%, 25%, auto;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 5px;
   color: #fff;
   text-shadow: 0 2px 4px rgba(0,0,0,0.25);
 `
@@ -60,7 +66,9 @@ export const TeamGames = ({values}) => {
         return (
           <GameCard key={data.schedule.id}
             homecolor={teams[abbrv_home].colors[0]}
-            awaycolor={teams[abbrv_away].colors[0]}>
+            homelogo={teams[abbrv_home].logo}
+            awaycolor={teams[abbrv_away].colors[0]}
+            awaylogo={teams[abbrv_away].logo}>
             <div>Game ID: {data.schedule.id}</div>
             <div>Game Type: {data.schedule.venueAllegiance}</div>
             <div>Start Time: {data.schedule.startTime}</div>
@@ -68,13 +76,9 @@ export const TeamGames = ({values}) => {
             <div>---</div>
             <div>Home Team: {data.schedule.homeTeam.abbreviation} (ID: {data.schedule.homeTeam.id})</div>
             <div>Home Score Total: {data.score.homeScoreTotal}</div>
-            <div>Home Color: {teams[abbrv_home].colors[0]}</div>
-            <div>Home Image: {teams[abbrv_home].logo}</div>
             <div>---</div>
             <div>Away Team: {data.schedule.awayTeam.abbreviation} (ID: {data.schedule.awayTeam.id})</div>
             <div>Away Score Total: {data.score.awayScoreTotal}</div>
-            <div>Away Color: {teams[abbrv_away].colors[0]}</div>
-            <div>Away Image: {teams[abbrv_away].logo}</div>
           </GameCard>
         )
       })}
