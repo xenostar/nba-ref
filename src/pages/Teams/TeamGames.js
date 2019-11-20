@@ -18,8 +18,7 @@ const StyledTeamGames = styled.div`
 `
 
 const GameCard = styled.div`
-  /* background: #eee; */
-  background: linear-gradient(90deg, ${props => props.homecolor || "#eee"} 30%, ${props => props.awaycolor || "#eee"} 70%);
+  background: linear-gradient(120deg, ${props => props.homecolor || "#eee"} 50%, ${props => props.awaycolor || "#eee"} 50%);
   padding: 20px;
   border-radius: 10px;
   color: #fff;
