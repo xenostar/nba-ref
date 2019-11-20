@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { Header, NavMain, Footer, ScrollToTop } from 'components'
+import { Header, NavMain, Footer, PasswordModal, ScrollToTop } from 'components'
 import { Home, Season, Team, Player, NoMatch } from 'pages'
 import './_Normalize.css'
 import './_Reset.css'
@@ -15,6 +15,7 @@ const StyledAppContainer = styled.div`
   max-width: 90vw;
   min-height: 100vh;
   padding: 2.5rem;
+  position: relative;
   @media only screen and (max-width: 62.5rem) {
     min-width: 100%;
     padding: 1.25rem 1.25rem 5rem;
@@ -37,6 +38,7 @@ const App = () => {
         </Switch>
         <Footer />
       </StyledAppContainer>
+      {/* <PasswordModal /> */}
     </Router>
   )
 }
