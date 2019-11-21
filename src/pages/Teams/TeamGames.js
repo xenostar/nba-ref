@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { teams } from 'api'
 
@@ -17,18 +17,41 @@ const StyledTeamGames = styled.div`
   }
 `
 
-const GameCard = styled.div`
+const GameCard = styled(Link)`
   background:
-    url('${props => props.homelogo}'),
     url('${props => props.awaylogo}'),
-    linear-gradient(110deg, ${props => props.homecolor || "#eee"} 50%, ${props => props.awaycolor || "#eee"} 50%);
+    url('${props => props.homelogo}'),
+    linear-gradient(110deg, ${props => props.awaycolor || "#eee"} 50%, ${props => props.homecolor || "#eee"} 50%);
   background-repeat: no-repeat;
   background-position: left 10px center,right 10px center, 0;
   background-size: 25%, 25%, auto;
-  padding: 20px;
+  padding: 30px 20px;
   border-radius: 5px;
   color: #fff;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  :hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+    transform: scale(1.1) translateZ(0);
+  }
+
+  .location {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    text-shadow: 0 2px 2px rgba(0,0,0,0.5);
+  }
+  .score {
+    font-size: 2.75em;
+    font-weight: 700;
+    text-shadow: 0 2px 2px rgba(0,0,0,0.5);
+  }
+  .time {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    text-shadow: 0 2px 2px rgba(0,0,0,0.5);
+  }
 `
 
 export const TeamGames = ({values}) => {
@@ -60,16 +83,19 @@ export const TeamGames = ({values}) => {
   return (
     <StyledTeamGames>
       {isLoading || games.map((data, index) => {
-        const abbrv_home = data.schedule.homeTeam.abbreviation.toLowerCase();
-        const abbrv_away = data.schedule.awayTeam.abbreviation.toLowerCase();
-        // console.log(test);
+        const abbrv_home = data.schedule.homeTeam.abbreviation.toLowerCase()
+        const abbrv_away = data.schedule.awayTeam.abbreviation.toLowerCase()
         return (
           <GameCard key={data.schedule.id}
-            homecolor={teams[abbrv_home].colors[0]}
-            homelogo={teams[abbrv_home].logo}
+            to="/test"
             awaycolor={teams[abbrv_away].colors[0]}
-            awaylogo={teams[abbrv_away].logo}>
-            <div>Game ID: {data.schedule.id}</div>
+            awaylogo={teams[abbrv_away].logo}
+            homecolor={teams[abbrv_home].colors[0]}
+            homelogo={teams[abbrv_home].logo}>
+              <div className="location">@ {data.schedule.venue.name}</div>
+              <div className="score">{data.score.awayScoreTotal} - {data.score.homeScoreTotal}</div>
+              <div className="time">{data.schedule.startTime}</div>
+            {/* <div>Game ID: {data.schedule.id}</div>
             <div>Game Type: {data.schedule.venueAllegiance}</div>
             <div>Start Time: {data.schedule.startTime}</div>
             <div>Venue: {data.schedule.venue.name} (ID: {data.schedule.venue.id})</div>
@@ -78,7 +104,7 @@ export const TeamGames = ({values}) => {
             <div>Home Score Total: {data.score.homeScoreTotal}</div>
             <div>---</div>
             <div>Away Team: {data.schedule.awayTeam.abbreviation} (ID: {data.schedule.awayTeam.id})</div>
-            <div>Away Score Total: {data.score.awayScoreTotal}</div>
+            <div>Away Score Total: {data.score.awayScoreTotal}</div> */}
           </GameCard>
         )
       })}
