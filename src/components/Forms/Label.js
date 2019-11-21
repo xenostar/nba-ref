@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Label = styled.label`
-  background: rgba(0,0,0,0.05);
+  background-color: rgba(0,0,0,0.05);
   border: 1px solid #ddd;
   border-right: 0;
   border-radius: 3px 0 0 3px;

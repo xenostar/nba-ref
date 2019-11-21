@@ -38,7 +38,7 @@ const App = () => {
         </Switch>
         <Footer />
       </StyledAppContainer>
-      {/* <PasswordModal /> */}
+      <PasswordModal />
     </Router>
   )
 }

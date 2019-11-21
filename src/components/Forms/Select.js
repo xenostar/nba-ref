@@ -37,7 +37,11 @@ const StyledSelect = styled.select`
 export const Select = props => (
   <div>
     <Label>{props.label}</Label>
-    <StyledSelect name={props.name} value={props.value} onChange={props.onChange}>
+    <StyledSelect
+      className={props.className}
+      name={props.name}
+      value={props.value}
+      onChange={props.onChange}>
       {props.children}
     </StyledSelect>
   </div>

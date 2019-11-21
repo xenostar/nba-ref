@@ -6,7 +6,7 @@ const StyledImage = styled.img`
   opacity: ${props => props.isLoaded ? (props.opacity ? props.opacity : 1) : 0 };
 `
 
-export const Image = ({alt, className, opacity, src}) => {
+export const Image = props => {
   const [isLoaded, setIsLoaded] = useState(false)
 
   const handleImgLoad = () => {
@@ -15,11 +15,11 @@ export const Image = ({alt, className, opacity, src}) => {
 
   return (
     <StyledImage
-      className={className}
-      src={src}
-      alt={alt}
+      className={props.className}
+      src={props.src}
+      alt={props.alt}
+      opacity={props.opacity}
       isLoaded={isLoaded}
-      opacity={opacity}
       onLoad={handleImgLoad}
     />
   )
