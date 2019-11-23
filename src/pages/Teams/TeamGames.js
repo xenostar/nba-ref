@@ -82,19 +82,22 @@ export const TeamGames = ({values}) => {
 
   return (
     <StyledTeamGames>
-      {isLoading || games.map((data, index) => {
-        const abbrv_home = data.schedule.homeTeam.abbreviation.toLowerCase()
-        const abbrv_away = data.schedule.awayTeam.abbreviation.toLowerCase()
+      {isLoading || games.map(data => {
+        const abbrvHome = data.schedule.homeTeam.abbreviation.toLowerCase()
+        const abbrvAway = data.schedule.awayTeam.abbreviation.toLowerCase()
+        const date = new Date(data.schedule.startTime)
+        const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date)
+        const time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         return (
           <GameCard key={data.schedule.id}
             to="/test"
-            awaycolor={teams[abbrv_away].colors[0]}
-            awaylogo={teams[abbrv_away].logo}
-            homecolor={teams[abbrv_home].colors[0]}
-            homelogo={teams[abbrv_home].logo}>
-              <div className="location">@ {data.schedule.venue.name}</div>
+            awaycolor={teams[abbrvAway].colors[0]}
+            awaylogo={teams[abbrvAway].logo}
+            homecolor={teams[abbrvHome].colors[0]}
+            homelogo={teams[abbrvHome].logo}>
+              <div className="location">{data.schedule.venue.name}</div>
               <div className="score">{data.score.awayScoreTotal} - {data.score.homeScoreTotal}</div>
-              <div className="time">{data.schedule.startTime}</div>
+              <div className="time">{`${month} ${date.getDate()}, ${date.getFullYear()} ${time}`}</div>
             {/* <div>Game ID: {data.schedule.id}</div>
             <div>Game Type: {data.schedule.venueAllegiance}</div>
             <div>Start Time: {data.schedule.startTime}</div>
