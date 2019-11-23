@@ -37,20 +37,21 @@ const GameCard = styled(Link)`
 
   .location {
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
-    text-shadow: 0 2px 2px rgba(0,0,0,0.5);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.75);
   }
   .score {
     font-size: 2.75em;
     font-weight: 700;
-    text-shadow: 0 2px 2px rgba(0,0,0,0.5);
+    line-height: 1.2;
+    text-shadow: 0 2px 2px rgba(0,0,0,0.75);
   }
   .time {
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
-    text-shadow: 0 2px 2px rgba(0,0,0,0.5);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.75);
   }
 `
 
@@ -86,10 +87,13 @@ export const TeamGames = ({values}) => {
         const abbrvHome = data.schedule.homeTeam.abbreviation.toLowerCase()
         const abbrvAway = data.schedule.awayTeam.abbreviation.toLowerCase()
         const date = new Date(data.schedule.startTime)
-        const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date)
-        const time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+        // const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date)
+        const fDay = date.toLocaleString('en-US', { weekday: 'short' })
+        const fDate = date.toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+        const fTime = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         return (
-          <GameCard key={data.schedule.id}
+          <GameCard
+            key={data.schedule.id}
             to="/test"
             awaycolor={teams[abbrvAway].colors[0]}
             awaylogo={teams[abbrvAway].logo}
@@ -97,7 +101,7 @@ export const TeamGames = ({values}) => {
             homelogo={teams[abbrvHome].logo}>
               <div className="location">{data.schedule.venue.name}</div>
               <div className="score">{data.score.awayScoreTotal} - {data.score.homeScoreTotal}</div>
-              <div className="time">{`${month} ${date.getDate()}, ${date.getFullYear()} ${time}`}</div>
+              <div className="time">{`${fDay} ${fDate} @ ${fTime}`}</div>
             {/* <div>Game ID: {data.schedule.id}</div>
             <div>Game Type: {data.schedule.venueAllegiance}</div>
             <div>Start Time: {data.schedule.startTime}</div>
