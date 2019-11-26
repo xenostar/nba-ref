@@ -26,7 +26,6 @@ export const SeasonStandings = ({values}) => {
 
   useEffect(() => {
     const source = axios.CancelToken.source()
-
     const handleFetch = async () => {
       setIsLoading(true)
       try {
@@ -46,9 +45,7 @@ export const SeasonStandings = ({values}) => {
         console.log(error)
       }
     }
-
     handleFetch()
-
     return () => source.cancel("Cancelling SeasonStandings request")
   }, [values])
 

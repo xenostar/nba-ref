@@ -40,7 +40,6 @@ export const SeasonLeaders = ({values}) => {
 
   useEffect(() => {
     const source = axios.CancelToken.source()
-
     const handleFetch = async (url, stateValue, loadValue) => {
       setIsLoading(prevState => {
         return { ...prevState, [loadValue]: true }
@@ -63,11 +62,9 @@ export const SeasonLeaders = ({values}) => {
         console.log(error)
       }
     }
-
     handleFetch('limit=10&sort=stats.Pts.D&playerstats=Pts&force=true', 'points', 'isLoadingPts')
     handleFetch('limit=10&sort=stats.Ast.D&playerstats=Ast&force=true', 'assists', 'isLoadingAst')
     handleFetch('limit=10&sort=stats.Reb.D&playerstats=Reb&force=true', 'rebounds', 'isLoadingReb')
-
     return () => source.cancel("Cancelling SeasonLeaders requests")
   }, [values])
 

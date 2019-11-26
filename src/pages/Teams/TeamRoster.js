@@ -22,7 +22,6 @@ export const TeamRoster = ({values}) => {
 
   useEffect(() => {
     const source = axios.CancelToken.source()
-
     const handleFetch = async () => {
       setIsLoading(true)
       try {
@@ -36,9 +35,7 @@ export const TeamRoster = ({values}) => {
         console.log(error)
       }
     }
-
     handleFetch()
-
     return () => source.cancel("Cancelling TeamRoster request")
   }, [values])
 

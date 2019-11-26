@@ -36,7 +36,6 @@ export const PlayerStats = ({values}) => {
 
   useEffect(() => {
     const source = axios.CancelToken.source()
-
     const handleFetch = async () => {
       setIsLoading(true)
       try {
@@ -51,9 +50,7 @@ export const PlayerStats = ({values}) => {
         console.log(error)
       }
     }
-
     handleFetch()
-
     return () => source.cancel("Cancelling PlayerStats request")
   }, [values])
 
