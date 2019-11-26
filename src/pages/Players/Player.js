@@ -32,6 +32,7 @@ export const Player = () => {
         <NavSub>
           <NavLink to={`/players/stats/${playerSlug}/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/stats')}>Stats</NavLink>
           <NavLink to={`/players/charts/${playerSlug}/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/charts')}>Charts</NavLink>
+          <NavLink to={`/players/games/${playerSlug}/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/games')}>Games</NavLink>
         </NavSub>
         <Select label="Season" name="season" value={values.season} onChange={handleChange}>
           {seasons.map(({name, value}) => (

@@ -87,14 +87,13 @@ export const TeamGames = ({values}) => {
         const abbrvHome = data.schedule.homeTeam.abbreviation.toLowerCase()
         const abbrvAway = data.schedule.awayTeam.abbreviation.toLowerCase()
         const date = new Date(data.schedule.startTime)
-        // const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date)
         const fDay = date.toLocaleString('en-US', { weekday: 'short' })
         const fDate = date.toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
         const fTime = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         return (
           <GameCard
             key={data.schedule.id}
-            to="/test"
+            to={`/game/${data.schedule.id}`}
             awaycolor={teams[abbrvAway].colors[0]}
             awaylogo={teams[abbrvAway].logo}
             homecolor={teams[abbrvHome].colors[0]}
