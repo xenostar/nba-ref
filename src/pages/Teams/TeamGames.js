@@ -98,19 +98,9 @@ export const TeamGames = ({values}) => {
             awaylogo={teams[abbrvAway].logo}
             homecolor={teams[abbrvHome].colors[0]}
             homelogo={teams[abbrvHome].logo}>
-              <div className="location">{data.schedule.venue.name}</div>
-              <div className="score">{data.score.awayScoreTotal} - {data.score.homeScoreTotal}</div>
-              <div className="time">{`${fDay} ${fDate} @ ${fTime}`}</div>
-            {/* <div>Game ID: {data.schedule.id}</div>
-            <div>Game Type: {data.schedule.venueAllegiance}</div>
-            <div>Start Time: {data.schedule.startTime}</div>
-            <div>Venue: {data.schedule.venue.name} (ID: {data.schedule.venue.id})</div>
-            <div>---</div>
-            <div>Home Team: {data.schedule.homeTeam.abbreviation} (ID: {data.schedule.homeTeam.id})</div>
-            <div>Home Score Total: {data.score.homeScoreTotal}</div>
-            <div>---</div>
-            <div>Away Team: {data.schedule.awayTeam.abbreviation} (ID: {data.schedule.awayTeam.id})</div>
-            <div>Away Score Total: {data.score.awayScoreTotal}</div> */}
+            <div className="location">{data.schedule.venue.name}</div>
+            <div className="score">{data.score.awayScoreTotal} - {data.score.homeScoreTotal}</div>
+            <div className="time">{`${fDay} ${fDate} @ ${fTime}`}</div>
           </GameCard>
         )
       })}

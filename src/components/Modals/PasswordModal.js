@@ -61,7 +61,7 @@ export const PasswordModal = () => {
 
   return (
     <>
-      {loggedIn ||
+      {!loggedIn &&
         <StyledPasswordModal>
           <StyledForm>
             <StyledInput onChange={handleChange} value={password} type="password" />
