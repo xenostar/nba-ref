@@ -43,7 +43,7 @@ const PlayerCardGridImage = styled.div`
     width: 100%;
   }
 `
-const PlayerImage = styled(Image)`
+const PlayerImage = styled(props => <Image {...props} />)`
   height: 100%;
   object-fit: contain;
   object-position: bottom;
@@ -51,7 +51,7 @@ const PlayerImage = styled(Image)`
   top: 0;
   width: 100%;
 `
-const TeamImage = styled(Image)`
+const TeamImage = styled(props => <Image {...props} />)`
   left: 10px;
   position: absolute;
   top: 10px;
