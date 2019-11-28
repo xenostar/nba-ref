@@ -64,36 +64,32 @@ const StyledTable = styled.div`
   }
 `
 
-export const Table = props => {
-  const dataCols = props.tableData
-
-  return (
-    <StyledTable>
-      <div className="name">{props.tableTitle}</div>
-      <div className="holder">
-        <table>
-          <thead>
+export const Table = props => (
+  <StyledTable>
+    <div className="name">{props.tableTitle}</div>
+    <div className="holder">
+      <table>
+        <thead>
+          <tr>
+            {Object.entries(props.tableData).map(([name, width]) => (
+              <th key={name} style={{ width: width }}>{name}</th>
+            ))}
+          </tr>
+        </thead>
+        {props.isLoading ? (
+          <tbody className="tb-loading">
             <tr>
-              {Object.entries(dataCols).map(([name, width]) => (
-                <th key={name} style={{ width: width }}>{name}</th>
-              ))}
+              <td colSpan={Object.keys(props.tableData).length}>
+                <BasketballLoader loaderHeight={props.loaderHeight ? props.loaderHeight : 10} />
+              </td>
             </tr>
-          </thead>
-          {props.isLoading ? (
-            <tbody className="tb-loading">
-              <tr>
-                <td colSpan={Object.keys(dataCols).length}>
-                  <BasketballLoader loaderHeight={props.loaderHeight ? props.loaderHeight : 10} />
-                </td>
-              </tr>
-            </tbody>
-          ) : (
-            <tbody className="tb-loaded">
-              {props.children}
-            </tbody>
-          )}
-        </table>
-      </div>
-    </StyledTable>
-  )
-}
+          </tbody>
+        ) : (
+          <tbody className="tb-loaded">
+            {props.children}
+          </tbody>
+        )}
+      </table>
+    </div>
+  </StyledTable>
+)
