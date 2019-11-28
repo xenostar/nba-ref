@@ -13,6 +13,7 @@ const StyledTextLoader = styled.div`
   line-height: inherit;
   overflow: hidden;
   position: relative;
+  width: ${props => props.width + '%'};
   :before {
     content: ".";
     opacity: 0;
@@ -31,14 +32,14 @@ const Gradient = styled.div`
 `
 
 export const TextLoader = () => {
-  const [width, setWidth] = useState({ width: 0 })
+  const [width, setWidth] = useState(0)
 
   useEffect(() => {
-    setWidth({ width: getRandomInt(25,60) + '%' })
+    setWidth(getRandomInt(25,60))
   }, [])
 
   return (
-    <StyledTextLoader style={width}>
+    <StyledTextLoader width={width}>
       <Gradient></Gradient>
     </StyledTextLoader>
   )
