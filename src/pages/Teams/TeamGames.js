@@ -42,7 +42,11 @@ export const TeamGames = ({values}) => {
 
   return (
     <StyledTeamGames>
-      {isLoading || games.map(data => <GameCard data={data} />)}
+      {isLoading ? (
+        "Loading"
+      ) : (
+        games.map(data => <GameCard data={data} />)
+      )}
     </StyledTeamGames>
   )
 }
