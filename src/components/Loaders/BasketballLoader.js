@@ -11,7 +11,7 @@ const fadeInOut = keyframes`
 const StyledBasketballLoader = styled.div`
   display: flex;
   justify-content: center;
-  min-height: ${props => props.loaderHeight * 2.434375 + 'rem' };
+  min-height: ${props => props.loaderHeight * 2.434375 + 'rem'};
 
   .holder {
     align-self: center;

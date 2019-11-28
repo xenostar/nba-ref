@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { getRandomInt } from 'utils'
 
 const slide = keyframes`
   0% { left: -3.75rem; }
   100% { left: 100%; }
 `
-const StyledTextLoader = styled.div`
+const StyledBlockLoader = styled.div`
   background-color: #eee;
-  border-radius: 2px;
-  height: inherit;
-  line-height: inherit;
+  border-radius: 5px;
+  height: ${props => props.height ? props.height + 'px' : 'inherit' };
+  line-height: ${props => props.height ? props.height + 'px' : 'inherit' };
   overflow: hidden;
   position: relative;
   :before {
@@ -30,16 +29,10 @@ const Gradient = styled.div`
   width: 4rem;
 `
 
-export const TextLoader = () => {
-  const [width, setWidth] = useState({ width: 0 })
-
-  useEffect(() => {
-    setWidth({ width: getRandomInt(25,60) + '%' })
-  }, [])
-
+export const BlockLoader = props => {
   return (
-    <StyledTextLoader style={width}>
+    <StyledBlockLoader height={props.height}>
       <Gradient></Gradient>
-    </StyledTextLoader>
+    </StyledBlockLoader>
   )
 }

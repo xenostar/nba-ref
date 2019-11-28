@@ -50,13 +50,11 @@ export const GameCard = ({data}) => {
   const fTime = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
   return (
     <StyledGameCard
-      key={data.schedule.id}
       to={`/game/${data.schedule.id}`}
       awaycolor={teams[abbrvAway].colors[0]}
       awaylogo={teams[abbrvAway].logo}
       homecolor={teams[abbrvHome].colors[0]}
-      homelogo={teams[abbrvHome].logo}
-    >
+      homelogo={teams[abbrvHome].logo}>
       <div className="location">{data.schedule.venue.name}</div>
       <div className="score">{data.score.awayScoreTotal} - {data.score.homeScoreTotal}</div>
       <div className="time">{`${fDay} ${fDate} @ ${fTime}`}</div>

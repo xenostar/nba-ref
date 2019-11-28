@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-// import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { GameCard } from 'components'
+import { BlockLoader, GameCard } from 'components'
 
 const StyledTeamGames = styled.div`
   display: grid;
@@ -21,6 +20,11 @@ export const TeamGames = ({values}) => {
   const _URL_ = 'v2.1/pull/nba/'
   const [games, setGames] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const loaders = []
+
+  for (let index = 0; index < 12; index++) {
+    loaders.push(<BlockLoader key={index} height="143.533" />)
+  }
 
   useEffect(() => {
     const source = axios.CancelToken.source()
@@ -43,9 +47,9 @@ export const TeamGames = ({values}) => {
   return (
     <StyledTeamGames>
       {isLoading ? (
-        "Loading"
+        loaders
       ) : (
-        games.map(data => <GameCard data={data} />)
+        games.map(data => <GameCard key={data.schedule.id} data={data} />)
       )}
     </StyledTeamGames>
   )
