@@ -4,15 +4,21 @@ import axios from 'axios'
 import { BlockLoader, GameCard } from 'components'
 
 const StyledTeamGames = styled.div`
-  display: grid;
-  grid-gap: 2.5rem;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
+  .grid {
+    display: grid;
+    grid-gap: 2.5rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+  }
   @media only screen and (max-width: 87.5rem) { /* 1400px */
-    grid-template-columns: 1fr 1fr;
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
   }
   @media only screen and (max-width: 62.5rem) { /* 1000px */
-    grid-template-columns: 1fr;
+    .grid {
+      grid-template-columns: 1fr;
+    }
   }
 `
 
@@ -50,9 +56,14 @@ export const TeamGames = ({values}) => {
         loaders
       ) : (
         (games.length > 0) ? (
-          games.map(data => <GameCard key={data.schedule.id} data={data} />)
+          <div className="grid">
+            {games.map(data => <GameCard key={data.schedule.id} data={data} />)}
+          </div>
         ) : (
-          <h1>No games found.</h1>
+          <>
+            <h1>No games found!</h1>
+            <p>Team did not make playoffs.</p>
+          </>
         )
       )}
     </StyledTeamGames>
