@@ -53,7 +53,9 @@ export const TeamGames = ({values}) => {
   return (
     <StyledTeamGames>
       {isLoading ? (
-        loaders
+        <div className="grid">
+          {loaders}
+        </div>
       ) : (
         (games.length > 0) ? (
           <div className="grid">
