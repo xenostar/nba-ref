@@ -7,9 +7,8 @@ const slide = keyframes`
 `
 const StyledBlockLoader = styled.div`
   background-color: #eee;
-  border-radius: 5px;
-  height: ${props => props.height ? props.height + 'px' : 'inherit' };
-  line-height: ${props => props.height ? props.height + 'px' : 'inherit' };
+  border-radius: ${props => props.borderradius ? props.borderradius + 'px' : '5px'};
+  height: ${props => props.height ? (props.height / 16) + 'em' : 'inherit'};
   overflow: hidden;
   position: relative;
   :before {
@@ -31,7 +30,7 @@ const Gradient = styled.div`
 
 export const BlockLoader = props => {
   return (
-    <StyledBlockLoader height={props.height}>
+    <StyledBlockLoader height={props.height} borderradius={props.borderradius}>
       <Gradient></Gradient>
     </StyledBlockLoader>
   )

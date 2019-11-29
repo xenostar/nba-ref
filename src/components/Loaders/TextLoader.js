@@ -8,7 +8,7 @@ const slide = keyframes`
 `
 const StyledTextLoader = styled.div`
   background-color: #eee;
-  border-radius: 2px;
+  border-radius: ${props => props.borderradius ? props.borderradius + 'px' : '2px'};
   height: inherit;
   line-height: inherit;
   overflow: hidden;
@@ -31,7 +31,7 @@ const Gradient = styled.div`
   width: 4rem;
 `
 
-export const TextLoader = () => {
+export const TextLoader = props => {
   const [width, setWidth] = useState(0)
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export const TextLoader = () => {
   }, [])
 
   return (
-    <StyledTextLoader width={width}>
+    <StyledTextLoader borderradius={props.borderradius} width={width}>
       <Gradient></Gradient>
     </StyledTextLoader>
   )

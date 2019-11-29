@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const StyledImage = styled.img`
   transition: opacity 1s;
-  opacity: ${props => props.isLoaded ? (props.opacity ? props.opacity : 1) : 0 };
+  opacity: ${props => props.isLoaded ? (props.opacity ? props.opacity : 1) : 0};
 `
 
 export const Image = props => {

@@ -22,8 +22,8 @@ export const TeamGames = ({values}) => {
   const [isLoading, setIsLoading] = useState(true)
   const loaders = []
 
-  for (let index = 0; index < 12; index++) {
-    loaders.push(<BlockLoader key={index} height="143.533" />)
+  for (let i = 0; i < 12; i++) {
+    loaders.push(<BlockLoader key={i} height="143.533" />)
   }
 
   useEffect(() => {
@@ -49,7 +49,11 @@ export const TeamGames = ({values}) => {
       {isLoading ? (
         loaders
       ) : (
-        games.map(data => <GameCard key={data.schedule.id} data={data} />)
+        (games.length > 0) ? (
+          games.map(data => <GameCard key={data.schedule.id} data={data} />)
+        ) : (
+          <h1>No games found.</h1>
+        )
       )}
     </StyledTeamGames>
   )
