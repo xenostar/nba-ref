@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled, { keyframes } from 'styled-components'
 
 const slide = keyframes`
@@ -29,9 +29,27 @@ const Gradient = styled.div`
 `
 
 export const BlockLoader = props => {
+  const [loaders, setLoaders] = useState([])
+
+  useEffect(() => {
+    let arr = []
+    if (props.loaders !== undefined) {
+      for (let i = 0; i < props.loaders; i++) {
+        arr.push(i)
+      }
+    } else {
+      arr = [1]
+    }
+    setLoaders(arr)
+  }, [props.loaders])
+
   return (
-    <StyledBlockLoader height={props.height} borderradius={props.borderradius}>
-      <Gradient></Gradient>
-    </StyledBlockLoader>
+    <>
+      {loaders.map((index) => (
+        <StyledBlockLoader key={index} height={props.height} borderradius={props.borderradius}>
+          <Gradient></Gradient>
+        </StyledBlockLoader>
+      ))}
+    </>
   )
 }

@@ -26,11 +26,20 @@ export const TeamGames = ({values}) => {
   const _URL_ = 'v2.1/pull/nba/'
   const [games, setGames] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const loaders = []
+  // const [loader, setLoader] = useState([])
 
-  for (let i = 0; i < 12; i++) {
-    loaders.push(<BlockLoader key={i} height="143.533" />)
-  }
+  // useEffect(() => {
+  //   const loaders = []
+  //   for (let i = 0; i < 12; i++) {
+  //     loaders.push(<BlockLoader key={i} height="143.533" />)
+  //   }
+  // }, [])
+
+  // const loaders = []
+  // for (let i = 0; i < 12; i++) {
+  //   loaders.push(<BlockLoader key={i} height="143.533" />)
+  //   console.log("Pushing a loader")
+  // }
 
   useEffect(() => {
     const source = axios.CancelToken.source()
@@ -54,7 +63,7 @@ export const TeamGames = ({values}) => {
     <StyledTeamGames>
       {isLoading ? (
         <div className="grid">
-          {loaders}
+          <BlockLoader height="143.533" loaders="12" />
         </div>
       ) : (
         (games.length > 0) ? (

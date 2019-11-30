@@ -11,9 +11,9 @@ const StyledGameCard = styled(Link)`
   background-repeat: no-repeat;
   background-position: left 10px center,right 10px center, 0;
   background-size: 25%, 25%, auto;
-  padding: 30px 20px;
   border-radius: 5px;
   color: #fff;
+  padding: 30px 20px;
   text-align: center;
   transition: transform 0.2s, box-shadow 0.2s;
   :hover {
