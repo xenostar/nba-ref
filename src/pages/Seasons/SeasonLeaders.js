@@ -7,7 +7,7 @@ import { formatPlayerName } from 'utils'
 
 const StyledSeasonLeaders = styled.div`
   display: grid;
-  grid-gap: 2.5rem;
+  grid-gap: 1.875rem;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   @media only screen and (max-width: 87.5rem) { /* 1400px */

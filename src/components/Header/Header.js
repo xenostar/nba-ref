@@ -5,7 +5,7 @@ import { Image } from 'components'
 import logoImg from 'assets/img_nba-logo--orange.svg'
 
 const StyledHeader = styled.header`
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.875rem;
 
   a {
     align-items: center;

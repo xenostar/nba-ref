@@ -14,11 +14,11 @@ const StyledAppContainer = styled.div`
   margin: 0 auto;
   max-width: 90vw;
   min-height: 100vh;
-  padding: 2.5rem;
+  padding: 1.875rem;
   position: relative;
   @media only screen and (max-width: 62.5rem) {
     min-width: 100%;
-    padding: 1.25rem 1.25rem 5rem;
+    padding: 1.875rem 1.875rem 5.3125rem;
   }
 `
 

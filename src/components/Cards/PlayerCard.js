@@ -6,8 +6,8 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 
 const StyledPlayerCard = styled.div`
   display: grid;
-  margin-bottom: 2.5rem;
-  grid-column-gap: 2.5rem;
+  margin-bottom: 1.875rem;
+  grid-column-gap: 1.875rem;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(4, 1fr);
   grid-template-areas:
