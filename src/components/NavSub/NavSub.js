@@ -35,7 +35,7 @@ export const NavSub = styled.nav`
     border: 0;
     outline: 0;
   }
-  @media only screen and (max-width: 62.5rem) {
+  @media only screen and (max-width: 62.5rem) { /* 1000px */
     a {
       flex-basis: 0;
       flex-grow: 1;

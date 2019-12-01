@@ -5,7 +5,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 const StyledFooter = styled.footer`
   border-top: 1px solid #ccc;
-  margin-top: auto;
+  margin-top: 5rem;
   padding-top: 1.25rem;
 
   p {

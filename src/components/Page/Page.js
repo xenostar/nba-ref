@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const Page = styled.div`
   clear: both;
-  margin-bottom: 5rem;
 
   p a,
   table a {

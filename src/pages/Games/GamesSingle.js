@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import axios from 'axios'
 import { BlockLoader, GameCard } from 'components'
 
-const StyledTeamGames = styled.div`
+const StyledGamesSingle = styled.div`
   .grid {
     display: grid;
     grid-gap: 2.5rem;
@@ -22,7 +22,7 @@ const StyledTeamGames = styled.div`
   }
 `
 
-export const TeamGames = ({values}) => {
+export const GamesSingle = ({values}) => {
   const _URL_ = 'v2.1/pull/nba/'
   const [games, setGames] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -46,7 +46,7 @@ export const TeamGames = ({values}) => {
   }, [values])
 
   return (
-    <StyledTeamGames>
+    <StyledGamesSingle>
       {isLoading ? (
         <div className="grid">
           <BlockLoader height="143.533" loaders="12" />
@@ -63,6 +63,6 @@ export const TeamGames = ({values}) => {
           </>
         )
       )}
-    </StyledTeamGames>
+    </StyledGamesSingle>
   )
 }

@@ -46,7 +46,7 @@ export const Nav = styled.nav`
     border: 0;
     outline: 0;
   }
-  @media only screen and (max-width: 62.5rem) {
+  @media only screen and (max-width: 62.5rem) { /* 1000px */
     a {
       font-size: 0.8em;
       padding: 0;

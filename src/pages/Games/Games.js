@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Route, Switch, useRouteMatch, useHistory, useParams } from 'react-router-dom'
 import { seasons } from 'api'
 import { Page, Form, Select } from 'components'
-import { TeamGames, TeamRoster, NoMatch } from 'pages'
+import { GamesSingle, GamesToday, NoMatch } from 'pages'
 
 const StyledTeam = styled(Page)``
 
@@ -41,8 +41,8 @@ export const Games = () => {
         </Select>
       </Form>
       <Switch>
-        <Route path={`/games/today`} render={props => <TeamRoster {...props} values={values} />} />
-        <Route path={`/games/games`} render={props => <TeamGames {...props} values={values} />} />
+        <Route path={`/games/today`} render={props => <GamesToday {...props} values={values} />} />
+        <Route path={`/games/single/${idSlug}`} render={props => <GamesSingle {...props} values={values} />} />
         <Route path="*" component={NoMatch} />
       </Switch>
     </StyledTeam>
