@@ -73,11 +73,12 @@ const PlayerCardGridName = styled.div`
 const PlayerCardGridTable = styled.div`
   border: 1px solid #ddd;
   border-radius: 3px;
-  border-top: 0;
+  /* border-top: 0; */
   display: flex;
   grid-area: table1;
   flex-wrap: wrap;
   justify-content: center;
+  overflow: hidden;
 `
 const Label = styled.div`
   align-items: center;
@@ -97,6 +98,9 @@ const Col = styled.div`
   align-items: stretch;
   display: flex;
   width: 100%;
+  &:first-child {
+    border-top: 0;
+  }
 `
 const Val = styled.div`
   align-items: center;

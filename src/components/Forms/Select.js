@@ -11,6 +11,7 @@ const StyledSelect = styled.select`
   font-size: 1em;
   height: 2.5rem;
   padding: 0 10px;
+  transition: 0.4s all;
   user-select: none;
   -webkit-appearance: none;
   @media only screen and (max-width: 1000px) {

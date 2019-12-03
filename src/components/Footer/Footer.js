@@ -7,7 +7,7 @@ const StyledFooter = styled.footer`
   margin-top: auto;
 
   div {
-    margin-top: 5rem;
+    margin-top: 5.625rem;
     border-top: 1px solid #ccc;
     padding-top: 1.25rem;
   }

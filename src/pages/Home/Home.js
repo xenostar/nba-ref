@@ -46,7 +46,7 @@ const TeamLink = styled(Link)`
   position: relative;
   transition: transform 0.2s, box-shadow 0.2s;
   :hover {
-    box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.25);
     transform: scale(1.1) translateZ(0);
   }
 `

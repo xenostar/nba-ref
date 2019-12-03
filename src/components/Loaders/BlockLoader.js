@@ -17,7 +17,7 @@ const StyledBlockLoader = styled.div`
   }
 `
 const Gradient = styled.div`
-  animation: ${slide} infinite 0.4s ease-in-out;
+  animation: ${slide} infinite 0.5s ease-in-out;
   animation-fill-mode: both;
   background: rgb(238,238,238);
   background: linear-gradient(90deg, rgba(238,238,238,1) 20%, rgba(255,255,255,1) 50%, rgba(238,238,238,1) 80%);
