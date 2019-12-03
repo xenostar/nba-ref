@@ -26,6 +26,7 @@ const StyledBasketballLoader = styled.div`
     letter-spacing: 2px;
     text-align: center;
     text-transform: uppercase;
+    user-select: none;
   }
   img {
     margin: 0 auto;
