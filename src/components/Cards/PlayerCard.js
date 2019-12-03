@@ -98,7 +98,7 @@ const Col = styled.div`
   align-items: stretch;
   display: flex;
   width: 100%;
-  &:first-child {
+  :first-child {
     border-top: 0;
   }
 `
