@@ -52,12 +52,12 @@ const StyledTable = styled.div`
   table tbody.tb-loading tr td {
     padding: 0;
   }
-  table tbody.tb-loaded tr:nth-child(even) {
-    background-color: rgba(0,0,0,0.025);
-  }
-  table tbody.tb-loaded tr {
+  table tbody.tb-loaded {
     animation: ${slideIn} 0.4s;
     animation-fill-mode: both;
+  }
+  table tbody.tb-loaded tr:nth-child(even) {
+    background-color: rgba(0,0,0,0.025);
   }
   table tbody.tb-loaded tr:hover {
     background-color: rgba(0,0,0,0.05);
