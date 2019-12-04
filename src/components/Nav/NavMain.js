@@ -20,7 +20,7 @@ export const NavMain = () => (
     </NavLink>
     <NavLink
       to={`/players/stats/lebron-james/${seasons[0].value}`}
-      isActive={(_, loc) => loc.pathname.includes('/players/')}>
+      isActive={(_, loc) => loc.pathname.includes('/players')}>
       Players
     </NavLink>
     <NavLink
