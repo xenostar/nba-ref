@@ -45,6 +45,7 @@ const TeamLink = styled(Link)`
   padding-top: 75%;
   position: relative;
   transition: transform 0.2s, box-shadow 0.2s;
+  user-select: none;
   :hover {
     box-shadow: 0 2px 10px rgba(0,0,0,0.25);
     transform: scale(1.05) translateZ(0);

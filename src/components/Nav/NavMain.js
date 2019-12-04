@@ -10,22 +10,22 @@ export const NavMain = () => (
     </NavLink>
     <NavLink
       to={`/seasons/leaders/${seasons[0].value}`}
-      isActive={(_, loc) => loc.pathname.includes('/seasons')}>
+      isActive={(_, loc) => loc.pathname.startsWith('/seasons')}>
       Seasons
     </NavLink>
     <NavLink
       to={`/teams/roster/${Object.keys(teams)[0]}/${seasons[0].value}`}
-      isActive={(_, loc) => loc.pathname.includes('/teams')}>
+      isActive={(_, loc) => loc.pathname.startsWith('/teams')}>
       Teams
     </NavLink>
     <NavLink
       to={`/players/stats/lebron-james/${seasons[0].value}`}
-      isActive={(_, loc) => loc.pathname.includes('/players')}>
+      isActive={(_, loc) => loc.pathname.startsWith('/players')}>
       Players
     </NavLink>
     <NavLink
       to={`/games`}
-      isActive={(_, loc) => loc.pathname.includes('/games')}>
+      isActive={(_, loc) => loc.pathname.startsWith('/games')}>
       Games
     </NavLink>
   </Nav>
