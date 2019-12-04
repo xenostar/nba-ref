@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Header, NavMain, Footer, PasswordModal, ScrollToTop } from 'components'
 import { Home, Season, Team, Player, NoMatch } from 'pages'
 import './_Normalize.css'
@@ -24,22 +24,22 @@ const StyledAppContainer = styled.div`
 
 const App = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <ScrollToTop />
       <StyledAppContainer>
         <Header />
         <NavMain />
         <Switch>
-          <Route exact path="/" component={Home} />
           <Route path="/seasons/:pageSlug/:seasonSlug" component={Season} />
           <Route path="/teams/:pageSlug/:teamSlug/:seasonSlug" component={Team} />
           <Route path="/players/:pageSlug/:playerSlug/:seasonSlug" component={Player} />
+          <Route path="/" component={Home} exact />
           <Route path="*" component={NoMatch} />
         </Switch>
         <Footer />
       </StyledAppContainer>
       <PasswordModal />
-    </Router>
+    </BrowserRouter>
   )
 }
 
