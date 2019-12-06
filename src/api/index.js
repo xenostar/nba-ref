@@ -1,4 +1,5 @@
 export * from './api'
 export * from './months'
+export * from './routes'
 export * from './seasons'
 export * from './teams'

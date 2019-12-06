@@ -29,7 +29,7 @@ const Gradient = styled.div`
 `
 
 export const BlockLoader = props => {
-  const [loaders, setLoaders] = useState([])
+  const [loaders, setLoaders] = useState([0])
 
   useEffect(() => {
     let arr = []
@@ -37,10 +37,8 @@ export const BlockLoader = props => {
       for (let i = 0; i < props.loaders; i++) {
         arr.push(i)
       }
-    } else {
-      arr = [1]
+      setLoaders(arr)
     }
-    setLoaders(arr)
   }, [props.loaders])
 
   return (

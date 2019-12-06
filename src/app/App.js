@@ -36,6 +36,17 @@ const App = () => {
           <Route path="/" component={Home} exact />
           <Route path="*" component={NoMatch} />
         </Switch>
+        {/* <Route path="/" component={Home} exact />
+        <Route path="/:root" render={props => {
+          return (
+            <Switch>
+              <Route path="/seasons/:pageSlug/:seasonSlug" {...props} component={Season} />
+              <Route path="/teams/:pageSlug/:teamSlug/:seasonSlug" component={Team} />
+              <Route path="/players/:pageSlug/:playerSlug/:seasonSlug" component={Player} />
+              <Route path="*" component={NoMatch} />
+            </Switch>
+          )
+        }}/> */}
         <Footer />
       </StyledAppContainer>
       <PasswordModal />

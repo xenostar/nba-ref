@@ -13,6 +13,7 @@
     "nba.js": "^0.6.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-icons": "^3.8.0",
     "react-is-mounted-hook": "^1.0.2",
     "react-router": "^5.1.0",
     "react-router-dom": "^5.1.0",
