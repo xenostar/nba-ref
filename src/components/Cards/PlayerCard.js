@@ -177,20 +177,12 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoading }) => (
       <Col>
         <Label>Status</Label>
         <Val>
-          {isLoading ? <TextLoader /> : (
-            (() => {
-              switch(playerInfo.currentRosterStatus) {
-                case 'ROSTER':
-                  return 'Active'
-                case 'ASSIGNED_TO_MINORS':
-                  return 'G-League'
-                case 'UFA':
-                  return 'Unrestricted Free Agent'
-                default:
-                  return 'Unknown'
-              }
-            })()
-          )}
+          {isLoading ? <TextLoader /> : ({
+            ['ROSTER']: 'Active',
+            ['ASSIGNED_TO_MINORS']: 'G-League',
+            ['UFA']: 'Unrestricted Free Agent',
+            ['RETIRED']: 'Retired',
+          }[playerInfo.currentRosterStatus])}
         </Val>
       </Col>
       <Col>
@@ -202,7 +194,7 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoading }) => (
       <Col>
         <Label>From</Label>
         <Val>
-          {isLoading ? <TextLoader /> : `${playerInfo.birthCity ?? "Birth City"} ${playerInfo.birthCountry ?? "Team"}`}
+          {isLoading ? <TextLoader /> : `${playerInfo.birthCity ?? "Birth City"} ${playerInfo.birthCountry ?? "Country"}`}
         </Val>
       </Col>
       <Col>

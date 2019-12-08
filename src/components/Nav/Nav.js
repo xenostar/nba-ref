@@ -21,11 +21,12 @@ export const Nav = styled.nav`
   a {
     border-bottom: 5px solid transparent;
     color: #aaa;
-    display: block;
+    display: flex;
     font-weight: 700;
+    flex-direction: column;
     height: 3.4375rem;
+    justify-content: center;
     line-height: 3.4375rem;
-    text-align: center;
     text-transform: uppercase;
     transition: all 0.4s;
     padding: 0 1.25rem;
@@ -46,11 +47,28 @@ export const Nav = styled.nav`
     border: 0;
     outline: 0;
   }
+  svg {
+    display: none;
+  }
   @media only screen and (max-width: 62.5rem) { /* 1000px */
     a {
+      align-items: center;
+      border-bottom: 0;
       font-size: 0.8em;
+      font-weight: 400;
+      line-height: normal;
       padding: 0;
-      width: 25%;
+      text-transform: none;
+      width: 20%;
+    }
+    a.active {
+      background-color: #ED5429;
+      color: #fff;
+      border-bottom: 0;
+    }
+    svg {
+      display: inline-block;
+      margin-bottom: 4px;
     }
   }
 `

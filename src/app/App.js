@@ -22,36 +22,34 @@ const StyledAppContainer = styled.div`
   }
 `
 
-const App = () => {
-  return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <StyledAppContainer>
-        <Header />
-        <NavMain />
-        <Switch>
-          <Route path="/seasons/:pageSlug/:seasonSlug" component={Season} />
-          <Route path="/teams/:pageSlug/:teamSlug/:seasonSlug" component={Team} />
-          <Route path="/players/:pageSlug/:playerSlug/:seasonSlug" component={Player} />
-          <Route path="/" component={Home} exact />
-          <Route path="*" component={NoMatch} />
-        </Switch>
-        {/* <Route path="/" component={Home} exact />
-        <Route path="/:root" render={props => {
-          return (
-            <Switch>
-              <Route path="/seasons/:pageSlug/:seasonSlug" {...props} component={Season} />
-              <Route path="/teams/:pageSlug/:teamSlug/:seasonSlug" component={Team} />
-              <Route path="/players/:pageSlug/:playerSlug/:seasonSlug" component={Player} />
-              <Route path="*" component={NoMatch} />
-            </Switch>
-          )
-        }}/> */}
-        <Footer />
-      </StyledAppContainer>
-      <PasswordModal />
-    </BrowserRouter>
-  )
-}
+const App = () => (
+  <BrowserRouter>
+    <ScrollToTop />
+    <StyledAppContainer>
+      <Header />
+      <NavMain />
+      <Switch>
+        <Route path="/seasons/:pageSlug/:seasonSlug" component={Season} />
+        <Route path="/teams/:pageSlug/:teamSlug/:seasonSlug" component={Team} />
+        <Route path="/players/:pageSlug/:playerSlug/:seasonSlug" component={Player} />
+        <Route path="/" component={Home} exact />
+        <Route path="*" component={NoMatch} />
+      </Switch>
+      {/* <Route path="/" component={Home} exact />
+      <Route path="/:root" render={props => {
+        return (
+          <Switch>
+            <Route path="/seasons/:pageSlug/:seasonSlug" {...props} component={Season} />
+            <Route path="/teams/:pageSlug/:teamSlug/:seasonSlug" component={Team} />
+            <Route path="/players/:pageSlug/:playerSlug/:seasonSlug" component={Player} />
+            <Route path="*" component={NoMatch} />
+          </Switch>
+        )
+      }}/> */}
+      <Footer />
+    </StyledAppContainer>
+    <PasswordModal />
+  </BrowserRouter>
+)
 
 export default App
