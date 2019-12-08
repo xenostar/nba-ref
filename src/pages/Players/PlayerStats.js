@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
-import { PlayerCard, Table } from 'components'
+import { Table } from 'components'
 import { camelCaseToWords } from 'utils'
 
 const StyledPlayerStats = styled.div`
@@ -56,7 +56,7 @@ export const PlayerStats = ({values}) => {
 
   return (
     <StyledPlayerStats>
-      <PlayerCard playerInfo={playerInfo} playerReferences={playerReferences} isLoading={isLoading} />
+      {/* <PlayerCard playerInfo={playerInfo} playerReferences={playerReferences} isLoading={isLoading} /> */}
       <div className="grid">
         <Table tableTitle="Offense" tableData={tableData} loaderHeight="4" isLoading={isLoading}>
           {isLoading || Object.entries(playerStats.offense).map(([key, value]) => (
