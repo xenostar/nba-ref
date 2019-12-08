@@ -21,12 +21,11 @@ export const Nav = styled.nav`
   a {
     border-bottom: 5px solid transparent;
     color: #aaa;
-    display: flex;
+    display: block;
     font-weight: 700;
-    flex-direction: column;
     height: 3.4375rem;
-    justify-content: center;
     line-height: 3.4375rem;
+    text-align: center;
     text-transform: uppercase;
     transition: all 0.4s;
     padding: 0 1.25rem;
@@ -54,8 +53,11 @@ export const Nav = styled.nav`
     a {
       align-items: center;
       border-bottom: 0;
+      display: flex;
+      flex-direction: column;
       font-size: 0.8em;
       font-weight: 400;
+      justify-content: center;
       line-height: normal;
       padding: 0;
       text-transform: none;
