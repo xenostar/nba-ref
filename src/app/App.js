@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { Header, NavMain, Footer, PasswordModal, ScrollToTop } from 'components'
+import { Header, NavMain, Footer, ScrollToTop } from 'components'
+// import { Header, NavMain, Footer, PasswordModal, ScrollToTop } from 'components'
 import { Home, Season, Team, Player, NoMatch } from 'pages'
 import './_Normalize.css'
 import './_Reset.css'
@@ -48,7 +49,7 @@ const App = () => (
       }}/> */}
       <Footer />
     </StyledAppContainer>
-    <PasswordModal />
+    {/* <PasswordModal /> */}
   </BrowserRouter>
 )
 

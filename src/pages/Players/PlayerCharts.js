@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import { RadarChart } from 'react-vis'
+import { PlayerCard } from 'components'
 import 'react-vis/dist/style.css'
 
 const StyledPlayerCharts = styled.div`
@@ -92,6 +93,7 @@ export const PlayerCharts = ({values}) => {
           }}
         />
       </div>
+      <PlayerCard playerInfo={playerInfo} playerReferences={playerReferences} isLoading={isLoading} />
     </StyledPlayerCharts>
   )
 }
