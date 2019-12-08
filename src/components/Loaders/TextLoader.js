@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components'
 import { getRandomInt } from 'utils'
 
 const slide = keyframes`
-  0% { left: -3.75rem; }
+  0% { left: -8rem; }
   100% { left: 100%; }
 `
 const StyledTextLoader = styled.div`
@@ -20,15 +20,14 @@ const StyledTextLoader = styled.div`
   }
 `
 const Gradient = styled.div`
-  animation: ${slide} infinite 0.5s ease-in-out;
+  animation: ${slide} infinite 2s ease-in-out;
   animation-fill-mode: both;
   background: rgb(238,238,238);
-  background: linear-gradient(90deg, rgba(238,238,238,1) 20%, rgba(255,255,255,1) 50%, rgba(238,238,238,1) 80%);
+  background: linear-gradient(90deg, rgba(238,238,238,1) 20%, rgba(255,255,255,0.5) 50%, rgba(238,238,238,1) 80%);
   position: absolute;
   bottom: 0;
   top: 0;
-  left: -4rem;
-  width: 4rem;
+  width: 8rem;
 `
 
 export const TextLoader = props => {

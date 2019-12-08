@@ -33,7 +33,7 @@ const PlayerCardGridImage = styled.div`
   display: flex;
   grid-area: frame;
 
-  .img {
+  div {
     background-color: rgba(0,0,0,0.05);
     border: 1px solid #ddd;
     border-radius: 3px;
@@ -118,7 +118,7 @@ const PlayerCardGridTable2 = styled(PlayerCardGridTable)`
 export const PlayerCard = ({ playerInfo, playerReferences, isLoading }) => (
   <StyledPlayerCard>
     <PlayerCardGridImage>
-      <div className="img">
+      <div>
         <TeamImage src={playerReferences.officialLogoImageSrc} alt={`${playerReferences.city} ${playerReferences.name}`} opacity="0.5" />
         <PlayerImage src={playerInfo.officialImageSrc} alt={`${playerInfo.firstName} ${playerInfo.lastName}`} />
       </div>
@@ -198,7 +198,7 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoading }) => (
         <Label>Born</Label>
         <Val>
           {isLoading ? <TextLoader /> : playerInfo.birthDate ?? "Unknown"}
-          </Val>
+        </Val>
       </Col>
       <Col>
         <Label>From</Label>
