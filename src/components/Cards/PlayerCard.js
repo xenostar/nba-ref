@@ -115,7 +115,7 @@ const PlayerCardGridTable2 = styled(PlayerCardGridTable)`
   grid-area: table2;
 `
 
-export const PlayerCard = ({ playerInfo, playerReferences }) => (
+export const PlayerCard = ({ playerInfo, playerReferences, isLoading }) => (
   <StyledPlayerCard>
     <PlayerCardGridImage>
       <div className="img">
@@ -124,68 +124,46 @@ export const PlayerCard = ({ playerInfo, playerReferences }) => (
       </div>
     </PlayerCardGridImage>
     <PlayerCardGridName>
-      {(playerInfo.firstName !== undefined && playerInfo.lastName !== undefined) ? (
+      {isLoading ? <TextLoader /> : (
         <>
-          <h2>{`${playerInfo.firstName} ${playerInfo.lastName}`}</h2>
+          <h2>{`${playerInfo.firstName ?? "First"} ${playerInfo.lastName ?? "Last"}`}</h2>
           {(playerInfo.socialMediaAccounts !== undefined && playerInfo.socialMediaAccounts.length !== 0) && (
             <a href={'https://www.twitter.com/' + playerInfo.socialMediaAccounts[0].value} target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={faTwitter} />
             </a>
           )}
         </>
-      ) : (
-        undefined
-      ) || <TextLoader />}
+      )}
     </PlayerCardGridName>
     <PlayerCardGridTable>
       <Col>
         <Label>Team</Label>
         <Val>
-          {(playerReferences.city !== undefined && playerReferences.name !== undefined) ? (
-            `${playerReferences.city} ${playerReferences.name}`
-          ) : (
-            undefined
-          ) || <TextLoader />}
+          {isLoading ? <TextLoader /> : `${playerReferences.city ?? "City"} ${playerReferences.name ?? "Team"}`}
         </Val>
       </Col>
       <Col>
         <Label>Position</Label>
         <Val>
-          {(playerInfo.primaryPosition !== undefined) ? (
-            (playerInfo.primaryPosition === null) ? "Unknown" : playerInfo.primaryPosition
-          ) : (
-            undefined
-          ) || <TextLoader />}
+          {isLoading ? <TextLoader /> : playerInfo.primaryPosition ?? "Unknown"}
         </Val>
       </Col>
       <Col>
         <Label>Age</Label>
         <Val>
-          {(playerInfo.age !== undefined) ? (
-            (playerInfo.age === null) ? "Unknown" : playerInfo.age
-          ) : (
-            undefined
-          ) || <TextLoader />}
+          {isLoading ? <TextLoader /> : playerInfo.age ?? "Unknown"}
         </Val>
       </Col>
       <Col>
         <Label>Height</Label>
         <Val>
-          {(playerInfo.height !== undefined) ? (
-            (playerInfo.height === null) ? "Unknown" : playerInfo.height
-          ) : (
-            undefined
-          ) || <TextLoader />}
+          {isLoading ? <TextLoader /> : playerInfo.height ?? "Unknown"}
         </Val>
       </Col>
       <Col>
         <Label>Weight</Label>
         <Val>
-          {(playerInfo.weight !== undefined) ? (
-            (playerInfo.weight === null) ? "Unknown" : playerInfo.weight
-          ) : (
-            undefined
-          ) || <TextLoader />}
+          {isLoading ? <TextLoader /> : playerInfo.weight ?? "Unknown"}
         </Val>
       </Col>
     </PlayerCardGridTable>
@@ -193,45 +171,44 @@ export const PlayerCard = ({ playerInfo, playerReferences }) => (
       <Col>
         <Label>Jersey</Label>
         <Val>
-          {(playerInfo.jerseyNumber !== undefined) ? (
-            (playerInfo.jerseyNumber === null) ? "None" : playerInfo.jerseyNumber
-          ) : (
-            undefined
-          ) || <TextLoader />}
+          {isLoading ? <TextLoader /> : playerInfo.jerseyNumber ?? "None"}
         </Val>
       </Col>
       <Col>
         <Label>Status</Label>
         <Val>
-          {(playerInfo.currentRosterStatus !== undefined) ? (
-            (playerInfo.currentRosterStatus === "ROSTER") ? "Active" : "Inactive"
-          ) : (
-            undefined
-          ) || <TextLoader />}
+          {isLoading ? <TextLoader /> : (
+            (() => {
+              switch(playerInfo.currentRosterStatus) {
+                case 'ROSTER':
+                  return 'Active'
+                case 'ASSIGNED_TO_MINORS':
+                  return 'G-League'
+                case 'UFA':
+                  return 'Unrestricted Free Agent'
+                default:
+                  return 'Unknown'
+              }
+            })()
+          )}
         </Val>
       </Col>
       <Col>
         <Label>Born</Label>
-        <Val>{playerInfo.birthDate || <TextLoader />}</Val>
+        <Val>
+          {isLoading ? <TextLoader /> : playerInfo.birthDate ?? "Unknown"}
+          </Val>
       </Col>
       <Col>
         <Label>From</Label>
         <Val>
-          {(playerInfo.birthCity !== undefined && playerInfo.birthCountry !== undefined) ? (
-            (playerInfo.birthCity === null || playerInfo.birthCountry === null) ? "Unknown" : `${playerInfo.birthCity} ${playerInfo.birthCountry}`
-          ) : (
-            undefined
-          ) || <TextLoader />}
+          {isLoading ? <TextLoader /> : `${playerInfo.birthCity ?? "Birth City"} ${playerInfo.birthCountry ?? "Team"}`}
         </Val>
       </Col>
       <Col>
         <Label>College</Label>
         <Val>
-          {(playerInfo.college !== undefined) ? (
-            (playerInfo.college === null) ? "None" : playerInfo.college
-          ) : (
-            undefined
-          ) || <TextLoader />}
+          {isLoading ? <TextLoader /> : playerInfo.college ?? "None"}
         </Val>
       </Col>
     </PlayerCardGridTable2>
