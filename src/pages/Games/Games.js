@@ -10,7 +10,7 @@ const StyledTeam = styled(Page)``
 export const Games = () => {
   const match = useRouteMatch()
   const history = useHistory()
-  const {seasonSlug} = useParams()
+  const { seasonSlug } = useParams()
   const [values, setValues] = useState({ season: seasonSlug })
 
   const handleChange = ({ target: { name, value } }) => {

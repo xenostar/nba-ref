@@ -9,7 +9,7 @@ const StyledSeasons = styled(Page)``
 
 export const Season = () => {
   const history = useHistory()
-  const {seasonSlug} = useParams()
+  const { seasonSlug } = useParams()
   const [values, setValues] = useState({ season: seasonSlug })
 
   const handleChange = ({ target: { name, value } }) => {

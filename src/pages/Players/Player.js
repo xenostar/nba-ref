@@ -9,8 +9,8 @@ const StyledPlayers = styled(Page)``
 
 export const Player = () => {
   const history = useHistory()
-  const {playerSlug} = useParams()
-  const {seasonSlug} = useParams()
+  const { playerSlug } = useParams()
+  const { seasonSlug } = useParams()
   const [values, setValues] = useState({ player: playerSlug, season: seasonSlug })
 
   const handleChange = ({ target: { name, value } }) => {
