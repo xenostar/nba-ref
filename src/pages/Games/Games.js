@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Route, Switch, useRouteMatch, useHistory, useParams } from 'react-router-dom'
-import { seasons } from 'api'
+import { seasonOptions } from 'api'
 import { Page, Form, Select } from 'components'
 import { GamesSingle, GamesToday, NoMatch } from 'pages'
 
@@ -34,11 +34,7 @@ export const Games = () => {
   return (
     <StyledTeam>
       <Form>
-        <Select label="Season" name="season" value={values.season} onChange={handleChange}>
-          {seasons.map(({name, value}) => (
-            <option key={value} value={value}>{name}</option>
-          ))}
-        </Select>
+        <Select options={seasonOptions} label="Season" name="season" value={values.season} onChange={handleChange} />
       </Form>
       <Switch>
         <Route path={`/games/today`} render={props => <GamesToday {...props} values={values} />} />

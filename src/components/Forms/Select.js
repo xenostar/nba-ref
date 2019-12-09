@@ -31,7 +31,6 @@ export const Select = props => (
       name={props.name}
       value={props.value}
       onChange={props.onChange}>
-      {console.log(props.options)}
       {props.options.map(({label, value}) => (
         <option key={value} value={value}>{label}</option>
       ))}

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 import { Nav } from 'components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBasketballBall, faHome, faCalendarAlt, faUsers, faTrophy } from '@fortawesome/free-solid-svg-icons'
-import { seasons, teamsData } from 'api'
+import { seasonOptions, teamData } from 'api'
 
 export const NavMain = () => (
   <Nav>
@@ -12,19 +12,19 @@ export const NavMain = () => (
       <span>Home</span>
     </NavLink>
     <NavLink
-      to={`/seasons/leaders/${seasons[0].value}`}
+      to={`/seasons/leaders/${seasonOptions[0].value}`}
       isActive={(_, loc) => loc.pathname.startsWith('/seasons')}>
       <FontAwesomeIcon icon={faTrophy} />
       <span>Seasons</span>
     </NavLink>
     <NavLink
-      to={`/teams/roster/${Object.keys(teamsData)[0]}/${seasons[0].value}`}
+      to={`/teams/roster/${Object.keys(teamData)[0]}/${seasonOptions[0].value}`}
       isActive={(_, loc) => loc.pathname.startsWith('/teams')}>
       <FontAwesomeIcon icon={faBasketballBall} />
       <span>Teams</span>
     </NavLink>
     <NavLink
-      to={`/players/stats/lebron-james/${seasons[0].value}`}
+      to={`/players/stats/lebron-james/${seasonOptions[0].value}`}
       isActive={(_, loc) => loc.pathname.startsWith('/players')}>
       <FontAwesomeIcon icon={faUsers} />
       <span>Players</span>

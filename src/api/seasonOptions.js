@@ -1,4 +1,4 @@
-export const seasons = [
+export const seasonOptions = [
   {
     label: "2019-2020 Regular",
     value: "2019-2020-regular",

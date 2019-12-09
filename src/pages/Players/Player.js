@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Route, Switch, NavLink, useHistory, useParams } from 'react-router-dom'
 import { Page, NavSub, Form, Select } from 'components'
 import { PlayerCharts, PlayerStats, NoMatch } from 'pages'
-import { seasons } from 'api'
+import { seasonOptions } from 'api'
 
 const StyledPlayers = styled(Page)``
 
@@ -34,7 +34,7 @@ export const Player = () => {
           <NavLink to={`/players/charts/${playerSlug}/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/charts')}>Charts</NavLink>
           <NavLink to={`/players/games/${playerSlug}/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/games')}>Games</NavLink>
         </NavSub>
-        <Select options={seasons} label="Season" name="season" value={values.season} onChange={handleChange} />
+        <Select options={seasonOptions} label="Season" name="season" value={values.season} onChange={handleChange} />
       </Form>
       <Switch>
         <Route path={`/players/stats`} render={props => <PlayerStats {...props} values={values} />} />

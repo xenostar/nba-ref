@@ -29,7 +29,7 @@ import TOR_logo from 'assets/TOR_logo.svg'
 import UTA_logo from 'assets/UTA_logo.svg'
 import WAS_logo from 'assets/WAS_logo.svg'
 
-export const teamsData = {
+export const teamData = {
   "atl": {
     "city": "Atlanta",
     "name": "Hawks",

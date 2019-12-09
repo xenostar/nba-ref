@@ -1,4 +1,4 @@
-export const teams = [
+export const teamOptions = [
   {
     label: "Atlanta Hawks",
     value: "atl",

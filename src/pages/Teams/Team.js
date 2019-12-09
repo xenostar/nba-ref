@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Route, Switch, NavLink, useRouteMatch, useHistory, useParams } from 'react-router-dom'
-import { seasons, teams } from 'api'
+import { seasonOptions, teamOptions } from 'api'
 import { Page, NavSub, Form, Select } from 'components'
 import { TeamGames, TeamRoster, NoMatch } from 'pages'
 
@@ -38,11 +38,8 @@ export const Team = () => {
           <NavLink to={`/teams/roster/${teamSlug}/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/roster')}>Roster</NavLink>
           <NavLink to={`/teams/games/${teamSlug}/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/games')}>Games</NavLink>
         </NavSub>
-        <Select options={teams} label="Team" name="team" value={values.team} onChange={handleChange} />
-          {/* {Object.entries(teams).map(([key, value]) => (
-            <option key={key} value={key}>{value.city + ' ' + value.name}</option>
-          ))} */}
-        <Select options={seasons} label="Season" name="season" value={values.season} onChange={handleChange} />
+        <Select options={teamOptions} label="Team" name="team" value={values.team} onChange={handleChange} />
+        <Select options={seasonOptions} label="Season" name="season" value={values.season} onChange={handleChange} />
       </Form>
       <Switch>
         <Route path={`/teams/roster`} render={props => <TeamRoster {...props} values={values} />} />

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { teams } from 'api'
+import { teamData } from 'api'
 
 const StyledGameCard = styled(Link)`
   background:
@@ -51,10 +51,10 @@ export const GameCard = ({data}) => {
   return (
     <StyledGameCard
       to={`/game/${data.schedule.id}`}
-      awaycolor={teams[abbrvAway].colors[0]}
-      awaylogo={teams[abbrvAway].logo}
-      homecolor={teams[abbrvHome].colors[0]}
-      homelogo={teams[abbrvHome].logo}>
+      awaycolor={teamData[abbrvAway].colors[0]}
+      awaylogo={teamData[abbrvAway].logo}
+      homecolor={teamData[abbrvHome].colors[0]}
+      homelogo={teamData[abbrvHome].logo}>
       <div className="location">{data.schedule.venue.name}</div>
       <div className="score">{data.score.awayScoreTotal} - {data.score.homeScoreTotal}</div>
       <div className="time">{`${fDay} ${fDate} @ ${fTime}`}</div>
