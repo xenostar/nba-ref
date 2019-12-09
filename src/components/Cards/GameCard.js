@@ -23,19 +23,20 @@ const StyledGameCard = styled(Link)`
 
   .location {
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
     text-shadow: 0 1px 2px rgba(0,0,0,0.75);
   }
   .score {
-    font-size: 2.75em;
+    font-size: 2em;
     font-weight: 700;
     line-height: 1.2;
+    margin-bottom: 3px;
     text-shadow: 0 2px 2px rgba(0,0,0,0.75);
   }
   .time {
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
     text-shadow: 0 1px 2px rgba(0,0,0,0.75);
   }

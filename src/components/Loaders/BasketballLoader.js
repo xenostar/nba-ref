@@ -13,6 +13,7 @@ const StyledBasketballLoader = styled.div`
   flex-direction: column;
   /* justify-content: center; */
   min-height: ${props => props.loaderHeight * 2.434375 + 'rem'};
+  user-select: none;
 
   p {
     animation: ${fadeInOut} infinite 1s ease-in-out;
@@ -23,7 +24,6 @@ const StyledBasketballLoader = styled.div`
     letter-spacing: 2px;
     text-align: center;
     text-transform: uppercase;
-    user-select: none;
   }
   img {
     margin: 0 auto;
@@ -32,7 +32,7 @@ const StyledBasketballLoader = styled.div`
 
 export const BasketballLoader = ({ loaderHeight })  => (
   <StyledBasketballLoader loaderHeight={loaderHeight}>
-    <img src={loaderImg} alt="Loading" />
+    <img src={loaderImg} alt="Loading" draggable="false" />
     <p>Loading</p>
   </StyledBasketballLoader>
 )
