@@ -51,17 +51,15 @@ export const GamesSingle = ({values}) => {
         <div className="grid">
           <BlockLoader height="143.533" loaders="12" />
         </div>
+      ) : games.length > 0 ? (
+        <div className="grid">
+          {games.map(data => <GameCard key={data.schedule.id} data={data} />)}
+        </div>
       ) : (
-        (games.length > 0) ? (
-          <div className="grid">
-            {games.map(data => <GameCard key={data.schedule.id} data={data} />)}
-          </div>
-        ) : (
-          <>
-            <h1>No games found!</h1>
-            <p>Team did not make playoffs.</p>
-          </>
-        )
+        <>
+          <h1>No games found!</h1>
+          <p>Team did not make playoffs.</p>
+        </>
       )}
     </StyledGamesSingle>
   )

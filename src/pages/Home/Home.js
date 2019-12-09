@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { seasons, teams } from 'api'
+import { seasons, teamsData } from 'api'
 import { Page, Image } from 'components'
 
 const StyledHome = styled(Page)`
@@ -68,7 +68,7 @@ export const Home = () => (
     </div>
     <div>
       <div className="team-grid">
-        {Object.entries(teams).map(([key, value]) => (
+        {Object.entries(teamsData).map(([key, value]) => (
           <TeamLink
             key={key}
             to={`/teams/roster/${key}/${seasons[0].value}`}

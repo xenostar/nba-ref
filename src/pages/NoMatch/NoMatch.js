@@ -12,7 +12,7 @@ export const NoMatch = () => {
     <StyledNoMatch className="content">
       <h1>Oops!</h1>
       <p>No page found for <code>{location.pathname}</code>.</p>
-      <h1>Header 1</h1>
+      {/* <h1>Header 1</h1>
       <h2>Header 2</h2>
       <h3>Header 3</h3>
       <h4>Header 4</h4>
@@ -30,7 +30,7 @@ export const NoMatch = () => {
         <li>This is a test.</li>
         <li>This is a test.</li>
         <li>This is a test.</li>
-      </ol>
+      </ol> */}
     </StyledNoMatch>
   )
 }

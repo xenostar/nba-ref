@@ -38,16 +38,11 @@ export const Team = () => {
           <NavLink to={`/teams/roster/${teamSlug}/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/roster')}>Roster</NavLink>
           <NavLink to={`/teams/games/${teamSlug}/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/games')}>Games</NavLink>
         </NavSub>
-        <Select label="Team" name="team" value={values.team} onChange={handleChange}>
-          {Object.entries(teams).map(([key, value]) => (
+        <Select options={teams} label="Team" name="team" value={values.team} onChange={handleChange} />
+          {/* {Object.entries(teams).map(([key, value]) => (
             <option key={key} value={key}>{value.city + ' ' + value.name}</option>
-          ))}
-        </Select>
-        <Select label="Season" name="season" value={values.season} onChange={handleChange}>
-          {seasons.map(({name, value}) => (
-            <option key={value} value={value}>{name}</option>
-          ))}
-        </Select>
+          ))} */}
+        <Select options={seasons} label="Season" name="season" value={values.season} onChange={handleChange} />
       </Form>
       <Switch>
         <Route path={`/teams/roster`} render={props => <TeamRoster {...props} values={values} />} />

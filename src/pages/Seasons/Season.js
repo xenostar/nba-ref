@@ -32,11 +32,7 @@ export const Season = () => {
           <NavLink to={`/seasons/leaders/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/leaders')}>Leaders</NavLink>
           <NavLink to={`/seasons/standings/${seasonSlug}`} isActive={(_, loc) => loc.pathname.includes('/standings')}>Standings</NavLink>
         </NavSub>
-        <Select label="Season" name="season" value={values.season} onChange={handleChange}>
-          {seasons.map(({name, value}) => (
-            <option key={value} value={value}>{name}</option>
-          ))}
-        </Select>
+        <Select options={seasons} label="Season" name="season" value={values.season} onChange={handleChange} />
       </Form>
       <Switch>
         <Route path={`/seasons/leaders`} render={props => <SeasonLeaders {...props} values={values} />} />

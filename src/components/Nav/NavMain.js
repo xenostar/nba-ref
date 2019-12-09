@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 import { Nav } from 'components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBasketballBall, faHome, faCalendarAlt, faUsers, faTrophy } from '@fortawesome/free-solid-svg-icons'
-import { seasons, teams } from 'api'
+import { seasons, teamsData } from 'api'
 
 export const NavMain = () => (
   <Nav>
@@ -18,7 +18,7 @@ export const NavMain = () => (
       <span>Seasons</span>
     </NavLink>
     <NavLink
-      to={`/teams/roster/${Object.keys(teams)[0]}/${seasons[0].value}`}
+      to={`/teams/roster/${Object.keys(teamsData)[0]}/${seasons[0].value}`}
       isActive={(_, loc) => loc.pathname.startsWith('/teams')}>
       <FontAwesomeIcon icon={faBasketballBall} />
       <span>Teams</span>
