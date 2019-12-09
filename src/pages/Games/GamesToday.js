@@ -42,7 +42,7 @@ export const GamesToday = ({values}) => {
       }
     }
     handleFetch()
-    return () => source.cancel("Cancelling TeamGames request")
+    return () => source.cancel("Cancelling GamesToday request")
   }, [values])
 
   return (

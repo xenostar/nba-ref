@@ -42,7 +42,7 @@ export const GamesSingle = ({values}) => {
       }
     }
     handleFetch()
-    return () => source.cancel("Cancelling TeamGames request")
+    return () => source.cancel("Cancelling GamesSingle request")
   }, [values])
 
   return (
