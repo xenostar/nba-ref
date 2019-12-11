@@ -1,30 +1,16 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Header, NavMain, Footer, ScrollToTop } from 'components'
 // import { Header, NavMain, Footer, PasswordModal, ScrollToTop } from 'components'
 import { Home, Season, Team, Player, NoMatch } from 'pages'
+import BackgroundImage from 'assets/bg_funky-lines.png'
 import './_Normalize.css'
 import './_Reset.css'
-import './_Global.css'
-
-const StyledAppContainer = styled.div`
-  background-color: rgba(255,255,255,0.85);
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  max-width: 90vw;
-  min-height: 100vh;
-  padding: 1.875rem;
-  position: relative;
-  @media only screen and (max-width: 62.5rem) {
-    min-width: 100%;
-    padding: 1.875rem 0.9375rem 5.3125rem;
-  }
-`
 
 const App = () => (
   <BrowserRouter>
+    <GlobalStyle />
     <ScrollToTop />
     <StyledAppContainer>
       <Header />
@@ -54,3 +40,57 @@ const App = () => (
 )
 
 export default App
+
+const GlobalStyle = createGlobalStyle`
+  html {
+    color: #444;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: 400;
+  }
+  body {
+    background-image: url(${BackgroundImage});
+    overflow-y: scroll;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.5;
+  }
+  a {
+    color: #ED5429;
+    text-decoration: none;
+  }
+  p, ol, ul {
+    font-size: 1.25em;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  ul {
+    list-style-position: inside;
+    list-style-type: disc;
+  }
+  ol {
+    list-style-position:  inside;
+  }
+  code {
+    background-color: #ED5429;
+    border-radius: 3px;
+    color: #fff;
+    padding: 5px 3px;
+  }
+`
+
+const StyledAppContainer = styled.div`
+  background-color: rgba(255,255,255,0.85);
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 90vw;
+  min-height: 100vh;
+  padding: 1.875rem;
+  position: relative;
+  @media only screen and (max-width: 62.5rem) {
+    min-width: 100%;
+    padding: 1.875rem 0.9375rem 5.3125rem;
+  }
+`
