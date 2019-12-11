@@ -30,7 +30,7 @@ export const TeamGames = ({values}) => {
     <StyledTeamGames>
       {isLoading ? (
         <div className="grid">
-          <BlockLoader height="143.533" loaders="16" />
+          <BlockLoader height="128" loaders="16" />
         </div>
       ) : games.length > 0 ? (
         <div className="grid">
