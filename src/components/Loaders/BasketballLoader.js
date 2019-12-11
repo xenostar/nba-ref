@@ -2,6 +2,13 @@ import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import loaderImg from 'assets/img_basketball.svg'
 
+export const BasketballLoader = ({ loaderHeight })  => (
+  <StyledBasketballLoader loaderHeight={loaderHeight}>
+    <img src={loaderImg} alt="Loading" draggable="false" />
+    <p>Loading</p>
+  </StyledBasketballLoader>
+)
+
 const fadeInOut = keyframes`
   0% { opacity: 0.6; }
   50% { opacity: 1; }
@@ -29,10 +36,3 @@ const StyledBasketballLoader = styled.div`
     margin: 0 auto;
   }
 `
-
-export const BasketballLoader = ({ loaderHeight })  => (
-  <StyledBasketballLoader loaderHeight={loaderHeight}>
-    <img src={loaderImg} alt="Loading" draggable="false" />
-    <p>Loading</p>
-  </StyledBasketballLoader>
-)

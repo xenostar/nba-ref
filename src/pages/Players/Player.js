@@ -5,8 +5,6 @@ import { Page, NavSub, Form, Select } from 'components'
 import { PlayerCharts, PlayerStats, NoMatch } from 'pages'
 import { seasonOptions } from 'api'
 
-const StyledPlayers = styled(Page)``
-
 export const Player = () => {
   const history = useHistory()
   const { playerSlug } = useParams()
@@ -44,3 +42,5 @@ export const Player = () => {
     </StyledPlayers>
   )
 }
+
+const StyledPlayers = styled(Page)``

@@ -4,6 +4,27 @@ import { Link } from 'react-router-dom'
 import { seasonOptions, teamData } from 'api'
 import { Page, Image } from 'components'
 
+export const Home = () => (
+  <StyledHome className="content">
+    <div>
+      <h1>Welcome</h1>
+      <h4>To quite possibly the greatest reference for NBA statistics in the universe.</h4>
+    </div>
+    <div>
+      <div className="team-grid">
+        {Object.entries(teamData).map(([key, value]) => (
+          <TeamLink
+            key={key}
+            to={`/teams/roster/${key}/${seasonOptions[0].value}`}
+            bgcolor={value.colors[0]}>
+              <TeamImage src={value.logo} alt={`${value.city} ${value.name}`} />
+          </TeamLink>
+        ))}
+      </div>
+    </div>
+  </StyledHome>
+)
+
 const StyledHome = styled(Page)`
   display: grid;
   grid-gap: 1.875rem;
@@ -59,24 +80,3 @@ const TeamImage = styled(Image)`
   transform: scale(1) translateZ(0);
   width: 100%;
 `
-
-export const Home = () => (
-  <StyledHome className="content">
-    <div>
-      <h1>Welcome</h1>
-      <h4>To quite possibly the greatest reference for NBA statistics in the universe.</h4>
-    </div>
-    <div>
-      <div className="team-grid">
-        {Object.entries(teamData).map(([key, value]) => (
-          <TeamLink
-            key={key}
-            to={`/teams/roster/${key}/${seasonOptions[0].value}`}
-            bgcolor={value.colors[0]}>
-              <TeamImage src={value.logo} alt={`${value.city} ${value.name}`} />
-          </TeamLink>
-        ))}
-      </div>
-    </div>
-  </StyledHome>
-)

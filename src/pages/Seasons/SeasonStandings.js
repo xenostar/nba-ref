@@ -4,16 +4,6 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Table } from 'components'
 
-const StyledSeasonStandings = styled.div`
-  display: grid;
-  grid-gap: 1.875rem;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
-  @media only screen and (max-width: 62.5rem) {
-    grid-template-columns: 1fr;
-  }
-`
-
 export const SeasonStandings = ({values}) => {
   const _URL_ = 'v1.2/pull/nba/'
   const [standings, setStandings] = useState({ eastern: [], western: [] })
@@ -80,3 +70,13 @@ export const SeasonStandings = ({values}) => {
     </StyledSeasonStandings>
   )
 }
+
+const StyledSeasonStandings = styled.div`
+  display: grid;
+  grid-gap: 1.875rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  @media only screen and (max-width: 62.5rem) {
+    grid-template-columns: 1fr;
+  }
+`

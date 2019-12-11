@@ -4,8 +4,6 @@ import { useFetch } from 'use-http'
 import { Link } from 'react-router-dom'
 import { Table } from 'components'
 
-const StyledTeamRoster = styled.div``
-
 export const TeamRoster = ({values}) => {
   const _API_ = '/v2.1/pull/nba/'
   const {data: roster, loading} = useFetch({
@@ -105,3 +103,5 @@ export const TeamRoster = ({values}) => {
     </StyledTeamRoster>
   )
 }
+
+const StyledTeamRoster = styled.div``

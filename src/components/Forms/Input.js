@@ -1,6 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 
+export const Input = props => (
+  <StyledInput
+    className={props.className}
+    type={props.type}
+    placeholder={props.placeholder}
+    onChange={props.onChange}
+  />
+)
+
 const StyledInput = styled.input`
   background-color: #fff;
   border: 1px solid #ddd;
@@ -16,12 +25,3 @@ const StyledInput = styled.input`
     min-width: 20%;
   }
 `
-
-export const Input = props => (
-  <StyledInput
-    className={props.className}
-    type={props.type}
-    placeholder={props.placeholder}
-    onChange={props.onChange}
-  />
-)

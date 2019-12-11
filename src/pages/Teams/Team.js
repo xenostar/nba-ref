@@ -5,8 +5,6 @@ import { seasonOptions, teamOptions } from 'api'
 import { Page, NavSub, Form, Select } from 'components'
 import { TeamGames, TeamRoster, NoMatch } from 'pages'
 
-const StyledTeam = styled(Page)``
-
 export const Team = () => {
   const match = useRouteMatch()
   const history = useHistory()
@@ -49,3 +47,5 @@ export const Team = () => {
     </StyledTeam>
   )
 }
+
+const StyledTeam = styled(Page)``

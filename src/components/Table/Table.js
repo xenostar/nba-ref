@@ -2,6 +2,36 @@ import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { BasketballLoader } from 'components'
 
+export const Table = props => (
+  <StyledTable>
+    <div className="name">{props.tableTitle}</div>
+    <div className="holder">
+      <table>
+        <thead>
+          <tr>
+            {Object.entries(props.tableData).map(([name, width]) => (
+              <th key={name} style={{ width: width }}>{name}</th>
+            ))}
+          </tr>
+        </thead>
+        {props.isLoading ? (
+          <tbody className="tb-loading">
+            <tr>
+              <td colSpan={Object.keys(props.tableData).length}>
+                <BasketballLoader loaderHeight={props.loaderHeight ? props.loaderHeight : 10} />
+              </td>
+            </tr>
+          </tbody>
+        ) : (
+          <tbody className="tb-loaded">
+            {props.children}
+          </tbody>
+        )}
+      </table>
+    </div>
+  </StyledTable>
+)
+
 const slideIn = keyframes`
   0% {
     opacity: 0;
@@ -63,33 +93,3 @@ const StyledTable = styled.div`
     background-color: rgba(0,0,0,0.05);
   }
 `
-
-export const Table = props => (
-  <StyledTable>
-    <div className="name">{props.tableTitle}</div>
-    <div className="holder">
-      <table>
-        <thead>
-          <tr>
-            {Object.entries(props.tableData).map(([name, width]) => (
-              <th key={name} style={{ width: width }}>{name}</th>
-            ))}
-          </tr>
-        </thead>
-        {props.isLoading ? (
-          <tbody className="tb-loading">
-            <tr>
-              <td colSpan={Object.keys(props.tableData).length}>
-                <BasketballLoader loaderHeight={props.loaderHeight ? props.loaderHeight : 10} />
-              </td>
-            </tr>
-          </tbody>
-        ) : (
-          <tbody className="tb-loaded">
-            {props.children}
-          </tbody>
-        )}
-      </table>
-    </div>
-  </StyledTable>
-)

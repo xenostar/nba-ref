@@ -5,25 +5,6 @@ import { RadarChart } from 'react-vis'
 import { PlayerCard } from 'components'
 import 'react-vis/dist/style.css'
 
-const StyledPlayerCharts = styled.div`
-  .grid {
-    display: grid;
-    grid-gap: 1.875rem;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
-  }
-  @media only screen and (max-width: 87.5rem) { /* 1400px */
-    .grid {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-  @media only screen and (max-width: 62.5rem) { /* 1000px */
-    .grid {
-      grid-template-columns: 1fr;
-    }
-  }
-`
-
 export const PlayerCharts = ({values}) => {
   const _URL_ = 'v2.1/pull/nba/'
   const [playerInfo, setPlayerInfo] = useState({})
@@ -97,3 +78,22 @@ export const PlayerCharts = ({values}) => {
     </StyledPlayerCharts>
   )
 }
+
+const StyledPlayerCharts = styled.div`
+  .grid {
+    display: grid;
+    grid-gap: 1.875rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  @media only screen and (max-width: 87.5rem) { /* 1400px */
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media only screen and (max-width: 62.5rem) { /* 1000px */
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+`

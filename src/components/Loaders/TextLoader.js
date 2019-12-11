@@ -2,6 +2,20 @@ import React, { useEffect, useState } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { getRandomInt } from 'utils'
 
+export const TextLoader = props => {
+  const [width, setWidth] = useState(0)
+
+  useEffect(() => {
+    setWidth(getRandomInt(25,60))
+  }, [])
+
+  return (
+    <StyledTextLoader borderradius={props.borderradius} width={width}>
+      <Gradient></Gradient>
+    </StyledTextLoader>
+  )
+}
+
 const slide = keyframes`
   0% { left: -8rem; }
   100% { left: 100%; }
@@ -29,17 +43,3 @@ const Gradient = styled.div`
   top: 0;
   width: 8rem;
 `
-
-export const TextLoader = props => {
-  const [width, setWidth] = useState(0)
-
-  useEffect(() => {
-    setWidth(getRandomInt(25,60))
-  }, [])
-
-  return (
-    <StyledTextLoader borderradius={props.borderradius} width={width}>
-      <Gradient></Gradient>
-    </StyledTextLoader>
-  )
-}

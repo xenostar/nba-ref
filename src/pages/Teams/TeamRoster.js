@@ -5,8 +5,6 @@ import axios from 'axios'
 import { Table } from 'components'
 import { formatPlayerName } from 'utils'
 
-const StyledTeamRoster = styled.div``
-
 export const TeamRoster = ({values}) => {
   const _URL_ = 'v2.1/pull/nba/'
   const [roster, setRoster] = useState([])
@@ -64,3 +62,5 @@ export const TeamRoster = ({values}) => {
     </StyledTeamRoster>
   )
 }
+
+const StyledTeamRoster = styled.div``

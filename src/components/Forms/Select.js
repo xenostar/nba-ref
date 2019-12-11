@@ -2,6 +2,21 @@ import React from 'react'
 import styled from 'styled-components'
 import { Label } from 'components'
 
+export const Select = props => (
+  <div>
+    <Label>{props.label}</Label>
+    <StyledSelect
+      className={props.className}
+      name={props.name}
+      value={props.value}
+      onChange={props.onChange}>
+      {props.options.map(({label, value}) => (
+        <option key={value} value={value}>{label}</option>
+      ))}
+    </StyledSelect>
+  </div>
+)
+
 const StyledSelect = styled.select`
   background-color: #fff;
   border: 1px solid #ddd;
@@ -22,18 +37,3 @@ const StyledSelect = styled.select`
     background-color: rgba(0,0,0,0.025);
   } */
 `
-
-export const Select = props => (
-  <div>
-    <Label>{props.label}</Label>
-    <StyledSelect
-      className={props.className}
-      name={props.name}
-      value={props.value}
-      onChange={props.onChange}>
-      {props.options.map(({label, value}) => (
-        <option key={value} value={value}>{label}</option>
-      ))}
-    </StyledSelect>
-  </div>
-)

@@ -3,6 +3,27 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { teamData } from 'api'
 
+export const GameCard = ({data}) => {
+  const abbrvHome = data.schedule.homeTeam.abbreviation.toLowerCase()
+  const abbrvAway = data.schedule.awayTeam.abbreviation.toLowerCase()
+  const date = new Date(data.schedule.startTime)
+  const fDay = date.toLocaleString('en-US', { weekday: 'short' })
+  const fDate = date.toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+  const fTime = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+  return (
+    <StyledGameCard
+      to={`/game/${data.schedule.id}`}
+      awaycolor={teamData[abbrvAway].colors[0]}
+      awaylogo={teamData[abbrvAway].logo}
+      homecolor={teamData[abbrvHome].colors[0]}
+      homelogo={teamData[abbrvHome].logo}>
+      <div className="location">{data.schedule.venue.name}</div>
+      <div className="score">{data.score.awayScoreTotal} - {data.score.homeScoreTotal}</div>
+      <div className="time">{`${fDay} ${fDate} @ ${fTime}`}</div>
+    </StyledGameCard>
+  )
+}
+
 const StyledGameCard = styled(Link)`
   background:
     url('${props => props.awaylogo}'),
@@ -41,24 +62,3 @@ const StyledGameCard = styled(Link)`
     text-shadow: 0 1px 2px rgba(0,0,0,0.75);
   }
 `
-
-export const GameCard = ({data}) => {
-  const abbrvHome = data.schedule.homeTeam.abbreviation.toLowerCase()
-  const abbrvAway = data.schedule.awayTeam.abbreviation.toLowerCase()
-  const date = new Date(data.schedule.startTime)
-  const fDay = date.toLocaleString('en-US', { weekday: 'short' })
-  const fDate = date.toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
-  const fTime = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-  return (
-    <StyledGameCard
-      to={`/game/${data.schedule.id}`}
-      awaycolor={teamData[abbrvAway].colors[0]}
-      awaylogo={teamData[abbrvAway].logo}
-      homecolor={teamData[abbrvHome].colors[0]}
-      homelogo={teamData[abbrvHome].logo}>
-      <div className="location">{data.schedule.venue.name}</div>
-      <div className="score">{data.score.awayScoreTotal} - {data.score.homeScoreTotal}</div>
-      <div className="time">{`${fDay} ${fDate} @ ${fTime}`}</div>
-    </StyledGameCard>
-  )
-}

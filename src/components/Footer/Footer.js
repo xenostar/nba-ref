@@ -3,6 +3,14 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
+export const Footer = () => (
+  <StyledFooter>
+    <div>
+      <p>Built with <FontAwesomeIcon icon={faHeart} /> by <a href="https://github.com/xenostar" target="_blank" rel="noopener noreferrer">Xenostar</a>.</p>
+    </div>
+  </StyledFooter>
+)
+
 const StyledFooter = styled.footer`
   margin-top: auto;
 
@@ -18,11 +26,3 @@ const StyledFooter = styled.footer`
     user-select: none;
   }
 `
-
-export const Footer = () => (
-  <StyledFooter>
-    <div>
-      <p>Built with <FontAwesomeIcon icon={faHeart} /> by <a href="https://github.com/xenostar" target="_blank" rel="noopener noreferrer">Xenostar</a>.</p>
-    </div>
-  </StyledFooter>
-)

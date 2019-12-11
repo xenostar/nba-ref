@@ -4,6 +4,107 @@ import { Image, TextLoader } from 'components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 
+export const PlayerCard = ({ playerInfo, playerReferences, isLoading }) => (
+  <StyledPlayerCard>
+    <PlayerCardGridImage>
+      <div>
+        <TeamImage src={playerReferences.officialLogoImageSrc} alt={`${playerReferences.city} ${playerReferences.name}`} opacity="0.5" />
+        <PlayerImage src={playerInfo.officialImageSrc} alt={`${playerInfo.firstName} ${playerInfo.lastName}`} />
+      </div>
+    </PlayerCardGridImage>
+    <PlayerCardGridName>
+      {isLoading ? <TextLoader /> : (
+        <>
+          <h2>{`${playerInfo.firstName ?? "First"} ${playerInfo.lastName ?? "Last"}`}</h2>
+          {(playerInfo.socialMediaAccounts !== undefined && playerInfo.socialMediaAccounts.length !== 0) && (
+            <a href={'https://www.twitter.com/' + playerInfo.socialMediaAccounts[0].value} target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faTwitter} />
+            </a>
+          )}
+        </>
+      )}
+    </PlayerCardGridName>
+    <PlayerCardGridTable>
+      <Col>
+        <Label>Team</Label>
+        <Val>
+          {isLoading ? <TextLoader /> : `${playerReferences.city ?? "City"} ${playerReferences.name ?? "Team"}`}
+        </Val>
+      </Col>
+      <Col>
+        <Label>Position</Label>
+        <Val>
+          {isLoading ? <TextLoader /> : playerInfo.primaryPosition ?? "Unknown"}
+        </Val>
+      </Col>
+      <Col>
+        <Label>Age</Label>
+        <Val>
+          {isLoading ? <TextLoader /> : playerInfo.age ?? "Unknown"}
+        </Val>
+      </Col>
+      <Col>
+        <Label>Height</Label>
+        <Val>
+          {isLoading ? <TextLoader /> : playerInfo.height ?? "Unknown"}
+        </Val>
+      </Col>
+      <Col>
+        <Label>Weight</Label>
+        <Val>
+          {isLoading ? <TextLoader /> : playerInfo.weight ?? "Unknown"}
+        </Val>
+      </Col>
+    </PlayerCardGridTable>
+    <PlayerCardGridTable2>
+      <Col>
+        <Label>Jersey</Label>
+        <Val>
+          {isLoading ? <TextLoader /> : playerInfo.jerseyNumber ?? "None"}
+        </Val>
+      </Col>
+      <Col>
+        <Label>Status</Label>
+        <Val>
+          {isLoading ? <TextLoader /> : (
+            (() => {
+              switch(playerInfo.currentRosterStatus) {
+                case 'ROSTER':
+                  return 'Active';
+                case 'ASSIGNED_TO_MINORS':
+                  return 'G-League';
+                case 'UFA':
+                  return 'Unrestricted Free Agent';
+                case 'RETIRED':
+                  return 'Retired';
+                default:
+                  return 'Unknown';
+              }
+            })())}
+        </Val>
+      </Col>
+      <Col>
+        <Label>Born</Label>
+        <Val>
+          {isLoading ? <TextLoader /> : playerInfo.birthDate ?? "Unknown"}
+        </Val>
+      </Col>
+      <Col>
+        <Label>From</Label>
+        <Val>
+          {isLoading ? <TextLoader /> : `${playerInfo.birthCity ?? "Birth City"} ${playerInfo.birthCountry ?? "Country"}`}
+        </Val>
+      </Col>
+      <Col>
+        <Label>College</Label>
+        <Val>
+          {isLoading ? <TextLoader /> : playerInfo.college ?? "None"}
+        </Val>
+      </Col>
+    </PlayerCardGridTable2>
+  </StyledPlayerCard>
+)
+
 const StyledPlayerCard = styled.div`
   display: grid;
   margin-bottom: 1.875rem;
@@ -114,104 +215,3 @@ const Val = styled.div`
 const PlayerCardGridTable2 = styled(PlayerCardGridTable)`
   grid-area: table2;
 `
-
-export const PlayerCard = ({ playerInfo, playerReferences, isLoading }) => (
-  <StyledPlayerCard>
-    <PlayerCardGridImage>
-      <div>
-        <TeamImage src={playerReferences.officialLogoImageSrc} alt={`${playerReferences.city} ${playerReferences.name}`} opacity="0.5" />
-        <PlayerImage src={playerInfo.officialImageSrc} alt={`${playerInfo.firstName} ${playerInfo.lastName}`} />
-      </div>
-    </PlayerCardGridImage>
-    <PlayerCardGridName>
-      {isLoading ? <TextLoader /> : (
-        <>
-          <h2>{`${playerInfo.firstName ?? "First"} ${playerInfo.lastName ?? "Last"}`}</h2>
-          {(playerInfo.socialMediaAccounts !== undefined && playerInfo.socialMediaAccounts.length !== 0) && (
-            <a href={'https://www.twitter.com/' + playerInfo.socialMediaAccounts[0].value} target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faTwitter} />
-            </a>
-          )}
-        </>
-      )}
-    </PlayerCardGridName>
-    <PlayerCardGridTable>
-      <Col>
-        <Label>Team</Label>
-        <Val>
-          {isLoading ? <TextLoader /> : `${playerReferences.city ?? "City"} ${playerReferences.name ?? "Team"}`}
-        </Val>
-      </Col>
-      <Col>
-        <Label>Position</Label>
-        <Val>
-          {isLoading ? <TextLoader /> : playerInfo.primaryPosition ?? "Unknown"}
-        </Val>
-      </Col>
-      <Col>
-        <Label>Age</Label>
-        <Val>
-          {isLoading ? <TextLoader /> : playerInfo.age ?? "Unknown"}
-        </Val>
-      </Col>
-      <Col>
-        <Label>Height</Label>
-        <Val>
-          {isLoading ? <TextLoader /> : playerInfo.height ?? "Unknown"}
-        </Val>
-      </Col>
-      <Col>
-        <Label>Weight</Label>
-        <Val>
-          {isLoading ? <TextLoader /> : playerInfo.weight ?? "Unknown"}
-        </Val>
-      </Col>
-    </PlayerCardGridTable>
-    <PlayerCardGridTable2>
-      <Col>
-        <Label>Jersey</Label>
-        <Val>
-          {isLoading ? <TextLoader /> : playerInfo.jerseyNumber ?? "None"}
-        </Val>
-      </Col>
-      <Col>
-        <Label>Status</Label>
-        <Val>
-          {isLoading ? <TextLoader /> : (
-            (() => {
-              switch(playerInfo.currentRosterStatus) {
-                case 'ROSTER':
-                  return 'Active';
-                case 'ASSIGNED_TO_MINORS':
-                  return 'G-League';
-                case 'UFA':
-                  return 'Unrestricted Free Agent';
-                case 'RETIRED':
-                  return 'Retired';
-                default:
-                  return 'Unknown';
-              }
-            })())}
-        </Val>
-      </Col>
-      <Col>
-        <Label>Born</Label>
-        <Val>
-          {isLoading ? <TextLoader /> : playerInfo.birthDate ?? "Unknown"}
-        </Val>
-      </Col>
-      <Col>
-        <Label>From</Label>
-        <Val>
-          {isLoading ? <TextLoader /> : `${playerInfo.birthCity ?? "Birth City"} ${playerInfo.birthCountry ?? "Country"}`}
-        </Val>
-      </Col>
-      <Col>
-        <Label>College</Label>
-        <Val>
-          {isLoading ? <TextLoader /> : playerInfo.college ?? "None"}
-        </Val>
-      </Col>
-    </PlayerCardGridTable2>
-  </StyledPlayerCard>
-)

@@ -4,6 +4,15 @@ import { Link } from 'react-router-dom'
 import { Image } from 'components'
 import logoImg from 'assets/img_nba-logo--orange.svg'
 
+export const Header = () => (
+  <StyledHeader>
+    <Link to="/">
+      <Image src={logoImg} alt="nba-ref" />
+      <h1>nba<span>ref</span></h1>
+    </Link>
+  </StyledHeader>
+)
+
 const StyledHeader = styled.header`
   margin-bottom: 1.875rem;
 
@@ -28,12 +37,3 @@ const StyledHeader = styled.header`
     width: 2.63854375rem;
   }
 `
-
-export const Header = () => (
-  <StyledHeader>
-    <Link to="/">
-      <Image src={logoImg} alt="nba-ref" />
-      <h1>nba<span>ref</span></h1>
-    </Link>
-  </StyledHeader>
-)

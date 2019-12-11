@@ -2,6 +2,41 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Form, Button, Input } from 'components'
 
+export const PasswordModal = () => {
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem("loggedIn"))
+  const [password, setPassword] = useState('')
+  const [errorMsg, setErrorMsg] = useState('')
+  const key = '1234'
+
+  const handleClick = event => {
+    event.preventDefault()
+    if (password === key) {
+      setLoggedIn(true)
+      localStorage.setItem("loggedIn", true)
+    } else {
+      setErrorMsg("Incorrect Password")
+    }
+  }
+
+  const handleChange = event => {
+    setPassword(event.target.value)
+  }
+
+  return (
+    <>
+      {!loggedIn &&
+        <StyledPasswordModal>
+          <StyledForm>
+            <StyledInput onChange={handleChange} value={password} type="password" />
+            <Button onClick={handleClick}>Log In</Button>
+            {errorMsg ? <StyledError>{errorMsg}</StyledError> : null}
+          </StyledForm>
+        </StyledPasswordModal>
+      }
+    </>
+  )
+}
+
 const StyledPasswordModal = styled.div`
   background: rgba(255,255,255,0.75);
   display: flex;
@@ -38,38 +73,3 @@ const StyledInput = styled(Input)`
   color: #ED5429;
   margin-bottom: 5px;
 `
-
-export const PasswordModal = () => {
-  const [loggedIn, setLoggedIn] = useState(localStorage.getItem("loggedIn"))
-  const [password, setPassword] = useState('')
-  const [errorMsg, setErrorMsg] = useState('')
-  const key = '1234'
-
-  const handleClick = event => {
-    event.preventDefault()
-    if (password === key) {
-      setLoggedIn(true)
-      localStorage.setItem("loggedIn", true)
-    } else {
-      setErrorMsg("Incorrect Password")
-    }
-  }
-
-  const handleChange = event => {
-    setPassword(event.target.value)
-  }
-
-  return (
-    <>
-      {!loggedIn &&
-        <StyledPasswordModal>
-          <StyledForm>
-            <StyledInput onChange={handleChange} value={password} type="password" />
-            <Button onClick={handleClick}>Log In</Button>
-            {errorMsg ? <StyledError>{errorMsg}</StyledError> : null}
-          </StyledForm>
-        </StyledPasswordModal>
-      }
-    </>
-  )
-}

@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import { useLocation } from 'react-router-dom'
 import { Page } from 'components'
 
-const StyledNoMatch = styled(Page)``
-
 export const NoMatch = () => {
   const location = useLocation()
 
@@ -34,3 +32,5 @@ export const NoMatch = () => {
     </StyledNoMatch>
   )
 }
+
+const StyledNoMatch = styled(Page)``

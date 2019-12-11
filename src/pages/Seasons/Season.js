@@ -5,8 +5,6 @@ import { seasonOptions } from 'api'
 import { Page, NavSub, Form, Select } from 'components'
 import { SeasonLeaders, SeasonStandings, NoMatch } from 'pages'
 
-const StyledSeasons = styled(Page)``
-
 export const Season = () => {
   const history = useHistory()
   const { seasonSlug } = useParams()
@@ -42,3 +40,5 @@ export const Season = () => {
     </StyledSeasons>
   )
 }
+
+const StyledSeasons = styled(Page)``

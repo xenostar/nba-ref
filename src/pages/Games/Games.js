@@ -5,8 +5,6 @@ import { seasonOptions } from 'api'
 import { Page, Form, Select } from 'components'
 import { GamesSingle, GamesToday, NoMatch } from 'pages'
 
-const StyledTeam = styled(Page)``
-
 export const Games = () => {
   const match = useRouteMatch()
   const history = useHistory()
@@ -44,3 +42,5 @@ export const Games = () => {
     </StyledTeam>
   )
 }
+
+const StyledTeam = styled(Page)``

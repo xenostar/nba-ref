@@ -1,6 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
 
+export const Button = props => (
+  <StyledButton
+    className={props.className}
+    type={props.type}
+    value={props.value}
+    onClick={props.onClick}>
+    {props.children}
+  </StyledButton>
+)
+
 const StyledButton = styled.button`
   background-color: #ED5429;
   border: 1px solid #ED5429;
@@ -15,13 +25,3 @@ const StyledButton = styled.button`
   user-select: none;
   width: 100%;
 `
-
-export const Button = props => (
-  <StyledButton
-    className={props.className}
-    type={props.type}
-    value={props.value}
-    onClick={props.onClick}>
-    {props.children}
-  </StyledButton>
-)
