@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { createGlobalStyle } from 'styled-components'
+import styled from 'styled-components'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Header, NavMain, Footer, ScrollToTop, NormalizeStyle, ResetStyle, GlobalStyle } from 'components'
 // import { Header, NavMain, Footer, PasswordModal, ScrollToTop } from 'components'
