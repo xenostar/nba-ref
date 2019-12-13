@@ -13,16 +13,7 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoading }) => (
       </div>
     </PlayerCardGridImage>
     <PlayerCardGridName>
-      {isLoading ? <TextLoader /> : (
-        <>
-          <h2>{`${playerInfo.firstName ?? "First"} ${playerInfo.lastName ?? "Last"}`}</h2>
-          {(playerInfo.socialMediaAccounts !== undefined && playerInfo.socialMediaAccounts.length !== 0) && (
-            <a href={'https://www.twitter.com/' + playerInfo.socialMediaAccounts[0].value} target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faTwitter} />
-            </a>
-          )}
-        </>
-      )}
+      {isLoading ? <TextLoader /> : <PlayerName playerInfo={playerInfo} />}
     </PlayerCardGridName>
     <PlayerCardGridTable>
       <Col>
@@ -103,6 +94,17 @@ export const PlayerCard = ({ playerInfo, playerReferences, isLoading }) => (
       </Col>
     </PlayerCardGridTable2>
   </StyledPlayerCard>
+)
+
+const PlayerName = ({playerInfo}) => (
+  <>
+    <h2>{`${playerInfo.firstName ?? "First"} ${playerInfo.lastName ?? "Last"}`}</h2>
+    {(playerInfo.socialMediaAccounts !== undefined && playerInfo.socialMediaAccounts.length !== 0) && (
+      <a href={'https://www.twitter.com/' + playerInfo.socialMediaAccounts[0].value} target="_blank" rel="noopener noreferrer">
+        <FontAwesomeIcon icon={faTwitter} />
+      </a>
+    )}
+  </>
 )
 
 const StyledPlayerCard = styled.div`
