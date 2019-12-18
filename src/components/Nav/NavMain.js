@@ -30,7 +30,7 @@ export const NavMain = () => (
       <span>Players</span>
     </NavLink>
     <NavLink
-      to={`/games`}
+      to={`/games/today`}
       isActive={(_, loc) => loc.pathname.startsWith('/games')}>
       <FontAwesomeIcon icon={faCalendarAlt} />
       <span>Games</span>

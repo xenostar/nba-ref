@@ -23,14 +23,14 @@ export const GamesToday = ({values}) => {
       }
     }
     handleFetch()
-    return () => source.cancel("Cancelling GamesToday request")
+    return () => source.cancel("Cancelling TeamGames request")
   }, [values])
 
   return (
-    <StyledGamesToday>
+    <StyledTeamGames>
       {isLoading ? (
         <div className="grid">
-          <BlockLoader height="143.533" loaders="12" />
+          <BlockLoader height="128" loaders="16" />
         </div>
       ) : games.length > 0 ? (
         <div className="grid">
@@ -42,15 +42,15 @@ export const GamesToday = ({values}) => {
           <p>Team did not make playoffs.</p>
         </>
       )}
-    </StyledGamesToday>
+    </StyledTeamGames>
   )
 }
 
-const StyledGamesToday = styled.div`
+const StyledTeamGames = styled.div`
   .grid {
     display: grid;
     grid-gap: 1.875rem;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto;
   }
   @media only screen and (max-width: 87.5rem) { /* 1400px */
