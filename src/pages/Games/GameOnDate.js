@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import axios from 'axios'
 import { BlockLoader, GameCard } from 'components'
 
-export const GamesToday = ({values}) => {
+export const GamesOnDate = ({values}) => {
   const _URL_ = 'v2.1/pull/nba/'
   const [games, setGames] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -13,7 +13,7 @@ export const GamesToday = ({values}) => {
     const handleFetch = async () => {
       setIsLoading(true)
       try {
-        const res = await axios.get(`${ _URL_ + values.season }/games.json?team=${ values.team }&status=final&sort=game.starttime.D`,{
+        const res = await axios.get(`${ _URL_ }/latest/games.json?date=${ values.date }&status=final&sort=game.starttime.D`,{
           cancelToken: source.token
         })
         setGames(res.data.games)
@@ -23,7 +23,7 @@ export const GamesToday = ({values}) => {
       }
     }
     handleFetch()
-    return () => source.cancel("Cancelling TeamGames request")
+    return () => source.cancel("Cancelling GameOnDate request")
   }, [values])
 
   return (

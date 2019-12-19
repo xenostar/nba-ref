@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Header, NavMain, Footer, ScrollToTop, NormalizeStyle, ResetStyle, GlobalStyle } from 'components'
 // import { Header, NavMain, Footer, PasswordModal, ScrollToTop } from 'components'
-import { Home, Season, Team, Player, NoMatch } from 'pages'
+import { Home, Season, Team, Player, Game, NoMatch } from 'pages'
 
 const App = () => (
   <BrowserRouter>
@@ -18,6 +18,7 @@ const App = () => (
         <Route path="/seasons/:pageSlug/:seasonSlug" component={Season} />
         <Route path="/teams/:pageSlug/:teamSlug/:seasonSlug" component={Team} />
         <Route path="/players/:pageSlug/:playerSlug/:seasonSlug" component={Player} />
+        <Route path="/games/:pageSlug/:dateSlug" component={Game} />
         <Route path="/" component={Home} exact />
         <Route path="*" component={NoMatch} />
       </Switch>
