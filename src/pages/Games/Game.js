@@ -26,7 +26,7 @@ export const Game = () => {
   return (
     <StyledTeam>
       <Form>
-        <Select options={dateOptions} label="Date" name="date" value={values.date} onChange={handleChange} />
+        <Select options={dateOptions} label="Games Since" name="date" value={values.date} onChange={handleChange} />
       </Form>
       <Switch>
         <Route path={`/games/date/${dateSlug}`} render={props => <GamesOnDate {...props} values={values} />} />
