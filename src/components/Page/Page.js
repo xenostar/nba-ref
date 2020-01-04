@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Page = styled.div`
+export const Page = styled.main`
   clear: both;
 
   p a,
