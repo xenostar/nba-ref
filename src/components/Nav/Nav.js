@@ -6,7 +6,7 @@ export const Nav = styled.nav`
   display: flex;
   margin-bottom: 1.875rem;
   overflow: hidden;
-  @media only screen and (max-width: 62.5rem) {
+  @media (max-width: 62.5rem) {
     background-color: rgba(255,255,255,1);
     border-radius: 0;
     box-shadow: 0 3px 10px rgba(0,0,0,0.5);
@@ -49,7 +49,7 @@ export const Nav = styled.nav`
   svg {
     display: none;
   }
-  @media only screen and (max-width: 62.5rem) { /* 1000px */
+  @media (max-width: 62.5rem) { /* 1000px */
     a {
       align-items: center;
       border-bottom: 0;

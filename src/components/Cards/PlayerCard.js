@@ -119,7 +119,7 @@ const StyledPlayerCard = styled.div`
     "frame table1 table2"
     "frame table1 table2"
   ;
-  @media only screen and (max-width: 50rem) { /* 800px */
+  @media (max-width: 50rem) { /* 800px */
     grid-row-gap: 1.25rem;
     grid-template-columns: 1fr;
     grid-template-rows: auto;

@@ -28,7 +28,7 @@ const StyledSelect = styled.select`
   padding: 0 10px;
   user-select: none;
   -webkit-appearance: none;
-  @media only screen and (max-width: 1000px) {
+  @media (max-width: 1000px) {
     width: auto;
     flex-grow: 1;
   }

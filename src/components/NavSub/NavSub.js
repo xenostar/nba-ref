@@ -4,7 +4,7 @@ export const NavSub = styled.nav`
   background-color: rgba(237, 84, 41, 1);
   border-radius: 3px;
   display: flex;
-  @media only screen and (max-width: 62.5rem) {
+  @media (max-width: 62.5rem) {
     margin-bottom: 5px;
   }
 
@@ -35,7 +35,7 @@ export const NavSub = styled.nav`
     border: 0;
     outline: 0;
   }
-  @media only screen and (max-width: 62.5rem) { /* 1000px */
+  @media (max-width: 62.5rem) { /* 1000px */
     a {
       flex-basis: 0;
       flex-grow: 1;

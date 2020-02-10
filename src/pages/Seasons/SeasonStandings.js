@@ -76,7 +76,7 @@ const StyledSeasonStandings = styled.div`
   grid-gap: 1.875rem;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
-  @media only screen and (max-width: 62.5rem) {
+  @media (max-width: 62.5rem) {
     grid-template-columns: 1fr;
   }
 `

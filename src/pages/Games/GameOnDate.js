@@ -53,12 +53,12 @@ const StyledTeamGames = styled.div`
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto;
   }
-  @media only screen and (max-width: 87.5rem) { /* 1400px */
+  @media (max-width: 87.5rem) { /* 1400px */
     .grid {
       grid-template-columns: 1fr 1fr;
     }
   }
-  @media only screen and (max-width: 62.5rem) { /* 1000px */
+  @media (max-width: 62.5rem) { /* 1000px */
     .grid {
       grid-template-columns: 1fr;
     }

@@ -50,7 +50,7 @@ const StyledAppContainer = styled.div`
   min-height: 100vh;
   padding: 1.875rem;
   position: relative;
-  @media only screen and (max-width: 62.5rem) {
+  @media (max-width: 62.5rem) {
     min-width: 100%;
     padding: 1.875rem 0.9375rem 5.3125rem;
   }

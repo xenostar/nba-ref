@@ -21,7 +21,7 @@ const StyledInput = styled.input`
   padding: 0 10px;
   user-select: none;
   width: 100%;
-  @media only screen and (max-width: 1000px) {
+  @media (max-width: 1000px) {
     min-width: 20%;
   }
 `

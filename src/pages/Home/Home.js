@@ -29,7 +29,7 @@ const StyledHome = styled(Page)`
   display: grid;
   grid-gap: 1.875rem;
   grid-template-columns: 1fr 2fr;
-  @media only screen and (max-width: 62.5rem) {
+  @media (max-width: 62.5rem) {
     grid-template-columns: 1fr;
   }
 
@@ -38,12 +38,12 @@ const StyledHome = styled(Page)`
     grid-gap: 0.9375rem;
     grid-template-columns: repeat(5, 1fr);
   }
-  @media only screen and (max-width: 87.5rem) { /* 1400px */
+  @media (max-width: 87.5rem) { /* 1400px */
     .team-grid {
       grid-template-columns: repeat(4, 1fr);
     }
   }
-  @media only screen and (max-width: 62.5rem) { /* 1000px */
+  @media (max-width: 62.5rem) { /* 1000px */
     .team-grid {
       grid-template-columns: repeat(3, 1fr);
     }
