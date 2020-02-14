@@ -8,7 +8,7 @@ export const NoMatch = () => {
 
   return (
     <StyledNoMatch className="content">
-      <h1>Oops!</h1>
+      <h1>Technical Foul!</h1>
       <p>No page found for <code>{location.pathname}</code>.</p>
       {/* <h1>Header 1</h1>
       <h2>Header 2</h2>
