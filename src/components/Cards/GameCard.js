@@ -12,7 +12,7 @@ export const GameCard = ({data}) => {
   const fTime = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
   return (
     <StyledGameCard
-      to={`/game/${data.schedule.id}`}
+      // to={`/game/${data.schedule.id}`}
       awaycolor={teamData[abbrvAway].colors[0]}
       awaylogo={teamData[abbrvAway].logo}
       homecolor={teamData[abbrvHome].colors[0]}

@@ -39,7 +39,7 @@ export const GamesOnDate = ({values}) => {
       ) : (
         <>
           <h1>No games found!</h1>
-          <p>Team did not make playoffs.</p>
+          <p>Please try a different date.</p>
         </>
       )}
     </StyledTeamGames>

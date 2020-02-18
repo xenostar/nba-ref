@@ -34,7 +34,7 @@ const StyledTextLoader = styled.div`
   }
 `
 const Gradient = styled.div`
-  animation: ${slide} infinite 2s ease-in-out;
+  animation: ${slide} infinite 1s ease-in-out;
   animation-fill-mode: both;
   background: rgb(238,238,238);
   background: linear-gradient(90deg, rgba(238,238,238,1) 20%, rgba(255,255,255,0.5) 50%, rgba(238,238,238,1) 80%);
