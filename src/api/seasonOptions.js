@@ -1,5 +1,13 @@
 export const seasonOptions = [
   {
+    label: '2020-2021 Regular',
+    value: '2020-2021-regular',
+  },
+  {
+    label: '2020 Playoff',
+    value: '2020-playoff',
+  },
+  {
     label: '2019-2020 Regular',
     value: '2019-2020-regular',
   },
